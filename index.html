@@ -1,8 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
-<head>
-</head>
-<body>
-<h1>TEST</h1>
-</body>
+  <head>
+    <title>Random Stuff</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<style>
+	#quote {font-size:24px;}
+	#author {font-size:20px;font-style: italic;}
+	</style>
+  </head>
+  <body>
+    <center>
+      <h1 style="font-size:96px;">Random Stuff Page</h1>
+      <br>
+      <a style="font-size:48px;" href="../../../index.html">Back to Normal Websites</a>
+      <br>
+      <br>
+      <br>
+	  <h1>Random Quote</h1>
+      <p id='quote'></p>
+      <p id='author'></p>
+    <a style="48px;" href="http://www.coolmath-games.com/0-dolphin-olympics-2">Here, fun game.</a>
+      <p>That's All I got for now.</p>
+      <p>If you want to add something to this page either tell me or add it yourself if you know how.</p>
+      <p>-Matthew</p>
+	  <script>
+	  function parseQuote(response) {
+		console.log(response);
+		$("#quote").text(response.quoteText);
+		$("#author").text(response.quoteAuthor);
+		};
+		var tag = document.createElement("script");
+		tag.src="http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=parseQuote";
+		$('#quote').html(tag);</script>
+    </center>
+  </body>
 </html>
