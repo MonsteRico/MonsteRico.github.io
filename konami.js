@@ -34,3 +34,43 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 		document.getElementById("demo").innerHTML = "EXPIRED";
 	}
 }, 1000);
+
+	x = 0;
+	console.log(this)
+	function theTest(id) {
+		console.log(id)
+		if (x == id) {
+			document.getElementById(id).style.backgroundColor = "green";
+			x += 1
+		}
+		else {
+			document.getElementById("0").style.backgroundColor = "purple";
+			document.getElementById("1").style.backgroundColor = "purple";
+			document.getElementById("2").style.backgroundColor = "purple";
+			document.getElementById("3").style.backgroundColor = "purple";	
+			x=0
+		}
+
+		if (x == 4) {
+			document.getElementById('victory').innerHTML = "You won"
+		}
+	}
+	var ids = [0,1,2,3];
+	var shuffledIds = shuffle(ids);
+	console.log(shuffledIds);
+	document.getElementById("one").id = shuffledIds[0];
+	document.getElementById("two").id = shuffledIds[1];
+	document.getElementById("three").id = shuffledIds[2];
+	document.getElementById("four").id = shuffledIds[3];
+	function shuffle(array) {
+		var rand, index = -1,
+			length = array.length,
+			result = Array(length);
+		while (++index < length) {
+			rand = Math.floor(Math.random() * (index + 1));
+			result[index] = result[rand];
+			result[rand] = array[index];
+		}
+		return result;
+
+	}

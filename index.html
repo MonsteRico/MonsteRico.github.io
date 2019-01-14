@@ -23,6 +23,26 @@
 	margin-bottom:30px;
 	border-right:3px solid black;
 	}
+	.theDiv {
+		display:flex;
+		flex-flow:row wrap;
+	}
+	.theSpan {
+		background-color:purple;
+		height:50px;
+		width:50px;
+		border-radius:25px;
+		margin-top:50px;
+	}
+	.theSpan2 {
+		background-color:purple;
+		height:50px;
+		width:50px;
+		border-radius:25px;
+		margin-left:25%;
+		margin-top:50px;
+		margin-bottom:100px;
+	}
 	</style>
   </head>
   <body class="container">
@@ -53,13 +73,9 @@
 
 	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 	  <div class="row">
-		<div class="col-6 col-md-4">Welcome To TechHOUNDS!
-Team 868 is based in Carmel, IN. Carmel High School's TechHOUNDS is a group of students	
-that participate in the FIRST Robotics Competitions. The mentors of Team 868 are a variety of 
-parents, teachers, and alumni who guide current students and foster technical and professional skills.
-
-</div>
-		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+		<div class="col-6 col-md-4">WELCOME TO LOREM IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
+		</div>
+		<div class="col-6 col-md-4 test">.this one-4</div>
 		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
 	  </div>
 
@@ -69,6 +85,17 @@ parents, teachers, and alumni who guide current students and foster technical an
 		<div class="col-6 test">.col-6</div>
 	  </div>
 	</div>
+	
+		<h1>Look i made a game</h1>
+	<div class="theDiv">
+
+		<span onclick="theTest(this.id)" id="one" class="theSpan">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="two" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="three" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="four" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<h1 id="victory"></h1>
+	</div>
+
 	<script src="konami.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
