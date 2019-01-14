@@ -15,14 +15,19 @@
      font-size: 60px;
      margin-top: 0px; }
 	.test { 
+		background-color:red;
+	border-right:3px solid black;
+	margin-left:auto;
+	margin-right:auto;
 	background-color:red;
+	margin-bottom:30px;
 	border-right:3px solid black;
 	}
 	</style>
   </head>
-  <body>
+  <body class="container">
     <center>
-      <h1 class="col-sm-4" style="font-size:96px;">Random Stuff Page</h1>
+      <h1 class="" style="font-size:96px;">Random Stuff Page</h1>
       <br>
       <a style="font-size:48px;" href="https://techhounds.com">Back to Normal Websites</a>
       <br>
@@ -32,24 +37,32 @@
       <p id='quote'></p>
       <p id='author'></p>
 	  <a style="48px;" href="https://www.coolmath-games.com/0-dolphin-olympics-2">Here, fun game.</a>
-	  <h1 style="font-family: 'Mountains of Christmas', cursive;">Countdown to End of School</h1>
+	  <h1 style="font-family: 'Mountains of Christmas', cursive;">Countdown to End of School (Including Weekends)</h1>
 	  <p id="demo"></p>
       <p>That's All I got for now.</p>
       <p>If you want to add something to this page either tell me or add it yourself if you know how.</p>
       <p>-MonsteRico</p>
 	</center>
 	<Br>
-	<br>
-	<div class="row mr-auto ml-auto">
-	<div class="col-md-4 col-sm-2 test">
-		<h2>TESTING PURPOSES</h2>
-	</div>
-	<div class="col-md-4 col-sm-2 test">
-		<h2>TESTING PURPOSES</h2>
-	</div>
-	<div class="col-md-4 col-sm-2 test">
-		<h2>TESTING PURPOSES</h2>
-	</div>
+	<div class="container">
+	  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+	  <div class="row">
+		<div class="col-12 col-md-8 test">.col-12 .col-md-8</div>
+		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+	  </div>
+
+	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+	  <div class="row">
+		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+	  </div>
+
+	  <!-- Columns are always 50% wide, on mobile and desktop -->
+	  <div class="row">
+		<div class="col-6 test">.col-6</div>
+		<div class="col-6 test">.col-6</div>
+	  </div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
