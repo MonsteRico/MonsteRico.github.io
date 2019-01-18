@@ -74,3 +74,12 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 		return result;
 
 	}
+	
+function site() {
+	if (document.getElementById("test3").value == "truth") {
+		window.open("./truth.html");
+	}
+	else {
+		alert("That's not a page");
+	}
+}
