@@ -86,7 +86,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
-		pagesLeft -= 1;
+		pagesLeft = pagesleft - 1;
 		console.log(pagesLeft);
 		localStorage.setItem("pagesLeft", pagesLeft);
 		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
@@ -94,7 +94,7 @@ function site() {
 	else {
 		if (document.getElementById("test3").value == "test") {
 			window.open("./test.html");
-			pagesLeft -= 1;
+			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
 			localStorage.setItem("pagesLeft", pagesLeft);
 			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
