@@ -1,3 +1,8 @@
+
+var pagesLeft = 2;
+localStorage.setItem("pagesLeft", "2");	
+document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+
 function parseQuote(response) {
 	console.log(response);
 	$("#quote").text(response.quoteText);
@@ -74,12 +79,26 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 		return result;
 
 	}
-	
+
+
+
 function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
+		pagesLeft -= 1;
+		localStorage.setItem("pagesLeft", pagesLeft);
+		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 	}
 	else {
-		alert("That's not a page");
+		if (document.getElementById("test3").value == "test") {
+			window.open("./test.html");
+			pagesLeft -= 1;
+			localStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+		}
+		else {	
+			alert("That's not a page");
+		}
 	}
+	localStorage.setItem("pagesLeft", pagesLeft);	
 }

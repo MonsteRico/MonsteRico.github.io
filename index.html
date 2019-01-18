@@ -46,6 +46,10 @@
 		margin-top:50px;
 		margin-bottom:100px;
 	}
+	
+	.word {
+		letter-spacing:.5px;
+	}
 	</style>
   </head>
   <body class="container">
@@ -72,7 +76,7 @@
 
 	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 	  <div class="row">
-		<div class="col-6 col-md-4">WELCOME TO LOREM test IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
+		<div class="col-6 col-md-4">WELCOME TO LOREM <font class="word">test</font> IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
 		</div>
 		<div class="col-6 col-md-4 test">.this one-4</div>
 		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
@@ -95,10 +99,6 @@
 		<h1 id="victory"></h1>
 	</div>
 
-	<script src="konami.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 	<br>
 	<br>
@@ -110,9 +110,14 @@
 	<br>
 	<br>
 	<br>
-	<p>I should probably give this site more structure. Anyways here's a text box you can type into. Type a word that is the name of or related to another page and it will take you to that page when you hit the button. For example type in truth, hit go and you will get somewhere. Have fun!<p>
-	<p>There are currently: 1 pages to discover.</p>
+	<p>I should probably give this site more structure. Anyways here's a text box you can type into. Type a word that is the name of or related to another page and it will take you to that page when you hit the button. For example type in <font class="word">truth</font>, hit go and you will get somewhere. Have fun!<p>
+	<p>There are currently:</p> <p id="left"></p> <p> pages to discover.</p>
 	<input id="test3" type="text" name="site" value="Type here!">
 	<input onclick="site()" type="submit" value="Go">
+	
+	<script src="konami.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
 </html>
