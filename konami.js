@@ -1,6 +1,7 @@
-
-var pagesLeft = 2;
-localStorage.setItem("pagesLeft", pagesLeft);	
+if (localStorage.getItem("pagesLeft") == null) {
+	localStorage.setItem("pagesLeft", 2);	
+}
+var pagesLeft = localStorage.getItem("pagesleft");
 document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 
 function parseQuote(response) {
