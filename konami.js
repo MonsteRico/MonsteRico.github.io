@@ -1,6 +1,6 @@
 
 var pagesLeft = 2;
-localStorage.setItem("pagesLeft", "2");	
+localStorage.setItem("pagesLeft", pagesleft);	
 document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 
 function parseQuote(response) {
