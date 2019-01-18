@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<style>
+	a {
+		font-size:24px;
+	}
 	#quote {font-size:24px;}
 	#author {font-size:20px;font-style: italic;}
     #demo { text-align: center;
@@ -23,15 +26,31 @@
 	margin-bottom:30px;
 	border-right:3px solid black;
 	}
+	.theDiv {
+		display:flex;
+		flex-flow:row wrap;
+	}
+	.theSpan {
+		background-color:purple;
+		height:50px;
+		width:50px;
+		border-radius:25px;
+		margin-top:50px;
+	}
+	.theSpan2 {
+		background-color:purple;
+		height:50px;
+		width:50px;
+		border-radius:25px;
+		margin-left:25%;
+		margin-top:50px;
+		margin-bottom:100px;
+	}
 	</style>
   </head>
   <body class="container">
     <center>
       <h1 class="" style="font-size:96px;">Random Stuff Page</h1>
-      <br>
-      <a style="font-size:48px;" href="https://techhounds.com">Back to Normal Websites</a>
-      <br>
-      <br>
       <br>
 	  <h1>Random Quote</h1>
       <p id='quote'></p>
@@ -47,19 +66,15 @@
 	<div class="container">
 	  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 	  <div class="row">
-		<div class="col-12 col-md-8 test">.col-12 .col-md-8</div>
-		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+		<div class="col-xs-9 test">.col-12 .col-md-8</div>
+		<div class="col-xs-3 test">.col-6 .col-md-4</div>
 	  </div>
 
 	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 	  <div class="row">
-		<div class="col-6 col-md-4">Welcome To TechHOUNDS!
-Team 868 is based in Carmel, IN. Carmel High School's TechHOUNDS is a group of students	
-that participate in the FIRST Robotics Competitions. The mentors of Team 868 are a variety of 
-parents, teachers, and alumni who guide current students and foster technical and professional skills.
-
-</div>
-		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
+		<div class="col-6 col-md-4">WELCOME TO LOREM test IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
+		</div>
+		<div class="col-6 col-md-4 test">.this one-4</div>
 		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
 	  </div>
 
@@ -69,10 +84,28 @@ parents, teachers, and alumni who guide current students and foster technical an
 		<div class="col-6 test">.col-6</div>
 	  </div>
 	</div>
+	
+		<h1>Look i made a game</h1>
+	<div class="theDiv">
+
+		<span onclick="theTest(this.id)" id="one" class="theSpan">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="two" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="three" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span onclick="theTest(this.id)" id="four" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<h1 id="victory"></h1>
+	</div>
+
 	<script src="konami.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+	<br>
+	<br>
+	<br>
+	<h1>Look more cool games I made</h1>
+	<p style="font-size:6px;">Along with other people</p>
+	<a href="https://studio.code.org/projects/applab/7pLMtxcHjBU6Evn_0YefyitFKoPHnDxyys00RM5LOfg">Link One</a>
+	<a href="https://studio.code.org/projects/applab/TnHLqbS6DlvSWzaHMLi7jJe0U80lzIpjUSwDHAELaCI">Link Two</a>
   </body>
 </html>
