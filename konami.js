@@ -87,7 +87,7 @@ function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
 		pagesLeft -= 1;
-
+		console.log(pagesLeft);
 		localStorage.setItem("pagesLeft", pagesLeft);
 		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 	}
@@ -95,7 +95,7 @@ function site() {
 		if (document.getElementById("test3").value == "test") {
 			window.open("./test.html");
 			pagesLeft -= 1;
-			console.log(pagesleft);
+			console.log(pagesLeft);
 			localStorage.setItem("pagesLeft", pagesLeft);
 			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 		}
