@@ -1,7 +1,8 @@
-if (localStorage.getItem("pagesLeft") == null) {
+if (localStorage.getItem("pagesLeft") === null) {
 	localStorage.setItem("pagesLeft", 2);	
 }
-var pagesLeft = localStorage.getItem("pagesleft");
+var pagesLeft = localStorage.getItem("pagesLeft");
+console.log(pagesLeft)
 document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 
 function parseQuote(response) {
@@ -86,7 +87,8 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
-		pagesLeft = pagesleft - 1;
+		console.log(pagesLeft);
+		pagesLeft = pagesLeft - 1;
 		console.log(pagesLeft);
 		localStorage.setItem("pagesLeft", pagesLeft);
 		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
