@@ -1,9 +1,9 @@
-if (localStorage.getItem("pagesLeft") === null) {
-	localStorage.setItem("pagesLeft", 5);	
+if (sessionStorage.getItem("pagesLeft") === null) {
+	sessionStorage.setItem("pagesLeft", 6);	
 }
-var pagesLeft = localStorage.getItem("pagesLeft");
+var pagesLeft = sessionStorage.getItem("pagesLeft");
 console.log(pagesLeft)
-document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 
 function parseQuote(response) {
 	console.log(response);
@@ -90,47 +90,56 @@ function site() {
 		console.log(pagesLeft);
 		pagesLeft = pagesLeft - 1;
 		console.log(pagesLeft);
-		localStorage.setItem("pagesLeft", pagesLeft);
-		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+		sessionStorage.setItem("pagesLeft", pagesLeft);
+		document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 	}
 	else {
 		if (document.getElementById("test3").value == "test") {
 			window.open("./test.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
-			localStorage.setItem("pagesLeft", pagesLeft);
-			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 		}
 		else {
 			if (document.getElementById("test3").value == "quote") {
 				window.open("./quote.html");
 				pagesLeft = pagesLeft - 1;
 				console.log(pagesLeft);
-				localStorage.setItem("pagesLeft", pagesLeft);
-				document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+				sessionStorage.setItem("pagesLeft", pagesLeft);
+				document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			}
 			else {
 				if (document.getElementById("test3").value == "black") {
 					window.open("./black.html");
 					pagesLeft = pagesLeft - 1;
 					console.log(pagesLeft);
-					localStorage.setItem("pagesLeft", pagesLeft);
-					document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+					sessionStorage.setItem("pagesLeft", pagesLeft);
+					document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 				}
 					else {
 						if (document.getElementById("test3").value == "white") {
 						window.open("./white.html");
 						pagesLeft = pagesLeft - 1;
 						console.log(pagesLeft);
-						localStorage.setItem("pagesLeft", pagesLeft);
-						document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+						sessionStorage.setItem("pagesLeft", pagesLeft);
+						document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 					}
-						else {	
-							alert("That's not a page");
-							}
+						else {
+							if (document.getElementById("test3").value == "braden") {
+							window.open("./OhYeAh.html");
+							pagesLeft = pagesLeft - 1;
+							console.log(pagesLeft);
+							sessionStorage.setItem("pagesLeft", pagesLeft);
+							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 						}
+							else {	
+								alert("That's not a page");
+								}
+						}
+					}
 				}
 			}
 		}
-	localStorage.setItem("pagesLeft", pagesLeft);	
+	sessionStorage.setItem("pagesLeft", pagesLeft);	
 }
