@@ -1,5 +1,5 @@
 if (localStorage.getItem("pagesLeft") === null) {
-	localStorage.setItem("pagesLeft", 2);	
+	localStorage.setItem("pagesLeft", 5);	
 }
 var pagesLeft = localStorage.getItem("pagesLeft");
 console.log(pagesLeft)
@@ -101,9 +101,36 @@ function site() {
 			localStorage.setItem("pagesLeft", pagesLeft);
 			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
 		}
-		else {	
-			alert("That's not a page");
+		else {
+			if (document.getElementById("test3").value == "quote") {
+				window.open("./quote.html");
+				pagesLeft = pagesLeft - 1;
+				console.log(pagesLeft);
+				localStorage.setItem("pagesLeft", pagesLeft);
+				document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+			}
+			else {
+				if (document.getElementById("test3").value == "black") {
+					window.open("./black.html");
+					pagesLeft = pagesLeft - 1;
+					console.log(pagesLeft);
+					localStorage.setItem("pagesLeft", pagesLeft);
+					document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+				}
+					else {
+						if (document.getElementById("test3").value == "white") {
+						window.open("./white.html");
+						pagesLeft = pagesLeft - 1;
+						console.log(pagesLeft);
+						localStorage.setItem("pagesLeft", pagesLeft);
+						document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+					}
+						else {	
+							alert("That's not a page");
+							}
+						}
+				}
+			}
 		}
-	}
 	localStorage.setItem("pagesLeft", pagesLeft);	
 }
