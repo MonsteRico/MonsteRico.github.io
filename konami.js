@@ -37,7 +37,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 	+ minutes + "m " + seconds + "s ";
 	
 	// If the count down is over, write some text 
-	if (distance < 9163865075) {
+	if (distance < 9003865075) {
 		document.getElementById("celebrate").innerHTML = "WE ARE ALMOST THERE";
 	}
 	if (distance < 0) {
