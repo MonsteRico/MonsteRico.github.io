@@ -37,7 +37,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 	
 	// If the count down is over, write some text 
 	if (distance < 107) {
-		document.getElementById("celebrate").innerHTML = "WE'RE ALMOST THERE";
+		document.getElementById("celebrate").innerHTML = "WE ARE ALMOST THERE";
 	}
 	if (distance < 0) {
 		clearInterval(x);
