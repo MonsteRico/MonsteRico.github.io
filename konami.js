@@ -25,6 +25,7 @@ var now = new Date().getTime();
 				
 // Find the distance between now and the count down date
 var distance = countDownDate - now;
+	console.log(distance);
 // Time calculations for days, hours, minutes and seconds
 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -46,7 +47,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
 
 	x = 0;
-	console.log(this)
+	console.log(this);
 	function theTest(id) {
 		console.log(id)
 		if (x == id) {
