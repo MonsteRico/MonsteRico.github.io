@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ColorSleuth</title>
+	<link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<style>
+	  .button {
+	    height:150px;
+		width:150px;
+		margin:10px;
+	  }
+	  
+	  .player {
+		height:150px;
+		width:125px;
+	  }
+	  
+	  .active {
+	    display:inline;
+	  }
+	  
+	  .notActive {
+	    display:none;
+	  }
+	</style>
+  </head>
+  <body>
+  <div class="active" id="gameOver_screen">
+	<h1>ColorSleuth</h1>
+	<div id="buttonContainer" style="width:756px;" class="container">
+	  <div class="row">
+	    <button id="button1" onclick="checkButton('button1')" class="button"></button>
+	    <button id="button2" onclick="checkButton('button2')" class="button"></button>
+	  </div>
+	  <div class="row">
+	    <button id="button3" onclick="checkButton('button3')" class="button"></button>
+	    <button id="button4" onclick="checkButton('button4')" class="button"></button>
+  	  </div>
+	</div>
+	<div class="container">
+	<div class="row">
+	  <div id="player1" class="player" style="background-color:gray">
+	    <h3 id="player1Title">Player 1</h3>
+	    <h2 id="score1_label">00</h2>
+	  </div>
+	  <div id="player2" class="player" style="background-color:white;">
+	    <h3 id="player2Title">Player 2</h3>
+	    <h2 id="score2_label">00</h2>
+	  </div>
+	</div>
+	</div>
+  </div>
+  <div class="notActive" id="gameOver_screen">
+    <p id="player1Win_label">You won! 1</p>
+	<p id="player2Win_label">You won! 2</p>
+  </div>
+  <script src="codeOrg.js"></script>
+  <script src="color.js"></script>
+  </body>
+</html>
