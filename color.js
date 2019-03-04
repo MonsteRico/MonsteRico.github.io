@@ -4,10 +4,8 @@ var p2Score = 0;
 var currentPlayer = 1;
 function checkGameOver() {
   if (p1Score >= 10) {
-    setScreen("gameOver_screen");
     showElement("player1Win_label");
-  } else if (p2Score >= 1) {
-    setScreen("gameOver_screen");
+  } else if (p2Score >= 10) {
     showElement("player2Win_label");
   }
 }
@@ -53,10 +51,9 @@ function checkButton(buttonId) {
     updateScoreBy(1);
   } else {
     console.log("Wrong");
-    updateScoreBy(-3);
+    updateScoreBy(-1);
   }
   setBoard();
   switchPlayer();
   checkGameOver();
 }
-
