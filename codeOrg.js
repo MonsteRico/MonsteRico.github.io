@@ -1,15 +1,20 @@
 function setScreen(id) {
+	var idUse = id;
 	var current = document.getElementsByClassName("currentScreen");
-	var screenToSet = document.getElementById(id);
-	current.className = "notActive";
-	screenToSet.className = "active";
+	var set = document.getElementsByName(id);
+	document.getElementsByClassName("currentScreen")[0].className = "notActive";
+	document.getElementById(id).setAttribute("class", "currentScreen");
 }
 
 function showElement(id) {
 	var set = document.getElementById(id);
-	set.classList.add("active");
+	set.removeAttribute("hidden");
 }
 
+function hideElement(id) {
+	var set = document.getElementById(id);
+	set.setAttribute("hidden");
+}
 function hideElement(id) {
     var set = document.getElementById(id);
 	set.classList.add("notActive");
