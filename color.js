@@ -12,6 +12,27 @@ function playAgain() {
 	lives = 5;
 	currentPlayer = 1;
 	p2Score = 0;
+	hideElement("button17");
+	hideElement("button18");
+	hideElement("button19");
+	hideElement("button20");
+	hideElement("button21");
+	hideElement("button22");
+	hideElement("button23");
+	hideElement("button24");
+	hideElement("button25");
+	hideElement("button10");
+	hideElement("button11");
+	hideElement("button12");
+	hideElement("button13");
+	hideElement("button14");
+	hideElement("button15");
+	hideElement("button16");
+    hideElement("button5");
+	hideElement("button6");
+	hideElement("button7");
+	hideElement("button8");
+	hideElement("button9");
 	setText("score1_label", p1Score);
 	setText("lives_label", lives);
 	setScreen("play_Screen");
@@ -72,6 +93,7 @@ function subtractLife() {
 
 function gameOver() {
 	setScreen("gameOverScreen");
+	setText("final_score", p1Score);
 }
 
 function  setBoard(){

@@ -11,7 +11,7 @@
 	  .button {
 	    height:150px;
 		width:150px;
-		margin:10px;
+		margin:0px;;
 	  }
 	  
 	  .player {
@@ -31,6 +31,49 @@
 	  .notActive {
 	    display:none;
 	  }
+	  
+	  .form-radio
+	 {
+		 -webkit-appearance: none;
+		 -moz-appearance: none;
+		 appearance: none;
+		 display: inline-block;
+		 position: relative;
+		 background-color: #f1f1f1;
+		 color: #666;
+		 top: 10px;
+		 height: 30px;
+		 width: 30px;
+		 border: 0;
+		 border-radius: 50px;
+		 cursor: pointer;     
+		 margin-right: 7px;
+		 outline: none;
+	}
+	.form-radio:checked::before
+	{
+		 position: absolute;
+		 font: 13px/1 'Open Sans', sans-serif;
+		 left: 11px;
+		 top: 7px;
+		 content: '\02143';
+		 transform: rotate(40deg);
+	}
+	.form-radio:hover
+	{
+		 background-color: #f7f7f7;
+	}
+	.form-radio:checked
+	{
+		 background-color: #f1f1f1;
+	}
+	label
+	{
+		 font: 300 16px/1.7 'Open Sans', sans-serif;
+		 color: #666;
+		 cursor: pointer;
+	} 
+
 	</style>
   </head>
   <body>
@@ -78,11 +121,13 @@
 	<h3 id="player2Title">Lives Remaining</h3>
 	<h2 id="lives_label">5</h2>
   </div>
+  
   <div class="notActive container-fluid h-100 text-center" name="gameOverScreen" id="gameOverScreen">
-  <div id="" style="display:inline;" class="row h-100 text-center justify-content-center container">
-    <p class="" id="player1Win_label">Game Over!</p>
-	<p><button class="" style="margin-left:auto; margin-right:auto;" onclick="playAgain()">Play Again?</button></p>
-  </div>
+	  <div id="" style="display:inline;" class="row h-100 text-center justify-content-center container">
+		<p class="" id="player1Win_label">Game Over!</p>
+		<p>Your Final Score Was...</p><p id="final_score"></p>
+		<p><button class="" style="margin-left:auto; margin-right:auto;" onclick="playAgain()">Play Again?</button></p>
+	  </div>
   </div>
   <script src="codeOrg.js"></script>
   <script src="color.js"></script>

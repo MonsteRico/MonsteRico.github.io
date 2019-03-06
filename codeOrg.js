@@ -41,3 +41,25 @@ function rgb(r, g, b){
   return ["rgb(",r,",",g,",",b,")"].join("");
 }
 
+function getNumber(id) {
+	var set = document.getElementById(id).value;
+	return set;
+}
+
+function setNumber(id, number) {
+	var set = document.getElementById(id);
+	set.value = number;
+}
+
+function getChecked(id) {
+	if (document.getElementById(id).checked = true) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function setChecked(id, check) {
+	document.getElementById(id).checked = check;
+}
