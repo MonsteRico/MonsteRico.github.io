@@ -1,5 +1,5 @@
 if (sessionStorage.getItem("pagesLeft") === null) {
-	sessionStorage.setItem("pagesLeft", 6);	
+	sessionStorage.setItem("pagesLeft", 7);	
 }
 var pagesLeft = sessionStorage.getItem("pagesLeft");
 console.log(pagesLeft)
@@ -138,12 +138,21 @@ function site() {
 							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 						}
 							else {	
-								alert("That's not a page");
-								}
+							if (document.getElementById("test3").value == "color") {
+							window.open("./colorSleuth.html");
+							pagesLeft = pagesLeft - 1;
+							console.log(pagesLeft);
+							sessionStorage.setItem("pagesLeft", pagesLeft);
+							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 						}
+								else {
+									alert("That is not a page!");
 					}
 				}
 			}
 		}
 	sessionStorage.setItem("pagesLeft", pagesLeft);	
+			}
+		}
+	}
 }
