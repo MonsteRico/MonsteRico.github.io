@@ -34,7 +34,7 @@ function Test1() {
         //drawing of the test image - img1
         img1.onload = function () {
             //draw background image
-            ctx.drawImage(img1, 0, 0);
+            ctx.drawImage(img1, 0, 0, levelMap.height, levelMap.width);
             //draw a box over the top
 			ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
 			ctx.fillRect(0, 0, 500, 500);
@@ -72,7 +72,7 @@ function GetPixel() {
     if (ctx.getContext) {
 		ctx = ctx.getContext('2d');
     }
-	var imgData = ctx.getImageData(0, 0, 1000,1000);
+	var imgData = ctx.getImageData(0, 0, 1,1);
 	console.log(imgData.data)
 	var red = imgData.data[0];
 	var green = imgData.data[1];
