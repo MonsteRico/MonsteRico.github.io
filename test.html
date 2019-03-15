@@ -36,7 +36,8 @@ function Test1() {
             //draw background image
             ctx.drawImage(img1, 0, 0);
             //draw a box over the top
-
+			ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
+			ctx.fillRect(0, 0, 500, 500);
         };
 
         img1.src = levelMap.src;
