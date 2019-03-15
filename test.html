@@ -72,7 +72,8 @@ function GetPixel() {
     if (ctx.getContext) {
 		ctx = ctx.getContext('2d');
     }
-	var imgData = ctx.createImageData(1, 1, 100,100);
+	var imgData = ctx.getImageData(0, 0, 1,1);
+	console.log(imgData.data)
 	var red = imgData.data[0];
 	var green = imgData.data[1];
 	var blue = imgData.data[2];
