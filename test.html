@@ -69,7 +69,7 @@ GenerateLevel();
 function GetPixel() {
 	var c = document.getElementById("test1");
 	var ctx = c.getContext("2d");
-	var imgData = ctx.getImageData(10, 0, 1,1);
+	var imgData = ctx.getImageData(1, 1, 1,1);
 	red = imgData.data[0];
 	green = imgData.data[1];
 	blue = imgData.data[2];
