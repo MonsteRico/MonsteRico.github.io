@@ -1,22 +1,135 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE htmL>
+<html>
+<head>
+<style>
+</style>
+<body>
+<canvas id="test1"></canvas>
+<canvas id="canvas"></canvas>
+<script>
+// The size of the tiles in the background
+var tileSize = 45;
+// The texture 2D containing the level design
+var levelMap = new Image();
+levelMap.src = 'test.jpg';
+levelMap.height = 6;
+levelMap.setAttribute('crossOrigin', '');
+levelMap.width = 11;
+console.log(levelMap.height);
+console.log(levelMap.width);
+// the size of the tiles in the texture with the level design
+var levelMapTileSize = 1;
+// The X and Y coordinates of the start position for drawing the level.
+// public Vector2 StartPoint = new Vector2(144,100);
+// Converts image to canvas; returns new canvas element
+function Test1() {
+    var ctx = document.getElementById('test1');
+    if (ctx.getContext) {
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        ctx = ctx.getContext('2d');
 
-    <title>Test</title>
-  </head>
-  <body>
-    <h1>You have passed the test.</h1>
+        //Loading of the home test image - img1
+        var img1 = new Image();
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  </body>
+        //drawing of the test image - img1
+        img1.onload = function () {
+            //draw background image
+            ctx.drawImage(img1, 0, 0);
+            //draw a box over the top
+            ctx.fillStyle = "rgba(255, 255, 255, 0)";
+
+        };
+
+        img1.src = levelMap.src;
+    }
+}
+Test1();
+
+
+function GenerateLevel() {
+	for (var x = 0; x < levelMap.width; x+= levelMapTileSize)
+	{
+	console.log("test");
+		for (var y = 0; y < levelMap.height; y+= levelMapTileSize)
+		{
+			var pixelColor = GetPixel();
+			console.log("test");
+			console.log(pixelColor);
+			//var objectName = GetGameObject(pixelColor);
+			//if (objectName == null) { continue;	}
+
+			//var tilePoint = TileToPoint (x, y);	
+			//var position = GetWorldPosition (tilePoint);
+			//var obj = Resources.Load(objectName, typeof(GameObject));
+			//Instantiate(obj, position, Quaternion.identity);
+		}
+	}
+}
+GenerateLevel();
+
+function GetPixel() {
+	var c = document.getElementById("test1");
+	var ctx = c.getContext("2d");
+	var imgData = ctx.getImageData(10, 0, 1,1);
+	red = imgData.data[0];
+	green = imgData.data[1];
+	blue = imgData.data[2];
+	alpha = imgData.data[3];
+	return alpha;
+}
+
+//private Vector2 TileToPoint(int x, int y) 
+//{
+	//if (x == 0 && y == 0) {
+		//return StartPoint;
+	//} 
+
+ // We do this to calculate the position based on our current tileSize and the tile size in the texture level map. 
+  // We need that in case we use tiles in the level map of 10x10 for example. 
+ //In our case is 1x1 but this is a bit more flexible
+	//var posX = x / levelMapTileSize * tileSize;
+	//var posY = y / levelMapTileSize * tileSize;
+
+	//var newPoint = StartPoint;
+	//newPoint.x += posX;
+	//newPoint.y += posY;
+	//return newPoint;
+//}
+
+//private Vector3 GetWorldPosition(Vector2 point) {
+//	var mainCam = Camera.main;
+//	var position = mainCam.ScreenToWorldPoint (new Vector3 (point.x, point.y, mainCam.nearClipPlane));
+//	return position;
+//}
+
+//private string GetGameObject(Color color) {
+//	var colorHex = ColorUtility.ToHtmlStringRGB(color);
+//	switch (colorHex)
+//	{
+		//case "087BFE": // blue - player
+		//{
+//			return "Prefabs/Player";
+		//}
+		//case "77A841": // green - zombie
+		//{
+//			return "Prefabs/Zombie";
+		//}
+		//case "F6EC03": // yellow - sand block
+		//{
+			//return "Prefabs/SandBlock";
+		//}
+		//case "737473": // grey - stone block
+		//{
+//			return "Prefabs/StoneBlock";
+		//}
+		//case "EA3D00": // red - fire block
+		//{
+//			return "Prefabs/FireBlock";
+		//}
+		//default:
+//			return null;
+//	}	
+//}
+</script>
+</body>
 </html>
