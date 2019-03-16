@@ -38,6 +38,7 @@ function Test1() {
             //draw a box over the top
 			ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
 			ctx.fillRect(0, 0, 500, 500);
+			GenerateLevel();
         };
 
         img1.src = levelMap.src;
@@ -52,7 +53,7 @@ function GenerateLevel() {
 	console.log("test");
 		for (var y = 0; y < levelMap.height; y+= levelMapTileSize)
 		{
-			var pixelColor = GetPixel();
+			var pixelColor = GetPixel(x, y);
 			console.log("test");
 			console.log(pixelColor);
 			//var objectName = GetGameObject(pixelColor);
@@ -67,12 +68,12 @@ function GenerateLevel() {
 }
 
 
-function GetPixel() {
+function GetPixel(x, y) {
     var ctx = document.getElementById('test1');
     if (ctx.getContext) {
 		ctx = ctx.getContext('2d');
     }
-	var imgData = ctx.getImageData(0, 0, 1,1);
+	var imgData = ctx.getImageData(x, y, 1,1);
 	console.log(imgData.data)
 	var red = imgData.data[0];
 	var green = imgData.data[1];
