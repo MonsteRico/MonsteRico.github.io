@@ -107,8 +107,7 @@ function GetPixel(x, y) {
 //}
 
   function GetGameObject(color) {
-	var colorHex = ColorUtility.ToHtmlStringRGB(color);
-	switch (colorHex)
+	switch (color)
 	{
 		case "087BFE": // blue - player
 		{
@@ -122,7 +121,7 @@ function GetPixel(x, y) {
 		{
 			return "sand";
 		}
-		case "737473": // grey - stone block
+		case "#747474": // grey - stone block
 		{
 			return "wall";
 		}
