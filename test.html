@@ -35,9 +35,6 @@ function Test1() {
         img1.onload = function () {
             //draw background image
             ctx.drawImage(img1, 0, 0);
-            //draw a box over the top
-			ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
-			ctx.fillRect(0, 0, 500, 500);
 			GenerateLevel();
         };
 
@@ -46,6 +43,9 @@ function Test1() {
 }
 Test1();
 
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
 
 function GenerateLevel() {
 	for (var x = 0; x < levelMap.width; x+= levelMapTileSize)
@@ -54,10 +54,10 @@ function GenerateLevel() {
 		for (var y = 0; y < levelMap.height; y+= levelMapTileSize)
 		{
 			var pixelColor = GetPixel(x, y);
-			console.log("test");
 			console.log(pixelColor);
-			//var objectName = GetGameObject(pixelColor);
-			//if (objectName == null) { continue;	}
+			var objectName = GetGameObject(pixelColor);
+			console.log(objectName);
+			if (objectName == null) { continue;	}
 
 			//var tilePoint = TileToPoint (x, y);	
 			//var position = GetWorldPosition (tilePoint);
@@ -74,12 +74,12 @@ function GetPixel(x, y) {
 		ctx = ctx.getContext('2d');
     }
 	var imgData = ctx.getImageData(x, y, 1,1);
-	console.log(imgData.data)
 	var red = imgData.data[0];
 	var green = imgData.data[1];
 	var blue = imgData.data[2];
 	var alpha = imgData.data[3];
-	return red;
+	var returnVar = rgbToHex(red, green, blue);
+	return returnVar;
 }
 
 //private Vector2 TileToPoint(int x, int y) 
@@ -106,34 +106,34 @@ function GetPixel(x, y) {
 //	return position;
 //}
 
-//private string GetGameObject(Color color) {
-//	var colorHex = ColorUtility.ToHtmlStringRGB(color);
-//	switch (colorHex)
-//	{
-		//case "087BFE": // blue - player
-		//{
-//			return "Prefabs/Player";
-		//}
-		//case "77A841": // green - zombie
-		//{
-//			return "Prefabs/Zombie";
-		//}
-		//case "F6EC03": // yellow - sand block
-		//{
-			//return "Prefabs/SandBlock";
-		//}
-		//case "737473": // grey - stone block
-		//{
-//			return "Prefabs/StoneBlock";
-		//}
-		//case "EA3D00": // red - fire block
-		//{
-//			return "Prefabs/FireBlock";
-		//}
-		//default:
-//			return null;
-//	}	
-//}
+  function GetGameObject(color) {
+	var colorHex = ColorUtility.ToHtmlStringRGB(color);
+	switch (colorHex)
+	{
+		case "087BFE": // blue - player
+		{
+			return "player";
+		}
+		case "77A841": // green - zombie
+		{
+			return "monster";
+		}
+		case "F6EC03": // yellow - sand block
+		{
+			return "sand";
+		}
+		case "737473": // grey - stone block
+		{
+			return "wall";
+		}
+		case "EA3D00": // red - fire block
+		{
+			return "lava";
+		}
+		default:
+			return null;
+	}	
+}
 </script>
 </body>
 </html>
