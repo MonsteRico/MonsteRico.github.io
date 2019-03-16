@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -18,13 +18,13 @@
      font-size: 60px;
      margin-top: 0px; }
 	.test { 
-		background-color:red;
-	border-right:3px solid black;
-	margin-left:auto;
-	margin-right:auto;
-	background-color:red;
-	margin-bottom:30px;
-	border-right:3px solid black;
+		color:white;
+		border-right:3px solid black;
+		margin-left:auto;
+		margin-right:auto;
+		background-color:black;
+		margin-bottom:30px;
+		border-right:3px solid black;
 	}
 	.theDiv {
 		display:flex;
@@ -32,23 +32,23 @@
 	}
 	.theSpan {
 		background-color:purple;
-		height:50px;
-		width:50px;
-		border-radius:25px;
+		height:200px;
+		width:200px;
+		border-radius:100px;
 		margin-top:50px;
 	}
 	.theSpan2 {
 		background-color:purple;
-		height:50px;
-		width:50px;
-		border-radius:25px;
-		margin-left:25%;
+		height:200px;
+		width:200px;
+		border-radius:100px;
+		margin-left:5%;
 		margin-top:50px;
 		margin-bottom:100px;
 	}
 	
 	.word {
-		letter-spacing:.5px;
+		letter-spacing:2px;
 	}
 	</style>
   </head>
@@ -56,15 +56,16 @@
     <center>
       <h1 class="" style="font-size:96px;">Random Stuff Page</h1>
       <br>
-	  <h1>Random Quote</h1>
+	  <h1>Random <font class="word">Quote</font></h1>
       <p id='quote'></p>
       <p id='author'></p>
 	  <a style="48px;" href="https://www.coolmath-games.com/0-dolphin-olympics-2">Here, fun game.</a>
 	  <h1 style="font-family: 'Coiny', cursive;">Countdown to End of School (Including Weekends)</h1>
 	  <p id="demo"></p>
+	    <p id="celebrate"></p>
       <p>That's All I got for now.</p>
       <p>If you want to add something to this page either tell me or add it yourself if you know how.</p>
-      <p>-MonsteRico</p>
+      <p>-MonsteRico</p> <p class="word" style="color:white;">white</p>
 	</center>
 	<Br>
 	<div class="container">
@@ -76,7 +77,7 @@
 
 	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 	  <div class="row">
-		<div class="col-6 col-md-4">WELCOME TO LOREM <font class="word">test</font> IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
+		<div class="col-6 col-md-4">WELCOME TO LOREM <font class="word">test</font> IPSUM M ASDFGHJKL:ASDFGHJKLSXDCVBNMM A<font class="word">color</font>:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
 		</div>
 		<div class="col-6 col-md-4 test">.this one-4</div>
 		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
@@ -85,11 +86,12 @@
 	  <!-- Columns are always 50% wide, on mobile and desktop -->
 	  <div class="row">
 		<div class="col-6 test">.col-6</div>
-		<div class="col-6 test">.col-6</div>
+		<div class="col-6 test">.col-6 <font class="word" style="color:black;">black</font></div>
 	  </div>
 	</div>
 	
 		<h1>Look i made a game</h1>
+		<p>Guess and click the correct order of the buttons</p>
 	<div class="theDiv">
 
 		<span onclick="theTest(this.id)" id="one" class="theSpan">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -104,12 +106,14 @@
 	<br>
 	<br>
 	<h1>Look more cool games I made</h1>
-	<p style="font-size:6px;">Along with other people</p>
+	<p style="font-size:6px;">Along with other people (<font class="word">braden)</font></p>
 	<a href="https://studio.code.org/projects/applab/7pLMtxcHjBU6Evn_0YefyitFKoPHnDxyys00RM5LOfg">Link One</a>
 	<a href="https://studio.code.org/projects/applab/TnHLqbS6DlvSWzaHMLi7jJe0U80lzIpjUSwDHAELaCI">Link Two</a>
+	<a href="https://monsterico.github.io/nathanwasherezies.html">NathLink</a>
 	<br>
 	<br>
 	<br>
+	<h5>YOU SHOULD RESET YOUR BROWSERS COOKIES/HISTORY STUFF TO RESET THE COUNTER!</h5>
 	<p>I should probably give this site more structure. Anyways here's a text box you can type into. Type a word that is the name of or related to another page and it will take you to that page when you hit the button. For example type in <font class="word">truth</font>, hit go and you will get somewhere. Have fun!<p>
 	<p>There are currently:</p> <p id="left"></p> <p> pages to discover.</p>
 	<input id="test3" type="text" name="site" value="Type here!">

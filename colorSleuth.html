@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ColorSleuth</title>
+	<link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<style>
+	  .button {
+	    height:150px;
+		width:150px;
+		margin:0px;;
+	  }
+	  
+	  .player {
+	    display:inline;
+		height:150px;
+		width:125px;
+	  }
+	  
+	  .currentScreen {
+		display:inline;
+	  }
+	  
+	  .active {
+	    display:inline;
+	  }
+	  
+	  .notActive {
+	    display:none;
+	  }
+	  
+	  .form-radio
+	 {
+		 -webkit-appearance: none;
+		 -moz-appearance: none;
+		 appearance: none;
+		 display: inline-block;
+		 position: relative;
+		 background-color: #f1f1f1;
+		 color: #666;
+		 top: 10px;
+		 height: 30px;
+		 width: 30px;
+		 border: 0;
+		 border-radius: 50px;
+		 cursor: pointer;     
+		 margin-right: 7px;
+		 outline: none;
+	}
+	.form-radio:checked::before
+	{
+		 position: absolute;
+		 font: 13px/1 'Open Sans', sans-serif;
+		 left: 11px;
+		 top: 7px;
+		 content: '\02143';
+		 transform: rotate(40deg);
+	}
+	.form-radio:hover
+	{
+		 background-color: #f7f7f7;
+	}
+	.form-radio:checked
+	{
+		 background-color: #f1f1f1;
+	}
+	label
+	{
+		 font: 300 16px/1.7 'Open Sans', sans-serif;
+		 color: #666;
+		 cursor: pointer;
+	} 
+
+	</style>
+  </head>
+  <body>
+  <div class="currentScreen container-fluid h-100 text-center" name="play_Screen" id="play_Screen">
+	<h1 class="text-center">ColorSleuth</h1>
+	<div id="buttonContainer" style="display:inline;" class="row h-100 text-center align-items-center container">
+	  <div class="col-12">
+	    <button id="button1" onclick="checkButton('button1')" class="button"></button>
+	    <button id="button2" onclick="checkButton('button2')" class="button"></button>
+		<button id="button5" onclick="checkButton('button5')" hidden class="button"></button>
+		<button id="button10" onclick="checkButton('button10')" hidden class="button"></button>
+		<button id="button17" onclick="checkButton('button17')" hidden class="button"></button>
+	  </div>
+	  <div class="col-12">
+	    <button id="button3" onclick="checkButton('button3')" class="button"></button>
+	    <button id="button4" onclick="checkButton('button4')" class="button"></button>
+		<button id="button6" onclick="checkButton('button6')" hidden class="button"></button>
+		<button id="button11" onclick="checkButton('button11')" hidden class="button"></button>
+		<button id="button18" onclick="checkButton('button18')" hidden class="button"></button>
+  	  </div>
+	  <div class="col-12">
+	    <button id="button7" onclick="checkButton('button7')" hidden class="button"></button>
+	    <button id="button8" onclick="checkButton('button8')" hidden class="button"></button>
+		<button id="button9" onclick="checkButton('button9')" hidden class="button"></button>
+		<button id="button12" onclick="checkButton('button12')" hidden class="button"></button>
+		<button id="button19" onclick="checkButton('button19')" hidden class="button"></button>
+  	  </div>
+	  <div class="col-12">
+	    <button id="button13" onclick="checkButton('button13')" hidden class="button"></button>
+	    <button id="button14" onclick="checkButton('button14')" hidden class="button"></button>
+		<button id="button15" onclick="checkButton('button15')" hidden class="button"></button>
+		<button id="button16" onclick="checkButton('button16')" hidden class="button"></button>
+		<button id="button20" onclick="checkButton('button20')" hidden class="button"></button>
+  	  </div>
+	  <div class="col-12">
+	    <button id="button21" onclick="checkButton('button21')" hidden class="button"></button>
+	    <button id="button22" onclick="checkButton('button22')" hidden class="button"></button>
+		<button id="button23" onclick="checkButton('button23')" hidden class="button"></button>
+		<button id="button24" onclick="checkButton('button24')" hidden class="button"></button>
+		<button id="button25" onclick="checkButton('button25')" hidden class="button"></button>
+  	  </div>
+	</div>
+	<h3 id="player1Title">Score</h3>
+	<h2 id="score1_label">00</h2>
+	<h3 id="player2Title">Lives Remaining</h3>
+	<h2 id="lives_label">5</h2>
+  </div>
+  
+  <div class="notActive container-fluid h-100 text-center" name="gameOverScreen" id="gameOverScreen">
+	  <div id="" style="display:inline;" class="row h-100 text-center justify-content-center container">
+		<p class="" id="player1Win_label">Game Over!</p>
+		<p>Your Final Score Was...</p><p id="final_score"></p>
+		<p><button class="" style="margin-left:auto; margin-right:auto;" onclick="playAgain()">Play Again?</button></p>
+	  </div>
+  </div>
+  <script src="codeOrg.js"></script>
+  <script src="color.js"></script>
+  </body>
+</html>

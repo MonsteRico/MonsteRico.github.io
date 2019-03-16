@@ -1,10 +1,10 @@
-if (sessionStorage.getItem("pagesLeft") == null) {
-	sessionStorage.setItem("pagesLeft", 2);	
+if (sessionStorage.getItem("pagesLeft") === null) {
+	sessionStorage.setItem("pagesLeft", 7);	
 }
-console.log(sessionStorage.getItem("pagesLeft"));
-var pagesLeft = sessionStorage.getItem("pagesleft");
+var pagesLeft = sessionStorage.getItem("pagesLeft");
+console.log(pagesLeft)
 document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-console.log(pagesLeft);
+
 function parseQuote(response) {
 	console.log(response);
 	$("#quote").text(response.quoteText);
@@ -25,6 +25,7 @@ var now = new Date().getTime();
 				
 // Find the distance between now and the count down date
 var distance = countDownDate - now;
+	
 // Time calculations for days, hours, minutes and seconds
 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -36,6 +37,9 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 	+ minutes + "m " + seconds + "s ";
 	
 	// If the count down is over, write some text 
+	if (distance < 1003865075) {
+		document.getElementById("celebrate").innerHTML = "WE ARE ALMOST THERE";
+	}
 	if (distance < 0) {
 		clearInterval(x);
 		document.getElementById("demo").innerHTML = "EXPIRED";
@@ -43,7 +47,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 }, 1000);
 
 	x = 0;
-	console.log(this)
+	console.log(this);
 	function theTest(id) {
 		console.log(id)
 		if (x == id) {
@@ -88,7 +92,7 @@ function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
 		console.log(pagesLeft);
-		pagesLeft = pagesleft - 1;
+		pagesLeft = pagesLeft - 1;
 		console.log(pagesLeft);
 		sessionStorage.setItem("pagesLeft", pagesLeft);
 		document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
@@ -102,9 +106,54 @@ function site() {
 			sessionStorage.setItem("pagesLeft", pagesLeft);
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 		}
-		else {	
-			alert("That's not a page");
+		else {
+			if (document.getElementById("test3").value == "quote") {
+				window.open("./quote.html");
+				pagesLeft = pagesLeft - 1;
+				console.log(pagesLeft);
+				sessionStorage.setItem("pagesLeft", pagesLeft);
+				document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			}
+			else {
+				if (document.getElementById("test3").value == "black") {
+					window.open("./black.html");
+					pagesLeft = pagesLeft - 1;
+					console.log(pagesLeft);
+					sessionStorage.setItem("pagesLeft", pagesLeft);
+					document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+				}
+					else {
+						if (document.getElementById("test3").value == "white") {
+						window.open("./white.html");
+						pagesLeft = pagesLeft - 1;
+						console.log(pagesLeft);
+						sessionStorage.setItem("pagesLeft", pagesLeft);
+						document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+					}
+						else {
+							if (document.getElementById("test3").value == "braden") {
+							window.open("./OhYeAh.html");
+							pagesLeft = pagesLeft - 1;
+							console.log(pagesLeft);
+							sessionStorage.setItem("pagesLeft", pagesLeft);
+							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+						}
+							else {	
+							if (document.getElementById("test3").value == "color") {
+							window.open("./colorSleuth.html");
+							pagesLeft = pagesLeft - 1;
+							console.log(pagesLeft);
+							sessionStorage.setItem("pagesLeft", pagesLeft);
+							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+						}
+								else {
+									alert("That is not a page!");
+					}
+				}
+			}
+		}
+	sessionStorage.setItem("pagesLeft", pagesLeft);	
+			}
 		}
 	}
-	sessionStorage.setItem("pagesLeft", pagesLeft);	
 }

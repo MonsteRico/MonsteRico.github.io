@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Room Three</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<style>
+	button {
+		background-color:#335555;
+		color:white;
+		width:100px;
+		height:100px;
+	}
+	</style>
+  </head>
+  <body class="container">
+	<h1>Room Three</h1>
+	<div class="row">
+		<h1 onclick="advance()">E</h1>
+		<h1 onclick="advance()">S</h1>
+		<h1 onclick="advance()">C</h1>
+		<h1 onclick="advance()">A</h1>
+		<h1 onclick="advance()">P</h1>
+		<h1 onclick="advance()">E</h1>
+	</div>
+	
+	<div class="row">
+		<button id = "2" onclick="advance(this.id)">2</button>
+		<button id = "6" onclick="advance(this.id)">6</button>
+		<button id = "4" onclick="advance(this.id)">4</button>
+		<button id = "1" onclick="advance(this.id)">1</button>
+		<button id = "3" onclick="advance(this.id)">3</button>
+		<button id = "5" onclick="advance(this.id)">5</button>
+	</div>
+	
+	  <script>
+	x = 1;
+	console.log(this)
+	function advance(id) {
+		console.log(id)
+		if (x == id) {
+			document.getElementById(id).style.backgroundColor = "green";
+			x += 1
+		}
+		else {
+			x=1
+		}
+
+		if (x == 7) {
+			window.location.href = 'roomFour.html';
+		}
+	}
+
+</script>
+  </body>
+</html>
