@@ -1,9 +1,10 @@
-if (localStorage.getItem("pagesLeft") == null) {
-	localStorage.setItem("pagesLeft", 2);	
+if (sessionStorage.getItem("pagesLeft") == null) {
+	sessionStorage.setItem("pagesLeft", 2);	
 }
-var pagesLeft = localStorage.getItem("pagesleft");
-document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
-
+console.log(sessionStorage.getItem("pagesLeft"));
+var pagesLeft = sessionStorage.getItem("pagesleft");
+document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+console.log(pagesLeft);
 function parseQuote(response) {
 	console.log(response);
 	$("#quote").text(response.quoteText);
@@ -86,22 +87,24 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 function site() {
 	if (document.getElementById("test3").value == "truth") {
 		window.open("./truth.html");
+		console.log(pagesLeft);
 		pagesLeft = pagesleft - 1;
 		console.log(pagesLeft);
-		localStorage.setItem("pagesLeft", pagesLeft);
-		document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+		sessionStorage.setItem("pagesLeft", pagesLeft);
+		document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 	}
 	else {
 		if (document.getElementById("test3").value == "test") {
 			window.open("./test.html");
+			console.log(pagesLeft);
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
-			localStorage.setItem("pagesLeft", pagesLeft);
-			document.getElementById("left").innerHTML = localStorage.getItem("pagesLeft");
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 		}
 		else {	
 			alert("That's not a page");
 		}
 	}
-	localStorage.setItem("pagesLeft", pagesLeft);	
+	sessionStorage.setItem("pagesLeft", pagesLeft);	
 }
