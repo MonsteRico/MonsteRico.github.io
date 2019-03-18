@@ -8,14 +8,14 @@
 <canvas id="canvas"></canvas>
 <script>
 // The size of the tiles in the background
-var tileSize = 45;
+var tileSize = 32;
 var StartPoint = [0,0];
 // The texture 2D containing the level design
 var levelMap = new Image();
 levelMap.src = './test.jpg';
-levelMap.height = 6;
+levelMap.height = 32;
 levelMap.setAttribute('crossOrigin', '');
-levelMap.width = 11;
+levelMap.width = 64;
 console.log(levelMap.height);
 console.log(levelMap.width);
 // the size of the tiles in the texture with the level design
