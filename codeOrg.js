@@ -63,3 +63,45 @@ function getChecked(id) {
 function setChecked(id, check) {
 	document.getElementById(id).checked = check;
 }
+
+function getImageURL(id) {
+	var source = document.getElementById(id);
+	return source;
+}
+
+function setImageURL(id, url) {
+	var source = document.getElementById(id).src = url;
+}
+
+function deleteElement(id) {
+	var toDelete = document.getElementById(id);
+    toDelete.parentNode.removeChild(toDelete);
+}
+
+function setPosition(id, x, y, width, height) {
+	// (0, 0) is always in the top left corner of the screen
+	// (x, y) is the top left corner of the element
+	var set = document.getElementById(id);
+	set.style.height = height;
+	set.style.width = width;
+	set.style.left = x;
+	set.style.top = height;
+}
+
+function setSize(id, width, height) {
+	var set = document.getElementById(id);
+	set.style.height = height;
+	set.style.width = width;
+}
+
+function insertItem(list, index, item) {
+	list.splice(index, 0, item);
+}
+
+function appendItem(list, item) {
+	list.push(item);
+}
+
+function removeItem(list, index) {
+	list.splice(index, 1);
+}
