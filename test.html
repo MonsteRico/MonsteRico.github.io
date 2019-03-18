@@ -147,6 +147,7 @@ function Instantiate(object, xPos, yPos, h, w) {
         jumping: false,
         grounded: false
 		}
+		console.log(player);
 	}
 	if (object == "wall") {
 		boxes.push({
@@ -155,6 +156,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		width: w,
 		height: h
 		});
+		console.log(boxes);
 	}
 	if (object == "lava") {
 		boxes.push({
@@ -163,6 +165,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		width: w,
 		height: h
 		});
+		console.log(boxes);
 	}
 }
 
