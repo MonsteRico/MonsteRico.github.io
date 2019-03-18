@@ -1,5 +1,5 @@
 if (sessionStorage.getItem("pagesLeft") === null) {
-	sessionStorage.setItem("pagesLeft", 7);	
+	sessionStorage.setItem("pagesLeft", 8);	
 }
 var pagesLeft = sessionStorage.getItem("pagesLeft");
 console.log(pagesLeft)
@@ -89,71 +89,87 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 
 function site() {
-	if (document.getElementById("test3").value == "truth") {
-		window.open("./truth.html");
-		console.log(pagesLeft);
-		pagesLeft = pagesLeft - 1;
-		console.log(pagesLeft);
-		sessionStorage.setItem("pagesLeft", pagesLeft);
-		document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-	}
-	else {
-		if (document.getElementById("test3").value == "test") {
+	var something = document.getElementById("test3").value;
+	switch (something) {
+		case "truth": // blue - player
+		{
+			window.open("./truth.html");
+			console.log(pagesLeft);
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "test": // green - zombie
+		{
 			window.open("./test.html");
 			console.log(pagesLeft);
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
 			sessionStorage.setItem("pagesLeft", pagesLeft);
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
 		}
-		else {
-			if (document.getElementById("test3").value == "quote") {
-				window.open("./quote.html");
-				pagesLeft = pagesLeft - 1;
-				console.log(pagesLeft);
-				sessionStorage.setItem("pagesLeft", pagesLeft);
-				document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-			}
-			else {
-				if (document.getElementById("test3").value == "black") {
-					window.open("./black.html");
-					pagesLeft = pagesLeft - 1;
-					console.log(pagesLeft);
-					sessionStorage.setItem("pagesLeft", pagesLeft);
-					document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-				}
-					else {
-						if (document.getElementById("test3").value == "white") {
-						window.open("./white.html");
-						pagesLeft = pagesLeft - 1;
-						console.log(pagesLeft);
-						sessionStorage.setItem("pagesLeft", pagesLeft);
-						document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-					}
-						else {
-							if (document.getElementById("test3").value == "braden") {
-							window.open("./OhYeAh.html");
-							pagesLeft = pagesLeft - 1;
-							console.log(pagesLeft);
-							sessionStorage.setItem("pagesLeft", pagesLeft);
-							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-						}
-							else {	
-							if (document.getElementById("test3").value == "color") {
-							window.open("./colorSleuth.html");
-							pagesLeft = pagesLeft - 1;
-							console.log(pagesLeft);
-							sessionStorage.setItem("pagesLeft", pagesLeft);
-							document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
-						}
-								else {
-									alert("That is not a page!");
-					}
-				}
-			}
+		case "quote": // yellow - sand block
+		{
+			window.open("./quote.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
 		}
+		case "black": // grey - stone block
+		{
+			window.open("./black.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "white": // red - fire block
+		{
+			window.open("./white.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "braden": // red - fire block
+		{
+			window.open("./OhYeAh.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "color": // red - fire block
+		{
+			window.open("./colorSleuth.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "vod": // red - fire block
+		{
+			window.open("./vods.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		default: {
+			alert("That is not a page!");
+			break;
+		}
+	}	
 	sessionStorage.setItem("pagesLeft", pagesLeft);	
-			}
-		}
-	}
 }
+
