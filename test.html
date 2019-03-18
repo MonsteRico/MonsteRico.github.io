@@ -133,10 +133,11 @@ function TileToPoint(x,y) {
 }
 
 var boxes = [];
+var player;
 
 function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
-	   var player = {
+	   player = {
         x: xPos,
         y: yPos,
         width: w,
