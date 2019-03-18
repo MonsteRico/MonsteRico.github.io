@@ -133,7 +133,6 @@ function TileToPoint(x,y) {
 }
 
 var boxes = [];
-var lava = [];
 var player;
 
 function Instantiate(object, xPos, yPos, h, w) {
@@ -156,18 +155,20 @@ function Instantiate(object, xPos, yPos, h, w) {
 		x: xPos,
 		y: yPos,
 		width: w,
-		height: h
+		height: h,
+		color: "black"
 		});
 		console.log(boxes);
 	}
 	if (object == "lava") {
-		lava.push({
+		boxes.push({
 		x: xPos,
 		y: yPos,
 		width: w,
-		height: h
+		height: h,
+		color: "red"
 		});
-		console.log(lava);
+		console.log(boxes);
 	}
 }
 
@@ -215,18 +216,12 @@ function update() {
     player.velY += gravity;
 
     ctx.clearRect(0, 0, width, height);
-	for (var i = 0; i < boxes.length; i ++) {
-		ctx.fillStyle = "black";
-		ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height)
-	}
-	
-	for (var i = 0; i < lava.length; i ++) {
-		ctx.fillStyle = "red";
-		ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height)
-	}
+    ctx.fillStyle = "black";
+    ctx.beginPath();
     
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
+		ctx.fillStyle = boxes[i].color;
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         
         var dir = colCheck(player, boxes[i]);
