@@ -243,13 +243,11 @@ function update() {
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
-            player.velX = 0;
-            player.jumping = false;
+			reset();
         } else if (dir === "b") {
-            player.grounded = true;
-            player.jumping = false;
+			reset();
         } else if (dir === "t") {
-            player.velY *= -1;
+            reset();
         }
 
     }
