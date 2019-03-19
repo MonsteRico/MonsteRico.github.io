@@ -221,9 +221,7 @@ function update() {
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
 		ctx.fillStyle = "black";
-		ctx.beginPath();
-        ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-        
+        ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
 
         if (dir === "l" || dir === "r") {
@@ -240,8 +238,7 @@ function update() {
 	
 	for (var i = 0; i < lava.length; i++) {
 		ctx.fillStyle = "red";
-		ctx.beginPath();
-        ctx.rect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
+        ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         
         var dir = colCheck(player, lava[i]);
 
