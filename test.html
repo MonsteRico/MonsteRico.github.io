@@ -112,13 +112,13 @@ function TileToPoint(x,y) {
 		{
 			return "player";
 		}
-		case "#b5e61d": // green - checkpoint
+		case "#b5e61d": // green - goal
 		{
-			return "checkpoint";
+			return "goal";
 		}
 		case "#fff200": // yellow - coin
 		{
-			return "sand";
+			return "coin";
 		}
 		case "#000000": // black - wall block
 		{
@@ -130,7 +130,7 @@ function TileToPoint(x,y) {
 		}
 		case "#99d9ea": // blue - ice block
 		{
-			return "lava";
+			return "ice";
 		}
 		default:
 			return null;
@@ -139,6 +139,9 @@ function TileToPoint(x,y) {
 
 var boxes = [];
 var lava = [];
+var ice = [];
+var coin = [];
+var goal = [];
 var player;
 
 function Instantiate(object, xPos, yPos, h, w) {
@@ -175,6 +178,36 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "red"
 		});
 		console.log(lava);
+	}
+	if (object == "ice") {
+		ice.push({
+		x: xPos,
+		y: yPos+5,
+		width: w,
+		height: h-5,
+		color: "blue"
+		});
+		console.log(ice);
+	}
+	if (object == "coin") {
+		coin.push({
+		x: xPos,
+		y: yPos+5,
+		width: w,
+		height: h-5,
+		color: "yellow"
+		});
+		console.log(coin);
+	}
+	if (object == "goal") {
+		goal.push({
+		x: xPos,
+		y: yPos+5,
+		width: w,
+		height: h-5,
+		color: "green"
+		});
+		console.log(goal);
 	}
 }
 
@@ -256,6 +289,54 @@ function update() {
         }
 
     }
+	
+	for (var i = 0; i < goal.length; i++) {
+		ctx.fillStyle = "green";
+        ctx.fillRect(goal[i].x, goal[i].y, goal[i].width, goal[i].height);
+        
+        var dir = colCheck(player, goal[i]);
+
+        if (dir === "l" || dir === "r") {
+			reset();
+        } else if (dir === "b") {
+			reset();
+        } else if (dir === "t") {
+            reset();
+        }
+
+    }
+	
+	for (var i = 0; i < coin.length; i++) {
+		ctx.fillStyle = "yellow";
+        ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+        
+        var dir = colCheck(player, coin[i]);
+
+        if (dir === "l" || dir === "r") {
+			reset();
+        } else if (dir === "b") {
+			reset();
+        } else if (dir === "t") {
+            reset();
+        }
+
+    }
+	
+	for (var i = 0; i < ice.length; i++) {
+		ctx.fillStyle = "blue";
+        ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
+        
+        var dir = colCheck(player, ice[i]);
+
+        if (dir === "l" || dir === "r") {
+			reset();
+        } else if (dir === "b") {
+			reset();
+        } else if (dir === "t") {
+            reset();
+        }
+
+    }
     
     if(player.grounded){
          player.velY = 0;
@@ -265,7 +346,7 @@ function update() {
     player.y += player.velY;
 
     ctx.fill();
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "aquamarine";
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     requestAnimationFrame(update);
