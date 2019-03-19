@@ -8,7 +8,7 @@
 <canvas id="canvas"></canvas>
 <script>
 // The size of the tiles in the background
-var tileSize = 32;
+var tileSize = 16;
 var StartPoint = [0,0];
 // The texture 2D containing the level design
 var levelMap = new Image();
@@ -166,7 +166,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		x: xPos,
 		y: yPos,
 		width: w,
-		height: h,
+		height: h-10,
 		color: "red"
 		});
 		console.log(lava);
