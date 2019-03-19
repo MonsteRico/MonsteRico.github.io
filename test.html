@@ -222,7 +222,6 @@ function update() {
     
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
-		ctx.fillStyle = boxes[i].color;
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         
         var dir = colCheck(player, boxes[i]);
@@ -240,7 +239,6 @@ function update() {
     }
 	
 	for (var i = 0; i < lava.length; i++) {
-		ctx.fillStyle = lava[i].color;
         ctx.rect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         
         var dir = colCheck(player, lava[i]);
@@ -269,6 +267,10 @@ function update() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     requestAnimationFrame(update);
+}
+
+function reset() {
+	location.reload();
 }
 
 function colCheck(shapeA, shapeB) {
