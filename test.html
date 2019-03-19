@@ -105,25 +105,30 @@ function TileToPoint(x,y) {
 //}
 
   function GetGameObject(color) {
+	// refer to the colors.jpeg for what each color exactly is etc.
 	switch (color)
 	{
-		case "#0a7bff": // blue - player
+		case "#a349a4": // purple - player
 		{
 			return "player";
 		}
-		case "#77a841": // green - zombie
+		case "#b5e61d": // green - checkpoint
 		{
-			return "monster";
+			return "checkpoint";
 		}
-		case "#f6ed00": // yellow - sand block
+		case "#fff200": // yellow - coin
 		{
 			return "sand";
 		}
-		case "#747474": // grey - stone block
+		case "#000000": // black - wall block
 		{
 			return "wall";
 		}
-		case "#ea3d00": // red - fire block
+		case "#ed1c24": // red - killy block
+		{
+			return "lava";
+		}
+		case "#99d9ea": // blue - ice block
 		{
 			return "lava";
 		}
