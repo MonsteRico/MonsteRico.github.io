@@ -323,7 +323,7 @@ function update() {
     }
 	
 	for (var i = 0; i < ice.length; i++) {
-		ctx.fillStyle = "blue";
+		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         
         var dir = colCheck(player, ice[i]);
@@ -346,7 +346,7 @@ function update() {
     player.y += player.velY;
 
     ctx.fill();
-    ctx.fillStyle = "aquamarine";
+    ctx.fillStyle = "blue";
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     requestAnimationFrame(update);
