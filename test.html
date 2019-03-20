@@ -284,13 +284,10 @@ function update() {
 
         if (dir === "l" || dir === "r") {
 			reset();
-			break;
         } else if (dir === "b") {
 			reset();
-			break;
         } else if (dir === "t") {
             reset();
-			break;
         }
 
     }
@@ -358,6 +355,7 @@ function update() {
 }
 
 function reset() {
+	window.cancelAnimationFrame;
 	GenerateLevel();
 }
 
