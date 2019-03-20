@@ -307,12 +307,20 @@ function update() {
         
         var dir = colCheck(player, goal[i]);
 
-        if (dir === "l" || dir === "r") {
+        if (dir === "l") {
 			checkAllCoins();
-        } else if (dir === "b") {
-			checkAllCoins();;
+			player.velX--;
+        }
+		else if (dir === "r") {
+			checkAllCoins();
+			player.velX++;
+		}
+		else if (dir === "b") {
+			checkAllCoins();
+			player.velY--;
         } else if (dir === "t") {
             checkAllCoins();
+			player.velY++;
         }
 
     }
@@ -325,16 +333,13 @@ function update() {
 
         if (dir === "l" || dir === "r") {
 			coinsCollected++
-			ctx.fillStyle = "white";
-			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+			coin.splice(i, 1);
         } else if (dir === "b") {
 			coinsCollected++
-			ctx.fillStyle = "white";
-			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+			coin.splice(i, 1);
         } else if (dir === "t") {
             coinsCollected++
-			ctx.fillStyle = "white";
-			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+			coin.splice(i, 1);
         }
 
     }
@@ -411,9 +416,11 @@ function colCheck(shapeA, shapeB) {
 function checkAllCoins() {
 	if (coinsCollected == coinsNeeded) {
 		alert("Level Complete!");
+		return;
 	}
 	else {
 		alert("You are missing some coins! Go find them!");
+		return;
 	}
 }
 
