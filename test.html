@@ -273,7 +273,7 @@ function update() {
 		ctx.globalAlpha = boxes[i].opacity;
 		ctx.fillStyle = "black";
         ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-        var dir = colCheck(player, boxes[i]);
+        var dir = colCheck(player, boxes[i], "false");
 
         if (dir === "l" || dir === "r") {
             player.velX = 0;
@@ -292,7 +292,7 @@ function update() {
 		ctx.fillStyle = "red";
         ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         
-        var dir = colCheck(player, lava[i]);
+        var dir = colCheck(player, lava[i], "false");
 
         if (dir === "l" || dir === "r") {
 			cancelAnimationFrame(update);
@@ -315,7 +315,7 @@ function update() {
 		ctx.fillStyle = "green";
         ctx.fillRect(goal[i].x, goal[i].y, goal[i].width, goal[i].height);
         
-        var dir = colCheck(player, goal[i]);
+        var dir = colCheck(player, goal[i], "true");
 
         if (dir === "l") {
 			checkAllCoins();
@@ -340,7 +340,7 @@ function update() {
 		ctx.fillStyle = "yellow";
         ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         
-        var dir = colCheck(player, coin[i]);
+        var dir = colCheck(player, coin[i], "true");
 
         if (dir === "l" || dir === "r") {
 			coinsCollected++
@@ -360,7 +360,7 @@ function update() {
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         
-        var dir = colCheck(player, ice[i]);
+        var dir = colCheck(player, ice[i], "false");
 
         if (dir === "l" || dir === "r") {
 			reset();
@@ -391,7 +391,7 @@ function reset() {
 	GenerateLevel();
 }
 
-function colCheck(shapeA, shapeB) {
+function colCheck(shapeA, shapeB, passThrough) {
     // get the vectors to check against
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
         vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
@@ -444,11 +444,11 @@ function colCheck(shapeA, shapeB) {
 
 function checkAllCoins() {
 	if (coinsCollected == coinsNeeded) {
-		alert("Level Complete!");
+		console.log("Level Complete!");
 		return;
 	}
 	else {
-		alert("You are missing some coins! Go find them!");
+		console.log("You are missing some coins! Go find them!");
 		return;
 	}
 }
