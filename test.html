@@ -45,7 +45,6 @@ function Test1() {
         };
 
         img1.src = levelMap.src;
-		update();
     }
 }
 
@@ -69,6 +68,7 @@ function GenerateLevel() {
 			Instantiate(objectName, tilePoint[0], tilePoint[1], tileSize, tileSize);
 		}
 	}
+	update();
 }
 
 
