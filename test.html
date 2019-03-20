@@ -5,11 +5,27 @@
 </style>
 <body>
 <input type="file" id="inp">
+<p>Or play one of these other levels</p>
+<input type="button" id="castle" placeholder="Castle">
+<input type="button" id="coinTest" placeholder="Coin Test">
+<input type="button" id="test" placeholder="Test">
 <canvas id="test1"></canvas>
 <canvas id="canvas"></canvas>
 <script>
 document.getElementById('inp').onchange = function(e) {
   levelMap.src = URL.createObjectURL(this.files[0]);
+  Test1();
+};
+document.getElementById('castle').onclick = function(e) {
+  levelMap.src = './castle.png';
+  Test1();
+};
+document.getElementById('coinTest').onclick = function(e) {
+  levelMap.src = './coinTest.png';
+  Test1();
+};
+document.getElementById('test').onclick = function(e) {
+  levelMap.src = './test.jpg';
   Test1();
 };
 // The size of the tiles in the background
