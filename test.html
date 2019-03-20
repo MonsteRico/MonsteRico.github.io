@@ -4,9 +4,14 @@
 <style>
 </style>
 <body>
+<input type="file" id="inp">
 <canvas id="test1"></canvas>
 <canvas id="canvas"></canvas>
 <script>
+document.getElementById('inp').onchange = function(e) {
+  levelMap.src = URL.createObjectURL(this.files[0]);
+  Test1();
+};
 // The size of the tiles in the background
 var tileSize = 16;
 var StartPoint = [0,0];
@@ -42,7 +47,6 @@ function Test1() {
         img1.src = levelMap.src;
     }
 }
-Test1();
 
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
