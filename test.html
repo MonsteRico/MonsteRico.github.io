@@ -213,7 +213,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 }
 
-
+var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
