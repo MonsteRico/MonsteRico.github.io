@@ -4,6 +4,8 @@
 <style>
 </style>
 <body>
+<input type="file" 
+    onchange="Test1()">
 <canvas id="test1"></canvas>
 <canvas id="canvas"></canvas>
 <script>
@@ -24,6 +26,7 @@ var levelMapTileSize = 1;
 // public Vector2 StartPoint = new Vector2(144,100);
 // Converts image to canvas; returns new canvas element
 function Test1() {
+	levelMap.src = window.URL.createObjectURL(this.files[0])
     var ctx = document.getElementById('test1');
     if (ctx.getContext) {
 
@@ -42,7 +45,6 @@ function Test1() {
         img1.src = levelMap.src;
     }
 }
-Test1();
 
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
