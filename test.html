@@ -151,6 +151,7 @@ var ice = [];
 var coin = [];
 var goal = [];
 var player;
+var coinsNeeded = 0;
 
 function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
@@ -194,6 +195,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		});
 	}
 	if (object == "coin") {
+		coinsNeeded++;
 		coin.push({
 		x: xPos,
 		y: yPos,
@@ -227,7 +229,6 @@ var canvas = document.getElementById("canvas"),
     keys = [],
     friction = 0.8,
     gravity = 0.2,
-	coinsNeeded = coin.length,
 	coinsCollected = 0;
 
 canvas.width = width;
