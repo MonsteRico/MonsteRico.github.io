@@ -59,9 +59,7 @@ function GenerateLevel() {
 		for (var y = 0; y < levelMap.height; y+= levelMapTileSize)
 		{
 			var pixelColor = GetPixel(x, y);
-			console.log(pixelColor);
 			var objectName = GetGameObject(pixelColor);
-			console.log(objectName);
 			if (objectName == null) { continue;	}
 
 			var tilePoint = TileToPoint(x, y);	
@@ -73,8 +71,8 @@ function GenerateLevel() {
 }
 
 function hideThings() {
-	document.getElementById("inp").display = "none";
-	document.getElementById("test1").display = "none";
+	document.getElementById("inp").style.display = "none";
+	document.getElementById("test1").style.display = "none";
 }
 
 
@@ -168,7 +166,6 @@ function Instantiate(object, xPos, yPos, h, w) {
         jumping: false,
         grounded: false
 		}
-		console.log(player);
 	}
 	if (object == "wall") {
 		boxes.push({
@@ -178,7 +175,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		height: h,
 		color: "black"
 		});
-		console.log(boxes);
 	}
 	if (object == "lava") {
 		lava.push({
@@ -188,7 +184,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		height: h-5,
 		color: "red"
 		});
-		console.log(lava);
 	}
 	if (object == "ice") {
 		ice.push({
@@ -198,7 +193,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		height: h,
 		color: "blue"
 		});
-		console.log(ice);
 	}
 	if (object == "coin") {
 		coin.push({
@@ -208,7 +202,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		height: h,
 		color: "yellow"
 		});
-		console.log(coin);
 	}
 	if (object == "goal") {
 		goal.push({
@@ -218,7 +211,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		height: h,
 		color: "green"
 		});
-		console.log(goal);
 	}
 }
 
@@ -364,18 +356,6 @@ function update() {
 }
 
 function reset() {
-	var canvas = document.getElementById("canvas"),
-    ctx = canvas.getContext("2d"),
-    width = levelMap.width * tileSize,
-    height = levelMap.height * tileSize,
-    keys = [],
-    friction = 0.8,
-    gravity = 0.2;
-	canvas.width = width;
-	canvas.height = height;
-	ctx.fill();
-	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0, width, height);
 	GenerateLevel();
 }
 
