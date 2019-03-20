@@ -309,18 +309,18 @@ function update() {
 
         if (dir === "l") {
 			checkAllCoins();
-			player.velX--;
+			player.velX -= 4;
         }
 		else if (dir === "r") {
 			checkAllCoins();
-			player.velX++;
+			player.velX += 4;
 		}
 		else if (dir === "b") {
 			checkAllCoins();
-			player.velY--;
+			player.velY -= 4;
         } else if (dir === "t") {
             checkAllCoins();
-			player.velY++;
+			player.velY += 4;
         }
 
     }
