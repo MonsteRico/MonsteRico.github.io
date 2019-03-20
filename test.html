@@ -69,6 +69,12 @@ function GenerateLevel() {
 		}
 	}
 	update();
+	hideThings();
+}
+
+function hideThings() {
+	document.getElementById("inp").display = "none";
+	document.getElementById("test1").display = "none";
 }
 
 
@@ -358,7 +364,19 @@ function update() {
 }
 
 function reset() {
-	location.reload();
+	var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d"),
+    width = levelMap.width * tileSize,
+    height = levelMap.height * tileSize,
+    keys = [],
+    friction = 0.8,
+    gravity = 0.2;
+	canvas.width = width;
+	canvas.height = height;
+	ctx.fill();
+	ctx.fillStyle = "white";
+	ctx.fillRect(0, 0, width, height);
+	update();
 }
 
 function colCheck(shapeA, shapeB) {
