@@ -156,6 +156,7 @@ var coinsNeeded = 0;
 function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
+	    opacity: 1,
         x: xPos,
         y: yPos,
         width: w,
@@ -169,6 +170,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "wall") {
 		boxes.push({
+		opacity: 1,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -178,6 +180,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "lava") {
 		lava.push({
+		opacity: 1,
 		x: xPos,
 		y: yPos+5,
 		width: w,
@@ -187,6 +190,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "ice") {
 		ice.push({
+		opacity: 1,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -197,6 +201,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "coin") {
 		coinsNeeded++;
 		coin.push({
+		opacity: 1,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -206,6 +211,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "goal") {
 		goal.push({
+		opacity: 0.4,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -264,6 +270,7 @@ function update() {
     
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
+		ctx.globalAlpha = boxes[i].opacity;
 		ctx.fillStyle = "black";
         ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
@@ -281,6 +288,7 @@ function update() {
     }
 	
 	for (var i = 0; i < lava.length; i++) {
+		ctx.globalAlpha = lava[i].opacity;
 		ctx.fillStyle = "red";
         ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         
@@ -303,6 +311,7 @@ function update() {
     }
 	
 	for (var i = 0; i < goal.length; i++) {
+		ctx.globalAlpha = goal[i].opacity;
 		ctx.fillStyle = "green";
         ctx.fillRect(goal[i].x, goal[i].y, goal[i].width, goal[i].height);
         
@@ -327,6 +336,7 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
+		ctx.globalAlpha = coin[i].opacity;
 		ctx.fillStyle = "yellow";
         ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         
@@ -346,6 +356,7 @@ function update() {
     }
 	
 	for (var i = 0; i < ice.length; i++) {
+		ctx.globalAlpha = ice[i].opacity;
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         
@@ -370,6 +381,7 @@ function update() {
 
     ctx.fill();
     ctx.fillStyle = "blue";
+	ctx.globalAlpha = player.opacity;
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     requestAnimationFrame(update);
@@ -393,23 +405,39 @@ function colCheck(shapeA, shapeB) {
         // figures out on which side we are colliding (top, bottom, left, or right)
         var oX = hWidths - Math.abs(vX),
             oY = hHeights - Math.abs(vY);
-        if (oX >= oY) {
-            if (vY > 0) {
-                colDir = "t";
-                shapeA.y += oY;
-            } else {
-                colDir = "b";
-                shapeA.y -= oY;
-            }
-        } else {
-            if (vX > 0) {
-                colDir = "l";
-                shapeA.x += oX;
-            } else {
-                colDir = "r";
-                shapeA.x -= oX;
-            }
-        }
+		if (passThrough == "true") {
+			if (oX >= oY) {
+				if (vY > 0) {
+					colDir = "t";
+				} else {
+					colDir = "b";
+				}
+			} else {
+				if (vX > 0) {
+					colDir = "l";
+				} else {
+					colDir = "r";
+				}
+			}
+		} else {
+			if (oX >= oY) {
+				if (vY > 0) {
+					colDir = "t";
+					shapeA.y += oY;
+				} else {
+					colDir = "b";
+					shapeA.y -= oY;
+				}
+			} else {
+				if (vX > 0) {
+					colDir = "l";
+					shapeA.x += oX;
+				} else {
+					colDir = "r";
+					shapeA.x -= oX;
+				}
+			}
+		}
     }
     return colDir;
 }
