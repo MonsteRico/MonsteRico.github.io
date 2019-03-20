@@ -217,6 +217,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
+	var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
 
 var canvas = document.getElementById("canvas"),
@@ -283,10 +284,13 @@ function update() {
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
+			cancelAnimationFrame(update);
 			reset();
         } else if (dir === "b") {
+			cancelAnimationFrame(update);
 			reset();
         } else if (dir === "t") {
+			cancelAnimationFrame(update);
             reset();
         }
 
@@ -355,8 +359,6 @@ function update() {
 }
 
 function reset() {
-	var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-	cancelAnimationFrame(update);
 	GenerateLevel();
 }
 
