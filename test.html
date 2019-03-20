@@ -226,7 +226,9 @@ var canvas = document.getElementById("canvas"),
     height = levelMap.height * tileSize,
     keys = [],
     friction = 0.8,
-    gravity = 0.2;
+    gravity = 0.2,
+	coinsNeeded = coin.length,
+	coinsCollected = 0;
 
 canvas.width = width;
 canvas.height = height;
@@ -306,11 +308,11 @@ function update() {
         var dir = colCheck(player, goal[i]);
 
         if (dir === "l" || dir === "r") {
-			reset();
+			checkAllCoins();
         } else if (dir === "b") {
-			reset();
+			checkAllCoins();;
         } else if (dir === "t") {
-            reset();
+            checkAllCoins();
         }
 
     }
@@ -322,11 +324,17 @@ function update() {
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
-			reset();
+			coinsCollected++
+			ctx.fillStyle = "white";
+			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         } else if (dir === "b") {
-			reset();
+			coinsCollected++
+			ctx.fillStyle = "white";
+			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         } else if (dir === "t") {
-            reset();
+            coinsCollected++
+			ctx.fillStyle = "white";
+			ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         }
 
     }
@@ -398,6 +406,15 @@ function colCheck(shapeA, shapeB) {
         }
     }
     return colDir;
+}
+
+function checkAllCoins() {
+	if (coinsCollected == coinsNeeded) {
+		alert("Level Complete!");
+	}
+	else {
+		alert("You are missing some coins! Go find them!");
+	}
 }
 
 document.body.addEventListener("keydown", function (e) {
