@@ -273,7 +273,7 @@ function update() {
 		ctx.globalAlpha = boxes[i].opacity;
 		ctx.fillStyle = "black";
         ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-        var dir = colCheck(player, boxes[i], "false");
+        var dir = colCheck(player, boxes[i], 0);
 
         if (dir === "l" || dir === "r") {
             player.velX = 0;
@@ -292,7 +292,7 @@ function update() {
 		ctx.fillStyle = "red";
         ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         
-        var dir = colCheck(player, lava[i], "false");
+        var dir = colCheck(player, lava[i], 0);
 
         if (dir === "l" || dir === "r") {
 			cancelAnimationFrame(update);
@@ -315,22 +315,38 @@ function update() {
 		ctx.fillStyle = "green";
         ctx.fillRect(goal[i].x, goal[i].y, goal[i].width, goal[i].height);
         
-        var dir = colCheck(player, goal[i], "true");
+        var dir = colCheck(player, goal[i], 1);
 
         if (dir === "l") {
-			checkAllCoins();
+			if (checkAllCoins == true) {
+				goal.splice(i, 1);
+			}
+			else {
 			player.velX += 1.5;
+			}
         }
 		else if (dir === "r") {
-			checkAllCoins();
+			if (checkAllCoins == true) {
+				goal.splice(i, 1);
+			}
+			else {
 			player.velX -= 1.5;
+			}
 		}
 		else if (dir === "b") {
-			checkAllCoins();
+			if (checkAllCoins == true) {
+				goal.splice(i, 1);
+			}
+			else {
 			player.velY -= 1.5;
+			}
         } else if (dir === "t") {
-            checkAllCoins();
+			if (checkAllCoins == true) {
+				goal.splice(i, 1);
+			}
+			else {
 			player.velY += 1.5;
+			}
         }
 
     }
@@ -340,7 +356,7 @@ function update() {
 		ctx.fillStyle = "yellow";
         ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         
-        var dir = colCheck(player, coin[i], "true");
+        var dir = colCheck(player, coin[i], 1);
 
         if (dir === "l" || dir === "r") {
 			coinsCollected++
@@ -360,7 +376,7 @@ function update() {
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         
-        var dir = colCheck(player, ice[i], "false");
+        var dir = colCheck(player, ice[i], 0);
 
         if (dir === "l" || dir === "r") {
 			reset();
@@ -405,7 +421,7 @@ function colCheck(shapeA, shapeB, passThrough) {
         // figures out on which side we are colliding (top, bottom, left, or right)
         var oX = hWidths - Math.abs(vX),
             oY = hHeights - Math.abs(vY);
-		if (passThrough == "true") {
+		if (passThrough === 1) {
 			if (oX >= oY) {
 				if (vY > 0) {
 					colDir = "t";
@@ -445,11 +461,11 @@ function colCheck(shapeA, shapeB, passThrough) {
 function checkAllCoins() {
 	if (coinsCollected == coinsNeeded) {
 		console.log("Level Complete!");
-		return;
+		return true;
 	}
 	else {
 		console.log("You are missing some coins! Go find them!");
-		return;
+		return false;
 	}
 }
 
