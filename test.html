@@ -419,13 +419,13 @@ function update() {
 			if (keys[39] || keys[68]) {
 				// right arrow
 				if (player.velX < player.speed) {
-					player.velX += iceFriction;
+					player.velX += 3;
 				}
 			}
 			if (keys[37] || keys[65]) {
 				// left arrow
 				if (player.velX > -player.speed) {
-					player.velX -= iceFriction;
+					player.velX -= 3;
 				}
 			}
             player.velY *= -1;
