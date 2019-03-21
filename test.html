@@ -450,21 +450,6 @@ function colCheck(shapeA, shapeB, passThrough) {
         // figures out on which side we are colliding (top, bottom, left, or right)
         var oX = hWidths - Math.abs(vX),
             oY = hHeights - Math.abs(vY);
-		if (passThrough === 1) {
-			if (oX >= oY) {
-				if (vY > 0) {
-					colDir = "t";
-				} else {
-					colDir = "b";
-				}
-			} else {
-				if (vX > 0) {
-					colDir = "l";
-				} else {
-					colDir = "r";
-				}
-			}
-		} else {
 			if (oX >= oY) {
 				if (vY > 0) {
 					colDir = "t";
@@ -473,7 +458,7 @@ function colCheck(shapeA, shapeB, passThrough) {
 					colDir = "b";
 					shapeA.y -= oY;
 				}
-			} else {
+			}
 				if (vX > 0) {
 					colDir = "l";
 					shapeA.x += oX;
@@ -482,10 +467,8 @@ function colCheck(shapeA, shapeB, passThrough) {
 					shapeA.x -= oX;
 				}
 			}
-		}
-    }
     return colDir;
-}
+}	
 
 function checkAllCoins() {
 	var collected = 0;
