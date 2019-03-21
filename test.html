@@ -301,6 +301,7 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
+			console.log("top of wall");
             player.velY *= -1;
         }
 
@@ -402,7 +403,6 @@ function update() {
 		ctx.globalAlpha = ice[i].opacity;
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
-		var iceFriction = 3;
         var dir = colCheck(player, ice[i], 0);
 
         if (dir === "l" || dir === "r") {
@@ -446,7 +446,6 @@ function colCheck(shapeA, shapeB, passThrough) {
         hWidths = (shapeA.width / 2) + (shapeB.width / 2),
         hHeights = (shapeA.height / 2) + (shapeB.height / 2),
         colDir = null;
-		passThrough = 0;
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
         // figures out on which side we are colliding (top, bottom, left, or right)
