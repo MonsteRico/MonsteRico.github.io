@@ -298,13 +298,10 @@ function update() {
             player.velX = 0;
             player.jumping = false;
         } else if (dir === "b") {
-			if (player.speed != 3) {
-				var reduceTo = player.speed - 3;
-				for (var i = 0; i < reduceTo; i++) {
-					player.speed -= 1;
-				}
+			while (friction != 0.8) {
+				friction -= 0.1;
 			}
-            player.grounded = true;
+			player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
             player.velY *= -1;
@@ -413,7 +410,7 @@ function update() {
             player.velX = 0;
             player.jumping = false;
         } else if (dir === "b") {
-			player.speed = 4;
+			friction = 1;
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
