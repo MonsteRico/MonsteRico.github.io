@@ -404,7 +404,7 @@ function update() {
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         var dir = colCheck(player, ice[i]);
-
+		console.log(dir);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
             player.jumping = false;
