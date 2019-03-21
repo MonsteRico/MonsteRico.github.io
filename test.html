@@ -446,7 +446,7 @@ function colCheck(shapeA, shapeB, passThrough) {
         hWidths = (shapeA.width / 2) + (shapeB.width / 2),
         hHeights = (shapeA.height / 2) + (shapeB.height / 2),
         colDir = null;
-
+		passThrough = 0;
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
         // figures out on which side we are colliding (top, bottom, left, or right)
