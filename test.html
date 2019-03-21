@@ -409,11 +409,11 @@ function update() {
             player.velX = 0;
             player.jumping = false;
         } else if (dir === "b") {
+			console.log("on ice");
+			player.speed += 5;
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			console.log("on ice");
-			player.speed += 5;
             player.velY *= -1;
         }
 
@@ -453,10 +453,10 @@ function colCheck(shapeA, shapeB) {
             oY = hHeights - Math.abs(vY);
 			if (oX >= oY) {
 				if (vY > 0) {
-					colDir = "b";
+					colDir = "t";
 					shapeA.y += oY;
 				} else {
-					colDir = "t";
+					colDir = "b";
 					shapeA.y -= oY;
 				}
 			} else {
