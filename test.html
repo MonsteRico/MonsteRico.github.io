@@ -300,6 +300,11 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
+			if (friction != 0.8) {
+				for (var i = 0; i < 4; i++) {
+					friction -= 0.05
+				}
+			}
             player.velY *= -1;
         }
 
@@ -405,11 +410,9 @@ function update() {
         var dir = colCheck(player, ice[i], 0);
 
         if (dir === "l" || dir === "r") {
-			reset();
         } else if (dir === "b") {
-			reset();
         } else if (dir === "t") {
-            reset();
+			friction = 1;
         }
 
     }
