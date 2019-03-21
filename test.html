@@ -301,11 +301,6 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			if (player.speed != 3) {
-				for (var i = 0; i < 4; i++) {
-					player.speed -= 0.5
-				}
-			}
             player.velY *= -1;
         }
 
@@ -417,7 +412,8 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			player.speed = 5;
+			console.log("on ice");
+			player.speed += 5;
             player.velY *= -1;
         }
 
