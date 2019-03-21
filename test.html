@@ -300,9 +300,9 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			if (friction != 0.8) {
+			if (player.speed != 3) {
 				for (var i = 0; i < 4; i++) {
-					friction -= 0.05
+					player.speed -= 0.5
 				}
 			}
             player.velY *= -1;
@@ -415,7 +415,7 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			friction = 10;
+			player.speed = 5;
             player.velY *= -1;
         }
 
