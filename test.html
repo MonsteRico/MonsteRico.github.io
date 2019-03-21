@@ -425,7 +425,7 @@ function update() {
 			if (keys[37] || keys[65]) {
 				// left arrow
 				if (player.velX > -player.speed) {
-					player.velX--;
+					player.velX -= iceFriction;
 				}
 			}
             player.velY *= -1;
