@@ -300,8 +300,8 @@ function update() {
         } else if (dir === "b") {
 			if (player.speed != 3) {
 				var reduceTo = player.speed - 3;
-				for (var i = 0; i < reduceTo; i += 0.1) {
-					player.speed -= 0.1;
+				for (var i = 0; i < reduceTo; i++) {
+					player.speed -= 1;
 				}
 			}
             player.grounded = true;
