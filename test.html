@@ -14,11 +14,6 @@
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
-if (sessionStorage.getItem('level') != null) {
-	levelMap.src = sessionStorage.getItem('level');
-	Test1();
-}
-
 document.getElementById('inp').onchange = function(e) {
   levelMap.src = URL.createObjectURL(this.files[0]);
   sessionStorage.setItem('level', levelMap.src);
@@ -55,6 +50,11 @@ var levelMapTileSize = 1;
 // The X and Y coordinates of the start position for drawing the level.
 // public Vector2 StartPoint = new Vector2(144,100);
 // Converts image to canvas; returns new canvas element
+if (sessionStorage.getItem('level') != null) {
+	levelMap.src = sessionStorage.getItem('level');
+	Test1();
+}
+
 function Test1() {
     var ctx = document.getElementById('test1');
     if (ctx.getContext) {
