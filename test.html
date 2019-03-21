@@ -239,6 +239,8 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 }
 
+var friction = 0.8;
+
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -251,7 +253,6 @@ var canvas = document.getElementById("canvas"),
     width = levelMap.width * tileSize,
     height = levelMap.height * tileSize,
     keys = [],
-    friction = 0.8,
     gravity = 0.2,
 	coinsCollected = 0;
 
@@ -416,18 +417,7 @@ function update() {
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			if (keys[39] || keys[68]) {
-				// right arrow
-				if (player.velX < player.speed) {
-					player.velX += 3;
-				}
-			}
-			if (keys[37] || keys[65]) {
-				// left arrow
-				if (player.velX > -player.speed) {
-					player.velX -= 3;
-				}
-			}
+			friction = 10;
             player.velY *= -1;
         }
 
