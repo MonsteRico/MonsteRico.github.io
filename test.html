@@ -298,10 +298,15 @@ function update() {
             player.velX = 0;
             player.jumping = false;
         } else if (dir === "b") {
+			if (player.speed != 3) {
+				var reduceTo = player.speed - 3;
+				for (var i = 0; i < reduceTo; i++) {
+					player.speed -= 1;
+				}
+			}
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
-			console.log("top of wall");
             player.velY *= -1;
         }
 
@@ -404,13 +409,11 @@ function update() {
 		ctx.fillStyle = "aquamarine";
         ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         var dir = colCheck(player, ice[i]);
-		console.log(dir);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
             player.jumping = false;
         } else if (dir === "b") {
-			console.log("on ice");
-			player.speed += 5;
+			player.speed = 5;
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
