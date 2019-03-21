@@ -158,6 +158,10 @@ function TileToPoint(x,y) {
 		{
 			return "ice";
 		}
+		case "#22b14c": // blue - ice block
+		{
+			return "slime";
+		}
 		default:
 			return null;
 	}	
@@ -168,6 +172,7 @@ var lava = [];
 var ice = [];
 var coin = [];
 var goal = [];
+var slime = [];
 var player;
 var coinsNeeded = 0;
 
@@ -237,6 +242,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "green"
 		});
 	}
+	if (object == "slime") {
+		slime.push({
+		opacity: 0.8,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "forestgreen"
+		});
+	}
 }
 
 var friction = 0.8;
@@ -300,6 +315,9 @@ function update() {
         } else if (dir === "b") {
 			while (friction != 0.8) {
 				friction -= 0.1;
+			}
+			while (player.speed != 3) {
+				player.speed -= 1;
 			}
 			player.grounded = true;
             player.jumping = false;
@@ -411,6 +429,24 @@ function update() {
             player.jumping = false;
         } else if (dir === "b") {
 			friction = 1;
+            player.grounded = true;
+            player.jumping = false;
+        } else if (dir === "t") {
+            player.velY *= -1;
+        }
+
+    }
+	
+    for (var i = 0; i < slime.length; i++) {
+		ctx.globalAlpha = slime[i].opacity;
+		ctx.fillStyle = "forestgreen";
+        ctx.fillRect(slime[i].x, slime[i].y, slime[i].width, slime[i].height);
+        var dir = colCheck(player, slime[i]);
+        if (dir === "l" || dir === "r") {
+            player.velX = 0;
+            player.jumping = false;
+        } else if (dir === "b") {
+			player.speed = 5;
             player.grounded = true;
             player.jumping = false;
         } else if (dir === "t") {
