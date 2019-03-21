@@ -8,6 +8,7 @@
 	<input type="file" id="inp">
 	<p>Or play one of these other levels</p>
 	<button id="castle" placeholder="Castle">Castle Level</button>
+	<button id="iceSlime" placeholder="iceSlime">Ice/Slime Test</button>
 	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
 	<button id="test" placeholder="Test">Test Level</button>
 	<canvas style="display:none;" id="test1"></canvas>
@@ -21,6 +22,11 @@ document.getElementById('inp').onchange = function(e) {
 };
 document.getElementById('castle').onclick = function(e) {
   levelMap.src = './castle.png';
+  sessionStorage.setItem('level', levelMap.src);
+  Test1();
+};
+document.getElementById('iceSlime').onclick = function(e) {
+  levelMap.src = './iceTest.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
