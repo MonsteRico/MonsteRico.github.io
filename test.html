@@ -287,7 +287,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		});
 	}
 }
-
+var l = 0;
 var friction = 0.8;
 
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
@@ -338,7 +338,12 @@ function update() {
     
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
-		ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+		if (l == 0) {
+			for (var i = 0; i < boxes.length; i++) {
+				ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+			}
+			l++
+		}
         var dir = colCheck(player, boxes[i]);
 
         if (dir === "l" || dir === "r") {
@@ -380,8 +385,12 @@ function update() {
     }
 	
 	for (var i = 0; i < goal.length; i++) {
-		ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[i].x, goal[i].y, goal[i].width, goal[i].height);
-        
+		if (l == 1) {
+			for (var i = 0; i < goal.length; i++) {
+				ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[i].x, goal[i].y, goal[i].width, goal[i].height);
+			}
+			l++;
+        }
         var dir = colCheck(player, goal[i]);
 
         if (dir === "l") {
@@ -428,7 +437,12 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-        ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+		if (l == 2) {
+			for (var i = 0; i < coin.length; i++) {
+				ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+			}
+			l++;
+		}
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
@@ -445,7 +459,12 @@ function update() {
     }
 	
     for (var i = 0; i < ice.length; i++) {
-		ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[i].x, ice[i].y, ice[i].width, ice[i].height);
+		if (l == 3) {
+			for (var i = 0; i < ice.length; i++) {
+				ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[i].x, ice[i].y, ice[i].width, ice[i].height);
+			}
+			l++;
+		}
         var dir = colCheck(player, ice[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
@@ -461,7 +480,12 @@ function update() {
     }
 	
     for (var i = 0; i < slime.length; i++) {
-		ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[i].x, slime[i].y, slime[i].width, slime[i].height);
+		if (l == 4) {
+			for (var i = 0; i < slime.length; i++) {
+				ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[i].x, slime[i].y, slime[i].width, slime[i].height);
+			}
+			l++;
+		}
         var dir = colCheck(player, slime[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
