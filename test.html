@@ -12,7 +12,7 @@
 	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
 	<button id="test" placeholder="Test">Test Level</button>
 	<canvas style="display:none;" id="test1"></canvas>
-	<img src="./coin.png" id="sprite" style="display:none">
+	<img src="./spritesheet.png" id="sprite" style="display:none">
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
@@ -433,7 +433,7 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-        ctx.drawImage(coinSprite, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
+        ctx.drawImage(coinSprite, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
