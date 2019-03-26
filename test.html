@@ -60,6 +60,19 @@ if (sessionStorage.getItem('level') != null) {
 	levelMap.src = sessionStorage.getItem('level');
 	Test1();
 }
+function Test2() {
+	var ctx = document.getElementById('spriteCanvas');
+	if (ctx.getContext) {
+		ctx = ctx.getContext('2d');
+		var img2 = new Image();
+		img1.onload = functio() {
+			ctx.drawImage(img2, 0,0);
+			console.log("Drew sprites");
+		}
+	}
+	im2.src = "./coin.png";
+}
+
 
 function Test1() {
     var ctx = document.getElementById('test1');
