@@ -153,7 +153,7 @@ function TileToPoint(x,y) {
 		{
 			return "player";
 		}
-		case "#b5e61d": // green - goal
+		case "#b5e61d": // Bright Green - goal
 		{
 			return "goal";
 		}
@@ -165,15 +165,19 @@ function TileToPoint(x,y) {
 		{
 			return "wall";
 		}
-		case "#ed1c24": // red - killy block
+		case "#ed1c24": // red - Lava (Inset into ground a bit)
 		{
 			return "lava";
+		}
+		case "#ff7f27": // orange - Lava (Full Size)
+		{
+			return "lava-stack";
 		}
 		case "#99d9ea": // blue - ice block
 		{
 			return "ice";
 		}
-		case "#22b14c": // blue - ice block
+		case "#22b14c": // Dark Green - Slime block
 		{
 			return "slime";
 		}
@@ -223,6 +227,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		y: yPos+5,
 		width: w,
 		height: h-5,
+		color: "red"
+		});
+	}
+	if (object == "lava-stack") {
+		lava.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
 		color: "red"
 		});
 	}
