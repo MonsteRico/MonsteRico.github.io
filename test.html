@@ -433,7 +433,7 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-        ctx.drawImage(coinSprite, 0, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
+        ctx.drawImage(coinSprite, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
