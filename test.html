@@ -12,7 +12,6 @@
 	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
 	<button id="test" placeholder="Test">Test Level</button>
 	<canvas style="display:none;" id="test1"></canvas>
-	<canvas style="display:none;" id="coinSpriteCanvas"></canvas>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
@@ -52,10 +51,6 @@ levelMap.setAttribute('crossOrigin', '');
 levelMap.width = 64;
 console.log(levelMap.height);
 console.log(levelMap.width);
-var coinSprite = new Image();
-coinSprite.src = './coin.png';
-coinSprite.height = 16;
-coinSprite.width = 16;
 // the size of the tiles in the texture with the level design
 var levelMapTileSize = 1;
 // The X and Y coordinates of the start position for drawing the level.
@@ -74,20 +69,14 @@ function Test1() {
 
         //Loading of the home test image - img1
         var img1 = new Image();
-		var coinImg = new Image();
-		
 
         //drawing of the test image - img1
-        img1.onload = function () {
-			if (coinImg.complete === true) {
+			img1.onload = function() {
             //draw background image
             ctx.drawImage(img1, 0, 0);
-			document.getElementById('coinSpriteCanvas').drawImage(coinImg, 0, 0);
 			GenerateLevel();
-			}
-			
         };
-		coinImg.src = coinSprite.src;
+
         img1.src = levelMap.src;
     }
 }
@@ -441,7 +430,9 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-		ctx.drawImage(coinImg, 0, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+		ctx.globalAlpha = coin[i].opacity;
+		ctx.fillStyle = "yellow";
+        ctx.fillRect(coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         
         var dir = colCheck(player, coin[i]);
 
