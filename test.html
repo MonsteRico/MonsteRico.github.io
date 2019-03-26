@@ -66,7 +66,7 @@ function Test2() {
 	if (ctx.getContext) {
 		ctx = ctx.getContext('2d');
 		var img2 = new Image();
-		img1.onload = function() {
+		img2.onload = function() {
 			ctx.drawImage(img2, 0,0);
 			console.log("Drew sprites");
 		}
