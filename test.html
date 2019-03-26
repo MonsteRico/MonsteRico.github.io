@@ -50,7 +50,7 @@ levelMap.src = './castle.png';
 levelMap.height = 32;
 levelMap.setAttribute('crossOrigin', '');
 levelMap.width = 64;
-var coinSprite = document.getElementById('sprite');
+var spritesheet = document.getElementById('sprite');
 console.log(levelMap.height);
 console.log(levelMap.width);
 // the size of the tiles in the texture with the level design
@@ -225,6 +225,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "lava") {
 		lava.push({
+		type: "half",
 		opacity: 1,
 		x: xPos,
 		y: yPos+5,
@@ -235,6 +236,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "lava-stack") {
 		lava.push({
+		type: "full",
 		opacity: 1,
 		x: xPos,
 		y: yPos,
@@ -336,9 +338,7 @@ function update() {
     
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
-		ctx.globalAlpha = boxes[i].opacity;
-		ctx.fillStyle = "black";
-        ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+		ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
 
         if (dir === "l" || dir === "r") {
@@ -360,10 +360,12 @@ function update() {
     }
 	
 	for (var i = 0; i < lava.length; i++) {
-		ctx.globalAlpha = lava[i].opacity;
-		ctx.fillStyle = "red";
-        ctx.fillRect(lava[i].x, lava[i].y, lava[i].width, lava[i].height);
-        
+		if (lava.type == "full") {
+			ctx.drawImage(spritesheet, 48, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
+        }
+		else {
+			ctx.drawImage(spritesheet, 32, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
+		}
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
@@ -383,9 +385,7 @@ function update() {
     }
 	
 	for (var i = 0; i < goal.length; i++) {
-		ctx.globalAlpha = goal[i].opacity;
-		ctx.fillStyle = "green";
-        ctx.fillRect(goal[i].x, goal[i].y, goal[i].width, goal[i].height);
+		ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[i].x, goal[i].y, goal[i].width, goal[i].height);
         
         var dir = colCheck(player, goal[i]);
 
@@ -433,7 +433,7 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-        ctx.drawImage(coinSprite, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
+        ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
@@ -450,9 +450,7 @@ function update() {
     }
 	
     for (var i = 0; i < ice.length; i++) {
-		ctx.globalAlpha = ice[i].opacity;
-		ctx.fillStyle = "aquamarine";
-        ctx.fillRect(ice[i].x, ice[i].y, ice[i].width, ice[i].height);
+		ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         var dir = colCheck(player, ice[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
@@ -468,9 +466,7 @@ function update() {
     }
 	
     for (var i = 0; i < slime.length; i++) {
-		ctx.globalAlpha = slime[i].opacity;
-		ctx.fillStyle = "forestgreen";
-        ctx.fillRect(slime[i].x, slime[i].y, slime[i].width, slime[i].height);
+		ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[i].x, slime[i].y, slime[i].width, slime[i].height);
         var dir = colCheck(player, slime[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
