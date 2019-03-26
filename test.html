@@ -339,8 +339,8 @@ function update() {
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
 		if (l == 0) {
-			for (var i = 0; i < boxes.length; i++) {
-				ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+			for (var o = 0; o < boxes.length; o++) {
+				ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[o.x, boxes[o].y, boxes[o].width, boxes[o].height);
 			}
 			l++
 		}
@@ -386,8 +386,8 @@ function update() {
 	
 	for (var i = 0; i < goal.length; i++) {
 		if (l == 1) {
-			for (var i = 0; i < goal.length; i++) {
-				ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[i].x, goal[i].y, goal[i].width, goal[i].height);
+			for (var o = 0; o < goal.length; o++) {
+				ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[o].x, goal[o].y, goal[o].width, goal[o].height);
 			}
 			l++;
         }
@@ -438,8 +438,8 @@ function update() {
 	
 	for (var i = 0; i < coin.length; i++) {
 		if (l == 2) {
-			for (var i = 0; i < coin.length; i++) {
-				ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
+			for (var o = 0; o < coin.length; o++) {
+				ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[o].x, coin[o].y, coin[o].width, coin[o].height);
 			}
 			l++;
 		}
@@ -460,8 +460,8 @@ function update() {
 	
     for (var i = 0; i < ice.length; i++) {
 		if (l == 3) {
-			for (var i = 0; i < ice.length; i++) {
-				ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[i].x, ice[i].y, ice[i].width, ice[i].height);
+			for (var o = 0; o < ice.length; o++) {
+				ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[o].x, ice[o].y, ice[o].width, ice[o].height);
 			}
 			l++;
 		}
@@ -481,8 +481,8 @@ function update() {
 	
     for (var i = 0; i < slime.length; i++) {
 		if (l == 4) {
-			for (var i = 0; i < slime.length; i++) {
-				ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[i].x, slime[i].y, slime[i].width, slime[i].height);
+			for (var o = 0; o < slime.length; o++) {
+				ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[o].x, slime[o].y, slime[o].width, slime[o].height);
 			}
 			l++;
 		}
