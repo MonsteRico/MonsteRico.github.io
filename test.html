@@ -52,6 +52,11 @@ levelMap.setAttribute('crossOrigin', '');
 levelMap.width = 64;
 console.log(levelMap.height);
 console.log(levelMap.width);
+var coinSprite = new Image();
+coinSprite.src = './coin.png';
+coinSprite.height = 16;
+coinSprite.width = 16;
+coinSprite.onload = console.log("sprite loaded");
 // the size of the tiles in the texture with the level design
 var levelMapTileSize = 1;
 // The X and Y coordinates of the start position for drawing the level.
@@ -60,18 +65,6 @@ var levelMapTileSize = 1;
 if (sessionStorage.getItem('level') != null) {
 	levelMap.src = sessionStorage.getItem('level');
 	Test1();
-}
-function Test2() {
-	var ctx = document.getElementById('spriteCanvas');
-	if (ctx.getContext) {
-		ctx = ctx.getContext('2d');
-		var img2 = new Image();
-		img2.onload = function() {
-			ctx.drawImage(img2, 0,0);
-			console.log("Drew sprites");
-		}
-	}
-	img2.src = "./coin.png";
 }
 
 
@@ -444,7 +437,7 @@ function update() {
     }
 	
 	for (var i = 0; i < coin.length; i++) {
-        ctx.drawImage(img2, 0, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
+        ctx.drawImage(coinSprite, 0, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height)
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
