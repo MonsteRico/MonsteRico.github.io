@@ -11,6 +11,7 @@
 	<button id="iceSlime" placeholder="iceSlime">Ice/Slime Test</button>
 	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
 	<button id="test" placeholder="Test">Test Level</button>
+	<button id="hate" placeholder="Test">This Level Hates You</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet.png" id="sprite" style="display:none">
 </div>
@@ -23,6 +24,11 @@ document.getElementById('inp').onchange = function(e) {
 };
 document.getElementById('castle').onclick = function(e) {
   levelMap.src = './castle.png';
+  sessionStorage.setItem('level', levelMap.src);
+  Test1();
+};
+document.getElementById('hate').onclick = function(e) {
+  levelMap.src = './thislevelhatesyou.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
