@@ -295,7 +295,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 }
 
 var friction = 0.8;
-var l = 0;
+
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -343,13 +343,8 @@ function update() {
     ctx.clearRect(0, 0, width, height);
     
     player.grounded = false;
-	if (l < 1) {
-		for (var i = 0; i < boxes.length; i++) {
-			ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-		}
-		l++;
-	}
     for (var i = 0; i < boxes.length; i++) {
+		ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
 
         if (dir === "l" || dir === "r") {
