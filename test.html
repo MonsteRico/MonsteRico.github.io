@@ -318,8 +318,8 @@ function update() {
 	if (reset !== 0) {
 	ctx.clearRect(0, 0, width, height);	
 	reset = 0;
-	return;
 	requestAnimationFrame(update);
+	return;
 	}
 
     // check keys
