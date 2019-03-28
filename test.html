@@ -318,7 +318,6 @@ function update() {
 	if (reset !== 0) {
 	ctx.clearRect(0, 0, width, height);	
 	reset = 0;
-	requestAnimationFrame(update);
 	return;
 	}
 
@@ -503,7 +502,7 @@ function update() {
 
     requestAnimationFrame(update);
 }
-
+update();
 function reset() {
 	reset++
 }
