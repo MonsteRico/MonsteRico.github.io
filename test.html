@@ -295,7 +295,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 }
 
 var friction = 0.8;
-
+var reset = 0;
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -499,12 +499,14 @@ function update() {
     ctx.fillStyle = "blue";
 	ctx.globalAlpha = player.opacity;
     ctx.fillRect(player.x, player.y, player.width, player.height);
-
+	if (reset == 1) {
+	return;
+	}
     requestAnimationFrame(update);
 }
 
 function reset() {
-	location.reload();
+	reset++
 }
 
 function colCheck(shapeA, shapeB) {
