@@ -318,7 +318,7 @@ function update() {
 	if (reset !== 0) {
 	ctx.clearRect(0, 0, width, height);	
 	reset = 0;
-	window.cancelAnimationFrame(update);
+	break;
 	}
 
     // check keys
