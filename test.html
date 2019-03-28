@@ -315,6 +315,10 @@ canvas.width = width;
 canvas.height = height;
 
 function update() {
+	if (reset == 1) {
+	return;
+	}
+
     // check keys
     if (keys[38] || keys[32] || keys[87]) {
         // up arrow or space
@@ -499,9 +503,7 @@ function update() {
     ctx.fillStyle = "blue";
 	ctx.globalAlpha = player.opacity;
     ctx.fillRect(player.x, player.y, player.width, player.height);
-	if (reset == 1) {
-	return;
-	}
+
     requestAnimationFrame(update);
 }
 
