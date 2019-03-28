@@ -295,7 +295,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 }
 
 var friction = 0.8;
-var reset = 0;
+
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -315,12 +315,6 @@ canvas.width = width;
 canvas.height = height;
 
 function update() {
-	if (reset !== 0) {
-	ctx.clearRect(0, 0, width, height);	
-	reset = 0;
-	return;
-	}
-
     // check keys
     if (keys[38] || keys[32] || keys[87]) {
         // up arrow or space
@@ -376,11 +370,17 @@ function update() {
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
-			reset++;
+			cancelAnimationFrame(update);
+			reset();
+			return;
         } else if (dir === "b") {
-			reset++;
+			cancelAnimationFrame(update);
+			reset();
+			return;
         } else if (dir === "t") {
-            reset++;
+			cancelAnimationFrame(update);
+            reset();
+			return;
         }
 
     }
@@ -502,9 +502,9 @@ function update() {
 
     requestAnimationFrame(update);
 }
-window.requestAnimationFrame(update);
+
 function reset() {
-	reset++
+	location.reload();
 }
 
 function colCheck(shapeA, shapeB) {
