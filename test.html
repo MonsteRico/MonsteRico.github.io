@@ -318,7 +318,7 @@ function update() {
 	if (reset !== 0) {
 	ctx.clearRect(0, 0, width, height);
 	cancelAnimationFrame(update);
-	GenerateLevel();
+	reset = 0;
 	}
 
     // check keys
