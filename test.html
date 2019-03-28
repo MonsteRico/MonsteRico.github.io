@@ -316,9 +316,9 @@ canvas.height = height;
 
 function update() {
 	if (reset !== 0) {
-	ctx.clearRect(0, 0, width, height);
-	cancelAnimationFrame(update);
+	ctx.clearRect(0, 0, width, height);	
 	reset = 0;
+	cancelAnimationFrame(update);
 	}
 
     // check keys
