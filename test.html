@@ -89,6 +89,10 @@ function Test1() {
 				coinsCollected = sessionStorage.getItem("coinsCollected");
 				coinsNeeded = sessionStorage.getItem("coinsNeeded");
 			}
+			if (sessionStorage.getItem("playerx") !== null) {
+				player.x = sessionStorage.getItem("playerx"));
+				player.y = sessionStorage.getItem("playery");
+			}
         };
 
         img1.src = levelMap.src;
@@ -195,6 +199,10 @@ function TileToPoint(x,y) {
 		{
 			return "slime";
 		}
+		case "#ffaec9": // Pink - Checkpoint
+		{
+			return "checkpoint";
+		}
 		default:
 			return null;
 	}	
@@ -206,6 +214,7 @@ var ice = [];
 var coin = [];
 var goal = [];
 var slime = [];
+var checkpoint = [];
 var player;
 var coinsNeeded = 0;
 
@@ -295,6 +304,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		width: w,
 		height: h,
 		color: "forestgreen"
+		});
+	}
+	if (object == "checkpoint") {
+		checkpoint.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "pink"
 		});
 	}
 }
@@ -387,7 +406,15 @@ function update() {
             reset();
 			return;
         }
+    }
+	
+	for (var i = 0; i < checkpoint.length; i++) {
+		ctx.drawImage(spritesheet, checkpoint[i].type, 0, 16, 16, checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
+        var dir = colCheck(player, checkpoint[i]);
 
+        if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
+			setCheckpoint();
+		}
     }
 	
 	for (var i = 0; i < goal.length; i++) {
@@ -510,6 +537,15 @@ function update() {
 
     requestAnimationFrame(update);
 }
+
+function setCheckpoint() {
+	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
+		sessionStorage.setItem("playerx", player.x);
+		sessionStorage.setItem("playery", player.y);
+	}
+	else {
+		// do nothing
+	}
 
 function reset() {
 	sessionStorage.setItem("coinArray", JSON.stringify(coin));
