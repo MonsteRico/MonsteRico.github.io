@@ -87,7 +87,7 @@ function Test1() {
 			if (sessionStorage.getItem("coinArray") !== null) {
 				coin = JSON.parse(sessionStorage.getItem("coinArray"));
 				coinsCollected = sessionStorage.getItem("coinsCollected");
-				coinsNeeded = coin.length;
+				coinsNeeded = coin.length - 1;
 			}
         };
 
