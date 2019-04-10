@@ -262,7 +262,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		});
 	}
 	if (object == "coin") {
-		if (sessionStorage.getItem("coins[]") === null) {
 			coinsNeeded++;
 			coin.push({
 			opacity: 1,
@@ -272,11 +271,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 			height: h,
 			color: "yellow"
 			});
-			}
-		else {
-			coin = sessionStorage.getItem("coins[]");
-			coinsNeeded = coin.length;
-		}
 	}
 	if (object == "goal") {
 		goal.push({
@@ -298,6 +292,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "forestgreen"
 		});
 	}
+}
+
+if (sessionStorage.getItem("coins[]") !== null) {
+	coin = sessionStorage.getItem("coins[]");
+	coinsCollected = sessionStorage.getItem("coinsCollected2");
+	coinsNeeded = coin.length;
 }
 
 var friction = 0.8;
