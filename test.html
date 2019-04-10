@@ -399,6 +399,7 @@ function update() {
 			if (checkAllCoins() == 1) {
 				alert("Level Complete!");
 				goal.splice(i, 1);
+				sessionStorage.clear();
 				player.velX = 0;
 			}
 			else {
@@ -420,6 +421,7 @@ function update() {
 			if (checkAllCoins() == 1) {
 				alert("Level Complete!");
 				goal.splice(i, 1);
+				sessionStorage.clear();
 				player.velY = 0;
 			}
 			else {
@@ -429,6 +431,7 @@ function update() {
 			if (checkAllCoins() == 1) {
 				alert("Level Complete!");
 				goal.splice(i, 1);
+				sessionStorage.clear();
 				player.velY = 0;
 			}
 			else {
