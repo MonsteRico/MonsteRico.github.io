@@ -262,15 +262,15 @@ function Instantiate(object, xPos, yPos, h, w) {
 		});
 	}
 	if (object == "coin") {
-			coinsNeeded++;
-			coin.push({
-			opacity: 1,
-			x: xPos,
-			y: yPos,
-			width: w,
-			height: h,
-			color: "yellow"
-			});
+		coinsNeeded++;
+		coin.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "yellow"
+		});
 	}
 	if (object == "goal") {
 		goal.push({
@@ -294,8 +294,8 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 }
 
-if (sessionStorage.getItem("coins[]") !== null) {
-	coin = sessionStorage.getItem("coins[]");
+if (sessionStorage.getItem("coins") !== null) {
+	coin = sessionStorage.getItem("coins");
 	coinsCollected = sessionStorage.getItem("coinsCollected2");
 	coinsNeeded = coin.length;
 }
@@ -510,7 +510,7 @@ function update() {
 }
 
 function reset() {
-	sessionStorage.setItem("coins[]", coin);
+	sessionStorage.setItem("coins", coin);
 	sessionStorage.setItem("coinsCollected2", coinsCollected);
 	location.reload();
 }
