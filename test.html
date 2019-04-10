@@ -85,7 +85,7 @@ function Test1() {
             ctx.drawImage(img1, 0, 0);
 			GenerateLevel();
 			if (sessionStorage.getItem("coinArray") !== null) {
-				coin = sessionStorage.getItem("coinArray");
+				coin = JSON.parse(sessionStorage.getItem("coinArray"));
 				coinsCollected = sessionStorage.getItem("coinsCollected");
 				coinsNeeded = coin.length;
 			}
