@@ -509,7 +509,7 @@ function update() {
 }
 
 function reset() {
-	sessionStorage.setItem("coinArray", coin);
+	sessionStorage.setItem("coinArray", JSON.stringify(coin));
 	sessionStorage.setItem("coinsCollected", coinsCollected);
 	location.reload();
 }
