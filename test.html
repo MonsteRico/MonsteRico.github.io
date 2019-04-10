@@ -84,6 +84,11 @@ function Test1() {
             //draw background image
             ctx.drawImage(img1, 0, 0);
 			GenerateLevel();
+			if (sessionStorage.getItem("coinArray") !== null) {
+				coin = sessionStorage.getItem("coinArray");
+				coinsCollected = sessionStorage.getItem("coinsCollected");
+				coinsNeeded = coin.length;
+			}
         };
 
         img1.src = levelMap.src;
@@ -292,12 +297,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "forestgreen"
 		});
 	}
-}
-
-if (sessionStorage.getItem("coins") !== null) {
-	coin = sessionStorage.getItem("coins");
-	coinsCollected = sessionStorage.getItem("coinsCollected2");
-	coinsNeeded = coin.length;
 }
 
 var friction = 0.8;
@@ -510,8 +509,8 @@ function update() {
 }
 
 function reset() {
-	sessionStorage.setItem("coins", coin);
-	sessionStorage.setItem("coinsCollected2", coinsCollected);
+	sessionStorage.setItem("coinArray", coin);
+	sessionStorage.setItem("coinsCollected", coinsCollected);
 	location.reload();
 }
 
