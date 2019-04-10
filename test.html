@@ -262,15 +262,21 @@ function Instantiate(object, xPos, yPos, h, w) {
 		});
 	}
 	if (object == "coin") {
-		coinsNeeded++;
-		coin.push({
-		opacity: 1,
-		x: xPos,
-		y: yPos,
-		width: w,
-		height: h,
-		color: "yellow"
-		});
+		if (sessionStorage.getItem("coins[]") === null) {
+			coinsNeeded++;
+			coin.push({
+			opacity: 1,
+			x: xPos,
+			y: yPos,
+			width: w,
+			height: h,
+			color: "yellow"
+			});
+			}
+		else {
+			coin[] = sessionStorage.getItem("coins[]");
+			coinsNeeded = coin.length();
+		}
 	}
 	if (object == "goal") {
 		goal.push({
@@ -504,6 +510,8 @@ function update() {
 }
 
 function reset() {
+	sessionStorage.setItem("coins[]", coins[]);
+	sessionStorage.setItem("coinsCollected2", coinsCollected);
 	location.reload();
 }
 
