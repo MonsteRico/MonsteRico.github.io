@@ -313,7 +313,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		y: yPos,
 		width: w,
 		height: h,
-		color: "pink"
+		color: "lime"
 		});
 	}
 }
@@ -410,8 +410,8 @@ function update() {
 	
 	for (var i = 0; i < checkpoint.length; i++) {
 		ctx.fill();
-		ctx.fillStyle = checkpoint.color;
-		ctx.globalAlpha = checkpoint.opacity;
+		ctx.fillStyle = checkpoint[i].color;
+		ctx.globalAlpha = checkpoint[i].opacity;
 		ctx.fillRect(checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
         var dir = colCheck(player, checkpoint[i]);
 
