@@ -409,7 +409,10 @@ function update() {
     }
 	
 	for (var i = 0; i < checkpoint.length; i++) {
-		ctx.drawImage(spritesheet, checkpoint[i].type, 0, 16, 16, checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
+		ctx.fill();
+		ctx.fillStyle = checkpoint.color;
+		ctx.globalAlpha = checkpoint.opacity;
+		ctx.fillRect(checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
         var dir = colCheck(player, checkpoint[i]);
 
         if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
