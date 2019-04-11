@@ -416,7 +416,7 @@ function update() {
         var dir = colCheck(player, checkpoint[i]);
 
         if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
-			setCheckpoint();
+			setCheckpoint(dir);
 		}
     }
 	
@@ -541,13 +541,15 @@ function update() {
     requestAnimationFrame(update);
 }
 
-function setCheckpoint() {
+function setCheckpoint(dir) {
+	var d = dir
 	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
 		sessionStorage.setItem("playerx", player.x);
 		sessionStorage.setItem("playery", player.y);
+		eject(d);
 	}
 	else {
-		// do nothing
+		eject(d);
 	}
 }
 
