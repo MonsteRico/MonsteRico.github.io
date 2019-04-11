@@ -93,6 +93,9 @@ function Test1() {
 				player.x = sessionStorage.getItem("playerx");
 				player.y = sessionStorage.getItem("playery");
 			}
+			if (sessionStorage.getItem("checkpointArray") !== null) {
+				checkpoint = JSON.parse(sessionStorage.getItem("checkpointArray"));
+			}
         };
 
         img1.src = levelMap.src;
@@ -545,8 +548,8 @@ function setCheckpoint(dir, i) {
 	var d = dir;
 	var q = i;
 	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
-		sessionStorage.setItem("playerx", player.x);
-		sessionStorage.setItem("playery", player.y);
+		sessionStorage.setItem("playerx", player.x+16);
+		sessionStorage.setItem("playery", player.y+16);
 		checkpoint.splice(q, 1);
 	}
 	else {
@@ -555,6 +558,7 @@ function setCheckpoint(dir, i) {
 }
 
 function reset() {
+	sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
 	sessionStorage.setItem("coinArray", JSON.stringify(coin));
 	sessionStorage.setItem("coinsCollected", coinsCollected);
 	sessionStorage.setItem("coinsNeeded", coinsNeeded);
