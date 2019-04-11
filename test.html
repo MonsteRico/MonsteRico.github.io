@@ -89,10 +89,6 @@ function Test1() {
 				coinsCollected = sessionStorage.getItem("coinsCollected");
 				coinsNeeded = sessionStorage.getItem("coinsNeeded");
 			}
-			if (sessionStorage.getItem("playerx") !== null) {
-				player.x = sessionStorage.getItem("playerx");
-				player.y = sessionStorage.getItem("playery");
-			}
 			if (sessionStorage.getItem("checkpointArray") !== null) {
 				checkpoint = JSON.parse(sessionStorage.getItem("checkpointArray"));
 			}
@@ -118,6 +114,10 @@ function GenerateLevel() {
 			var tilePoint = TileToPoint(x, y);	
 			Instantiate(objectName, tilePoint[0], tilePoint[1], tileSize, tileSize);
 		}
+	}
+	if (sessionStorage.getItem("playerx") !== null) {
+		player.x = sessionStorage.getItem("playerx");
+		player.y = sessionStorage.getItem("playery");
 	}
 	update();
 	hideThings();
