@@ -416,7 +416,7 @@ function update() {
         var dir = colCheck(player, checkpoint[i]);
 
         if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
-			setCheckpoint(dir);
+			setCheckpoint(dir, i);
 		}
     }
 	
@@ -541,12 +541,13 @@ function update() {
     requestAnimationFrame(update);
 }
 
-function setCheckpoint(dir) {
-	var d = dir
+function setCheckpoint(dir, i) {
+	var d = dir;
+	var q = i;
 	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
 		sessionStorage.setItem("playerx", player.x);
 		sessionStorage.setItem("playery", player.y);
-		ejectPlayer(d);
+		checkpoint.splice(q, 1);
 	}
 	else {
 		ejectPlayer(d);
@@ -562,16 +563,16 @@ function reset() {
 
 function ejectPlayer(dir) {
     if (dir === "t") {
-		player.velY += 1;
+		player.velY += 2;
 	}
     if (dir === "b") {
-		player.velY -= 1;
+		player.velY -= 2;
 	}
     if (dir === "l") {
-		player.velX += 1;
+		player.velX -= 2;
 	}
     if (dir === "r") {
-		player.velX -= 1;
+		player.velX += 2;
 	}
 }
 
