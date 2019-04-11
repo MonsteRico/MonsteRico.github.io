@@ -18,31 +18,37 @@
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
 document.getElementById('inp').onchange = function(e) {
+  removeStorage();
   levelMap.src = URL.createObjectURL(this.files[0]);
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('castle').onclick = function(e) {
+  removeStorage();
   levelMap.src = './castle.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('hate').onclick = function(e) {
+  removeStorage();
   levelMap.src = './thislevelhatesyou.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('iceSlime').onclick = function(e) {
+  removeStorage();
   levelMap.src = './iceTest.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('coinTest').onclick = function(e) {
+  removeStorage();
   levelMap.src = './coinTest.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('test').onclick = function(e) {
+  removeStorage();
   levelMap.src = './test.jpg';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
@@ -558,6 +564,15 @@ function setCheckpoint(dir, i) {
 	}
 }
 
+function removeStorage() {
+	sessionStorage.removeItem("playerx");
+	sessionStorage.removeItem("playery");
+	sessionStorage.removeItem("checkpointArray");
+	sessionStorage.removeItem("coinArray");
+	sessionStorage.removeItem("coinsNeeded");
+	sessionStorage.removeItem("coinsCollected");
+}
+	
 function wait(ms)
 {
 	var d = new Date();
