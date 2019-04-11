@@ -144,7 +144,6 @@ function GetPixel(x, y) {
 	var red = imgData.data[0];
 	var green = imgData.data[1];
 	var blue = imgData.data[2];
-	var alpha = imgData.data[3];
 	var returnVar = rgbToHex(red, green, blue);
 	return returnVar;
 }
@@ -240,7 +239,7 @@ function Instantiate(object, xPos, yPos, h, w) {
         velY: 0,
         jumping: false,
         grounded: false
-		}
+		};
 	}
 	if (object == "wall") {
 		boxes.push({
@@ -329,7 +328,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 
 var friction = 0.8;
 
-var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
@@ -485,13 +484,13 @@ function update() {
         var dir = colCheck(player, coin[i]);
 
         if (dir === "l" || dir === "r") {
-			coinsCollected++
+			coinsCollected++;
 			coin.splice(i, 1);
         } else if (dir === "b") {
-			coinsCollected++
+			coinsCollected++;
 			coin.splice(i, 1);
         } else if (dir === "t") {
-            coinsCollected++
+            coinsCollected++;
 			coin.splice(i, 1);
         }
 
