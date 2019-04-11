@@ -116,8 +116,8 @@ function GenerateLevel() {
 		}
 	}
 	if (sessionStorage.getItem("playerx") !== null) {
-		player.x = sessionStorage.getItem("playerx");
-		player.y = sessionStorage.getItem("playery");
+		player.x = JSON.parse(sessionStorage.getItem("playerx"));
+		player.y = JSON.parse(sessionStorage.getItem("playery"));
 	}
 	update();
 	hideThings();
@@ -548,8 +548,8 @@ function setCheckpoint(dir, i) {
 	var d = dir;
 	var q = i;
 	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
-		sessionStorage.setItem("playerx", player.x+16);
-		sessionStorage.setItem("playery", player.y+16);
+		sessionStorage.setItem("playerx", JSON.stringify(player.x+16));
+		sessionStorage.setItem("playery", JSON.stringify(player.y+16));
 		checkpoint.splice(q, 1);
 	}
 	else {
