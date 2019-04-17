@@ -554,9 +554,13 @@ function setCheckpoint(dir, i) {
 		wait(100);
 		sessionStorage.setItem("playerx", JSON.stringify(player.x));
 		sessionStorage.setItem("playery", JSON.stringify(player.y-16));
+		player.velY = 0;
+		player.velX = 0;
 	}
 	else {
 		checkpoint.splice(q, 1);
+		player.velY = 0;
+		player.velX = 0;
 	}
 }
 
