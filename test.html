@@ -552,7 +552,7 @@ function setCheckpoint(dir, i) {
 	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
 		checkpoint.splice(q, 1);
 		wait(100);
-		sessionStorage.setItem("playerx", JSON.stringify(player.x-16));
+		sessionStorage.setItem("playerx", JSON.stringify(player.x));
 		sessionStorage.setItem("playery", JSON.stringify(player.y-16));
 	}
 	else {
