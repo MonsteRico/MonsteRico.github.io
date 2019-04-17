@@ -549,14 +549,14 @@ function update() {
 function setCheckpoint(dir, i) {
 	var d = dir;
 	var q = i;
-	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel.')) {
+	if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel. Pressing either will permanently remove the checkpoint so choose carefully!')) {
 		checkpoint.splice(q, 1);
 		wait(100);
 		sessionStorage.setItem("playerx", JSON.stringify(player.x));
 		sessionStorage.setItem("playery", JSON.stringify(player.y-16));
 	}
 	else {
-		ejectPlayer(d);
+		checkpoint.splice(q, 1);
 	}
 }
 
