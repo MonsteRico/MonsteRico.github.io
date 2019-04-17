@@ -417,10 +417,7 @@ function update() {
     }
 	
 	for (var i = 0; i < checkpoint.length; i++) {
-		ctx.fill();
-		ctx.fillStyle = checkpoint[i].color;
-		ctx.globalAlpha = checkpoint[i].opacity;
-		ctx.fillRect(checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
+		ctx.drawImage(spritesheet, 112, 0, 16, 16, checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
         var dir = colCheck(player, checkpoint[i]);
 
         if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
@@ -590,16 +587,16 @@ function reset() {
 
 function ejectPlayer(dir) {
     if (dir === "t") {
-		player.velY += 2;
-	}
-    if (dir === "b") {
 		player.velY -= 2;
 	}
+    if (dir === "b") {
+		player.velY += 2;
+	}
     if (dir === "l") {
-		player.velX -= 2;
+		player.velX += 2;
 	}
     if (dir === "r") {
-		player.velX += 2;
+		player.velX -= 2;
 	}
 }
 

@@ -105,3 +105,7 @@ function appendItem(list, item) {
 function removeItem(list, index) {
 	list.splice(index, 1);
 }
+
+function getProperty(id, property) {
+	return document.getElementById(id).property;
+}
