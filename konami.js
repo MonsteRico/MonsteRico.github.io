@@ -122,7 +122,7 @@ function site() {
 		}
 		case "cookie":
 		{
-			window.open("./cookie.html");
+			window.open("./cookies.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
 			sessionStorage.setItem("pagesLeft", pagesLeft);
