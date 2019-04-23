@@ -2,14 +2,14 @@ if (sessionStorage.getItem("pagesLeft") === null) {
 	sessionStorage.setItem("pagesLeft", 9);	
 }
 var pagesLeft = sessionStorage.getItem("pagesLeft");
-console.log(pagesLeft)
+console.log(pagesLeft);
 document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 
 function parseQuote(response) {
 	console.log(response);
 	$("#quote").text(response.quoteText);
 	$("#author").text(response.quoteAuthor);
-};
+}
 var tag = document.createElement("script");
 tag.src="https://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=parseQuote";
 $('#quote').html(tag);
@@ -49,21 +49,21 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 	x = 0;
 	console.log(this);
 	function theTest(id) {
-		console.log(id)
+		console.log(id);
 		if (x == id) {
 			document.getElementById(id).style.backgroundColor = "green";
-			x += 1
+			x += 1;
 		}
 		else {
 			document.getElementById("0").style.backgroundColor = "purple";
 			document.getElementById("1").style.backgroundColor = "purple";
 			document.getElementById("2").style.backgroundColor = "purple";
 			document.getElementById("3").style.backgroundColor = "purple";	
-			x=0
+			x=0;
 		}
 
 		if (x == 4) {
-			document.getElementById('victory').innerHTML = "You won"
+			document.getElementById('victory').innerHTML = "You won";
 		}
 	}
 	var ids = [0,1,2,3];
@@ -138,7 +138,8 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "white": 
+    case "white": 
+		{
 			window.open("./white.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
