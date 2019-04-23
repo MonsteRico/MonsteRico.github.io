@@ -91,7 +91,7 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 function site() {
 	var something = document.getElementById("test3").value;
 	switch (something) {
-		case "truth": // blue - player
+		case "truth": 
 		{
 			window.open("./truth.html");
 			console.log(pagesLeft);
@@ -101,7 +101,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "test": // green - zombie
+		case "test":
 		{
 			window.open("./test.html");
 			console.log(pagesLeft);
@@ -111,7 +111,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "quote": // yellow - sand block
+		case "quote":
 		{
 			window.open("./quote.html");
 			pagesLeft = pagesLeft - 1;
@@ -120,7 +120,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "black": // grey - stone block
+		case "black": 
 		{
 			window.open("./black.html");
 			pagesLeft = pagesLeft - 1;
@@ -129,8 +129,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "white": // red - fire block
-		{
+		case "white": 
 			window.open("./white.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
@@ -138,7 +137,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "braden": // red - fire block
+		case "braden": 
 		{
 			window.open("./OhYeAh.html");
 			pagesLeft = pagesLeft - 1;
@@ -147,7 +146,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "color": // red - fire block
+		case "color": 
 		{
 			window.open("./colorSleuth.html");
 			pagesLeft = pagesLeft - 1;
@@ -156,7 +155,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "vod": // red - fire block
+		case "vod": 
 		{
 			window.open("./vods.html");
 			pagesLeft = pagesLeft - 1;
