@@ -120,7 +120,7 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "cookie":
+		case "cookies":
 		{
 			window.open("./cookies.html");
 			pagesLeft = pagesLeft - 1;
