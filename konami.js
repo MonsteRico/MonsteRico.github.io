@@ -1,5 +1,5 @@
 if (sessionStorage.getItem("pagesLeft") === null) {
-	sessionStorage.setItem("pagesLeft", 8);	
+	sessionStorage.setItem("pagesLeft", 9);	
 }
 var pagesLeft = sessionStorage.getItem("pagesLeft");
 console.log(pagesLeft)
@@ -114,6 +114,15 @@ function site() {
 		case "quote":
 		{
 			window.open("./quote.html");
+			pagesLeft = pagesLeft - 1;
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "cookie":
+		{
+			window.open("./cookie.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
 			sessionStorage.setItem("pagesLeft", pagesLeft);
