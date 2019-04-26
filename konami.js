@@ -1,5 +1,6 @@
 if (sessionStorage.getItem("pagesLeft") === null) {
-	sessionStorage.setItem("pagesLeft", 9);	
+	sessionStorage.setItem("pagesLeft", 10);
+    sessionStorage.setItem("random", 0);
 }
 var pagesLeft = sessionStorage.getItem("pagesLeft");
 console.log(pagesLeft);
@@ -165,9 +166,19 @@ function site() {
 			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
 			break;
 		}
-		case "vod": 
+		case "random": 
 		{
-			window.open("./vods.html");
+			window.open(randomPage());
+			pagesLeft = pagesLeft - 1;
+			sessionStorage.setItem("random",1);
+			console.log(pagesLeft);
+			sessionStorage.setItem("pagesLeft", pagesLeft);
+			document.getElementById("left").innerHTML = sessionStorage.getItem("pagesLeft");
+			break;
+		}
+		case "game": 
+		{
+			window.open("./games.html");
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
 			sessionStorage.setItem("pagesLeft", pagesLeft);
@@ -181,4 +192,11 @@ function site() {
 	}	
 	sessionStorage.setItem("pagesLeft", pagesLeft);	
 }
+
+function randomPage() {
+	// You can add more sites to this if you know of any.
+	var randomSites = ["https://www.boredbutton.com/","http://koalastothemax.com/"];
+	return randomSites[randomNumber(0,randomSites.length)];
+}
+	
 

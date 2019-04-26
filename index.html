@@ -32,15 +32,15 @@
 	}
 	.theSpan {
 		background-color:purple;
-		height:200px;
-		width:200px;
+		height:180px;
+		width:180px;
 		border-radius:100px;
 		margin-top:50px;
 	}
 	.theSpan2 {
 		background-color:purple;
-		height:200px;
-		width:200px;
+		height:180px;
+		width:180px;
 		border-radius:100px;
 		margin-left:5%;
 		margin-top:50px;
@@ -66,30 +66,12 @@
 
 	</center>
 	<Br>
-	<div class="container">
-	  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-	  <div class="row">
-		<div class="col-xs-9 test">.col-12 .col-md-8</div>
-		<div class="col-xs-3 test">.col-6 .col-md-4</div>
-	  </div>
-
-	  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-	  <div class="row">
-		<div class="col-6 col-md-4">WELCOME TO LOREM <font class="word">test</font> IPSUM M ASDFGH<font class="word">vod</font>JKL:ASDFGHJKLSXDCVBNMM A<font class="word">color</font>:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNMM ASDFGHJKL:ASDFGHJKLSXDCVBNM
-		</div>
-		<div class="col-6 col-md-4 test">.this one-4</div>
-		<div class="col-6 col-md-4 test">.col-6 .col-md-4</div>
-	  </div>
-
-	  <!-- Columns are always 50% wide, on mobile and desktop -->
-	  <div class="row">
-		<div class="col-6 test">.col-6</div>
-		<div class="col-6 test">.col-6 <font class="word" style="color:black;">black</font></div>
-	  </div>
-	</div>
+	<p><font class="word">test</font>ing the page. Does it work?</p>
 	
-		<h1>Look i made a game</h1>
-		<p>Guess and click the correct order of the buttons</p>
+	
+	
+	<h1>Look i made a <font class="word">game</font></h1>
+	<p>Guess and click the correct order of the <font class="word">color</font>ful buttons</p>
 	<div class="theDiv">
 
 		<span onclick="theTest(this.id)" id="one" class="theSpan">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -98,16 +80,19 @@
 		<span onclick="theTest(this.id)" id="four" class="theSpan2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<h1 id="victory"></h1>
 	</div>
-
+	<p>Ignore the mysterious black box.</p>
+	<div style="width:100px; height:100px; float:right; background-color:black;" id="black">
+		<p style="color:black;">You failed to ignore the <font class="word" style="color:black;">black</font> box.</p>
+	</div>
 
 	<br>
 	<br>
 	<br>
 	<h1>Look more cool games I made</h1>
 	<p style="font-size:6px;">Along with other people (<font class="word">braden)</font></p>
-	<a href="https://studio.code.org/projects/applab/7pLMtxcHjBU6Evn_0YefyitFKoPHnDxyys00RM5LOfg">Link One</a>
-	<a href="https://studio.code.org/projects/applab/TnHLqbS6DlvSWzaHMLi7jJe0U80lzIpjUSwDHAELaCI">Link Two</a>
-	<a href="https://monsterico.github.io/nathanwasherezies.html">NathLink</a>
+	<a target="_blank" href="https://studio.code.org/projects/applab/7pLMtxcHjBU6Evn_0YefyitFKoPHnDxyys00RM5LOfg">Link One</a>
+	<a target="_blank" href="https://studio.code.org/projects/applab/TnHLqbS6DlvSWzaHMLi7jJe0U80lzIpjUSwDHAELaCI">Link Two</a>
+	<a target="_blank" href="https://monsterico.github.io/nathanwasherezies.html">NathLink</a>
 	<br>
 	<br>
 	<br>
@@ -116,12 +101,13 @@
 	<p>There are currently:</p> <p id="left"></p> <p> pages to discover.</p>
 	<input id="test3" type="text" name="site" value="Type here!">
 	<input onclick="site()" type="submit" value="Go">
-	
+	<div style="text-align:center;">
       <p style="margin-top:50px;">That's All I got for now.</p>
       <p>If you want to add something to this page either tell me or add it yourself if you know how.</p>
       <p>-MonsteRico</p> <p class="word" style="color:white;">white</p>	
-	
+	</div>
 	<script src="konami.js"></script>
+	<script src="codeOrg.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
