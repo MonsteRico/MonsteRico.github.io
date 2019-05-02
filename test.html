@@ -456,15 +456,19 @@ function update() {
 	
 	for (var i = 0; i < antigrav.length; i++) {
 		ctx.fill();
-		ctx.fillStyle = "brown";
-		ctx.globalAlpha = antigrav.opacity;
+		ctx.fillStyle = "red";
 		ctx.fillRect(antigrav.x, antigrav.y, antigrav.width, antigrav.height);
         var dir = colCheck(player, antigrav[i]);
 
         if (dir === "l" || dir === "r") {
 		
-        } else if (dir === "b" || dir === "t") {
+        } else if (dir === "b"( {
 			gravity = gravity * -1;
+			player.grounded=false;
+		}
+		else if (dir === "t") {
+			gravity = gravity * -1;
+			player.grounded=false;
 		}
     }
 	
