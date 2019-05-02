@@ -12,7 +12,7 @@
 	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
 	<button id="test" placeholder="Test">Test Level</button>
 	<button id="hate" placeholder="Test">This Level Hates You</button>
-	<button id="gravity" placeholder="Test">Gravity test</button>
+	<button id="gravity" placeholder="Test">Gravity Test</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet.png" id="sprite" style="display:none">
 </div>
@@ -348,7 +348,6 @@ var canvas = document.getElementById("canvas"),
     height = levelMap.height * tileSize,
     keys = [],
     gravity = 0.2,
-	gravityInvertOn = false,
 	coinsCollected = 0;
 
 canvas.width = width;
