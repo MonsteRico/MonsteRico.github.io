@@ -182,41 +182,45 @@ function TileToPoint(x,y) {
 	// refer to the colors.jpeg for what each color exactly is etc.
 	switch (color)
 	{
-		case "#a349a4": // purple - player
+		case "#a349a4": // Purple - Player - 1st Row 10th Color
 		{
 			return "player";
 		}
-		case "#b5e61d": // Bright Green - goal
+		case "#b5e61d": // Bright Green - Goal/Flag - 2nd Row 7th Color
 		{
 			return "goal";
 		}
-		case "#fff200": // yellow - coin
+		case "#fff200": // Yellow - Coin - 1st Row 6th Color
 		{
 			return "coin";
 		}
-		case "#000000": // black - wall block
+		case "#000000": // Black - Wall Block - 1st Row 1st Color
 		{
 			return "wall";
 		}
-		case "#ed1c24": // red - Lava (Inset into ground a bit)
+		case "#ed1c24": // Red - Lava (Inset into ground a bit) - 1st Row 4th Color
 		{
 			return "lava";
 		}
-		case "#ff7f27": // orange - Lava (Full Size)
+		case "#ff7f27": // Orange - Lava (Full Size) - 1st Row 5th Color
 		{
 			return "lava-stack";
 		}
-		case "#99d9ea": // blue - ice block
+		case "#99d9ea": // Bright Blue - Ice Block - 2nd Row 8th Color
 		{
 			return "ice";
 		}
-		case "#22b14c": // Dark Green - Slime block
+		case "#22b14c": // Dark Green - Slime block - 1st Row 7th Color
 		{
 			return "slime";
 		}
-		case "#ffaec9": // Pink - Checkpoint
+		case "#ffaec9": // Pink - Checkpoint - 2nd Row 4th Color
 		{
 			return "checkpoint";
+		}
+		case "#b97a57": // Light Brown - Checkpoint - 2nd Row 3rd Color
+		{
+			return "antigrav";
 		}
 		default:
 			return null;
@@ -230,6 +234,7 @@ var coin = [];
 var goal = [];
 var slime = [];
 var checkpoint = [];
+var antigrav = [];
 var player;
 var coinsNeeded = 0;
 
@@ -329,6 +334,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		width: w,
 		height: h,
 		color: "lime"
+		});
+	}
+	if (object == "antigrav") {
+		antigrav.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "brown"
 		});
 	}
 }
@@ -437,6 +452,19 @@ function update() {
             reset();
 			return;
         }
+    }
+	
+	for (var i = 0; i < antigrav.length; i++) {
+		ctx.fill();
+		ctx.fillStyle = "brown";
+		ctx.globalAlpha = antigrav.opacity;
+		ctx.fillRect(antigrav.x, antigrav.y, antigrav.width, antigrav.height);
+        var dir = colCheck(player, antigrav[i]);
+
+        if (dir === "l" || dir === "r") {
+		
+        } else if (dir === "b" || dir === "t") {
+			gravity = gravity * -1;
     }
 	
 	for (var i = 0; i < checkpoint.length; i++) {
