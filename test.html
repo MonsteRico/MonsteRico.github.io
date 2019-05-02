@@ -218,9 +218,13 @@ function TileToPoint(x,y) {
 		{
 			return "checkpoint";
 		}
-		case "#b97a57": // Light Brown - Checkpoint - 2nd Row 3rd Color
+		case "#b97a57": // Light Brown - Antigravity W/ Up Arrow - 2nd Row 3rd Color
 		{
-			return "antigrav";
+			return "antigravUp";
+		}
+		case "#880015": // Dark Brown - Antigravity W/ Down Arrow - 1st Row 3rd Color
+		{
+			return "antigravDown";
 		}
 		default:
 			return null;
@@ -336,9 +340,21 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "lime"
 		});
 	}
-	if (object == "antigrav") {
+	if (object == "antigravDown") {
 		antigrav.push({
 		opacity: 1,
+		type:144,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "brown"
+		});
+	}
+	if (object == "antigravUp") {
+		antigrav.push({
+		opacity: 1,
+		type:128,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -455,9 +471,7 @@ function update() {
     }
 	
 	for (var i = 0; i < antigrav.length; i++) {
-		ctx.fill();
-		ctx.fillStyle = "red";
-		ctx.fillRect(antigrav.x, antigrav.y, antigrav.width, antigrav.height);
+		ctx.drawImage(spritesheet, antigrav[i].type, 0, 16, 16, antigrav[i].x, antigrav[i].y, antigrav[i].width, antigrav[i].height);
         var dir = colCheck(player, antigrav[i]);
 
         if (dir === "l" || dir === "r") {
