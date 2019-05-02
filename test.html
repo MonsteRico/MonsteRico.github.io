@@ -464,10 +464,12 @@ function update() {
 		
         } else if (dir === "b") {
 			gravity = gravity * -1;
+			player.velY = -player.speed;
 			player.grounded=false;
 		}
 		else if (dir === "t") {
 			gravity = gravity * -1;
+			player.velY = player.speed;
 			player.grounded=false;
 		}
     }
