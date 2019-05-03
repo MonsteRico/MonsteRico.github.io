@@ -409,7 +409,7 @@ canvas.height = height;
 
 function update() {
     // check keys
-    if (keys[38] || keys[32] || keys[87]) {
+    if (keys[38] || keys[32]) {
         // up arrow or space
         if (!player.jumping && player.grounded) {
             player.jumping = true;
@@ -422,13 +422,13 @@ function update() {
 			}
         }
     }
-    if (keys[39] || keys[68]) {
+    if (keys[39]) {
         // right arrow
         if (player.velX < player.speed) {
             player.velX++;
         }
     }
-    if (keys[37] || keys[65]) {
+    if (keys[37]) {
         // left arrow
         if (player.velX > -player.speed) {
             player.velX--;
@@ -677,7 +677,7 @@ function update() {
 
     // Player 2
 	if (player2Exists == 1) {
-    if (keys[38] || keys[32] || keys[87]) {
+    if (keys[87]) {
         // up arrow or space
         if (!player2.jumping && player2.grounded) {
             player2.jumping = true;
@@ -690,13 +690,13 @@ function update() {
 			}
         }
     }
-    if (keys[39] || keys[68]) {
+    if (keys[68]) {
         // right arrow
         if (player2.velX < player2.speed) {
             player2.velX++;
         }
     }
-    if (keys[37] || keys[65]) {
+    if (keys[65]) {
         // left arrow
         if (player2.velX > -player2.speed) {
             player2.velX--;
