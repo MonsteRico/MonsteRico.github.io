@@ -247,7 +247,7 @@ var checkpoint = [];
 var antigrav = [];
 var player;
 var player2;
-var player2Exists = 0;
+var player2Exists = false;
 var coinsNeeded = 0;
 
 function Instantiate(object, xPos, yPos, h, w) {
@@ -266,7 +266,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		};
 	}
 	if (object == "player2") {
-	   player2Exists = 1;
+	   player2Exists = true;
 	   player2 = {
 	    opacity: 1,
         x: xPos,
@@ -676,7 +676,7 @@ function update() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     // Player 2
-	if (player2Exists == 1) {
+	if (player2Exists == true) {
     if (keys[87]) {
         // up arrow or space
         if (!player2.jumping && player2.grounded) {
