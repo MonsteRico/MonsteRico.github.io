@@ -13,6 +13,7 @@
 	<button id="test" placeholder="Test">Test Level</button>
 	<button id="hate" placeholder="Test">This Level Hates You</button>
 	<button id="gravity" placeholder="Test">Gravity Test</button>
+	<button id="2player" placeholder="Test">Player 2 Test</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet.png" id="sprite" style="display:none">
 </div>
@@ -57,6 +58,12 @@ document.getElementById('test').onclick = function(e) {
 document.getElementById('gravity').onclick = function(e) {
   removeStorage();
   levelMap.src = './gravity.png';
+  sessionStorage.setItem('level', levelMap.src);
+  Test1();
+};
+document.getElementById('2player').onclick = function(e) {
+  removeStorage();
+  levelMap.src = './player2.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
@@ -172,11 +179,6 @@ function TileToPoint(x,y) {
 	return newPoint;
 }
 
-//private Vector3 GetWorldPosition(Vector2 point) {
-//	var mainCam = Camera.main;
-//	var position = mainCam.ScreenToWorldPoint (new Vector3 (point.x, point.y, mainCam.nearClipPlane));
-//	return position;
-//}
 
   function GetGameObject(color) {
 	// refer to the colors.jpeg for what each color exactly is etc.
@@ -185,6 +187,10 @@ function TileToPoint(x,y) {
 		case "#a349a4": // Purple - Player - 1st Row 10th Color
 		{
 			return "player";
+		}
+		case "#c8bfe7": // Light Purple - Player 2 - 2nd Row 10th Color
+		{
+			return "player2";
 		}
 		case "#b5e61d": // Bright Green - Goal/Flag - 2nd Row 7th Color
 		{
@@ -240,11 +246,28 @@ var slime = [];
 var checkpoint = [];
 var antigrav = [];
 var player;
+var player2;
+var player2Exists = 0;
 var coinsNeeded = 0;
 
 function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
+	    opacity: 1,
+        x: xPos,
+        y: yPos,
+        width: w-2,
+        height: h-2,
+        speed: 3,
+        velX: 0,
+        velY: 0,
+        jumping: false,
+        grounded: false
+		};
+	}
+	if (object == "player2") {
+	   player2Exists = 1;
+	   player2 = {
 	    opacity: 1,
         x: xPos,
         y: yPos,
@@ -425,6 +448,7 @@ function update() {
         if (dir === "l" || dir === "r") {
             player.velX = 0;
             player.jumping = false;
+			player.grounded = false;
         } else if (dir === "b") {
 			while (friction != 0.8) {
 				friction -= 0.1;
@@ -651,6 +675,265 @@ function update() {
 	ctx.globalAlpha = player.opacity;
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
+    // Player 2
+	if (player2Exists == 1) {
+    if (keys[38] || keys[32] || keys[87]) {
+        // up arrow or space
+        if (!player2.jumping && player2.grounded) {
+            player2.jumping = true;
+            player2.grounded = false;
+			if (gravity > 0) {
+            player2.velY = -player2.speed * 2;
+			}
+			else {
+			player2.velY = player2.speed * 2;
+			}
+        }
+    }
+    if (keys[39] || keys[68]) {
+        // right arrow
+        if (player2.velX < player2.speed) {
+            player2.velX++;
+        }
+    }
+    if (keys[37] || keys[65]) {
+        // left arrow
+        if (player2.velX > -player2.speed) {
+            player2.velX--;
+        }
+    }
+
+    player2.velX *= friction;
+    player2.velY += gravity;
+    
+    player2.grounded = false;
+    for (var i = 0; i < boxes.length; i++) {
+        var dir = colCheck(player2, boxes[i]);
+
+        if (dir === "l" || dir === "r") {
+            player2.velX = 0;
+            player2.jumping = false;
+			player2.grounded = false;
+        } else if (dir === "b") {
+			while (friction != 0.8) {
+				friction -= 0.1;
+			}
+			while (player2.speed != 3) {
+				player2.speed -= 1;
+			}
+			if (gravity > 0) {
+			player2.grounded = true;
+            player2.jumping = false;
+			}
+			else {
+			player2.velY *= -1;
+			}
+        } else if (dir === "t") {
+			while (friction != 0.8) {
+				friction -= 0.1;
+			}
+			while (player2.speed != 3) {
+				player2.speed -= 1;
+			}
+			if (gravity > 0) {
+            player2.velY *= -1;
+			}
+			else {
+			player2.grounded = true;
+			player2.jumping = false;
+			}
+        }
+
+    }
+	
+	for (var i = 0; i < lava.length; i++) {
+        var dir = colCheck(player2, lava[i]);
+
+        if (dir === "l" || dir === "r") {
+			cancelAnimationFrame(update);
+			reset();
+			return;
+        } else if (dir === "b") {
+			cancelAnimationFrame(update);
+			reset();
+			return;
+        } else if (dir === "t") {
+			cancelAnimationFrame(update);
+            reset();
+			return;
+        }
+    }
+	
+	for (var i = 0; i < antigrav.length; i++) {
+        var dir = colCheck(player2, antigrav[i]);
+
+        if (dir === "l" || dir === "r") {
+		
+        } else if (dir === "b") {
+			gravity = gravity * -1;
+			player2.velY = -player2.speed;
+			player2.grounded=false;
+		}
+		else if (dir === "t") {
+			gravity = gravity * -1;
+			player2.velY = player2.speed;
+			player2.grounded=false;
+		}
+    }
+	
+	for (var i = 0; i < checkpoint.length; i++) {
+        var dir = colCheck(player2, checkpoint[i]);
+
+        if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
+			setCheckpoint(dir, i);
+		}
+    }
+	
+	for (var i = 0; i < goal.length; i++) {
+        
+        var dir = colCheck(player2, goal[i]);
+
+        if (dir === "l") {
+			if (checkAllCoins() == 1) {
+				alert("Level Complete!");
+				goal.splice(i, 1);
+				sessionStorage.clear();
+				player2.velX = 0;
+			}
+			else {
+				player2.velX += 0.1;
+			}
+        }
+		else if (dir === "r") {
+			if (checkAllCoins() == 1) {
+				alert("Level Complete!");
+				goal.splice(i, 1);
+				sessionStorage.clear();
+				player2.velX = 0;
+			}
+			else {
+				player2.velX -= 0.1;
+			}
+		}
+		else if (dir === "b") {
+			if (checkAllCoins() == 1) {
+				alert("Level Complete!");
+				goal.splice(i, 1);
+				sessionStorage.clear();
+				player2.velY = 0;
+			}
+			else {
+				player2.velY -= 0.1;
+			}
+        } else if (dir === "t") {
+			if (checkAllCoins() == 1) {
+				alert("Level Complete!");
+				goal.splice(i, 1);
+				sessionStorage.clear();
+				player2.velY = 0;
+			}
+			else {
+				player2.velY += 0.1;
+			}
+        }
+
+    }
+	
+	for (var i = 0; i < coin.length; i++) {
+        var dir = colCheck(player2, coin[i]);
+
+        if (dir === "l" || dir === "r") {
+			coinsCollected++;
+			coin.splice(i, 1);
+        } else if (dir === "b") {
+			coinsCollected++;
+			coin.splice(i, 1);
+        } else if (dir === "t") {
+            coinsCollected++;
+			coin.splice(i, 1);
+        }
+
+    }
+	
+    for (var i = 0; i < ice.length; i++) {
+        var dir = colCheck(player2, ice[i]);
+        if (dir === "l" || dir === "r") {
+            player2.velX = 0;
+            player2.jumping = false;
+        } else if (dir === "b") {
+			if (gravity > 0) {
+			friction = 1;
+            player2.grounded = true;
+            player2.jumping = false;
+			}
+			else {
+			player2.velY *= -1;
+			}
+			while (player2.speed != 3) {
+				player2.speed -= 1;
+			}
+        } else if (dir === "t") {
+			if (gravity > 0) {
+            player2.velY *= -1;
+			}
+			else {
+			friction = 1;
+			player2.grounded = true;
+			player2.jumping = false;
+			}
+			while (player2.speed != 3) {
+				player2.speed -= 1;
+			}
+        }
+
+    }
+	
+    for (var i = 0; i < slime.length; i++) {
+        var dir = colCheck(player2, slime[i]);
+        if (dir === "l" || dir === "r") {
+            player2.velX = 0;
+            player2.jumping = false;
+        } else if (dir === "b") {
+			if (gravity > 0) {
+			player2.speed = 4;
+            player2.grounded = true;
+            player2.jumping = false;
+			}
+			else {
+			player2.velY *= -1;
+			}
+			while (friction != 0.8) {
+				friction -= 0.1;
+			}
+        } else if (dir === "t") {
+			if (gravity > 0) {
+            player2.velY *= -1;
+			}
+			else {
+			player2.speed = 4;
+			player2.grounded = true;
+			player2.jumping = false;
+			}
+			while (friction != 0.8) {
+				friction -= 0.1;
+			}
+        }
+
+    }
+    
+    if(player2.grounded){
+         player2.velY = 0;
+    }
+    
+    player2.x += player2.velX;
+    player2.y += player2.velY;
+
+    ctx.fill();
+    ctx.fillStyle = "green";
+	ctx.globalAlpha = player2.opacity;
+    ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
+	}
+	
     requestAnimationFrame(update);
 }
 
