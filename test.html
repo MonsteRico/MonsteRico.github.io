@@ -439,6 +439,8 @@ function update() {
 
     player.velX *= player.friction;
     player.velY += gravity;
+	
+	colCheck(player1, player2);
 
     ctx.clearRect(0, 0, width, height);
     
@@ -708,6 +710,8 @@ function update() {
     player2.velX *= player2.friction;
     player2.velY += gravity;
     
+	colCheck(player2, player1);
+	
     player2.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
         var dir = colCheck(player2, boxes[i]);
