@@ -442,8 +442,10 @@ function update() {
     player.velX *= player.friction;
     player.velY += gravity;
 	
+	if (player2Exists == true) {
 	colCheck(player, player2);
-
+    }
+	
     ctx.clearRect(0, 0, width, height);
     
     player.grounded = false;
