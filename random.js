@@ -47,7 +47,7 @@ var brTemplates = ['BR1', 'BR2'];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
-GenerateRandomLevel() {
+function GenerateRandomLevel() {
 	var canvas = document.getElementById("test1"),
 	ctx = canvas.getContext("2d");
 	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
