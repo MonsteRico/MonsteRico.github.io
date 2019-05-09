@@ -16,6 +16,7 @@
 	<button id="hate" placeholder="Test">This Level Hates You</button>
 	<button id="gravity" placeholder="Test">Gravity Test</button>
 	<button id="2player" placeholder="Test">Player 2 Test</button>
+	<button id="daily" placeholder="Test">Daily Level</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet.png" id="sprite" style="display:none">
 	<div id="templates">
@@ -78,6 +79,10 @@ document.getElementById('2player').onclick = function(e) {
   levelMap.src = './player2.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
+};
+document.getElementById('daily').onclick = function(e) {
+  removeStorage();
+  GenerateRandomLevel();
 };
 // The size of the tiles in the background
 var tileSize = 16;
