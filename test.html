@@ -18,6 +18,16 @@
 	<button id="2player" placeholder="Test">Player 2 Test</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet.png" id="sprite" style="display:none">
+	<div id="templates">
+		<img src="./Templates/TL1.png">
+		<img src="./Templates/TL2.png">
+		<img src="./Templates/TR1.png">
+		<img src="./Templates/TR2.png">
+		<img src="./Templates/BL1.png">
+		<img src="./Templates/BL2.png">
+		<img src="./Templates/BR1.png">
+		<img src="./Templates/BR2.png">
+	</div>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
@@ -75,7 +85,7 @@ var StartPoint = [0,0];
 // The texture 2D containing the level design
 var levelMap = new Image();
 levelMap.src = './castle.png';
-levelMap.height = 64;
+levelMap.height = 32;
 levelMap.setAttribute('crossOrigin', '');
 levelMap.width = 64;
 var spritesheet = document.getElementById('sprite');
