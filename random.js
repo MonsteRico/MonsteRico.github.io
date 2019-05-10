@@ -70,7 +70,7 @@ function GenerateRandomLevel() {
 	ctx = canvas.getContext("2d");
 	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
 	ctx.drawImage(trTemplates[topRightTemplate], 0, 0, 32, 16, 32, 0, 32, 16);
-	ctx.drawImage(blTemplates[botomLeftTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
+	ctx.drawImage(blTemplates[bottomLeftTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
 	ctx.drawImage(brTemplates[bottomRightTemplate], 0, 0, 32, 16, 32, 16, 32, 16);
 	GenerateLevel();
 	if (sessionStorage.getItem("coinArray") !== null) {
