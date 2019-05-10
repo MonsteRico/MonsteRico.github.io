@@ -26,6 +26,24 @@ console.log(randomNum);
 // Copy from templates based on the numbers
 // Pick template based on number in array.
 
+var TL1 = new Image();
+TL1.src = "./Templates/TL1.jpg";
+var TL2 = new Image();
+TL2.src = "./Templates/TL2.jpg";
+var TR1 = new Image();
+TR1.src = "./Templates/TR1.jpg";
+var TR2 = new Image();
+TR2.src = "./Templates/TR2.jpg";
+var BL2 = new Image();
+BL2.src = "./Templates/BL2.jpg";
+var BL1 = new Image();
+BL1.src = "./Templates/BL1.jpg";
+var BR1 = new Image();
+BR1.src = "./Templates/BR1.jpg";
+var BR2 = new Image();
+BR1.src = "./Templates/BR2.jpg";
+
+
 var totalTemplates = 2;
 var totalSpritesheets = 3;
 var topLeftChoice = randomNum[0];
@@ -40,10 +58,10 @@ var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
-var tlTemplates = [document.getElementById("TL1"), document.getElementById("TL2")];
-var blTemplates = [document.getElementById("BL1"), document.getElementById("BL2")];
-var trTemplates = [document.getElementById("TR1"), document.getElementById("TR2")];
-var brTemplates = [document.getElementById("BR1"), document.getElementById("BR2")];
+var tlTemplates = [TL1, TL2];
+var blTemplates = [BL1, BL2];
+var trTemplates = [TR1, TR2];
+var brTemplates = [BR1, BR2];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
