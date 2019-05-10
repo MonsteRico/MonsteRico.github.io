@@ -27,21 +27,21 @@ console.log(randomNum);
 // Pick template based on number in array.
 
 var TL1 = new Image();
-TL1.src = "./Templates/TL1.jpg";
+TL1.src = "./Templates/TL1.png";
 var TL2 = new Image();
-TL2.src = "./Templates/TL2.jpg";
+TL2.src = "./Templates/TL2.png";
 var TR1 = new Image();
-TR1.src = "./Templates/TR1.jpg";
+TR1.src = "./Templates/TR1.png";
 var TR2 = new Image();
-TR2.src = "./Templates/TR2.jpg";
+TR2.src = "./Templates/TR2.png";
 var BL2 = new Image();
-BL2.src = "./Templates/BL2.jpg";
+BL2.src = "./Templates/BL2.png";
 var BL1 = new Image();
-BL1.src = "./Templates/BL1.jpg";
+BL1.src = "./Templates/BL1.png";
 var BR1 = new Image();
-BR1.src = "./Templates/BR1.jpg";
+BR1.src = "./Templates/BR1.png";
 var BR2 = new Image();
-BR1.src = "./Templates/BR2.jpg";
+BR1.src = "./Templates/BR2.png";
 
 
 var totalTemplates = 2;
