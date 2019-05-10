@@ -41,7 +41,7 @@ BL1.src = "./Templates/BL1.png";
 var BR1 = new Image();
 BR1.src = "./Templates/BR1.png";
 var BR2 = new Image();
-BR1.src = "./Templates/BR2.png";
+BR2.src = "./Templates/BR2.png";
 
 
 var totalTemplates = 2;
@@ -71,7 +71,7 @@ function GenerateRandomLevel() {
 	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
 	ctx.drawImage(blTemplates[bottomLeftTemplate], 0, 0, 32, 16, 32, 0, 32, 16);
 	ctx.drawImage(trTemplates[topRightTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
-	ctx.drawImage(brTemplates[bottomLeftTemplate], 0, 0, 32, 16, 32, 16, 32, 16);
+	ctx.drawImage(brTemplates[bottomRightTemplate], 0, 0, 32, 16, 32, 16, 32, 16);
 	GenerateLevel();
 	if (sessionStorage.getItem("coinArray") !== null) {
 		coin = JSON.parse(sessionStorage.getItem("coinArray"));
