@@ -40,10 +40,10 @@ var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
-var tlTemplates = ['document.getElementById("TL1")', 'document.getElementById("TL2")'];
-var blTemplates = ['document.getElementById("BL1")', 'document.getElementById("BL2")'];
-var trTemplates = ['document.getElementById("TR1")', 'document.getElementById("TR2")'];
-var brTemplates = ['document.getElementById("BR1")', 'document.getElementById("BR2")'];
+var tlTemplates = [document.getElementById("TL1"), document.getElementById("TL2")];
+var blTemplates = [document.getElementById("BL1"), document.getElementById("BL2")];
+var trTemplates = [document.getElementById("TR1"), document.getElementById("TR2")];
+var brTemplates = [document.getElementById("BR1"), document.getElementById("BR2")];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
