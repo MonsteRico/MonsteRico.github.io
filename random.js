@@ -40,17 +40,17 @@ var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
-var tlTemplates = ['"TL1"', '"TL2"'];
-var blTemplates = ['"BL1"', '"BL2"'];
-var trTemplates = ['"TR1"', '"TR2"'];
-var brTemplates = ['"BR1"', '"BR2"'];
+var tlTemplates = ['document.getElementById("TL1")', 'document.getElementById("TL2")'];
+var blTemplates = ['document.getElementById("BL1")', 'document.getElementById("BL2")'];
+var trTemplates = ['document.getElementById("TR1")', 'document.getElementById("TR2")'];
+var brTemplates = ['document.getElementById("BR1")', 'document.getElementById("BR2")'];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
 function GenerateRandomLevel() {
 	var canvas = document.getElementById("test1"),
 	ctx = canvas.getContext("2d");
-	ctx.drawImage(document.getElementById(tlTemplates[topLeftTemplate]), 0, 0, 32, 16, 0, 0, 32, 16);
+	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
 	ctx.drawImage(blTemplates[bottomLeftTemplate], 0, 0, 32, 16, 32, 0, 32, 16);
 	ctx.drawImage(trTemplates[topRightTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
 	ctx.drawImage(brTemplates[bottomLeftTemplate], 0, 0, 32, 16, 32, 16, 32, 16);
