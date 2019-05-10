@@ -40,10 +40,10 @@ var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
-var tlTemplates = ['TL1', 'TL2'];
-var blTemplates = ['BL1', 'BL2'];
-var trTemplates = ['TR1', 'TR2'];
-var brTemplates = ['BR1', 'BR2'];
+var tlTemplates = ['./Templates/TL1.jpg', './Templates/TL2.jpg'];
+var blTemplates = ['./Templates/BL1.jpg', './Templates/BL2.jpg'];
+var trTemplates = ['./Templates/TR1.jpg', './Templates/TR2.jpg'];
+var brTemplates = ['./Templates/BR1.jpg', './Templates/BR2.jpg'];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
