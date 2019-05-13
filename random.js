@@ -72,7 +72,7 @@ var tlTemplates = [TL1, TL2];
 var blTemplates = [BL1, BL2];
 var trTemplates = [TR1, TR2];
 var brTemplates = [BR1, BR2];
-var spriteTemplates = [sheet1, sheet2, sheet3, sheet4, sheet5];
+var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.src];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
