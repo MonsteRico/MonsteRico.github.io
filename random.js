@@ -95,4 +95,24 @@ function GenerateRandomLevel() {
 	}
 }
 
+function GenerateDate(m,d,y) {
+	today = m + d + y;
+
+	Math.seed = today;
+	randomNum = Math.round(Math.seededRandom() * 1000000);
+	randomNum = Array.from(randomNum.toString()).map(Number);
+	console.log(randomNum);
+	topLeftChoice = randomNum[0];
+	topRightChoice = randomNum[1];
+	bottomLeftChoice = randomNum[2];
+	bottomRightChoice = randomNum[3];
+	spriteChoice = randomNum[4];
+
+	topLeftTemplate = topLeftChoice % totalTemplates;
+	topRightTemplate = topRightChoice % totalTemplates;
+	bottomLeftTemplate = bottomLeftChoice % totalTemplates;
+	bottomRightTemplate = bottomRightChoice % totalTemplates;
+	spriteTemplate = spriteChoice % totalSpritesheets;
+	GenerateRandomLevel();
+}
 
