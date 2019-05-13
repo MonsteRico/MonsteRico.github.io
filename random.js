@@ -42,10 +42,20 @@ var BR1 = new Image();
 BR1.src = "./Templates/BR1.png";
 var BR2 = new Image();
 BR2.src = "./Templates/BR2.png";
+var sheet1 = new Image();
+sheet1.src = "./spritesheet1.png";
+var sheet2 = new Image();
+sheet2.src = "./spritesheet2.png";
+var sheet3 = new Image();
+sheet3.src = "./spritesheet3.png";
+var sheet4 = new Image();
+sheet4.src = "./spritesheet4.png";
+var sheet5 = new Image();
+sheet5.src = "./spritesheet5.png";
 
 
 var totalTemplates = 2;
-var totalSpritesheets = 3;
+var totalSpritesheets = 5;
 var topLeftChoice = randomNum[0];
 var topRightChoice = randomNum[1];
 var bottomLeftChoice = randomNum[2];
@@ -62,6 +72,7 @@ var tlTemplates = [TL1, TL2];
 var blTemplates = [BL1, BL2];
 var trTemplates = [TR1, TR2];
 var brTemplates = [BR1, BR2];
+var spriteTemplates = [sheet1, sheet2, sheet3, sheet4, sheet5];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 
@@ -72,6 +83,7 @@ function GenerateRandomLevel() {
 	ctx.drawImage(trTemplates[topRightTemplate], 0, 0, 32, 16, 32, 0, 32, 16);
 	ctx.drawImage(blTemplates[bottomLeftTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
 	ctx.drawImage(brTemplates[bottomRightTemplate], 0, 0, 32, 16, 32, 16, 32, 16);
+	document.getElementById("sprite").src = spriteTemplates[spriteTemplate];
 	GenerateLevel();
 	if (sessionStorage.getItem("coinArray") !== null) {
 		coin = JSON.parse(sessionStorage.getItem("coinArray"));
