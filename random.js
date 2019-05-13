@@ -70,7 +70,7 @@ var sheet5 = new Image();
 sheet5.src = "./spritesheet5.png";
 
 
-var totalTemplates = 2;
+var totalTemplates = 4;
 var totalSpritesheets = 5;
 var topLeftChoice = randomNum[0];
 var topRightChoice = randomNum[1];
