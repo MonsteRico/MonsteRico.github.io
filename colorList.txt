@@ -12,3 +12,6 @@ Dark Green - Slime block - 1st Row 7th Color
 Pink - Checkpoint - 2nd Row 4th Color
 Light Brown - Antigravity W/ Up Arrow - 2nd Row 3rd Color
 Dark Brown - Antigravity W/ Down Arrow - 1st Row 3rd Color
+
+Levels need to be .pngs made in paint or similar program.
+Size of a level file is 64x32 pixels.
