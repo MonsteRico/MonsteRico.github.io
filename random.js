@@ -19,7 +19,7 @@ var yyyy = today.getFullYear();
 today = mm + dd + yyyy;
 
 Math.seed = today;
-randomNum = Math.round(Math.seededRandom() * 1000000);
+randomNum = Math.round(Math.seededRandom() * 100000000000000);
 randomNum = Array.from(randomNum.toString()).map(Number);
 console.log(randomNum);
 
