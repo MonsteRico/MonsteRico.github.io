@@ -41,7 +41,7 @@ TR2.src = "./Templates/TR2.png";
 var TR3 = new Image();
 TR3.src = "./Templates/TR3.png";
 var TR4 = new Image();
-TR4.src = "./TemplatesTR4.png";
+TR4.src = "./Templates/TR4.png";
 var BL1 = new Image();
 BL1.src = "./Templates/BL1.png";
 var BL2 = new Image();
@@ -84,10 +84,10 @@ var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
-var tlTemplates = [TL1, TL2];
-var blTemplates = [BL1, BL2];
-var trTemplates = [TR1, TR2];
-var brTemplates = [BR1, BR2];
+var tlTemplates = [TL1, TL2, TL3, TL4];
+var blTemplates = [BL1, BL2, BL3, BL4];
+var trTemplates = [TR1, TR2, TR3, TR4];
+var brTemplates = [BR1, BR2, BR3, BR4];
 var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.src];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
