@@ -1,0 +1,18 @@
+TO-DO LIST
+-----------
+- Make it so the daily level stays when you refresh.
+- Do same for uploaded levels (might need to have a server)
+- redesign the entire menu
+- More Templates
+- "hire" playtesters to check all levels
+- fix all current glitches
+- think of a name
+BETA
+- More levels
+- tutorial for level making with images
+- more features
+- more spritesheets
+- IF WE HAVE A SERVER 
+  - Allow uploaded levels to become permanent to the server
+  - allow a way for me to delete levels that no one knows
+  - NEVER ALLOW ADS
