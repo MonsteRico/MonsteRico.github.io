@@ -94,6 +94,7 @@ var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.sr
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('dailyLevel') == today)) {
+	wait(4000);
 	GenerateRandomLevel();
 }
 
