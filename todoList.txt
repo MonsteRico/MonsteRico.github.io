@@ -1,6 +1,6 @@
 TO-DO LIST
 -----------
-- Make it so the daily level stays when you refresh.
+- Make it so the daily level stays when you refresh. -- COMPLETE
 - Do same for uploaded levels (might need to have a server)
 - redesign the entire menu
 - More Templates
