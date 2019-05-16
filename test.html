@@ -4,8 +4,7 @@
 <style>
 </style>
 <body>
-<script src="./seedrandom.js"></script>
-<script src="./random.js"></script>
+
 <div id="hide">
 	<input type="file" id="inp">
 	<p>Or play one of these other levels</p>
@@ -33,6 +32,8 @@
 	<a  href="./colorList.txt"><button>Info on Making Levels</button></a>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
+<script src="./seedrandom.js"></script>
+<script src="./random.js"></script>
 <script>
 document.getElementById('inp').onchange = function(e) {
   removeStorage();
@@ -998,13 +999,7 @@ function removeStorage() {
 	sessionStorage.removeItem("dailyLevel");
 }
 	
-function wait(ms)
-{
-	var d = new Date();
-	var d2 = null;
-	do { d2 = new Date(); }
-	while(d2-d < ms);
-}
+
 //credit for above goes to not me
 function reset() {
 	sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
