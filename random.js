@@ -93,6 +93,9 @@ var brTemplates = [BR1, BR2, BR3, BR4];
 var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.src];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
+if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('dailyLevel') == today)) {
+	GenerateRandomLevel();
+}
 
 function GenerateRandomLevel() {
 	var canvas = document.getElementById("test1"),
@@ -111,6 +114,7 @@ function GenerateRandomLevel() {
 	if (sessionStorage.getItem("checkpointArray") !== null) {
 		checkpoint = JSON.parse(sessionStorage.getItem("checkpointArray"));
 	}
+	sessionStorage.setItem("dailyLevel", today);
 }
 
 function GenerateDate(m,d,y) {

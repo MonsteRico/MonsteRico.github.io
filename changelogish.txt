@@ -1,0 +1,3 @@
+Sort of a changelog
+-----------------------
+5/16/2019 - Attempted to make daily levels stay on reload
