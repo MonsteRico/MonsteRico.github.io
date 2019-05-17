@@ -183,8 +183,8 @@ function codeLookup(x, y) {
 	ctx.fill();
     ctx.fillStyle = "black";
     ctx.fillRect(x+1, y, 3, 1);
-	switch (code.join()) {
-		case "coin, coin, coin":
+	switch (code.join(" ")) {
+		case "coin coin coin":
 		{
 			document.getElementById("sprite").src = spritesheet4.png;
 		}
