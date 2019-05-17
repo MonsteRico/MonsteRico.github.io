@@ -191,7 +191,7 @@ function codeLookup(x, y) {
 		}
 		default:
 			console.log("code invalid");
-			console.log(code.join());
+			console.log(code.join(" "));
 			break;
 	}
 }
