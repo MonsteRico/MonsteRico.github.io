@@ -177,13 +177,21 @@ function codeLookup(x, y) {
 	var canvas = document.getElementById("test1"),
     ctx = canvas.getContext("2d");
 	var code = [];
-	code.push(GetPixel(x+1,y));
-	code.push(GetPixel(x+2,y));
-	code.push(GetPixel(x+3,y));
+	code.push(GetGameObject(GetPixel(x+1,y), x, y);
+	code.push(GetGameObject(GetPixel(x+2,y), x, y));
+	code.push(GetGameObject(GetPixel(x+3,y), x, y));
 	ctx.fill();
     ctx.fillStyle = "black";
     ctx.fillRect(x+1, y, 3, 1);
-	console.log(code);
+	code.join();
+	switch (code) {
+		case "coin,coin,coin":
+		{
+			document.getElementById("sprite").src = spritesheet4.png;
+		}
+		default:
+			console.log("code inalid");
+	}
 }
 
 var boxes = [];
