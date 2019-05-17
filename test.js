@@ -185,12 +185,13 @@ function codeLookup(x, y) {
     ctx.fillRect(x+1, y, 3, 1);
 	code.join();
 	switch (code) {
-		case "coin,coin,coin":
+		case "coin, coin, coin":
 		{
 			document.getElementById("sprite").src = spritesheet4.png;
 		}
 		default:
 			console.log("code inalid");
+			console.log(code);
 	}
 }
 
