@@ -189,64 +189,34 @@ function codeLookup(x, y) {
 			document.getElementById("sprite").src = "./spritesheet4.png";
 			break;
 		}
-		case "ice wall wall":
-		{
-			frictionFactor = 0.1;
-			break;
-		}
-		case "ice ice wall":
-		{
-			frictionFactor = 0.15;
-			break;
-		}
-		case "ice ice ice":
-		{
-			frictionFactor = 0.2;
-			break;
-		}
-		case "slime wall wall":
-		{
-			speedFactor = 0.1;
-			break;
-		}
-		case "slime slime wall":
-		{
-			speedFactor = 0.15;
-			break;
-		}
-		case "slime slime slime":
-		{
-			speedFactor = 0.2;
-			break;
-		}
-		case "antigravUp wall wall":
-		{
-			gravityFactor = 0.1;
-			break;
-		}
-		case "antigravUp antigravUp wall":
-		{
-			gravityFactor = 0.15;
-			break;
-		}
-		case "antigravUp antigravUp antigravUp":
-		{
-			gravityFactor = 0.2;
-			break;
-		}
 		case "antigravDown wall wall":
 		{
-			gravityFactor = -0.1;
+			gravity = 0.1;
 			break;
 		}
 		case "antigravDown antigravDown wall":
 		{
-			gravityFactor = -0.15;
+			gravity = 0.05;
 			break;
 		}
 		case "antigravDown antigravDown antigravDown":
 		{
-			gravityFactor = -0.2;
+			gravity = 0.01;
+			break;
+		}
+		case "antigravUp wall wall":
+		{
+			gravity = 0.3;
+			break;
+		}
+		case "antigravUp antigravUp wall":
+		{
+			gravity = 0.5;
+			break;
+		}
+		case "antigravUp antigravUp antigravUp":
+		{
+			gravity = 0.9;
 			break;
 		}
 		default:
@@ -273,12 +243,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
 	    opacity: 1,
-		friction: 0.8 + frictionFactor,
+		friction: 0.8,
         x: xPos,
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3 + speedFactor,
+        speed: 3,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -289,12 +259,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 	   player2Exists = true;
 	   player2 = {
 	    opacity: 1,
-		friction: 0.8 + frictionFactor,
+		friction: 0.8,
         x: xPos,
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3 + speedFactor,
+        speed: 3,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -408,10 +378,6 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 }
 
-var frictionFactor = 0;
-var speedFactor = 0;
-var gravityFactor = 0;
-
 
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -424,7 +390,7 @@ var canvas = document.getElementById("canvas"),
     width = levelMap.width * tileSize,
     height = levelMap.height * tileSize,
     keys = [],
-    gravity = 0.2 + gravityFactor,
+    gravity = 0.2,
 	coinsCollected = 0;
 
 canvas.width = width;
@@ -459,7 +425,7 @@ function update() {
     }
 
     player.velX *= player.friction;
-    player.velY += gravity;
+    player.velY += gravity * gravityFactor;
 	
 	if (player2Exists == true) {
 	colCheck(player, player2);
@@ -477,10 +443,10 @@ function update() {
             player.jumping = false;
 			player.grounded = false;
         } else if (dir === "b") {
-			while (player.friction != 0.8 + frictionFactor) {
+			while (player.friction != 0.8) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3 + speedFactor) {
+			while (player.speed != 3) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -491,10 +457,10 @@ function update() {
 			player.velY *= -1;
 			}
         } else if (dir === "t") {
-			while (player.friction != 0.8 + frictionFactor) {
+			while (player.friction != 0.8) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3 + speedFactor) {
+			while (player.speed != 3) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -637,7 +603,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.speed != 3 + speedFactor) {
+			while (player.speed != 3) {
 				player.speed -= 1;
 			}
         } else if (dir === "t") {
@@ -649,7 +615,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.speed != 3 + speedFactor) {
+			while (player.speed != 3) {
 				player.speed -= 1;
 			}
         }
@@ -671,7 +637,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.friction != 0.8 + frictionFactor) {
+			while (player.friction != 0.8) {
 				player.friction -= 0.1;
 			}
         } else if (dir === "t") {
@@ -683,7 +649,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.friction != 0.8 + frictionFactor) {
+			while (player.friction != 0.8) {
 				player.friction -= 0.1;
 			}
         }
@@ -744,10 +710,10 @@ function update() {
             player2.jumping = false;
 			player2.grounded = false;
         } else if (dir === "b") {
-			while (player2.friction != 0.8 * frictionFactor) {
+			while (player2.friction != 0.8) {
 				player2.friction -= 0.1;
 			}
-			while (player2.speed != 3 * speedFactor) {
+			while (player2.speed != 3) {
 				player2.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -758,10 +724,10 @@ function update() {
 			player2.velY *= -1;
 			}
         } else if (dir === "t") {
-			while (player2.friction != 0.8 * frictionFactor) {
+			while (player2.friction != 0.8) {
 				player2.friction -= 0.1;
 			}
-			while (player2.speed != 3 * speedFactor) {
+			while (player2.speed != 3) {
 				player2.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -898,7 +864,7 @@ function update() {
 			else {
 			player2.velY *= -1;
 			}
-			while (player2.speed != 3 * speedFactor) {
+			while (player2.speed != 3) {
 				player2.speed -= 1;
 			}
         } else if (dir === "t") {
@@ -910,7 +876,7 @@ function update() {
 			player2.grounded = true;
 			player2.jumping = false;
 			}
-			while (player2.speed != 3 * speedFactor) {
+			while (player2.speed != 3) {
 				player2.speed -= 1;
 			}
         }
@@ -931,7 +897,7 @@ function update() {
 			else {
 			player2.velY *= -1;
 			}
-			while (player2.friction != 0.8 * frictionFactor) {
+			while (player2.friction != 0.8) {
 				player2.friction -= 0.1;
 			}
         } else if (dir === "t") {
@@ -943,7 +909,7 @@ function update() {
 			player2.grounded = true;
 			player2.jumping = false;
 			}
-			while (player2.friction != 0.8 * frictionFactor) {
+			while (player2.friction != 0.8) {
 				player2.friction -= 0.1;
 			}
         }
