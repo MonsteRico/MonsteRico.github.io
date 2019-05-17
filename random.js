@@ -70,10 +70,12 @@ var sheet5 = new Image();
 sheet5.src = "./spritesheet5.png";
 var sheet6 = new Image();
 sheet6.src = "./spritesheet6.png";
+var sheet7 = new Image();
+sheet7.src = "./spritesheet7.png";
 
 
 var totalTemplates = 4;
-var totalSpritesheets = 6;
+var totalSpritesheets = 7;
 var topLeftChoice = randomNum[0];
 var topRightChoice = randomNum[1];
 var bottomLeftChoice = randomNum[2];
