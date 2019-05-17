@@ -177,7 +177,7 @@ function codeLookup(x, y) {
 	var canvas = document.getElementById("test1"),
     ctx = canvas.getContext("2d");
 	var code = [];
-	code.push(GetGameObject(GetPixel(x+1,y), x, y);
+	code.push(GetGameObject(GetPixel(x+1,y), x, y));
 	code.push(GetGameObject(GetPixel(x+2,y), x, y));
 	code.push(GetGameObject(GetPixel(x+3,y), x, y));
 	ctx.fill();
