@@ -191,47 +191,47 @@ function codeLookup(x, y) {
 		}
 		case "ice wall wall":
 		{
-			frictionFactor = 1.2;
+			frictionFactor = 0.1;
 			break;
 		}
 		case "ice ice wall":
 		{
-			frictionFactor = 1.3;
+			frictionFactor = 0.2;
 			break;
 		}
 		case "ice ice ice":
 		{
-			frictionFactor = 1.4;
+			frictionFactor = 0.3;
 			break;
 		}
 		case "slime wall wall":
 		{
-			speedFactor = 1.2;
+			speedFactor = 0.1;
 			break;
 		}
 		case "slime slime wall":
 		{
-			speedFactor = 1.3;
+			speedFactor = 0.2;
 			break;
 		}
 		case "slime slime slime":
 		{
-			speedFactor = 1.4;
+			speedFactor = 0.3;
 			break;
 		}
 		case "antigravUp wall wall":
 		{
-			gravityFactor = 1.2;
+			gravityFactor = 0.1;
 			break;
 		}
 		case "antigravUp antigravUp wall":
 		{
-			gravityFactor = 1.3;
+			gravityFactor = 0.2;
 			break;
 		}
 		case "antigravUp antigravUp antigravUp":
 		{
-			gravityFactor = 1.4;
+			gravityFactor = 0.3;
 			break;
 		}
 		default:
@@ -393,9 +393,9 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 }
 
-var frictionFactor = 1;
-var speedFactor = 1;
-var gravityFactor = 1;
+var frictionFactor = 0;
+var speedFactor = 0;
+var gravityFactor = 0;
 
 
 (function () {
