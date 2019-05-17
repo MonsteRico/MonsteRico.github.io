@@ -231,7 +231,7 @@ function codeLookup(x, y) {
 		}
 		case "ice ice ice":
 		{
-			friction = 0.95;
+			friction = 1;
 			break;
 		}
 		default:
