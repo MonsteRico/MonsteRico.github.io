@@ -177,9 +177,9 @@ function codeLookup(x, y) {
 	var canvas = document.getElementById("test1"),
     ctx = canvas.getContext("2d");
 	var code = [];
-	code.push(getPixel(x+1,y));
-	code.push(getPixel(x+2,y));
-	code.push(getPixel(x+3,y));
+	code.push(GetPixel(x+1,y));
+	code.push(GetPixel(x+2,y));
+	code.push(GetPixel(x+3,y));
 	ctx.fill();
     ctx.fillStyle = "black";
     ctx.fillRect(x+1, y, 3, 1);
