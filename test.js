@@ -59,7 +59,7 @@ function GenerateLevel() {
 		for (var y = 0; y < levelMap.height; y+= levelMapTileSize)
 		{
 			var pixelColor = GetPixel(x, y);
-			var objectName = GetGameObject(pixelColor);
+			var objectName = GetGameObject(pixelColor, x, y);
 			if (objectName == null) { continue;	}
 
 			var tilePoint = TileToPoint(x, y);	
@@ -111,7 +111,7 @@ function TileToPoint(x,y) {
 }
 
 
-  function GetGameObject(color) {
+  function GetGameObject(color, x, y) {
 	// refer to the colors.jpeg for what each color exactly is etc.
 	switch (color)
 	{
@@ -163,9 +163,27 @@ function TileToPoint(x,y) {
 		{
 			return "antigravDown";
 		}
+		case "#7f7f7f": // Dark Grey - Code starter for next three pixels - 1st Row 2nd Color
+		{
+			codeLookup(x, y);
+			return "wall";
+		}
 		default:
 			return null;
 	}	
+}
+
+function codeLookup(x, y) {
+	var canvas = document.getElementById("test1"),
+    ctx = canvas.getContext("2d");
+	var code = [];
+	code.push(getPixel(x+1,y));
+	code.push(getPixel(x+2,y));
+	code.push(getPixel(x+3,y));
+	ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.fillRect(x+1, y, 3, 1);
+	console.log(code);
 }
 
 var boxes = [];
@@ -903,9 +921,7 @@ function removeStorage() {
 	sessionStorage.removeItem("coinsCollected");
 	sessionStorage.removeItem("dailyLevel");
 }
-	
 
-//credit for above goes to not me
 function reset() {
 	sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
 	sessionStorage.setItem("coinArray", JSON.stringify(coin));
