@@ -187,10 +187,12 @@ function codeLookup(x, y) {
 		case "coin coin coin":
 		{
 			document.getElementById("sprite").src = "./spritesheet4.png";
+			break;
 		}
 		default:
-			console.log("code inalid");
+			console.log("code invalid");
 			console.log(code.join());
+			break;
 	}
 }
 
