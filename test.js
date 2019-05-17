@@ -258,12 +258,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
 	    opacity: 1,
-		friction: 0.8 *= frictionFactor,
+		friction: 0.8 * frictionFactor,
         x: xPos,
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3 *= speedFactor,
+        speed: 3 * speedFactor,
         velX: 0,
         velY: 0,
         jumping: false,
