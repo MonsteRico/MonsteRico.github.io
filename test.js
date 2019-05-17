@@ -425,7 +425,7 @@ function update() {
     }
 
     player.velX *= player.friction;
-    player.velY += gravity * gravityFactor;
+    player.velY += gravity;
 	
 	if (player2Exists == true) {
 	colCheck(player, player2);
