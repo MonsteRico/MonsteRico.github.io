@@ -196,12 +196,12 @@ function codeLookup(x, y) {
 		}
 		case "ice ice wall":
 		{
-			frictionFactor = 0.2;
+			frictionFactor = 0.15;
 			break;
 		}
 		case "ice ice ice":
 		{
-			frictionFactor = 0.25;
+			frictionFactor = 0.2;
 			break;
 		}
 		case "slime wall wall":
@@ -211,12 +211,12 @@ function codeLookup(x, y) {
 		}
 		case "slime slime wall":
 		{
-			speedFactor = 0.2;
+			speedFactor = 0.15;
 			break;
 		}
 		case "slime slime slime":
 		{
-			speedFactor = 0.25;
+			speedFactor = 0.2;
 			break;
 		}
 		case "antigravUp wall wall":
@@ -226,12 +226,27 @@ function codeLookup(x, y) {
 		}
 		case "antigravUp antigravUp wall":
 		{
-			gravityFactor = 0.2;
+			gravityFactor = 0.15;
 			break;
 		}
 		case "antigravUp antigravUp antigravUp":
 		{
-			gravityFactor = 0.25;
+			gravityFactor = 0.2;
+			break;
+		}
+		case "antigravDown wall wall":
+		{
+			gravityFactor = -0.1;
+			break;
+		}
+		case "antigravDown antigravDown wall":
+		{
+			gravityFactor = -0.15;
+			break;
+		}
+		case "antigravDown antigravDown antigravDown":
+		{
+			gravityFactor = -0.2;
 			break;
 		}
 		default:
