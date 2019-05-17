@@ -183,15 +183,14 @@ function codeLookup(x, y) {
 	ctx.fill();
     ctx.fillStyle = "black";
     ctx.fillRect(x+1, y, 3, 1);
-	code.join();
-	switch (code) {
+	switch (code.join()) {
 		case "coin, coin, coin":
 		{
 			document.getElementById("sprite").src = spritesheet4.png;
 		}
 		default:
 			console.log("code inalid");
-			console.log(code);
+			console.log(code.join());
 	}
 }
 
