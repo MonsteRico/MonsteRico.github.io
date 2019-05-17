@@ -186,7 +186,7 @@ function codeLookup(x, y) {
 	switch (code.join(" ")) {
 		case "coin coin coin":
 		{
-			document.getElementById("sprite").src = spritesheet4.png;
+			document.getElementById("sprite").src = "./spritesheet4.png";
 		}
 		default:
 			console.log("code inalid");
