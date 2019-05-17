@@ -258,12 +258,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
 	    opacity: 1,
-		friction: 0.8 * frictionFactor,
+		friction: 0.8 + frictionFactor,
         x: xPos,
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3 * speedFactor,
+        speed: 3 + speedFactor,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -274,12 +274,12 @@ function Instantiate(object, xPos, yPos, h, w) {
 	   player2Exists = true;
 	   player2 = {
 	    opacity: 1,
-		friction: 0.8 * frictionFactor,
+		friction: 0.8 + frictionFactor,
         x: xPos,
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3 * speedFactor,
+        speed: 3 + speedFactor,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -409,7 +409,7 @@ var canvas = document.getElementById("canvas"),
     width = levelMap.width * tileSize,
     height = levelMap.height * tileSize,
     keys = [],
-    gravity = 0.2 * gravityFactor,
+    gravity = 0.2 + gravityFactor,
 	coinsCollected = 0;
 
 canvas.width = width;
@@ -444,7 +444,7 @@ function update() {
     }
 
     player.velX *= player.friction;
-    player.velY += gravity * gravityFactor;
+    player.velY += gravity;
 	
 	if (player2Exists == true) {
 	colCheck(player, player2);
@@ -462,10 +462,10 @@ function update() {
             player.jumping = false;
 			player.grounded = false;
         } else if (dir === "b") {
-			while (player.friction != 0.8 * frictionFactor * frictionFactor) {
+			while (player.friction != 0.8 + frictionFactor) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3 * speedFactor) {
+			while (player.speed != 3 + speedFactor) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -476,10 +476,10 @@ function update() {
 			player.velY *= -1;
 			}
         } else if (dir === "t") {
-			while (player.friction != 0.8 * frictionFactor) {
+			while (player.friction != 0.8 + frictionFactor) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3 * speedFactor) {
+			while (player.speed != 3 + speedFactor) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -622,7 +622,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.speed != 3 * speedFactor) {
+			while (player.speed != 3 + speedFactor) {
 				player.speed -= 1;
 			}
         } else if (dir === "t") {
@@ -634,7 +634,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.speed != 3 * speedFactor) {
+			while (player.speed != 3 + speedFactor) {
 				player.speed -= 1;
 			}
         }
@@ -656,7 +656,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.friction != 0.8 * frictionFactor) {
+			while (player.friction != 0.8 + frictionFactor) {
 				player.friction -= 0.1;
 			}
         } else if (dir === "t") {
@@ -668,7 +668,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.friction != 0.8 * frictionFactor) {
+			while (player.friction != 0.8 + frictionFactor) {
 				player.friction -= 0.1;
 			}
         }
