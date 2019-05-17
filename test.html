@@ -1,21 +1,28 @@
 <!DOCTYPE htmL>
 <html>
+<head>
+<style>
+button {
+	padding:15px;
+	}
+</style>
+</head>
 <body>
 <div id="hide">
 	<input type="file" id="inp">
 	<p>Or play one of these other levels</p>
 	<button onclick="chooseLevel('./castle.png')" id="castle" placeholder="Castle">Castle Level</button>
-	<button id="iceSlime" placeholder="iceSlime">Ice/Slime Test</button>
-	<button id="coinTest" placeholder="Coin Test">Coin Test</button>
-	<button id="test" placeholder="Test">Test Level</button>
-	<button id="hate" placeholder="Test">This Level Hates You</button>
-	<button id="gravity" placeholder="Test">Gravity Test</button>
-	<button id="2player" placeholder="Test">Player 2 Test</button>
-	<button id="yes" placeholder="Test">Yes by ZachXD</button>
+	<button onclick="chooseLevel('./iceTest.png')" id="iceSlime" placeholder="iceSlime">Ice/Slime Test</button>
+	<button onclick="chooseLevel('./coinTest.png')" id="coinTest" placeholder="Coin Test">Coin Test</button>
+	<button onclick="chooseLevel('./test.jpg')" id="test" placeholder="Test">Test Level</button>
+	<button onclick="chooseLevel('./thislevelhatesyou.png')" id="hate" placeholder="Test">This Level Hates You</button>
+	<button onclick="chooseLevel('./gravity.png')" id="gravity" placeholder="Test">Gravity Test</button>
+	<button onclick="chooseLevel('./player2.png')" id="2player" placeholder="Test">Player 2 Test</button>
+	<button onclick="chooseLevel('./yes.png')" id="yes" placeholder="Test">Yes by ZachXD</button>
 	<button id="daily" placeholder="Test">Daily Level</button>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheet1.png" id="sprite" style="display:none">
-	<div id="templates">
+	<div style="display:none;" id="templates">
 		<img id="TL1" src="./Templates/TL1.png">
 		<img id="TL2" src="./Templates/TL2.png">
 		<img id="TR1" src="./Templates/TR1.png">
@@ -38,49 +45,6 @@ function chooseLevel(level) {
 document.getElementById('inp').onchange = function(e) {
   removeStorage();
   levelMap.src = URL.createObjectURL(this.files[0]);
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-
-document.getElementById('hate').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './thislevelhatesyou.png';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('iceSlime').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './iceTest.png';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('coinTest').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './coinTest.png';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('test').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './test.jpg';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('gravity').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './gravity.png';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('2player').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './player2.png';
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-};
-document.getElementById('yes').onclick = function(e) {
-  removeStorage();
-  levelMap.src = './yes.png';
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
