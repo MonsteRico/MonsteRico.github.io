@@ -234,6 +234,21 @@ function codeLookup(x, y) {
 			friction = 1;
 			break;
 		}
+		case "slime wall wall":
+		{
+			speed = 3.2;
+			break;
+		}
+		case "slime slime wall":
+		{
+			speed = 3.5;
+			break;
+		}
+		case "slime slime slime":
+		{
+			speed = 4;
+			break;
+		}
 		default:
 			console.log("code invalid");
 			console.log(code.join(" "));
@@ -263,7 +278,7 @@ function Instantiate(object, xPos, yPos, h, w) {
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3,
+        speed: speed,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -279,7 +294,7 @@ function Instantiate(object, xPos, yPos, h, w) {
         y: yPos,
         width: w-2,
         height: h-2,
-        speed: 3,
+        speed: speed,
         velX: 0,
         velY: 0,
         jumping: false,
@@ -406,6 +421,7 @@ var canvas = document.getElementById("canvas"),
     height = levelMap.height * tileSize,
     keys = [],
     gravity = 0.2,
+	speed = 3,
 	friction = 0.8,
 	coinsCollected = 0;
 
@@ -462,7 +478,7 @@ function update() {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3) {
+			while (player.speed != speed) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -476,7 +492,7 @@ function update() {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
-			while (player.speed != 3) {
+			while (player.speed != speed) {
 				player.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -619,7 +635,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.speed != 3) {
+			while (player.speed != speed) {
 				player.speed -= 1;
 			}
         } else if (dir === "t") {
@@ -631,7 +647,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.speed != 3) {
+			while (player.speed != speed) {
 				player.speed -= 1;
 			}
         }
@@ -729,7 +745,7 @@ function update() {
 			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
-			while (player2.speed != 3) {
+			while (player2.speed != speed) {
 				player2.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -743,7 +759,7 @@ function update() {
 			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
-			while (player2.speed != 3) {
+			while (player2.speed != speed) {
 				player2.speed -= 1;
 			}
 			if (gravity > 0) {
@@ -880,7 +896,7 @@ function update() {
 			else {
 			player2.velY *= -1;
 			}
-			while (player2.speed != 3) {
+			while (player2.speed != speed) {
 				player2.speed -= 1;
 			}
         } else if (dir === "t") {
@@ -892,7 +908,7 @@ function update() {
 			player2.grounded = true;
 			player2.jumping = false;
 			}
-			while (player2.speed != 3) {
+			while (player2.speed != speed) {
 				player2.speed -= 1;
 			}
         }
