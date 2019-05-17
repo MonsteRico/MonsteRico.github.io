@@ -216,7 +216,22 @@ function codeLookup(x, y) {
 		}
 		case "antigravUp antigravUp antigravUp":
 		{
-			gravity = 0.9;
+			gravity = 0.8;
+			break;
+		}
+		case "ice wall wall":
+		{
+			friction = 0.85;
+			break;
+		}
+		case "ice ice wall":
+		{
+			friction = 0.9;
+			break;
+		}
+		case "ice ice ice":
+		{
+			friction = 0.95;
 			break;
 		}
 		default:
@@ -243,7 +258,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	if (object == "player") {
 	   player = {
 	    opacity: 1,
-		friction: 0.8,
+		friction: friction,
         x: xPos,
         y: yPos,
         width: w-2,
@@ -259,7 +274,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	   player2Exists = true;
 	   player2 = {
 	    opacity: 1,
-		friction: 0.8,
+		friction: friction,
         x: xPos,
         y: yPos,
         width: w-2,
@@ -336,7 +351,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 	}
 	if (object == "slime") {
 		slime.push({
-		opacity: 0.8,
+		opacity: friction,
 		x: xPos,
 		y: yPos,
 		width: w,
@@ -391,6 +406,7 @@ var canvas = document.getElementById("canvas"),
     height = levelMap.height * tileSize,
     keys = [],
     gravity = 0.2,
+	friction = 0.8,
 	coinsCollected = 0;
 
 canvas.width = width;
@@ -443,7 +459,7 @@ function update() {
             player.jumping = false;
 			player.grounded = false;
         } else if (dir === "b") {
-			while (player.friction != 0.8) {
+			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
 			while (player.speed != 3) {
@@ -457,7 +473,7 @@ function update() {
 			player.velY *= -1;
 			}
         } else if (dir === "t") {
-			while (player.friction != 0.8) {
+			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
 			while (player.speed != 3) {
@@ -637,7 +653,7 @@ function update() {
 			else {
 			player.velY *= -1;
 			}
-			while (player.friction != 0.8) {
+			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
         } else if (dir === "t") {
@@ -649,7 +665,7 @@ function update() {
 			player.grounded = true;
 			player.jumping = false;
 			}
-			while (player.friction != 0.8) {
+			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
         }
@@ -710,7 +726,7 @@ function update() {
             player2.jumping = false;
 			player2.grounded = false;
         } else if (dir === "b") {
-			while (player2.friction != 0.8) {
+			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
 			while (player2.speed != 3) {
@@ -724,7 +740,7 @@ function update() {
 			player2.velY *= -1;
 			}
         } else if (dir === "t") {
-			while (player2.friction != 0.8) {
+			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
 			while (player2.speed != 3) {
@@ -897,7 +913,7 @@ function update() {
 			else {
 			player2.velY *= -1;
 			}
-			while (player2.friction != 0.8) {
+			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
         } else if (dir === "t") {
@@ -909,7 +925,7 @@ function update() {
 			player2.grounded = true;
 			player2.jumping = false;
 			}
-			while (player2.friction != 0.8) {
+			while (player2.friction != friction) {
 				player2.friction -= 0.1;
 			}
         }
