@@ -72,10 +72,12 @@ var sheet6 = new Image();
 sheet6.src = "./spritesheet6.png";
 var sheet7 = new Image();
 sheet7.src = "./spritesheet7.png";
+var sheet8 = new Image();
+sheet8.src = "./spritesheet8.png";
 
 
 var totalTemplates = 4;
-var totalSpritesheets = 7;
+var totalSpritesheets = 8;
 var topLeftChoice = randomNum[0];
 var topRightChoice = randomNum[1];
 var bottomLeftChoice = randomNum[2];
@@ -92,7 +94,7 @@ var tlTemplates = [TL1, TL2, TL3, TL4];
 var blTemplates = [BL1, BL2, BL3, BL4];
 var trTemplates = [TR1, TR2, TR3, TR4];
 var brTemplates = [BR1, BR2, BR3, BR4];
-var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.src, sheet6.src, sheet7.src];
+var spriteTemplates = [sheet1.src, sheet2.src, sheet3.src, sheet4.src, sheet5.src, sheet6.src, sheet7.src, sheet8.src];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('dailyLevel') == today)) {
