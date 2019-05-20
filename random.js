@@ -18,10 +18,7 @@ var yyyy = today.getFullYear();
 
 today = mm + dd + yyyy;
 
-Math.seed = today;
-randomNum = Math.round(Math.seededRandom() * 100000000000000);
-randomNum = Array.from(randomNum.toString()).map(Number);
-console.log(randomNum);
+
 
 // Copy from templates based on the numbers
 // Pick template based on number in array.
@@ -58,24 +55,7 @@ var BR3 = new Image();
 BR3.src = "./Templates/BR3.png";
 var BR4 = new Image();
 BR4.src = "./Templates/BR4.png";
-var sheet1 = new Image();
-sheet1.src = "./spritesheet1.png";
-var sheet2 = new Image();
-sheet2.src = "./spritesheet2.png";
-var sheet3 = new Image();
-sheet3.src = "./spritesheet3.png";
-var sheet4 = new Image();
-sheet4.src = "./spritesheet4.png";
-var sheet5 = new Image();
-sheet5.src = "./spritesheet5.png";
-var sheet6 = new Image();
-sheet6.src = "./spritesheet6.png";
-var sheet7 = new Image();
-sheet7.src = "./spritesheet7.png";
-var sheet8 = new Image();
-sheet8.src = "./spritesheet8.png";
-
-
+// Add new templates above here. Change total templates and spritesheets below here
 var totalTemplates = 4;
 var totalSpritesheets = 8;
 var topLeftChoice = randomNum[0];
@@ -89,12 +69,12 @@ var topRightTemplate = topRightChoice % totalTemplates;
 var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
-
+// Add the new templates to these arrays
 var tlTemplates = [TL1, TL2, TL3, TL4];
 var blTemplates = [BL1, BL2, BL3, BL4];
 var trTemplates = [TR1, TR2, TR3, TR4];
 var brTemplates = [BR1, BR2, BR3, BR4];
-var spriteTemplates = ["./spritesheet1.png", sheet2.src, sheet3.src, sheet4.src, sheet5.src, sheet6.src, sheet7.src, sheet8.src];
+var spriteTemplates = ["./spritesheet1.png", "./spritesheet2.png", "./spritesheet3.png", "./spritesheet4.png", "./spritesheet5.png", "./spritesheet6.png", "./spritesheet7.png", "./spritesheet8.png"];
 console.log(topLeftTemplate, topRightTemplate, bottomLeftTemplate, bottomRightTemplate, spriteTemplate);
 
 if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('dailyLevel') == today)) {
@@ -102,6 +82,10 @@ if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('d
 }
 
 function GenerateRandomLevel() {
+	Math.seed = today;
+	var randomNum = Math.round(Math.seededRandom() * 100000000000000);
+	randomNum = Array.from(randomNum.toString()).map(Number);
+	console.log(randomNum);
 	var canvas = document.getElementById("test1"),
 	ctx = canvas.getContext("2d");
 	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
@@ -125,7 +109,7 @@ function GenerateDate(m,d,y) {
 	today = m + d + y;
 
 	Math.seed = today;
-	randomNum = Math.round(Math.seededRandom() * 1000000);
+	var randomNum = Math.round(Math.seededRandom() * 100000000000000);
 	randomNum = Array.from(randomNum.toString()).map(Number);
 	console.log(randomNum);
 	topLeftChoice = randomNum[0];
