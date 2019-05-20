@@ -55,7 +55,9 @@ var BR3 = new Image();
 BR3.src = "./Templates/BR3.png";
 var BR4 = new Image();
 BR4.src = "./Templates/BR4.png";
+
 // Add new templates above here. Change total templates and spritesheets below here
+
 var totalTemplates = 4;
 var totalSpritesheets = 8;
 var topLeftChoice = randomNum[0];
@@ -69,6 +71,7 @@ var topRightTemplate = topRightChoice % totalTemplates;
 var bottomLeftTemplate = bottomLeftChoice % totalTemplates;
 var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
+
 // Add the new templates to these arrays
 var tlTemplates = [TL1, TL2, TL3, TL4];
 var blTemplates = [BL1, BL2, BL3, BL4];
