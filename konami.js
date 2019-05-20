@@ -104,7 +104,7 @@ function site() {
 		}
 		case "test":
 		{
-			window.open("./test.html");
+			window.open("./testGame/test.html");
 			console.log(pagesLeft);
 			pagesLeft = pagesLeft - 1;
 			console.log(pagesLeft);
