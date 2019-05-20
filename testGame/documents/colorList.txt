@@ -1,0 +1,36 @@
+Color  | What it does | Exact position in paint
+-----------------------------------------------
+Purple - Player - 1st Row 10th Color
+Light Purple - Player 2 - 2nd Row 10th Color
+Bright Green - Goal/Flag - 2nd Row 7th Color
+Yellow - Coin - 1st Row 6th Color
+Black - Wall Block - 1st Row 1st Color
+Red - Lava (Inset into ground a bit) - 1st Row 4th Color
+Orange - Lava (Full Size) - 1st Row 5th Color
+Bright Blue - Ice Block - 2nd Row 8th Color
+Dark Green - Slime block - 1st Row 7th Color
+Pink - Checkpoint - 2nd Row 4th Color
+Light Brown - Antigravity W/ Up Arrow - 2nd Row 3rd Color
+Dark Brown - Antigravity W/ Down Arrow - 1st Row 3rd Color
+Grey - Color Code Start - 1st Row 2nd Color
+
+Levels need to be .pngs made in paint or similar program.
+Size of a level file is 64x32 pixels.
+
+COLOR CODES
+------------
+Dark Brown, Black, Black  (Antigrav Down, Wall, Wall) - Decreases gravity to 1st level
+Dark Brown, Dark Brown, Black  (Antigrav Down, Antigrav Down, Wall) - Decreases gravity to 2nd level
+Dark Brown, Dark Brown, Dark Brown  (Antigrav Down, Antigrav Down, Antigrav Down) - Decreases gravity to 3rd level
+Light Brown, Black, Black  (Antigrav Up, Wall, Wall) - Increases gravity to 1st level
+Light Brown, Light Brown, Black  (Antigrav Up, Antigrav Up, Wall) - Increases gravity to 2nd level
+Light Brown, Light Brown, Light Brown  (Antigrav Up, Antigrav Up, Antigrav Up) - Increases gravity to 3rd level
+Bright Blue, Black, Black  (Ice, Wall, Wall) - Increases friction to 1st level
+Bright Blue, Bright Blue, Black  (Ice, Ice, Wall) - Increases friction to 2nd level
+Bright Blue, Bright Blue, Bright Blue  (Ice, Ice, Ice) - Increases friction to 3rd level
+Dark Green, Black, Black  (Slime, Wall, Wall) - Increases jump height to 1st level
+Dark Green, Dark Green, Black  (Slime, Slime, Wall) - Increases jump height to 2nd level
+Dark Green, Dark Green, Dark Green  (Slime, Slime, Slime) - Increases jump height to 3rd level
+Yellow, Yellow, Yellow  (Coin, Coin, Coin) - Changes spritesheet to spritesheet4.png
+
+If code does not work, it will show the code that it found and "code invalid" in console
