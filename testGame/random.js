@@ -18,7 +18,10 @@ var yyyy = today.getFullYear();
 
 today = mm + dd + yyyy;
 
-
+Math.seed = today;
+var randomNum = Math.round(Math.seededRandom() * 100000000000000);
+randomNum = Array.from(randomNum.toString()).map(Number);
+console.log(randomNum);
 
 // Copy from templates based on the numbers
 // Pick template based on number in array.
@@ -85,10 +88,6 @@ if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('d
 }
 
 function GenerateRandomLevel() {
-	Math.seed = today;
-	var randomNum = Math.round(Math.seededRandom() * 100000000000000);
-	randomNum = Array.from(randomNum.toString()).map(Number);
-	console.log(randomNum);
 	var canvas = document.getElementById("test1"),
 	ctx = canvas.getContext("2d");
 	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
