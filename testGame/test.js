@@ -1061,6 +1061,11 @@ function checkAllCoins() {
 	}
 }
 
+function back() {
+	sessionStorage.clear();
+	location.reload();
+}
+
 document.body.addEventListener("keydown", function (e) {
     keys[e.keyCode] = true;
 });
