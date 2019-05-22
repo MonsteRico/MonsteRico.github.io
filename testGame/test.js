@@ -541,7 +541,7 @@ function update() {
     }
 	
 	for (var i = 0; i < portal.length; i++) {
-		ctx.drawImage(spritesheet, 192, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
+		ctx.drawImage(spritesheet, 176, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
         var dir = colCheck(player, portal[i]);
 
         if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
