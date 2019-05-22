@@ -545,7 +545,7 @@ function update() {
         var dir = colCheck(player, portal[i]);
 
         if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
-			var teleportTo = randomNumber(0, portal.length());
+			var teleportTo = randomNumber(0, portal.length);
 			var x = portal[teleportTo].x/16;
 			var y = portal[teleportTo].y/16;
 			y += 1;
