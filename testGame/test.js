@@ -168,7 +168,7 @@ function TileToPoint(x,y) {
 			codeLookup(x, y);
 			return "wall";
 		}
-		case "#7f7f7f": // Turquoise - Portals! - 1st Row 8th Color
+		case "#00a2e8": // Turquoise - Portals! - 1st Row 8th Color
 		{
 			return "portal";
 		}
