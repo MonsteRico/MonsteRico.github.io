@@ -168,6 +168,10 @@ function TileToPoint(x,y) {
 			codeLookup(x, y);
 			return "wall";
 		}
+		case "#7f7f7f": // Turquoise - Portals! - 1st Row 8th Color
+		{
+			return "portal";
+		}
 		default:
 			return null;
 	}	
@@ -263,6 +267,7 @@ var coin = [];
 var goal = [];
 var slime = [];
 var checkpoint = [];
+var portal = [];
 var antigrav = [];
 var player;
 var player2;
@@ -406,6 +411,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "brown"
 		});
 	}
+	if (object == "portal") {
+		portal.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "blue"
+		});
+	}
 }
 
 
@@ -524,6 +539,65 @@ function update() {
 			return;
         }
     }
+	
+	for (var i = 0; i < portal.length; i++) {
+		ctx.drawImage(spritesheet, 192, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
+        var dir = colCheck(player, portal[i]);
+
+        if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
+			var teleportTo = randomNumber(0, portal.length());
+			var x = portal[teleportTo].x/16;
+			var y = portal[teleportTo].y/16;
+			y += 1;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			y -= 1;
+			x += 1;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			y -= 1;
+			x -= 1;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			x -= 1;
+			y += 1;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			x += 2;
+			y += 1;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			y -= 2;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			x -=2; 
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			y += 2;
+			if (isOpen(x, y)) {
+				player.x = x*16;
+				player.y = y*16;
+			}
+			console.log(x);
+			console.log(y);
+			console.log(teleportTo);
+		}	
+    }
+	
 	
 	for (var i = 0; i < antigrav.length; i++) {
 		ctx.drawImage(spritesheet, antigrav[i].type, 0, 16, 16, antigrav[i].x, antigrav[i].y, antigrav[i].width, antigrav[i].height);
@@ -962,6 +1036,15 @@ function update() {
 	}
 	
     requestAnimationFrame(update);
+}
+
+function isOpen(x, y) {
+	if(GetGameObject(GetPixel(x,y), x, y) !== null) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 function setCheckpoint(dir, i) {

@@ -5,3 +5,9 @@ function wait(ms)
 	do { d2 = new Date(); }
 	while(d2-d < ms);
 }
+
+function randomNumber(min, max) {
+	var random = Math.floor(Math.random() * (+max - +min)) + +min;
+	console.log(random);
+	return random;
+}
