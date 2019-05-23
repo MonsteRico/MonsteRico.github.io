@@ -547,6 +547,13 @@ function update() {
 			while (player.speed != speed) {
 				player.speed -= 1;
 			}
+			if (gravity > 0) {
+			player.grounded = true;
+            player.jumping = false;
+			}
+			else {
+			player.velY *= -1;
+			}
         } else if (dir === "t") {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
@@ -554,7 +561,13 @@ function update() {
 			while (player.speed != speed) {
 				player.speed -= 1;
 			}
-
+			if (gravity > 0) {
+            player.velY *= -1;
+			}
+			else {
+			player.grounded = true;
+			player.jumping = false;
+			}
         }
 
     }
@@ -1247,6 +1260,7 @@ function noColCheck(shapeA, shapeB) {
 					shapeA.y += oY;
 				} else {
 					colDir = "b";
+					shapeA.y -= oY;
 				}
 			} else {
 				if (vX > 0) {
