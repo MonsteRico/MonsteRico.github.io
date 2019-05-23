@@ -547,8 +547,6 @@ function update() {
 			while (player.speed != speed) {
 				player.speed -= 1;
 			}
-			player.grounded = true;
-            player.jumping = false;
         } else if (dir === "t") {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
@@ -559,6 +557,7 @@ function update() {
 			player.grounded = true;
             player.jumping = false;
             player.velY *= -1;
+			player.y += platform[i].y;
         }
 
     }
