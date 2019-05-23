@@ -537,8 +537,8 @@ function update() {
     }
 	
     for (var i = 0; i < platform.length; i++) {
-		ctx.drawImage(spritesheet, 176, 0, 16, 16, platform[i].x, platform[i].y, platform[i].width, platform[i].height);
-        var dir = colCheck(player, platform[i]);
+		ctx.drawImage(spritesheet, 160, 0, 16, 16, platform[i].x, platform[i].y, platform[i].width, platform[i].height);
+        var dir = noColCheck(player, platform[i]);
 
 		if (dir === "b") {
 			while (player.friction != friction) {
