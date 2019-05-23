@@ -432,7 +432,7 @@ function Instantiate(object, xPos, yPos, h, w) {
 		x: xPos,
 		y: yPos,
 		width: w,
-		height: h-9,
+		height: h,
 		color: "grey"
 		});
 	}
@@ -547,6 +547,9 @@ function update() {
 			while (player.speed != speed) {
 				player.speed -= 1;
 			}
+			player.grounded = true;
+            player.jumping = false;
+            player.velY *= -1;
         } else if (dir === "t") {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
@@ -554,9 +557,7 @@ function update() {
 			while (player.speed != speed) {
 				player.speed -= 1;
 			}
-			player.grounded = true;
-            player.jumping = false;
-            player.velY *= -1;
+
         }
 
     }
