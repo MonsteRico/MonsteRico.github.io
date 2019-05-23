@@ -557,7 +557,6 @@ function update() {
 			player.grounded = true;
             player.jumping = false;
             player.velY *= -1;
-			player.y += platform[i].y;
         }
 
     }
