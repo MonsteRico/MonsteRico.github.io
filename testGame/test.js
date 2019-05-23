@@ -1244,6 +1244,7 @@ function noColCheck(shapeA, shapeB) {
 			if (oX >= oY) {
 				if (vY > 0) {
 					colDir = "t";
+					shapeA.y += oY;
 				} else {
 					colDir = "b";
 				}
