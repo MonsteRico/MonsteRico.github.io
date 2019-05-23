@@ -3,3 +3,4 @@ Sort of a changelog
 5/16/2019 - Attempted to make daily levels stay on reload - IT WORKED
 5/18/2019 - Added color codes for making levels have varying gravity and stuff. List included in colorList.txt
 5/20/2019 - Cleaned up some stuff and the files
+5/22/2019 - Added portals

@@ -172,6 +172,10 @@ function TileToPoint(x,y) {
 		{
 			return "portal";
 		}
+		case "#c3c3c3": // Light Grey - Platform - 2nd Row 2nd Color
+		{
+			return "platform";
+		}
 		default:
 			return null;
 	}	
@@ -268,6 +272,7 @@ var goal = [];
 var slime = [];
 var checkpoint = [];
 var portal = [];
+var platform = [];
 var antigrav = [];
 var player;
 var player2;
@@ -421,6 +426,16 @@ function Instantiate(object, xPos, yPos, h, w) {
 		color: "blue"
 		});
 	}
+	if (object == "platform") {
+		platform.push({
+		opacity: 1,
+		x: xPos,
+		y: yPos,
+		width: w,
+		height: h,
+		color: "grey"
+		});
+	}
 }
 
 
@@ -490,6 +505,42 @@ function update() {
             player.jumping = false;
 			player.grounded = false;
         } else if (dir === "b") {
+			while (player.friction != friction) {
+				player.friction -= 0.1;
+			}
+			while (player.speed != speed) {
+				player.speed -= 1;
+			}
+			if (gravity > 0) {
+			player.grounded = true;
+            player.jumping = false;
+			}
+			else {
+			player.velY *= -1;
+			}
+        } else if (dir === "t") {
+			while (player.friction != friction) {
+				player.friction -= 0.1;
+			}
+			while (player.speed != speed) {
+				player.speed -= 1;
+			}
+			if (gravity > 0) {
+            player.velY *= -1;
+			}
+			else {
+			player.grounded = true;
+			player.jumping = false;
+			}
+        }
+
+    }
+	
+    for (var i = 0; i < platform.length; i++) {
+		ctx.drawImage(spritesheet, 176, 0, 16, 16, platform[i].x, platform[i].y, platform[i].width, platform[i].height);
+        var dir = colCheck(player, platform[i]);
+
+		if (dir === "b") {
 			while (player.friction != friction) {
 				player.friction -= 0.1;
 			}
@@ -865,6 +916,64 @@ function update() {
         }
     }
 	
+	for (var i = 0; i < portal.length; i++) {
+		ctx.drawImage(spritesheet, 176, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
+        var dir = colCheck(player2, portal[i]);
+
+        if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
+			var teleportTo = randomNumber(0, portal.length);
+			var x = portal[teleportTo].x/16;
+			var y = portal[teleportTo].y/16;
+			y += 1;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			y -= 1;
+			x += 1;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			y -= 1;
+			x -= 1;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			x -= 1;
+			y += 1;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			x += 2;
+			y += 1;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			y -= 2;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			x -=2; 
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			y += 2;
+			if (isOpen(x, y)) {
+				player2.x = x*16;
+				player2.y = y*16;
+			}
+			console.log(x);
+			console.log(y);
+			console.log(teleportTo);
+		}	
+    }
+	
 	for (var i = 0; i < antigrav.length; i++) {
         var dir = colCheck(player2, antigrav[i]);
 
@@ -1126,6 +1235,36 @@ function colCheck(shapeA, shapeB) {
 				} else {
 					colDir = "r";
 					shapeA.x -= oX;
+				}
+			}
+		}
+    return colDir;
+}
+
+function noColCheck(shapeA, shapeB) {
+    // get the vectors to check against
+    var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
+        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
+        // add the half widths and half heights of the objects
+        hWidths = (shapeA.width / 2) + (shapeB.width / 2),
+        hHeights = (shapeA.height / 2) + (shapeB.height / 2),
+        colDir = null;
+    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+    if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
+        // figures out on which side we are colliding (top, bottom, left, or right)
+        var oX = hWidths - Math.abs(vX),
+            oY = hHeights - Math.abs(vY);
+			if (oX >= oY) {
+				if (vY > 0) {
+					colDir = "t";
+				} else {
+					colDir = "b";
+				}
+			} else {
+				if (vX > 0) {
+					colDir = "l";
+				} else {
+					colDir = "r";
 				}
 			}
 		}
