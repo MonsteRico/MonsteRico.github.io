@@ -11,3 +11,10 @@ function randomNumber(min, max) {
 	console.log(random);
 	return random;
 }
+
+function setDisplay(className, displayValue) {
+  var items = document.getElementsByClassName(className);
+  for (var i=0; i < items.length; i++) {
+    items[i].style.display = displayValue;
+  }
+}
