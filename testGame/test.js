@@ -175,6 +175,10 @@ function GetGameObject(color, x, y) {
         {
             return "platform";
         }
+        case "#ffc90e": // Gold - Moving Block - 2nd Row 5th Color
+        {
+            return "moving";
+        }
         default:
             return null;
     }
@@ -260,6 +264,7 @@ var checkpoint = [];
 var portal = [];
 var platform = [];
 var antigrav = [];
+var moving = [];
 var player;
 var player2;
 var player2Exists = false;
@@ -420,6 +425,17 @@ function Instantiate(object, xPos, yPos, h, w) {
             width: w,
             height: h,
             color: "grey"
+        });
+    }
+	if (object == "moving") {
+        moving.push({
+            opacity: 1,
+            x: xPos,
+            y: yPos,
+            width: w,
+            height: h,
+            speed: speed,
+            velX: 1,
         });
     }
 }
@@ -775,6 +791,50 @@ function update() {
             }
         }
 
+    }
+	
+    for (var i = 0; i < moving.length; i++) {
+        ctx.drawImage(spritesheet, 0, 0, 16, 16, moving[i].x, moving[i].y, moving[i].width, moving[i].height);
+        var dir = colCheck(player, moving[i]);
+
+        if (dir === "l" || dir === "r") {
+            player.velX = 0;
+            player.jumping = false;
+            player.grounded = false;
+        } else if (dir === "b") {
+            while (player.friction != friction) {
+                player.friction -= 0.1;
+            }
+            while (player.speed != speed) {
+                player.speed -= 1;
+            }
+            if (gravity > 0) {
+                player.grounded = true;
+                player.jumping = false;
+            } else {
+                player.velY *= -1;
+            }
+        } else if (dir === "t") {
+            while (player.friction != friction) {
+                player.friction -= 0.1;
+            }
+            while (player.speed != speed) {
+                player.speed -= 1;
+            }
+            if (gravity > 0) {
+                player.velY *= -1;
+            } else {
+                player.grounded = true;
+                player.jumping = false;
+            }
+        }
+		
+		var dir = colCheck(moving[i], boxes[i]);
+		if (dir === "l" || dir === "r") {
+			moving[i].velX *= -1;
+		}
+		
+		moving[i].x += moving[i].velX;
     }
 
     if (player.grounded) {
