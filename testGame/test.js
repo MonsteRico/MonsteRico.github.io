@@ -435,7 +435,7 @@ function Instantiate(object, xPos, yPos, h, w) {
             width: w,
             height: h,
             speed: speed,
-            velX: 1,
+            velX: 0.5
         });
     }
 }
@@ -534,6 +534,7 @@ function update() {
         }
 
     }
+	
 
     for (var i = 0; i < platform.length; i++) {
         ctx.drawImage(spritesheet, 160, 0, 16, 16, platform[i].x, platform[i].y, platform[i].width, platform[i].height);
@@ -795,9 +796,45 @@ function update() {
 	
     for (var i = 0; i < moving.length; i++) {
         ctx.drawImage(spritesheet, 0, 0, 16, 16, moving[i].x, moving[i].y, moving[i].width, moving[i].height);
-        var dir = colCheck(player, moving[i]);
-
-        if (dir === "l" || dir === "r") {
+		for (var j = 0; j < boxes.length; j++) {
+			var dir = colCheck(moving[i], boxes[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		for (var j = 0; j < ice.length; j++) {
+			var dir = colCheck(moving[i], ice[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		for (var j = 0; j < slime.length; j++) {
+			var dir = colCheck(moving[i], slime[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		for (var j = 0; j < antigrav.length; j++) {
+			var dir = colCheck(moving[i], antigrav[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		for (var j = 0; j < portal.length; j++) {
+			var dir = colCheck(moving[i], portal[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		for (var j = 0; j < platform.length; j++) {
+			var dir = colCheck(moving[i], platform[j]);
+			if (dir === "l" || dir === "r") {
+				moving[i].velX *= -1;
+			}
+		}
+		
+		var dir = colCheck(player, moving[i]);
+		if (dir === "l" || dir === "r") {
             player.velX = 0;
             player.jumping = false;
             player.grounded = false;
@@ -809,6 +846,12 @@ function update() {
                 player.speed -= 1;
             }
             if (gravity > 0) {
+				if (moving[i].velX == 0.5) {
+					player.velX = moving[i].velX + 0.055555555;
+				}
+				else if (moving[i].velX == -0.5) {
+					player.velX = moving[i].velX - 0.055555555;
+				}
                 player.grounded = true;
                 player.jumping = false;
             } else {
@@ -824,16 +867,16 @@ function update() {
             if (gravity > 0) {
                 player.velY *= -1;
             } else {
+				if (moving[i].velX == 0.5) {
+					player.velX = moving[i].velX + 0.055555555;
+				}
+				else if (moving[i].velX == -0.5) {
+					player.velX = moving[i].velX - 0.055555555;
+				}
                 player.grounded = true;
                 player.jumping = false;
             }
         }
-		
-		var dir = colCheck(moving[i], boxes[i]);
-		if (dir === "l" || dir === "r") {
-			moving[i].velX *= -1;
-		}
-		
 		moving[i].x += moving[i].velX;
     }
 
@@ -1140,6 +1183,53 @@ function update() {
             }
 
         }
+		
+    for (var i = 0; i < moving.length; i++) {		
+		var dir = colCheck(player2, moving[i]);
+		if (dir === "l" || dir === "r") {
+            player2.velX = 0;
+            player2.jumping = false;
+            player2.grounded = false;
+        } else if (dir === "b") {
+            while (player2.friction != friction) {
+                player2.friction -= 0.1;
+            }
+            while (player2.speed != speed) {
+                player2.speed -= 1;
+            }
+            if (gravity > 0) {
+				if (moving[i].velX == 0.5) {
+					player2.velX = moving[i].velX + 0.055555555;
+				}
+				else if (moving[i].velX == -0.5) {
+					player2.velX = moving[i].velX - 0.055555555;
+				}
+                player2.grounded = true;
+                player2.jumping = false;
+            } else {
+                player2.velY *= -1;
+            }
+        } else if (dir === "t") {
+            while (player2.friction != friction) {
+                player2.friction -= 0.1;
+            }
+            while (player2.speed != speed) {
+                player2.speed -= 1;
+            }
+            if (gravity > 0) {
+                player2.velY *= -1;
+            } else {
+				if (moving[i].velX == 0.5) {
+					player2.velX = moving[i].velX + 0.055555555;
+				}
+				else if (moving[i].velX == -0.5) {
+					player2.velX = moving[i].velX - 0.055555555;
+				}
+                player2.grounded = true;
+                player2.jumping = false;
+            }
+        }
+    }
 
         if (player2.grounded) {
             player2.velY = 0;
