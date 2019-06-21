@@ -1,5 +1,4 @@
-// in order to work 'Math.seed' must NOT be undefined,
-// so in any case, you HAVE to provide a Math.seed
+// This file is used to generate the daily level using Seed based RNG.
 Math.seededRandom = function(max, min) {
     max = max || 1;
     min = min || 0;

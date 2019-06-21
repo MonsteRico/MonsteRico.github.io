@@ -1,4 +1,5 @@
 <?php
+// This is all from W3 Schools and is used to upload levels
 $target_dir = "lvls/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -36,7 +37,4 @@ if ($uploadOk == 0) {
     }
 }
 ?>
-<script src="../universalFunctions.js"></script>
-<script>
-window.location.replace('test.php');
-</script>
+<button onclick=window.location.replace('test.php');>Go Back</button>

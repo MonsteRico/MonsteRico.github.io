@@ -1,26 +1,33 @@
+// This is the code for the entire game.
+// NOT ALL CODE IS WRITTEN BY ME. I DO NOT KNOW THE OC'S OF EVERYTHING. W3, QUORA, AND GOOGLE ARE ALL MAJOR CONTRIBUTORS.
+// Oiginal Base code written by Resistance Studio on Hackermoon.com for Unity. I converted the code to javascript and added a bunch of stuff.
+// https://hackernoon.com/generating-a-level-from-an-image-in-unity3d-225b51a68172
+
+
 // The size of the tiles in the background
 var tileSize = 16;
+// The X and Y coordinates of the start position for drawing the level.
 var StartPoint = [0, 0];
-// The texture 2D containing the level design
+// levelMap is the actual png that is turned into a level
 var levelMap = new Image();
 levelMap.src = './lvls/castle.png';
 levelMap.height = 32;
 levelMap.setAttribute('crossOrigin', '');
 levelMap.width = 64;
+// This is the spritesheet used, selected from an image with 'sprite' id. That images src can be changed to change spritesheet.
 var spritesheet = document.getElementById('sprite');
 console.log(levelMap.height);
 console.log(levelMap.width);
 // the size of the tiles in the texture with the level design
 var levelMapTileSize = 1;
-// The X and Y coordinates of the start position for drawing the level.
-// public Vector2 StartPoint = new Vector2(144,100);
-// Converts image to canvas; returns new canvas element
+
+// If a level was previously loaded, then load it again.
 if (sessionStorage.getItem('level') != null) {
     levelMap.src = sessionStorage.getItem('level');
     Test1();
 }
 
-
+// Converts image to canvas; returns new canvas element
 function Test1() {
     var ctx = document.getElementById('test1');
     if (ctx.getContext) {
@@ -35,6 +42,7 @@ function Test1() {
             //draw background image
             ctx.drawImage(img1, 0, 0);
             GenerateLevel();
+			// If it was a level that has been reloaded, it will generate these based off of whats left.
             if (sessionStorage.getItem("coinArray") !== null) {
                 coin = JSON.parse(sessionStorage.getItem("coinArray"));
                 coinsCollected = sessionStorage.getItem("coinsCollected");
@@ -49,10 +57,12 @@ function Test1() {
     }
 }
 
+// Just an RGB to Hex converter.
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
+// Generates the level
 function GenerateLevel() {
     for (var x = 0; x < levelMap.width; x += levelMapTileSize) {
         for (var y = 0; y < levelMap.height; y += levelMapTileSize) {
@@ -71,16 +81,19 @@ function GenerateLevel() {
         player.y = JSON.parse(sessionStorage.getItem("playery"));
     }
     update();
+	
     hideThings();
 }
 
 function hideThings() {
-    document.getElementById("hide").style.display = "none";
+    // hideThings() hides all of the start screen stuff.
+	document.getElementById("hide").style.display = "none";
     document.getElementById("canvas").style.display = "inline";
 }
 
 
 function GetPixel(x, y) {
+	// Using the x and y it checks the color and returns the hex value of it.
     var ctx = document.getElementById('test1');
     if (ctx.getContext) {
         ctx = ctx.getContext('2d');
@@ -94,6 +107,7 @@ function GetPixel(x, y) {
 }
 
 function TileToPoint(x, y) {
+	// Used to find the position of a tile from paint to level.
     if (x == 0 && y == 0) {
         return StartPoint;
     }
@@ -112,6 +126,7 @@ function TileToPoint(x, y) {
 
 
 function GetGameObject(color, x, y) {
+	// Takes the color from earlier and returns its associated object. X and Y values used for color code lookup.
     // refer to the colors.jpeg for what each color exactly is etc.
     switch (color) {
         case "#a349a4": // Purple - Player - 1st Row 10th Color
@@ -185,6 +200,7 @@ function GetGameObject(color, x, y) {
 }
 
 function codeLookup(x, y) {
+	// Takes in an x and y value of the codes start position. Looks three blocks left and checks that series against codes to change different factors.
     var canvas = document.getElementById("test1"),
         ctx = canvas.getContext("2d");
     var code = [];
@@ -254,6 +270,7 @@ function codeLookup(x, y) {
     }
 }
 
+// Here are the arrays and variables for all game objects. (Boxes are walls)
 var boxes = [];
 var lava = [];
 var ice = [];
@@ -271,6 +288,8 @@ var player2Exists = false;
 var coinsNeeded = 0;
 
 function Instantiate(object, xPos, yPos, h, w) {
+	// Takes the object returned from GetGameObject(), an xPos and yPos from TileToPoint() and a height and width from the tileSize.
+	// Then returns an actual object in the game
     if (object == "player") {
         player = {
             opacity: 1,
@@ -440,13 +459,14 @@ function Instantiate(object, xPos, yPos, h, w) {
     }
 }
 
-
+// Animation stuff I don't fully understand. I think it just sets up variables to use for request and cancel animation. not sure how
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
     var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
 
+// Sets up the game world canvas
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = levelMap.width * tileSize,
@@ -461,6 +481,8 @@ canvas.width = width;
 canvas.height = height;
 
 function update() {
+	// The function that Runs the entire game
+	
     // check keys
     if (keys[38] || keys[32]) {
         // up arrow or space
@@ -490,6 +512,7 @@ function update() {
     player.velX *= player.friction;
     player.velY += gravity;
 
+	// Collisions with player 2
     if (player2Exists == true) {
         colCheck(player, player2);
     }
@@ -497,6 +520,8 @@ function update() {
     ctx.clearRect(0, 0, width, height);
 
     player.grounded = false;
+	
+	// Code to make Wall Blocks work
     for (var i = 0; i < boxes.length; i++) {
         ctx.drawImage(spritesheet, 0, 0, 16, 16, boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
@@ -535,7 +560,7 @@ function update() {
 
     }
 	
-
+	// Code to make Platforms work
     for (var i = 0; i < platform.length; i++) {
         ctx.drawImage(spritesheet, 160, 0, 16, 16, platform[i].x, platform[i].y, platform[i].width, platform[i].height);
         var dir = noColCheck(player, platform[i]);
@@ -564,6 +589,7 @@ function update() {
 
     }
 
+	// Code to make Lava (Both Types) Work
     for (var i = 0; i < lava.length; i++) {
         ctx.drawImage(spritesheet, lava[i].type, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         var dir = colCheck(player, lava[i]);
@@ -583,6 +609,7 @@ function update() {
         }
     }
 
+	// Code to make Portals Work
     for (var i = 0; i < portal.length; i++) {
         ctx.drawImage(spritesheet, 176, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
         var dir = colCheck(player, portal[i]);
@@ -641,7 +668,7 @@ function update() {
         }
     }
 
-
+	// Code to make the Antigravity stuff work.
     for (var i = 0; i < antigrav.length; i++) {
         ctx.drawImage(spritesheet, antigrav[i].type, 0, 16, 16, antigrav[i].x, antigrav[i].y, antigrav[i].width, antigrav[i].height);
         var dir = colCheck(player, antigrav[i]);
@@ -659,6 +686,7 @@ function update() {
         }
     }
 
+	// Code to make Checkpoints work
     for (var i = 0; i < checkpoint.length; i++) {
         ctx.drawImage(spritesheet, 112, 0, 16, 16, checkpoint[i].x, checkpoint[i].y, checkpoint[i].width, checkpoint[i].height);
         var dir = colCheck(player, checkpoint[i]);
@@ -668,6 +696,7 @@ function update() {
         }
     }
 
+	// Code to make Goals work
     for (var i = 0; i < goal.length; i++) {
         ctx.drawImage(spritesheet, 80, 0, 16, 16, goal[i].x, goal[i].y, goal[i].width, goal[i].height);
 
@@ -713,6 +742,7 @@ function update() {
 
     }
 
+	// Code to make Coins work
     for (var i = 0; i < coin.length; i++) {
         ctx.drawImage(spritesheet, 16, 0, 16, 16, coin[i].x, coin[i].y, coin[i].width, coin[i].height);
         var dir = colCheck(player, coin[i]);
@@ -730,6 +760,7 @@ function update() {
 
     }
 
+	// Code to make Ice work
     for (var i = 0; i < ice.length; i++) {
         ctx.drawImage(spritesheet, 96, 0, 16, 16, ice[i].x, ice[i].y, ice[i].width, ice[i].height);
         var dir = colCheck(player, ice[i]);
@@ -762,6 +793,7 @@ function update() {
 
     }
 
+	// Code to make Slime Work
     for (var i = 0; i < slime.length; i++) {
         ctx.drawImage(spritesheet, 64, 0, 16, 16, slime[i].x, slime[i].y, slime[i].width, slime[i].height);
         var dir = colCheck(player, slime[i]);
@@ -794,6 +826,7 @@ function update() {
 
     }
 	
+	// Code to make Moving Blocks work
     for (var i = 0; i < moving.length; i++) {
         ctx.drawImage(spritesheet, 0, 0, 16, 16, moving[i].x, moving[i].y, moving[i].width, moving[i].height);
 		for (var j = 0; j < boxes.length; j++) {
@@ -887,15 +920,16 @@ function update() {
     player.x += player.velX;
     player.y += player.velY;
 
+	// Draw players new position
     ctx.fill();
     ctx.fillStyle = "blue";
     ctx.globalAlpha = player.opacity;
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    // Player 2
+    // if Player 2 exists, do all player 1 stuff but minus the drawing and extra movements
     if (player2Exists == true) {
         if (keys[87]) {
-            // up arrow or space
+            // w
             if (!player2.jumping && player2.grounded) {
                 player2.jumping = true;
                 player2.grounded = false;
@@ -907,13 +941,13 @@ function update() {
             }
         }
         if (keys[68]) {
-            // right arrow
+            // d
             if (player2.velX < player2.speed) {
                 player2.velX++;
             }
         }
         if (keys[65]) {
-            // left arrow
+            // a
             if (player2.velX > -player2.speed) {
                 player2.velX--;
             }
@@ -1244,10 +1278,12 @@ function update() {
         ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
     }
 
+	// dont understand this but updates the animation
     requestAnimationFrame(update);
 }
 
 function isOpen(x, y) {
+	// Used for color codes
     if (GetGameObject(GetPixel(x, y), x, y) !== null) {
         return false;
     } else {
@@ -1256,6 +1292,7 @@ function isOpen(x, y) {
 }
 
 function setCheckpoint(dir, i) {
+	// Used to set checkpoints
     var d = dir;
     var q = i;
     if (confirm('Would you like to set this as a checkpoint? Can only be done once! Make sure you have all the coins you can up to this point! If Yes press Ok. If No press cancel. Pressing either will permanently remove the checkpoint so choose carefully!')) {
@@ -1273,6 +1310,7 @@ function setCheckpoint(dir, i) {
 }
 
 function removeStorage() {
+	// Resets the storage if the level is finishe
     sessionStorage.removeItem("playerx");
     sessionStorage.removeItem("playery");
     sessionStorage.removeItem("checkpointArray");
@@ -1283,6 +1321,7 @@ function removeStorage() {
 }
 
 function reset() {
+	// Reloads the game if player dies
     sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
     sessionStorage.setItem("coinArray", JSON.stringify(coin));
     sessionStorage.setItem("coinsCollected", coinsCollected);
@@ -1291,6 +1330,7 @@ function reset() {
 }
 
 function ejectPlayer(dir) {
+	// Pushes player off of goal if they dont have all coins
     if (dir === "t") {
         player.y -= 2;
     }
@@ -1306,6 +1346,7 @@ function ejectPlayer(dir) {
 }
 
 function colCheck(shapeA, shapeB) {
+	// DONT FULLY UNDERSTAND Collisions yet but here they are.
     // get the vectors to check against
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
         vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
@@ -1340,6 +1381,7 @@ function colCheck(shapeA, shapeB) {
 }
 
 function noColCheck(shapeA, shapeB) {
+	// My attempt at one without actually colliding but still testing if they touched. Don't think it works.
     // get the vectors to check against
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
         vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
@@ -1371,6 +1413,7 @@ function noColCheck(shapeA, shapeB) {
 }
 
 function checkAllCoins() {
+	// Checks if player has all coins to end the level
     var collected = 0;
     if (coinsCollected == coinsNeeded) {
         collected = 1;
@@ -1382,10 +1425,12 @@ function checkAllCoins() {
 }
 
 function back() {
+	// Allows you to leave the level without finishing it. Only usable from console.
     sessionStorage.clear();
     location.reload();
 }
 
+// Checks for keys moving down and up
 document.body.addEventListener("keydown", function(e) {
     keys[e.keyCode] = true;
 });
@@ -1394,7 +1439,7 @@ document.body.addEventListener("keyup", function(e) {
     keys[e.keyCode] = false;
 });
 
-
+// Runs update once game canvas loads again. Not sure what it does.
 document.getElementById("test1").addEventListener("load", function() {
     update();
 });

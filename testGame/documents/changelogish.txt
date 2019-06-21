@@ -4,3 +4,6 @@ Sort of a changelog
 5/18/2019 - Added color codes for making levels have varying gravity and stuff. List included in colorList.txt
 5/20/2019 - Cleaned up some stuff and the files
 5/22/2019 - Added portals
+6/19/2019 - Added a php file that allows levels to be uploaded permanently to a 
+server if we had one. Also allows files to be deleted.
+6/20/2019 - Added Moving Blocks

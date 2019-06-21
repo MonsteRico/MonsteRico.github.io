@@ -24,7 +24,7 @@ button {
 	</form>
 	<p>Or play one of these other levels</p>
 <?php
-
+// Pulls all the levels from files and puts them onto the screen to be played. Needs finished (Names need to work right and designing needs to be done).
 $dir = "lvls/";
 $a = scandir($dir);
 array_splice($a, 0, 1);
@@ -49,6 +49,7 @@ for ($r; $r < count($a); $r++) {
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
+// This stuff is how levels are started and thats it.
 function chooseLevel(level) {
   removeStorage();
   levelMap.src = level;
