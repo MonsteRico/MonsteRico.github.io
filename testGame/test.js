@@ -194,6 +194,18 @@ function GetGameObject(color, x, y) {
         {
             return "moving";
         }
+        case "#3f48cc": // Indigo - Blink Block (Red) - 1st Row 9th Color
+        {
+            return "blinkRed";
+        }
+        case "#7092be": // Blue-Gray - Blink Block (Blue) - 2nd Row 9th Color
+        {
+            return "blinkBlue";
+        }
+        case "#efe4b0": // Light Yellow - Shooter Block - 2nd Row 6th Color
+        {
+            return "shooter";
+        }
         default:
             return null;
     }
@@ -282,6 +294,10 @@ var portal = [];
 var platform = [];
 var antigrav = [];
 var moving = [];
+var blinkRed = [];
+var blinkBlue = [];
+var shooter = [];
+var bullet = [];
 var player;
 var player2;
 var player2Exists = false;
@@ -457,6 +473,46 @@ function Instantiate(object, xPos, yPos, h, w) {
             velX: 0.5
         });
     }
+    if (object == "blinkRed") {
+        blinkRed.push({
+            opacity: 1,
+            type: 192,
+            x: xPos,
+            y: yPos,
+            width: w,
+            height: h,
+            color: "red"
+        });
+    }
+    if (object == "blinkBlue") {
+        blinkBlue.push({
+            opacity: 1,
+            type: 240,
+            x: xPos,
+            y: yPos,
+            width: w,
+            height: h,
+            color: "blue"
+        });
+    }
+	if (object == "shooter") {
+        shooter.push({
+            opacity: 1,
+            x: xPos,
+            y: yPos,
+            width: w,
+            height: h,
+			cooldown: 60
+        });
+        bullet.push({
+            opacity: 0,
+            x: xPos,
+            y: yPos,
+            width: 4,
+            height: 4,
+            velX: 0
+        });
+    }
 }
 
 // Animation stuff I don't fully understand. I think it just sets up variables to use for request and cancel animation. not sure how
@@ -475,7 +531,11 @@ var canvas = document.getElementById("canvas"),
     gravity = 0.2,
     speed = 3,
     friction = 0.8,
-    coinsCollected = 0;
+    coinsCollected = 0,
+	redActive = true,
+	blueActive = false,
+	turretCooldown = 60,
+	activeCounter = 0;
 
 canvas.width = width;
 canvas.height = height;
@@ -912,11 +972,231 @@ function update() {
         }
 		moving[i].x += moving[i].velX;
     }
+	
 
+	// Code to make Blink (Red) Blocks work
+    for (var i = 0; i < blinkRed.length; i++) {
+		if (redActive == true) {
+			ctx.drawImage(spritesheet, 192, 0, 16, 16, blinkRed[i].x, blinkRed[i].y, blinkRed[i].width, blinkRed[i].height);
+		}
+		else {
+			ctx.drawImage(spritesheet, 208, 0, 16, 16, blinkRed[i].x, blinkRed[i].y, blinkRed[i].width, blinkRed[i].height);
+		}
+		if (redActive == true) {
+			var dir = colCheck(player, blinkRed[i]);
+			if (dir === "l" || dir === "r") {
+				player.velX = 0;
+				player.jumping = false;
+				player.grounded = false;
+			} else if (dir === "b") {
+				while (player.friction != friction) {
+					player.friction -= 0.1;
+				}
+				while (player.speed != speed) {
+					player.speed -= 1;
+				}
+				if (gravity > 0) {
+					player.grounded = true;
+					player.jumping = false;
+				} else {
+					player.velY *= -1;
+				}
+			} else if (dir === "t") {
+				while (player.friction != friction) {
+					player.friction -= 0.1;
+				}
+				while (player.speed != speed) {
+					player.speed -= 1;
+				}
+				if (gravity > 0) {
+					player.velY *= -1;
+				} else {
+					player.grounded = true;
+					player.jumping = false;
+				}
+			}
+			setTimeout(function() {
+				redActive = false;
+			blueActive = true;}, 5000);
+		}
+		
+
+    }
+	
+	// Code to make Blink (Blue) Blocks work
+    for (var i = 0; i < blinkBlue.length; i++) {
+		if (blueActive == true) {
+			ctx.drawImage(spritesheet, 224, 0, 16, 16, blinkBlue[i].x, blinkBlue[i].y, blinkBlue[i].width, blinkBlue[i].height);
+		}
+		else {
+			ctx.drawImage(spritesheet, 240, 0, 16, 16, blinkBlue[i].x, blinkBlue[i].y, blinkBlue[i].width, blinkBlue[i].height);
+		}
+        
+        
+		if (blueActive == true) {
+			var dir = colCheck(player, blinkBlue[i]);
+			if (dir === "l" || dir === "r") {
+				player.velX = 0;
+				player.jumping = false;
+				player.grounded = false;
+			} else if (dir === "b") {
+				while (player.friction != friction) {
+					player.friction -= 0.1;
+				}
+				while (player.speed != speed) {
+					player.speed -= 1;
+				}
+				if (gravity > 0) {
+					player.grounded = true;
+					player.jumping = false;
+				} else {
+					player.velY *= -1;
+				}
+			} else if (dir === "t") {
+				while (player.friction != friction) {
+					player.friction -= 0.1;
+				}
+				while (player.speed != speed) {
+					player.speed -= 1;
+				}
+				if (gravity > 0) {
+					player.velY *= -1;
+				} else {
+					player.grounded = true;
+					player.jumping = false;
+				}
+			}
+			setTimeout(function() {
+				redActive = true;
+			blueActive = false;}, 5000);
+		}
+		
+
+		
+    }
+	
+	// Code to make Shooter Blocks work
+    for (var i = 0; i < shooter.length; i++) {
+        ctx.drawImage(spritesheet, 256, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
+		var turretNumber = i;
+        var dir = colCheck(player, shooter[i]);
+        if (dir === "l" || dir === "r") {
+            player.velX = 0;
+            player.jumping = false;
+            player.grounded = false;
+        } else if (dir === "b") {
+            while (player.friction != friction) {
+                player.friction -= 0.1;
+            }
+            while (player.speed != speed) {
+                player.speed -= 1;
+            }
+            if (gravity > 0) {
+                player.grounded = true;
+                player.jumping = false;
+            } else {
+                player.velY *= -1;
+            }
+        } else if (dir === "t") {
+            while (player.friction != friction) {
+                player.friction -= 0.1;
+            }
+            while (player.speed != speed) {
+                player.speed -= 1;
+            }
+            if (gravity > 0) {
+                player.velY *= -1;
+            } else {
+                player.grounded = true;
+                player.jumping = false;
+            }
+        }
+		if (shooter[i].cooldown == 0) {
+			fire(shooter[i].x, shooter[i].y);
+			shooter[i].cooldown = 99;
+		}
+		else {
+			shooter[i].cooldown -= 1;
+		}
+
+    }
+	
+	turretCooldown -= 1;
+	
+	// Code to make Bullets Work
+    for (var i = 0; i < bullet.length; i++) {
+		ctx.globalAlpha = bullet[i].opacity;
+        ctx.drawImage(spritesheet, 272, 0, 4, 4, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+		ctx.globalAlpha = 1;
+        var dir = colCheck(player, bullet[i]);
+
+        if (dir === "l" || dir === "r") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        } else if (dir === "b") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        } else if (dir === "t") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        }		
+		for (var j = 0; j < boxes.length; j++) {
+			var dir = colCheck(bullet[i], boxes[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < lava.length; j++) {
+			var dir = colCheck(bullet[i], lava[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < ice.length; j++) {
+			var dir = colCheck(bullet[i], ice[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < slime.length; j++) {
+			var dir = colCheck(bullet[i], slime[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < antigrav.length; j++) {
+			var dir = colCheck(bullet[i], antigrav[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < portal.length; j++) {
+			var dir = colCheck(bullet[i], portal[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		for (var j = 0; j < platform.length; j++) {
+			var dir = colCheck(bullet[i], platform[j]);
+			if (dir === "l" || dir === "r") {
+				bullet[i].width = 0;
+			}
+		}
+		
+		if (bullet.x < 0 || bullet.x > width) {
+			bullet.splice(i,1);
+		}
+		
+		bullet[i].x += bullet[i].velX;
+    }
+	
     if (player.grounded) {
         player.velY = 0;
     }
-
+	
     player.x += player.velX;
     player.y += player.velY;
 
@@ -1280,6 +1560,30 @@ function update() {
 
 	// dont understand this but updates the animation
     requestAnimationFrame(update);
+}
+
+function fire(x, y) {
+	if (player.x > x) {
+        bullet.push({
+            opacity: 1,
+            x: x,
+            y: y + 8,
+            width: 4,
+            height: 4,
+            velX: 1
+        });
+	}
+	else if (player.x < x) {
+		 bullet.push({
+            opacity: 1,
+            x: x,
+            y: y + 8,
+            width: 4,
+            height: 4,
+            velX: -1
+        });
+	}
+	else {}
 }
 
 function isOpen(x, y) {
