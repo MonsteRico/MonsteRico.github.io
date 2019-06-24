@@ -1121,8 +1121,6 @@ function update() {
 
     }
 	
-	turretCooldown -= 1;
-	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
 		ctx.globalAlpha = bullet[i].opacity;
@@ -1142,55 +1140,8 @@ function update() {
             cancelAnimationFrame(update);
             reset();
             return;
-        }		
-		for (var j = 0; j < boxes.length; j++) {
-			var dir = colCheck(bullet[i], boxes[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < lava.length; j++) {
-			var dir = colCheck(bullet[i], lava[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < ice.length; j++) {
-			var dir = colCheck(bullet[i], ice[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < slime.length; j++) {
-			var dir = colCheck(bullet[i], slime[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < antigrav.length; j++) {
-			var dir = colCheck(bullet[i], antigrav[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < portal.length; j++) {
-			var dir = colCheck(bullet[i], portal[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		for (var j = 0; j < platform.length; j++) {
-			var dir = colCheck(bullet[i], platform[j]);
-			if (dir === "l" || dir === "r") {
-				bullet[i].width = 0;
-			}
-		}
-		
-		if (bullet.x < 0 || bullet.x > width) {
-			bullet.splice(i,1);
-		}
-		
-		bullet[i].x += bullet[i].velX;
+        }	
+	    setTimeout(function() {bullet.splice(0, bullet.length);}, 2000);
     }
 	
     if (player.grounded) {
@@ -1563,25 +1514,38 @@ function update() {
 }
 
 function fire(x, y) {
+	var checkX = x;
 	if (player.x > x) {
-        bullet.push({
-            opacity: 1,
-            x: x,
-            y: y + 8,
-            width: 4,
-            height: 4,
-            velX: 1
-        });
+	  while (true) {
+		 checkX += 1;
+		 if (isOpen(checkX, y)) {
+			bullet.push({
+				opacity: 1,
+				x: checkX,
+				y: y+8,
+				width: 16,
+				height: 10});
+			}
+		  else {
+			  break;
+		  }
+	  }
 	}
 	else if (player.x < x) {
-		 bullet.push({
-            opacity: 1,
-            x: x,
-            y: y + 8,
-            width: 4,
-            height: 4,
-            velX: -1
-        });
+	  while (true) {
+		 checkX += 1;
+		 if (isOpen(checkX, y)) {
+			bullet.push({
+				opacity: 1,
+				x: checkX,
+				y: y+8,
+				width: 16,
+				height: 10});
+			}
+		  else {
+			  break;
+		  }
+	  }
 	}
 	else {}
 }
