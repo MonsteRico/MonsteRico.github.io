@@ -1201,7 +1201,7 @@ function update() {
     player.x += player.velX;
     player.y += player.velY;
 
-@@ -1282,6 +1562,30 @@ function update() {
+function update() {
     requestAnimationFrame(update);
 }
 
