@@ -1106,20 +1106,19 @@ function update() {
 	if (onCooldown == false) {
 	onCooldown = true;
 	setTimeout(function() {
-	  //console.log("preparing to fire");
-	  shooter[i].type = 272;
+	  prepareFire(i);
 	}, 5000);
 	setTimeout(function() {
-	  fire(i)
+	  fire(i);
 	}, 10000);
-	setTimeout(function() {/*console.log("reset")*/; onCooldown = false; bullet = []; shooter[i].type = 256;}, 15000);
+	setTimeout(function() {resetFire(i)}, 15000);
     }
     }
 	
 	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
-        if (isOpen(bullet[i].x/16, bullet[i].y/16) == false) {
+        if (isOpen((bullet[i].x/16), (bullet[i].y/16)) == false) {
             bullet[i].type = 320;
             bullet[i].typeY = 0;
         }
@@ -1704,6 +1703,18 @@ function beamFire(direction, x, y) {
 		    xPos += 1;
 	    }
     }
+}
+
+function prepareFire(i) {
+	  //console.log("preparing to fire");
+	  shooter[i].type = 272;
+}
+
+function resetFire(i) {
+	/*console.log("reset")*/;
+	onCooldown = false;
+	bullet = [];
+	shooter[i].type = 256;
 }
 
 function isOpen(x, y) {
