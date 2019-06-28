@@ -1550,7 +1550,7 @@ function fire(direction, x, y) {
 			    width: 16,
 			    height: 6
 			});
-		    xPos -= 1;
+		    xPos += 1;
 	    }
     }
 }
