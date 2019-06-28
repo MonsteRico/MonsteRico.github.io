@@ -1706,15 +1706,19 @@ function beamFire(direction, x, y) {
 }
 
 function prepareFire(i) {
+	for (var i = 0; i < shooter.length; i++) {
 	  //console.log("preparing to fire");
 	  shooter[i].type = 272;
+	}
 }
 
 function resetFire(i) {
+	for (var i = 0; i < shooter.length; i++) {
 	/*console.log("reset")*/;
 	onCooldown = false;
 	bullet = [];
 	shooter[i].type = 256;
+	}
 }
 
 function isOpen(x, y) {
