@@ -1525,7 +1525,7 @@ function fire(direction, x, y) {
     if (direction == "left") {
 	    console.log("direction works");
 	    xPos -= 1;
-	    while (GetGameObject(GetPixel(xPos, yPos), xPos, yPos) === null) {
+	    while (GetGameObject(GetPixel(parseInt(xPos), parseInt(yPos)), parseInt(xPos), parseInt(yPos)) === null) {
 		    console.log("it should be working now");
 		         bullet.push({
 			    opacity: 1,
