@@ -1523,7 +1523,7 @@ function fire(direction, x, y) {
     if (direction == "left") {
 	    console.log("direction works");
 	    xPos -= 1;
-	    while (isOpen(xPos, yPos)) {
+	    while (GetGameObject(GetPixel(xPos, yPos), xPos, yPos) === null) {
 		    console.log("it should be working now");
 		         bullet.push({
 			    opacity: 1,
