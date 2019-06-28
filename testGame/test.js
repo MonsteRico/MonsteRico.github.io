@@ -1106,12 +1106,12 @@ function update() {
 	if (onCooldown == false) {
 	onCooldown = true;
 	setTimeout(function() {
-	  console.log("preparing to fire");
+	  //console.log("preparing to fire");
 	}, 5000);
 	setTimeout(function() {
-	fire(i)
+	  fire(i)
 	}, 10000);
-	setTimeout(function() {console.log("reset"); onCooldown = false; bullet = [];}, 15000);
+	setTimeout(function() {/*console.log("reset")*/; onCooldown = false; bullet = [];}, 15000);
     }
     }
 	
@@ -1488,6 +1488,141 @@ function update() {
             }
         }
     }
+	    
+	// Code to make Blink (Red) Blocks work
+    for (var i = 0; i < blinkRed.length; i++) {
+		if (redActive == true) {
+			var dir = colCheck(player2, blinkRed[i]);
+			if (dir === "l" || dir === "r") {
+				player2.velX = 0;
+				player2.jumping = false;
+				player2.grounded = false;
+			} else if (dir === "b") {
+				while (player2.friction != friction) {
+					player2.friction -= 0.1;
+				}
+				while (player2.speed != speed) {
+					player2.speed -= 1;
+				}
+				if (gravity > 0) {
+					player2.grounded = true;
+					player2.jumping = false;
+				} else {
+					player2.velY *= -1;
+				}
+			} else if (dir === "t") {
+				while (player2.friction != friction) {
+					player2.friction -= 0.1;
+				}
+				while (player2.speed != speed) {
+					player2.speed -= 1;
+				}
+				if (gravity > 0) {
+					player2.velY *= -1;
+				} else {
+					player2.grounded = true;
+					player2.jumping = false;
+				}
+			}
+		
+
+    }
+	
+	// Code to make Blink (Blue) Blocks work
+    for (var i = 0; i < blinkBlue.length; i++) {
+		if (blueActive == true) {
+			var dir = colCheck(player2, blinkBlue[i]);
+			if (dir === "l" || dir === "r") {
+				player2.velX = 0;
+				player2.jumping = false;
+				player2.grounded = false;
+			} else if (dir === "b") {
+				while (player2.friction != friction) {
+					player2.friction -= 0.1;
+				}
+				while (player2.speed != speed) {
+					player2.speed -= 1;
+				}
+				if (gravity > 0) {
+					player2.grounded = true;
+					player2.jumping = false;
+				} else {
+					player2.velY *= -1;
+				}
+			} else if (dir === "t") {
+				while (player2.friction != friction) {
+					player2.friction -= 0.1;
+				}
+				while (player2.speed != speed) {
+					player2.speed -= 1;
+				}
+				if (gravity > 0) {
+					player2.velY *= -1;
+				} else {
+					player2.grounded = true;
+					player2.jumping = false;
+				}
+			}
+    }
+	
+	// Code to make Shooter Blocks work
+    for (var i = 0; i < shooter.length; i++) {
+        var dir = colCheck(player2, shooter[i]);
+        if (dir === "l" || dir === "r") {
+            player2.velX = 0;
+            player2.jumping = false;
+            player2.grounded = false;
+        } else if (dir === "b") {
+            while (player2.friction != friction) {
+                player2.friction -= 0.1;
+            }
+            while (player2.speed != speed) {
+                player2.speed -= 1;
+            }
+            if (gravity > 0) {
+                player2.grounded = true;
+                player2.jumping = false;
+            } else {
+                player2.velY *= -1;
+            }
+        } else if (dir === "t") {
+            while (player2.friction != friction) {
+                player2.friction -= 0.1;
+            }
+            while (player2.speed != speed) {
+                player2.speed -= 1;
+            }
+            if (gravity > 0) {
+                player2.velY *= -1;
+            } else {
+                player2.grounded = true;
+                player2.jumping = false;
+            }
+        }
+    }
+	
+	
+	// Code to make Bullets Work
+    for (var i = 0; i < bullet.length; i++) {
+        ctx.drawImage(spritesheet, 272, 0, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+        var dir = colCheck(player2, bullet[i]);
+
+        if (dir === "l" || dir === "r") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        } else if (dir === "b") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        } else if (dir === "t") {
+            cancelAnimationFrame(update);
+            reset();
+            return;
+        }
+	    
+    }
+	    
 
         if (player2.grounded) {
             player2.velY = 0;
@@ -1507,7 +1642,7 @@ function update() {
 }
 function fire(i) {
 	for (var i = 0; i < shooter.length; i++) {
-	console.log("fire");
+	//console.log("fire");
 	  if (player.x < shooter[i].x) {
 	      console.log("left");
 	      beamFire("left", shooter[i].x, shooter[i].y);
@@ -1524,14 +1659,14 @@ function fire(i) {
 function beamFire(direction, x, y) {
       var canvas = document.getElementById("test1"),
         ctx = canvas.getContext("2d");
-	console.log("function works");
+	//console.log("function works");
     var xPos = x/tileSize;
     var yPos = y/tileSize;
     if (direction == "left") {
-	    console.log("direction works");
+	    //console.log("direction works");
 	    xPos -= 1;
 	    while (isOpen(xPos, yPos)) {
-		    console.log("it should be working now");
+		    //console.log("it should be working now");
 		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
 			    opacity: 1,
@@ -1546,7 +1681,7 @@ function beamFire(direction, x, y) {
     else if (direction == "right") {
 	    xPos += 1;
 	    while (isOpen(xPos, yPos)) {
-		    console.log("it should be working now");
+		  //  console.log("it should be working now");
 		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
 			    opacity: 1,
