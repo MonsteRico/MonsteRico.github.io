@@ -1525,7 +1525,7 @@ function fire(direction, x, y) {
     if (direction == "left") {
 	    console.log("direction works");
 	    xPos -= 1;
-	    while (isOpen(xPos, yPos) {
+	    while (isOpen(xPos, yPos)) {
 		    console.log("it should be working now");
 		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
@@ -1540,7 +1540,7 @@ function fire(direction, x, y) {
     }
     else if (direction == "right") {
 	    xPos += 1;
-	    while (isOpen(xPos, yPos) {
+	    while (isOpen(xPos, yPos)) {
 		    console.log("it should be working now");
 		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
