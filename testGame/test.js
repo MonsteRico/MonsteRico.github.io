@@ -1520,17 +1520,18 @@ function fire(direction, x, y) {
       var canvas = document.getElementById("test1"),
         ctx = canvas.getContext("2d");
 	console.log("function works");
-    var xPos = x;
-    var yPos = y;
+    var xPos = x/tileSize;
+    var yPos = y/tileSize;
     if (direction == "left") {
 	    console.log("direction works");
 	    xPos -= 1;
-	    while (GetGameObject(GetPixel(parseInt(xPos), parseInt(yPos)), parseInt(xPos), parseInt(yPos)) === null) {
+	    while (GetGameObject(GetPixel(xPos, yPos), xPos, yPos) === null) {
 		    console.log("it should be working now");
+		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
 			    opacity: 1,
-			    x: xPos,
-			    y: yPos+6,
+			    x: position[0],
+			    y: position[1] + 6,
 			    width: 16,
 			    height: 6
 			});
