@@ -1110,18 +1110,18 @@ function update() {
 	}, 5000);
 	setTimeout(function() {
 		console.log("fire");
-	  if (player.x < shooter[0].x) {
+	  if (player.x < shooter[i].x) {
 	      console.log("left");
-	      fire("left", shooter[0].x, shooter[0].y);
+	      fire("left", shooter[i].x, shooter[i].y);
 	  }
-	  else if (player.x > shooter[0].x) {
+	  else if (player.x > shooter[i].x) {
 	      console.log("right");
-	      fire("right", shooter[0].x, shooter[0].y);
+	      fire("right", shooter[i].x, shooter[i].y);
 	  }
 	  else {
 	  }
 	}, 10000, i);
-	setTimeout(function() {console.log("reset"); onCooldown = false;}, 15000);
+	setTimeout(function() {console.log("reset"); onCooldown = false; bullet = [];}, 15000);
     }
     }
 	
@@ -1525,7 +1525,7 @@ function fire(direction, x, y) {
     if (direction == "left") {
 	    console.log("direction works");
 	    xPos -= 1;
-	    while (GetGameObject(GetPixel(xPos, yPos), xPos, yPos) === null) {
+	    while (isOpen(xPos, yPos) {
 		    console.log("it should be working now");
 		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
@@ -1540,15 +1540,17 @@ function fire(direction, x, y) {
     }
     else if (direction == "right") {
 	    xPos += 1;
-	    while (isOpen(xPos, yPos)) {
+	    while (isOpen(xPos, yPos) {
+		    console.log("it should be working now");
+		    var position = TileToPoint(xPos, yPos);
 		         bullet.push({
 			    opacity: 1,
-			    x: xPos,
-			    y: yPos+6,
+			    x: position[0],
+			    y: position[1] + 6,
 			    width: 16,
 			    height: 6
 			});
-		    xPos += 1;
+		    xPos -= 1;
 	    }
     }
 }
