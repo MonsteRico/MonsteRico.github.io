@@ -526,7 +526,7 @@ var canvas = document.getElementById("canvas"),
     coinsCollected = 0,
 	redActive = true,
 	blueActive = false,
-	turretCooldown = 60,
+	onCooldown = false,
 	activeCounter = 0;
 
 canvas.width = width;
