@@ -1649,11 +1649,9 @@ function fire(i) {
 	for (var i = 0; i < shooter.length; i++) {
 	//console.log("fire");
 	  if (player.x < shooter[i].x) {
-	      console.log("left");
 	      beamFire("left", shooter[i].x, shooter[i].y);
 	  }
 	  else if (player.x > shooter[i].x) {
-	      console.log("right");
 	      beamFire("right", shooter[i].x, shooter[i].y);
 	  }
 	  else {
