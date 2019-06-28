@@ -1517,17 +1517,20 @@ function update() {
 }
 
 function fire(direction, x, y) {
+	console.log("function works");
     var xPos = x;
     var yPos = y;
     if (direction == "left") {
+	    console.log("direction works");
 	    xPos -= 1;
 	    while (isOpen(xPos, yPos)) {
+		    console.log("it should be working now");
 		         bullet.push({
 			    opacity: 1,
 			    x: xPos,
 			    y: yPos+6,
 			    width: 16,
-			    height: 6,
+			    height: 6
 			});
 		    xPos -= 1;
 	    }
@@ -1540,7 +1543,7 @@ function fire(direction, x, y) {
 			    x: xPos,
 			    y: yPos+6,
 			    width: 16,
-			    height: 6,
+			    height: 6
 			});
 		    xPos += 1;
 	    }
