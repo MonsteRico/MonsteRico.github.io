@@ -1487,6 +1487,7 @@ function update() {
                 player2.jumping = false;
             }
         }
+    }
 	    
 	// Code to make Blink (Red) Blocks work
     for (var i = 0; i < blinkRed.length; i++) {
@@ -1636,10 +1637,13 @@ function update() {
         ctx.globalAlpha = player2.opacity;
         ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
     }
+    }
+    
    
 
 	// dont understand this but updates the animation
     requestAnimationFrame(update);
+    
 }
 function fire(i) {
 	for (var i = 0; i < shooter.length; i++) {
