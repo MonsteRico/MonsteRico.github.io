@@ -7,3 +7,6 @@ Sort of a changelog
 6/19/2019 - Added a php file that allows levels to be uploaded permanently to a 
 server if we had one. Also allows files to be deleted.
 6/20/2019 - Added Moving Blocks
+6/20/2019 - Added Moving Blocks
+6/22/2019 - Added Blink Blocks
+6/28/2019 - Added Lazer Shooter Things
