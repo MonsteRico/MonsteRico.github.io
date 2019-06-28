@@ -1120,6 +1120,7 @@ function update() {
 	}, 10000, i);
 	setTimeout(function() {onCooldown = false;}, 15000);
     }
+    }
 	
 	
 	// Code to make Bullets Work
