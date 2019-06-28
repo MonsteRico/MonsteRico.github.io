@@ -1111,9 +1111,11 @@ function update() {
 	setTimeout(function() {
 		console.log("fire");
 	  if (player.x < shooter[i].x) {
+	      console.log("left");
 	      fire("left", shooter[i].x, shooter[i].y);
 	  }
 	  else if (player.x > shooter[i].x) {
+	      console.log("right");
 	      fire("right", shooter[i].x, shooter[i].y);
 	  }
 	  else {
@@ -1126,7 +1128,7 @@ function update() {
 	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
-        ctx.drawImage(spritesheet, 272, 0, 4, 4, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+        ctx.drawImage(spritesheet, 272, 0, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
         var dir = colCheck(player, bullet[i]);
 
         if (dir === "l" || dir === "r") {
