@@ -1109,18 +1109,8 @@ function update() {
 	  console.log("preparing to fire");
 	}, 5000);
 	setTimeout(function() {
-		console.log("fire");
-	  if (player.x < shooter[i].x) {
-	      console.log("left");
-	      fire("left", shooter[i].x, shooter[i].y);
-	  }
-	  else if (player.x > shooter[i].x) {
-	      console.log("right");
-	      fire("right", shooter[i].x, shooter[i].y);
-	  }
-	  else {
-	  }
-	}, 10000, i);
+	fire(i)
+	}, 10000);
 	setTimeout(function() {console.log("reset"); onCooldown = false; bullet = [];}, 15000);
     }
     }
@@ -1515,8 +1505,21 @@ function update() {
 	// dont understand this but updates the animation
     requestAnimationFrame(update);
 }
+function fire(i) {
+	console.log("fire");
+	  if (player.x < shooter[i].x) {
+	      console.log("left");
+	      beamFire("left", shooter[i].x, shooter[i].y);
+	  }
+	  else if (player.x > shooter[i].x) {
+	      console.log("right");
+	      beamFire("right", shooter[i].x, shooter[i].y);
+	  }
+	  else {
+	  }
+}
 
-function fire(direction, x, y) {
+function beamFire(direction, x, y) {
       var canvas = document.getElementById("test1"),
         ctx = canvas.getContext("2d");
 	console.log("function works");
