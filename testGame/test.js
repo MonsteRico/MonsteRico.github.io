@@ -1109,6 +1109,7 @@ function update() {
 	  console.log("preparing to fire");
 	}, 5000);
 	setTimeout(function() {
+		console.log("fire");
 	  if (player.x < shooter[i].x) {
 	      fire("left", shooter[i].x, shooter[i].y);
 	  }
@@ -1118,7 +1119,7 @@ function update() {
 	  else {
 	  }
 	}, 10000, i);
-	setTimeout(function() {onCooldown = false;}, 15000);
+	setTimeout(function() {console.log("reset"); onCooldown = false;}, 15000);
     }
     }
 	
