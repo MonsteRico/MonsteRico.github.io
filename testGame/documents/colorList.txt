@@ -15,9 +15,9 @@ Dark Brown - Antigravity W/ Down Arrow - 1st Row 3rd Color
 Grey - Color Code Start - 1st Row 2nd Color
 Turquoise - Portals - 1st Row 8th Color
 Light Orange - Moving Blocks - 2nd Row 5th Color
-Light Orange - Blink Block (Red) - 1st Row 9th Color
-Light Orange - Blink Block (Blue) - 2nd Row 9th Color
-Light Orange - Lazer Shooting Block - 2nd Row 6th Color
+Indigo - Blink Block (Red) - 1st Row 9th Color
+Blue-Gray - Blink Block (Blue) - 2nd Row 9th Color
+Light Yellow - Lazer Shooting Block - 2nd Row 6th Color
 
 Levels need to be .pngs made in paint or similar program.
 Size of a level file is 64x32 pixels.
