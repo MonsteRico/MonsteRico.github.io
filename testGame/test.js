@@ -1506,6 +1506,7 @@ function update() {
     requestAnimationFrame(update);
 }
 function fire(i) {
+	for (var i = 0; i < shooter.length; i++) {
 	console.log("fire");
 	  if (player.x < shooter[i].x) {
 	      console.log("left");
@@ -1517,6 +1518,7 @@ function fire(i) {
 	  }
 	  else {
 	  }
+	}
 }
 
 function beamFire(direction, x, y) {
