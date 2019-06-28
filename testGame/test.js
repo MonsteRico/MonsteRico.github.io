@@ -497,12 +497,12 @@ function Instantiate(object, xPos, yPos, h, w) {
     }
 	if (object == "shooter") {
         shooter.push({
+	    type: 256,
             opacity: 1,
             x: xPos,
             y: yPos,
             width: w,
-            height: h,
-			cooldown: 60
+            height: h
         });
     }
 }
@@ -1069,7 +1069,7 @@ function update() {
 	
 	// Code to make Shooter Blocks work
     for (var i = 0; i < shooter.length; i++) {
-        ctx.drawImage(spritesheet, 256, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
+        ctx.drawImage(spritesheet, shooter[i].type, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
 		var turretNumber = i;
         var dir = colCheck(player, shooter[i]);
         if (dir === "l" || dir === "r") {
@@ -1107,20 +1107,24 @@ function update() {
 	onCooldown = true;
 	setTimeout(function() {
 	  //console.log("preparing to fire");
+	  shooter[i].type = 272;
 	}, 5000);
 	setTimeout(function() {
 	  fire(i)
 	}, 10000);
-	setTimeout(function() {/*console.log("reset")*/; onCooldown = false; bullet = [];}, 15000);
+	setTimeout(function() {/*console.log("reset")*/; onCooldown = false; bullet = []; shooter[i].type = 256;}, 15000);
     }
     }
 	
 	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
-        ctx.drawImage(spritesheet, 272, 0, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+        if (isOpen(bullet[i].x/16, bullet[i].y/16) == false) {
+            bullet[i].type = 320;
+            bullet[i].typeY = 0;
+        }
+        ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
         var dir = colCheck(player, bullet[i]);
-
         if (dir === "l" || dir === "r") {
             cancelAnimationFrame(update);
             reset();
@@ -1676,7 +1680,9 @@ function beamFire(direction, x, y) {
 			    x: position[0],
 			    y: position[1] + 6,
 			    width: 16,
-			    height: 6
+			    height: 8,
+                type: 320,
+                typeY: 9
 			});
 		    xPos -= 1;
 	    }
@@ -1691,7 +1697,9 @@ function beamFire(direction, x, y) {
 			    x: position[0],
 			    y: position[1] + 6,
 			    width: 16,
-			    height: 6
+			    height: 6,
+                type: 320,
+                typeY: 9
 			});
 		    xPos += 1;
 	    }
