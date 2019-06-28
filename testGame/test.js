@@ -1517,6 +1517,8 @@ function update() {
 }
 
 function fire(direction, x, y) {
+      var canvas = document.getElementById("test1"),
+        ctx = canvas.getContext("2d");
 	console.log("function works");
     var xPos = x;
     var yPos = y;
