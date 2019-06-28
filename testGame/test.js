@@ -1110,13 +1110,13 @@ function update() {
 	}, 5000);
 	setTimeout(function() {
 		console.log("fire");
-	  if (player.x < shooter[i].x) {
+	  if (player.x < shooter[0].x) {
 	      console.log("left");
-	      fire("left", shooter[i].x, shooter[i].y);
+	      fire("left", shooter[0].x, shooter[0].y);
 	  }
-	  else if (player.x > shooter[i].x) {
+	  else if (player.x > shooter[0].x) {
 	      console.log("right");
-	      fire("right", shooter[i].x, shooter[i].y);
+	      fire("right", shooter[0].x, shooter[0].y);
 	  }
 	  else {
 	  }
