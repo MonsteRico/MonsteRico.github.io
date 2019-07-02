@@ -32,7 +32,8 @@ button {
 	<a  href="./documents/colorList.txt"><button>Info on Making Levels</button></a>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script  type="text/javascript">
 // This stuff is how levels are started and thats it.
 function chooseLevel(level) {
   removeStorage();
@@ -50,6 +51,20 @@ document.getElementById('daily').onclick = function(e) {
   removeStorage();
   GenerateRandomLevel();
 };
+
+    var dir = "lvls/";
+var fileextension = ".png";
+$.ajax({
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: dir,
+    success: function (data) {
+        //List all .png file names in the page
+        $(data).find("a:contains(" + fileextension + ")").each(function () {
+            var filename = this.href.replace(window.location.host, "").replace("http://", "");
+            $("body").append("<img src='" + dir + filename + "'>");
+        });
+    }
+});
 </script>
 <script src="./test.js"></script>
 <script src="../universalFunctions.js"></script>
