@@ -22,6 +22,11 @@ var randomNum = Math.round(Math.seededRandom() * 100000000000000);
 randomNum = Array.from(randomNum.toString()).map(Number);
 console.log(randomNum);
 
+
+var totalTL = 4;
+var totalTR = 4;
+var totalBL = 4;
+var totalBR = 4;
 // Copy from templates based on the numbers
 // Pick template based on number in array.
 
@@ -58,6 +63,19 @@ BR3.src = "./Templates/BR3.png";
 var BR4 = new Image();
 BR4.src = "./Templates/BR4.png";
 
+var tlTemplates = [];
+
+for (i=0; i < totalTL; i++) {
+	var x = i++;
+	var array = [];
+	array.push("Templates/TL");
+	array.push(x.toString());
+	array.push(".png");
+	var add = array.join("");
+	tlTemplates.push(add);
+}
+
+
 // Add new templates above here. Change total templates and spritesheets below here
 
 var totalTemplates = 4;
@@ -75,7 +93,6 @@ var bottomRightTemplate = bottomRightChoice % totalTemplates;
 var spriteTemplate = spriteChoice % totalSpritesheets;
 
 // Add the new templates to these arrays
-var tlTemplates = [TL1, TL2, TL3, TL4];
 var blTemplates = [BL1, BL2, BL3, BL4];
 var trTemplates = [TR1, TR2, TR3, TR4];
 var brTemplates = [BR1, BR2, BR3, BR4];
@@ -89,7 +106,7 @@ if ((sessionStorage.getItem('dailyLevel') != null) && (sessionStorage.getItem('d
 function GenerateRandomLevel() {
 	var canvas = document.getElementById("test1"),
 	ctx = canvas.getContext("2d");
-	ctx.drawImage(tlTemplates[topLeftTemplate], 0, 0, 32, 16, 0, 0, 32, 16);
+	ctx.drawImage(document.getElementById(tlTemplates[topLeftTemplate]), 0, 0, 32, 16, 0, 0, 32, 16);
 	ctx.drawImage(trTemplates[topRightTemplate], 0, 0, 32, 16, 32, 0, 32, 16);
 	ctx.drawImage(blTemplates[bottomLeftTemplate], 0, 0, 32, 16, 0, 16, 32, 16);
 	ctx.drawImage(brTemplates[bottomRightTemplate], 0, 0, 32, 16, 32, 16, 32, 16);

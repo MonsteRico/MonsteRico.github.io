@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>The Test Game</title>
+<base href="https://monsterico.github.io/testGame/">
 <style>
 button {
 	padding:5px;
@@ -52,14 +53,14 @@ document.getElementById('daily').onclick = function(e) {
   GenerateRandomLevel();
 };
 
-var folder = "lvls/";
-//comit
+var folder = "Templates/";
+
 $.ajax({
     url : folder,
     success: function (data) {
         $(data).find("a").attr("href", function (i, val) {
             if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                $("body").append( "<img src='"+ folder + val +"'>" );
+                $("body").append( "<img src='"+ folder + val +"' id='"+ folder + val +"'>" );
             } 
         });
     }
