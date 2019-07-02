@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>The Test Game</title>
-<base href="https://monsterico.github.io/testGame/">
 <style>
 button {
 	padding:5px;
@@ -33,8 +32,7 @@ button {
 	<a  href="./documents/colorList.txt"><button>Info on Making Levels</button></a>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script  type="text/javascript">
+<script>
 // This stuff is how levels are started and thats it.
 function chooseLevel(level) {
   removeStorage();
@@ -52,19 +50,6 @@ document.getElementById('daily').onclick = function(e) {
   removeStorage();
   GenerateRandomLevel();
 };
-
-var folder = "Templates/";
-
-$.ajax({
-    url : folder,
-    success: function (data) {
-        $(data).find("a").attr("href", function (i, val) {
-            if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                $("body").append( "<img src='"+ folder + val +"' id='"+ folder + val +"'>" );
-            } 
-        });
-    }
-});
 </script>
 <script src="./test.js"></script>
 <script src="../universalFunctions.js"></script>
