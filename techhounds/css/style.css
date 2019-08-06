@@ -1628,7 +1628,13 @@ figure figcaption {
     color: #fff;
     background: #fac805;
 }
-
+/* Home Page */
+/* Photo Banner */
+.marquee {
+    width: 100%;
+    overflow: hidden;
+	border: 10px solid #ccc;
+}
 
 /* Media Page */
 
@@ -1671,8 +1677,7 @@ figure figcaption {
 	background-color:var(--mediaColor);
 	padding-left: .2em;
 	padding-right: .2em;
-	margin-bottom: 5em;
-	margin-top:.5em;
+
 }
 
 .option {
@@ -1706,8 +1711,9 @@ figure figcaption {
 }
 
 .yearTitle {
+	margin-top:1.5em;
 	text-align:center;
-	margin-bottom:1em;
+	margin-bottom:.5em;
 }
 
 .activeYear {
@@ -1724,4 +1730,44 @@ figure figcaption {
 
 .notActive {
 	display:none;
+}
+
+.select-css {
+	display: inline;
+	font-size: 1em;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #222831;
+	line-height: 1.3;
+	padding: .6em 2em .5em .8em;
+	box-sizing: border-box;
+	margin-top:.5em;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('../dropdown.png'),
+	  linear-gradient(to bottom, #fac805 50%,#fac805 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #8e979b;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
 }
