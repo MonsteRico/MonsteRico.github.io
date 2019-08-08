@@ -16,12 +16,29 @@ body {
     background: #222831;
 }
 
+.padding {
+    left-padding:5em;
+}
+
+.notification {
+    position: fixed;
+    bottom: .1em;
+    left: .1em;
+    background: 7D8594;
+    padding: 1em;
+}
+
 .upbtn {
     position: fixed;
     bottom: 2em;
     right: 3em;
     background: 0059EE;
     padding: 1em;
+}
+
+.emptyspace{
+    height: 100%;
+    width:17%;
 }
 
 .progresshead {
@@ -339,7 +356,7 @@ a:hover {
     color: #212529 !important;
 }
 
-.row-wrap {
+.-wrap {
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -1642,6 +1659,7 @@ figure figcaption {
 	--mediaColor: #a21457;    /*For the hover and dropdown backgrounds*/
 	--mediaTextColor: #f8f9fa; /*For the dropdown text*/
 	--activeBtnBGColor: #0f64fa; /*For the active button color*/
+	--activeBtnTextColor: #ffffff; /*For the active button text color*/
 }
 
 .mediaHeader {
@@ -1660,6 +1678,7 @@ figure figcaption {
 
 .mediaDiv {
     padding-top: 1em;
+	margin-bottom:0.5em;
 }
 
 .mediaDiv:hover {
@@ -1707,7 +1726,7 @@ figure figcaption {
 	
 .mediaButton {
 	margin:1em;
-	color:black;
+	color:#222831 !important;;
 }
 
 .yearTitle {
@@ -1726,6 +1745,7 @@ figure figcaption {
 
 .activeBtn {
 	background-color:var(--activeBtnBGColor) !important;
+	color: var(--activeBtnTextColor) !important;
 }
 
 .notActive {
@@ -1735,7 +1755,7 @@ figure figcaption {
 .select-css {
 	display: inline;
 	font-size: 1em;
-	font-family: sans-serif;
+	font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-weight: 700;
 	color: #222831;
 	line-height: 1.3;

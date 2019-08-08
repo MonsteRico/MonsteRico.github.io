@@ -262,51 +262,18 @@
 
      };
      siteDatePicker();
-
-
-
  });
 
- //for owl carousel
- var s = 0;
- var images = [];
- var time = 5000;
-
- //img list
- images[0] = 'goldCoin.png';
- images[1] = 'images.png';
- images[2] = 'logo.png';
-
- //change image
- function changeImg() {
-     document.slide.src = images[s];
-     if (s < images.length - 1) {
-         s++;
-     } else {
-         s = 0
-     }
-     setTimeout("changeImg()", time);
- }
-
- window.onload = changeImg();
-
- function previousslide() {
-     document.slide.src = images[s];
-     if (s = 0) {
-         s = 2;
-     } else {
-         s--;
-     }
- }
-
- function nextslide() {
-     document.slide.src = images[s];
-     if (s < images.length - 1) {
-         s++;
-     } else {
-         s = 0
-     }
- }
+ //for marquee
+$(function () {
+    $('.marquee').marquee({
+        duration: 5000,
+         duplicated: true,
+         gap: 00, 
+         direction: 'left',
+         pauseOnHover: false
+    });
+});
  
 //Media Javascript
 function changeYear(year) {
@@ -314,11 +281,13 @@ function changeYear(year) {
 	var oldYear = document.getElementsByClassName("activeYear")[0];
 	var btnId = year + "Btn";
 	var btn = document.getElementById(btnId);
+	var dropdown = event.target;
 	btn.click();
 	oldYear.classList.remove("activeYear");
 	oldYear.classList.add("notActive");
 	newYear.classList.remove("notActive");
 	newYear.classList.add("activeYear");
+	dropdown.blur();
 }
 
 function changeTab(tab) {
