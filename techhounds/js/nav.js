@@ -6,7 +6,7 @@ document.write(
             <div class="container py-1">\
                 <div class="row align-items-center">\
                     <div class="col-8 col-md-8 col-lg-4">\
-                        <h1 class="mb-0"><img class="col-3" src="goldCoin.png"><a href="index.html" class="text-white h2 mb-0"><strong>TechHOUNDS</strong></a></h1>\
+                        <h1 class="mb-0"><img class="col-3 d-none d-sm-inline" src="goldCoin.png"><a href="index.html" class="text-white h2 mb-0"><strong>TechHOUNDS</strong></a></h1>\
                     </div>\
                     <div class="col-4 col-md-4 col-lg-8">\
                         <nav class="site-navigation text-right text-md-right" role="navigation">\

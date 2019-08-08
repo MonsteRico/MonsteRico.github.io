@@ -267,7 +267,7 @@
  //for marquee
 $(function () {
     $('.marquee').marquee({
-        duration: 5000,
+        duration: 6500,
          duplicated: true,
          gap: 00, 
          direction: 'left',
@@ -283,6 +283,7 @@ function changeYear(year) {
 	var btn = document.getElementById(btnId);
 	var dropdown = event.target;
 	btn.click();
+	newYear.classList.add("fadeIn");
 	oldYear.classList.remove("activeYear");
 	oldYear.classList.add("notActive");
 	newYear.classList.remove("notActive");
@@ -301,6 +302,7 @@ function changeTab(tab) {
 	oldTab.classList.add("notActive");
 	newTab.classList.remove("notActive");
 	newTab.classList.add("tabActive");
+	newTab.classList.add("fadeIn");
 }
 
 function changeTabDrop(tab) {
@@ -310,4 +312,5 @@ function changeTabDrop(tab) {
 	oldTab.classList.add("notActive");
 	newTab.classList.remove("notActive");
 	newTab.classList.add("tabActive");
+	newTab.classList.add("fadeIn");
 }

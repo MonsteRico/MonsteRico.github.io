@@ -1650,7 +1650,7 @@ figure figcaption {
 .marquee {
     width: 100%;
     overflow: hidden;
-	border: 10px solid #ccc;
+	border: 0px solid #ccc;
 }
 
 /* Media Page */
@@ -1750,6 +1750,16 @@ figure figcaption {
 
 .notActive {
 	display:none;
+}
+
+@keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}	
+}
+
+.fadeIn {
+	animation-name:fadeIn;
+	animation-duration:1s;
 }
 
 .select-css {
