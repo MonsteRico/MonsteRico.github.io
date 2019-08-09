@@ -1646,11 +1646,26 @@ figure figcaption {
     background: #fac805;
 }
 /* Home Page */
+@media screen and (max-device-width: 800px) {
+    html {
+         background: url(imgs/teamPic.jpg) #000 no-repeat center center fixed;
+    }
+    #bgvid {
+        display: none;
+    }
+}
+
+
 /* Photo Banner */
 .marquee {
     width: 100%;
     overflow: hidden;
 	border: 0px solid #ccc;
+}
+
+.hpSpon {
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 /* Media Page */

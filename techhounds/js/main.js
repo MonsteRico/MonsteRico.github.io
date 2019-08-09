@@ -269,9 +269,9 @@ $(function () {
     $('.marquee').marquee({
         duration: 6500,
          duplicated: true,
-         gap: 00, 
+         gap: 0, 
          direction: 'left',
-         pauseOnHover: false
+         pauseOnHover: true
     });
 });
  
