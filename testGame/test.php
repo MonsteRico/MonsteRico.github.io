@@ -17,35 +17,44 @@ button {
 </head>
 <body>
 <div id="hide">
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-		Select image to upload:
-		<input type="file" name="fileToUpload" id="fileToUpload">
-		<input type="submit" value="Upload Image" name="submit">
-	</form>
+	<a href="upload.html">Upload Files Here</a>
 	<p>Or play one of these other levels</p>
-<?php
-// Pulls all the levels from files and puts them onto the screen to be played. Needs finished (Names need to work right and designing needs to be done).
-$dir = "lvls/";
-$a = scandir($dir);
-array_splice($a, 0, 1);
-array_splice($a, 0, 1);
-$b = array();
-$i = 0;
-for ($i; $i < count($a); $i++) {
-	$b[$i] = strval($a[$i]);
-}
-$r = 0;
-for ($r; $r < count($a); $r++) {
-	echo "<div id='lvls/" . $a[$r] . "'>";
-	echo "<img src = './lvls/" . $a[$r] . "'>";
-	echo "<button onclick=chooseLevel('lvls/" . $a[$r] . "')>" . $b[$r] . "</button>";
-	echo "<p class='hidden' style='display:none;' onclick=deleteFile('lvls/" . $a[$r] . "')>X</p>";
-	echo "</div>";
-}
-?>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
 	<a  href="./documents/colorList.txt"><button>Info on Making Levels</button></a>
+	
+	
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "files";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$sql = "SELECT * FROM files";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		echo "<div id='" . $row['fileName']. "'>";
+		echo "<img src = './" . $row['fileName'] . "'>";
+		echo "<button onclick=chooseLevel('" . $row['fileName']. "')>" . $row['name'] . "</button>";
+		echo "<form method='post' action='delete.php' enctype='multipart/form-data'><input style='display:none;' name='fileName' value='". $row['fileName'] . "' /><input class='hidden' style='display:none;' type='submit' value='X' /></form>";
+		echo "</div>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+<button id="daily">Daily Level</button>
 </div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
@@ -61,19 +70,6 @@ document.getElementById('daily').onclick = function(e) {
   removeStorage();
   GenerateRandomLevel();
 };
-function deleteFile(file) {
-  var xhttp; 
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-	}
-  };
-  xhttp.open("GET", "delete.php?z="+file, true);
-  xhttp.send();
-   var elem = document.getElementById(file);
-   elem.parentElement.removeChild(elem);
-   setDisplay('hidden', 'none');
-}
 </script>
 <script src="./delete.js"></script>
 <script src="./test.js"></script>
