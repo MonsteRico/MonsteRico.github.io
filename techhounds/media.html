@@ -26,24 +26,13 @@
             </div>
         </div>
     </div>
-    <div class="site-section">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-7 text-center" data-aos="fade-up">
-					<h1 class="">Year Select</h1>
-                    <select onchange="changeYear(this.value);" class="select-css">
-                        <option class="" value="2019-2020">2019-2020</option>
-                        <option class="" value="2018-2019">2018-2019</option>
-                        <option class="" value="2017-2018">2017-2018</option>
-                        <option class="" value="2016-2017">2016-2017</option>
-                        <option class="" value="2015-2016">2015-2016</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-		
+    <div class="site-section">		
         <div id="2019-2020" class="activeYear container" data-aos="fade-up">
-            <h1 class="yearTitle">2019-2020</h1>
+			<div class="row align-items-center justify-content-center">
+				<h1 class="changeYear col-lg-4 col-md-3">2008-2009</h1>
+				<h1 class="yearTitle col-lg-4 col-md-3">2019-2020</h1>
+				<h1 onclick="changeYear('2018-2019', 'right');" class="changeYear col-lg-4 col-md-3">2018-2019</h1>
+			</div>
             <div style="display:none" id="tabNav">
                 <div id="displayMobile">
                     <div class="row align-items-center justify-content-center">
@@ -105,7 +94,11 @@
         </div>
 		
 		<div id="2018-2019" class="notActive container" data-aos="fade-up">
-            <h1 class="yearTitle">2018-2019</h1>
+            <div class="row align-items-center justify-content-center">
+				<h1 onclick="changeYear('2019-2020', 'left');" class="changeYear col-lg-4 col-md-3">2019-2020</h1>
+				<h1 class="yearTitle col-lg-4 col-md-3">2018-2019</h1>
+				<h1 onclick="changeYear('2017-2018', 'right');" class="changeYear col-lg-4 col-md-3">2017-2018</h1>
+			</div>
             <div id="tabNav">
                 <div id="displayMobile">
                     <div class="row align-items-center justify-content-center">
@@ -266,7 +259,11 @@
         </div>
 		
 		<div id="2017-2018" class="notActive container" data-aos="fade-up">
-            <h1 class="yearTitle">2017-2018</h1>
+            <div class="row align-items-center justify-content-center">
+				<h1 onclick="changeYear('2018-2019');" class="changeYear col-lg-4 col-md-3">2018-2019</h1>
+				<h1 class="yearTitle col-lg-4 col-md-3">2017-2018</h1>
+				<h1 onclick="changeYear('2016-2017', 'right');" class="changeYear col-lg-4 col-md-3">2016-2017</h1>
+			</div>
             <div id="tabNav">
                 <div id="displayMobile">
                     <div class="row align-items-center justify-content-center">
@@ -455,7 +452,11 @@
         </div>
 		
 		<div id="2016-2017" class="notActive container" data-aos="fade-up">
-            <h1 class="yearTitle">2016-2017</h1>
+           <div class="row align-items-center justify-content-center">
+				<h1 onclick="changeYear('2017-2018', 'left');" class="changeYear col-lg-4 col-md-3">2017-2018</h1>
+				<h1 class="yearTitle col-lg-4 col-md-3">2016-2017</h1>
+				<h1 onclick="changeYear('2015-2016', 'right');" class="changeYear col-lg-4 col-md-3">2015-2016</h1>
+			</div>
            <div id="tabNav">
                 <div id="displayMobile">
                     <div class="row align-items-center justify-content-center">
@@ -606,7 +607,11 @@
         </div>
 		
 		<div id="2015-2016" class="notActive container" data-aos="fade-up">
-            <h1 class="yearTitle">2015-2016</h1>
+            <div class="row align-items-center justify-content-center">
+				<h1 onclick="changeYear('2016-2017', 'left');" class="changeYear col-lg-4 col-md-3">2016-2017</h1>
+				<h1 class="yearTitle col-lg-4 col-md-3">2015-2016</h1>
+				<h1 class="changeYear col-lg-4 col-md-3"></h1>
+			</div>
             <div id="tabNav">
                 <div id="displayMobile">
                     <div class="row align-items-center justify-content-center">
@@ -717,7 +722,6 @@
     </div>
 
 	<script src="js/footer.js"></script>
-    </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
