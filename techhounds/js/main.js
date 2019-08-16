@@ -276,19 +276,22 @@ $(function () {
 });
  
 //Media Javascript
-function changeYear(year) {
+function changeYear(year, dir) {
 	var newYear = document.getElementById(year);
 	var oldYear = document.getElementsByClassName("activeYear")[0];
 	var btnId = year + "Btn";
 	var btn = document.getElementById(btnId);
-	var dropdown = event.target;
 	btn.click();
-	newYear.classList.add("fadeIn");
+	if (dir == "right") {
+		newYear.classList.add("w3-animate-right");
+	}
+	else if (dir == "left") {
+		newYear.classList.add("w3-animate-left");
+	}
 	oldYear.classList.remove("activeYear");
 	oldYear.classList.add("notActive");
 	newYear.classList.remove("notActive");
 	newYear.classList.add("activeYear");
-	dropdown.blur();
 }
 
 function changeTab(tab) {
@@ -303,6 +306,7 @@ function changeTab(tab) {
 	newTab.classList.remove("notActive");
 	newTab.classList.add("tabActive");
 	newTab.classList.add("fadeIn");
+	newBtn.blur();
 }
 
 function changeTabDrop(tab) {
@@ -313,4 +317,374 @@ function changeTabDrop(tab) {
 	newTab.classList.remove("notActive");
 	newTab.classList.add("tabActive");
 	newTab.classList.add("fadeIn");
+}
+
+//About Javascript
+function openAbout(){
+	document.getElementById('about0').style.display = "";
+	document.getElementById('about1').style.display = "none";
+	document.getElementById('about2').style.display = "none";
+	document.getElementById('about3').style.display = "none";
+}
+
+function openOutreach(){
+	document.getElementById('about0').style.display = "none";
+	document.getElementById('about1').style.display = "";
+	document.getElementById('about2').style.display = "none";
+	document.getElementById('about3').style.display = "none";
+}
+
+function openAwards(){
+	document.getElementById('about0').style.display = "none";
+	document.getElementById('about1').style.display = "none";
+	document.getElementById('about2').style.display = "";
+	document.getElementById('about3').style.display = "none";
+}
+
+function openDivisions(){
+	document.getElementById('about0').style.display = "none";
+	document.getElementById('about1').style.display = "none";
+	document.getElementById('about2').style.display = "none";
+	document.getElementById('about3').style.display = "";
+}
+
+//Outreach Javascript
+function open2019(){
+	document.getElementById('awards0').style.display = "";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2018(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2017(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2016(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2015(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2014(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2013(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2012(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2011(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2010(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2009(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2008(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2007(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2006(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2005(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2004(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "";
+	document.getElementById('awards16').style.display = "none";
+}
+
+function open2003(){
+	document.getElementById('awards0').style.display = "none";
+	document.getElementById('awards1').style.display = "none";
+	document.getElementById('awards2').style.display = "none";
+	document.getElementById('awards3').style.display = "none";
+	document.getElementById('awards4').style.display = "none";
+	document.getElementById('awards5').style.display = "none";
+	document.getElementById('awards6').style.display = "none";
+	document.getElementById('awards7').style.display = "none";
+	document.getElementById('awards8').style.display = "none";
+	document.getElementById('awards9').style.display = "none";
+	document.getElementById('awards10').style.display = "none";
+	document.getElementById('awards11').style.display = "none";
+	document.getElementById('awards12').style.display = "none";
+	document.getElementById('awards13').style.display = "none";
+	document.getElementById('awards14').style.display = "none";
+	document.getElementById('awards15').style.display = "none";
+	document.getElementById('awards16').style.display = "";
 }
