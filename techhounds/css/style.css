@@ -17,7 +17,18 @@ body {
 }
 
 .padding {
-    left-padding:5em;
+    left-padding: 5em;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.column1 {
+    float: right;
+    width: 50%;
 }
 
 .notification {
@@ -34,11 +45,12 @@ body {
     right: 3em;
     background: 0059EE;
     padding: 1em;
+    z-index: 5;
 }
 
-.emptyspace{
+.emptyspace {
     height: 100%;
-    width:17%;
+    width: 17%;
 }
 
 .progresshead {
@@ -155,8 +167,8 @@ a:hover {
     outline: none;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-	background-color: #0f64fa !important;
-	border-color: #0f64fa !important;
+    background-color: #0f64fa !important;
+    border-color: #0f64fa !important;
 }
 
 .btn.btn-secondary {
@@ -170,6 +182,12 @@ a:hover {
 }
 
 .btn.btn-primary {
+    background-color: #FFC802;
+    border-color: #FFC802;
+    color: #222831;
+}
+
+.btn.btn-primary:hover {
     background-color: #FFC802;
     border-color: #FFC802;
     color: #fff;
@@ -679,6 +697,7 @@ a:hover {
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close {
     float: right;
     margin-top: 8px;
+    color: #222831;
 }
 
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span {
@@ -1645,10 +1664,13 @@ figure figcaption {
     color: #fff;
     background: #fac805;
 }
+
+
 /* Home Page */
+
 @media screen and (max-device-width: 800px) {
     html {
-         background: url(imgs/teamPic.jpg) #000 no-repeat center center fixed;
+        background: url(imgs/teamPic.jpg) #000 no-repeat center center fixed;
     }
     #bgvid {
         display: none;
@@ -1657,24 +1679,34 @@ figure figcaption {
 
 
 /* Photo Banner */
+
 .marquee {
     width: 100%;
     overflow: hidden;
-	border: 0px solid #ccc;
+    border: 0px solid #ccc;
 }
 
 .hpSpon {
-	padding-left: 1em;
-	padding-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
+
 
 /* Media Page */
 
 .mediaBody {
-	--mediaColor: #a21457;    /*For the hover and dropdown backgrounds*/
-	--mediaTextColor: #f8f9fa; /*For the dropdown text*/
-	--activeBtnBGColor: #0f64fa; /*For the active button color*/
-	--activeBtnTextColor: #ffffff; /*For the active button text color*/
+    --activeHeader: #ffffff;
+    /* Used for the Active Year */
+    --headerColor: #8a9498;
+    /* Used for the media header colors as well as previous and next years */
+    --activeBtnBG: #0f64fa;
+    /* Used as active button background and border color */
+    --activeBtnText: #ffffff;
+    /* Used as active button text */
+    --btnBG: #fac805;
+    /* Used as the normal button backgrond */
+    --btnText: #222831;
+    /* Used as normal button text */
 }
 
 .mediaHeader {
@@ -1691,85 +1723,101 @@ figure figcaption {
     padding-bottom: 1em;
 }
 
+.picLink:hover {
+    color: var(--activeBtnBG) !important;
+}
+
 .mediaDiv {
     padding-top: 1em;
-	margin-bottom:0.5em;
+    margin-bottom: 0.5em;
 }
 
 .mediaDiv:hover {
-    border: 2px solid var(--mediaColor) !important;
+    border: 2px solid var(--activeBtnBG) !important;
     border-radius: 10px;
-	-webkit-transition: .3s all ease;
+    -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
 }
 
 .dropdown {
-	color:var(--mediaTextColor);
-	font-family: 'Oswald', sans-serif;
-	letter-spacing: .05em;
-	background-color:var(--mediaColor);
-	padding-left: .2em;
-	padding-right: .2em;
-
+    color: var(--headerColor);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .05em;
+    background-color: var(--btnBG);
+    padding-left: .2em;
+    padding-right: .2em;
 }
 
 .option {
-	color:var(--mediaTextColor);
-	font-family: 'Oswald', sans-serif;
-	letter-spacing: .05em;
-	background-color:var(--mediaColor);
-	padding-left: .2em;
-	padding-right: .2em;
+    color: var(--headerColor);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .05em;
+    background-color: var(--btnBG);
+    padding-left: .2em;
+    padding-right: .2em;
 }
 
 #displayDesktop {
-	display:initial;
+    display: initial;
 }
-#displayMobile{
-	display:none;
+
+#displayMobile {
+    display: none;
 }
 
 @media screen and (max-width:320px) {
-	#displayDesktop {
-		display:none;
-	}
-	#displayMobile{
-		display:block;
-	}
+    #displayDesktop {
+        display: none;
+    }
+    #displayMobile {
+        display: block;
+    }
 }
-	
+
 .mediaButton {
-	margin:1em;
-	color:#222831 !important;;
+    margin: 1em;
+    color: var(--btnText) !important;
+    background-color: var(--btnBG) !important;
+}
+
+.mediaButton:hover {
+    color: var(--activeBtnText) !important;
+    background-color: var(--activeBtnBG) !important;
 }
 
 .yearTitle {
-	margin-top:1.5em;
-	text-align:center;
-	margin-bottom:.5em;
+    margin-top: 1.5em;
+    text-align: center;
+    margin-bottom: .5em;
+    color: var(--activeHeader);
 }
 
 .activeYear {
-	display:block;
+    display: block;
 }
 
 .tabActive {
-	display:block;
+    display: block;
 }
 
 .activeBtn {
-	background-color:var(--activeBtnBGColor) !important;
-	color: var(--activeBtnTextColor) !important;
+    background-color: var(--activeBtnBG) !important;
+    color: var(--activeBtnText) !important;
+    border-color: var(--activeBtnBG) !important;
 }
 
 .notActive {
-	display:none;
+    display: none;
 }
 
 @keyframes fadeIn {
-	0% {opacity:0;}
-	100% {opacity:1;}	
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .fadeIn {
@@ -1815,4 +1863,62 @@ figure figcaption {
 }
 .select-css option {
 	font-weight:normal;
+}
+
+.changeYear {
+    margin-top: 1.5em;
+    text-align: center;
+    margin-bottom: .5em;
+    opacity: 0.5;
+}
+.changeYear:hover {
+    opacity: 1;
+    cursor: pointer;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+
+/* Add Left to Right animation for years */
+
+/*Animate Right and Left from W3 */
+.w3-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+.w3-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+
+/* About Page */
+
+.button{
+	background-color:yellow;
+	font-family: "Montserrat", sans-serif;
+	color:black !important;
+	font-size:0.9em;
+	height:35px;
+	width:180px;
+}
+
+.awards{
+	color: white;
+	text-align: center;
+}
+
+.game{
+	color: white;
+}
+
+.description{
+	color: white;
+}
+
+.divisions{
+	color: white;
+}
+
+.row{
+	display: flex;
+}
+
+.column{
+	flex: 33.33%
+	padding: 5px;
 }
