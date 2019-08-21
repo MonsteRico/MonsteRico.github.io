@@ -89,6 +89,7 @@ function hideThings() {
     // hideThings() hides all of the start screen stuff.
 	document.getElementById("hide").style.display = "none";
     document.getElementById("canvas").style.display = "inline";
+	document.getElementById("deathCount").style.display = "inline";
 }
 
 
@@ -312,6 +313,8 @@ function Instantiate(object, xPos, yPos, h, w) {
             friction: friction,
             x: xPos,
             y: yPos,
+			startX: xPos,
+			startY: yPos,
             width: w - 2,
             height: h - 2,
             speed: speed,
@@ -524,11 +527,16 @@ var canvas = document.getElementById("canvas"),
     speed = 3,
     friction = 0.8,
     coinsCollected = 0,
+	deaths = 0,
 	redActive = true,
 	blueActive = false,
 	onCooldown = false,
 	activeCounter = 0;
 
+if (sessionStorage.getItem('deaths') !== null) {
+	deaths = parseInt(JSON.parse(sessionStorage.getItem('deaths')));
+}
+	
 canvas.width = width;
 canvas.height = height;
 
@@ -647,17 +655,11 @@ function update() {
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "b") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "t") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         }
     }
 
@@ -759,6 +761,7 @@ function update() {
                 alert("Level Complete!");
                 goal.splice(i, 1);
                 sessionStorage.clear();
+				location.reload();
                 player.velX = 0;
             } else {
                 player.velX += 0.1;
@@ -768,6 +771,7 @@ function update() {
                 alert("Level Complete!");
                 goal.splice(i, 1);
                 sessionStorage.clear();
+				location.reload();
                 player.velX = 0;
             } else {
                 player.velX -= 0.1;
@@ -777,6 +781,7 @@ function update() {
                 alert("Level Complete!");
                 goal.splice(i, 1);
                 sessionStorage.clear();
+				location.reload();
                 player.velY = 0;
             } else {
                 player.velY -= 0.1;
@@ -786,6 +791,7 @@ function update() {
                 alert("Level Complete!");
                 goal.splice(i, 1);
                 sessionStorage.clear();
+				location.reload();
                 player.velY = 0;
             } else {
                 player.velY += 0.1;
@@ -1125,17 +1131,11 @@ function update() {
         ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
         var dir = colCheck(player, bullet[i]);
         if (dir === "l" || dir === "r") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "b") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "t") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         }
 	    
     }
@@ -1154,7 +1154,7 @@ function update() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     // if Player 2 exists, do all player 1 stuff but minus the drawing and extra movements
-    if (player2Exists == true) {
+   /* if (player2Exists == true) {
         if (keys[87]) {
             // w
             if (!player2.jumping && player2.grounded) {
@@ -1611,17 +1611,11 @@ function update() {
         var dir = colCheck(player2, bullet[i]);
 
         if (dir === "l" || dir === "r") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "b") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         } else if (dir === "t") {
-            cancelAnimationFrame(update);
             reset();
-            return;
         }
 	    
     }
@@ -1640,10 +1634,13 @@ function update() {
         ctx.globalAlpha = player2.opacity;
         ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
     }
-    }
+    }*/
     
-   
-
+	if (player.x > 1024 || player.x < 0 || player.y > 512 || player.y < -128) {
+		reset();
+	}
+	
+	document.getElementById("deaths").innerHTML = deaths;
 	// dont understand this but updates the animation
     requestAnimationFrame(update);
     
@@ -1739,6 +1736,8 @@ function setCheckpoint(dir, i) {
         wait(100);
         sessionStorage.setItem("playerx", JSON.stringify(player.x));
         sessionStorage.setItem("playery", JSON.stringify(player.y - 16));
+		player.startX = player.x;
+		player.startY = player.y-16;
         player.velY = 0;
         player.velX = 0;
     } else {
@@ -1757,15 +1756,23 @@ function removeStorage() {
     sessionStorage.removeItem("coinsNeeded");
     sessionStorage.removeItem("coinsCollected");
     sessionStorage.removeItem("dailyLevel");
+	location.reload();
 }
 
 function reset() {
 	// Reloads the game if player dies
+	wait(200);
+    player.x = player.startX;
+	gravity = 0.2;
+	player.y = player.startY;
+	player.velY = 0;
+	player.velX = 0;
     sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
     sessionStorage.setItem("coinArray", JSON.stringify(coin));
     sessionStorage.setItem("coinsCollected", coinsCollected);
     sessionStorage.setItem("coinsNeeded", coinsNeeded);
-    location.reload();
+	deaths += 1;
+	sessionStorage.setItem("deaths", deaths);
 }
 
 function ejectPlayer(dir) {

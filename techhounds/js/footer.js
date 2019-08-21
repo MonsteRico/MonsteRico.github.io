@@ -4,13 +4,6 @@ document.write(
     '<footer class="site-footer bg-dark">\
         <div class="container ">\
             <div class="row ">\
-                <div class="col-lg-6 ">\
-                    <div class="mb-5 ">\
-                        <h3 class="footer-heading mb-4 ">About TechHOUNDS</h3>\
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis, minima minus odio!</p>\
-                    </div>\
-                </div>\
-\
                 <div class="col-lg-2 mb-5 mb-lg-0 ">\
                     <div class="row mb-5 ">\
                         <div class="col-md-12 ">\
@@ -22,7 +15,7 @@ document.write(
                                 <li><a href="about.html ">About</a></li>\
                                 <li><a href="contact.html ">Contact</a></li>\
                                 <li><a href="events.html ">Events</a></li>\
-                                <li><a href="# ">Sponsors</a></li>\
+                                <li><a href="index.html#sponsorssection">Sponsors</a></li>\
 								<!--Need link for above-->\
                             </ul>\
                         </div>\

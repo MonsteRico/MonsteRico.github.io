@@ -19,14 +19,7 @@ document.write(
                                 <li><a href="contact.html">Contact</a></li>\
                                 <li><a href="events.html">Events</a></li>\
 								<li><a href="media.html">Media</a></li>\
-                                <li class="has-children">\
-                                    <a href="#">Sponsors</a>\
-                                    <ul class="dropdown arrow-top">\
-                                        <li><a href="#">Sponser Level 1</a></li>\
-                                        <li><a href="#">Sponser Level 2</a></li>\
-                                        <li><a href="#">Sponser Level 3</a></li>\
-                                    </ul>\
-                                </li>\
+                                <li><a href="index.html#sponsorssection">Sponsors</a></li>\
                             </ul>\
                             </li>\
                             </ul>\

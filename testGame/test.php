@@ -56,6 +56,9 @@ $conn->close();
 ?>
 <button id="daily">Daily Level</button>
 </div>
+<div style="display:none;" id="deathCount">
+	<h1>Deaths: </h1><h1 id="deaths">0</h1>
+</div>
 <canvas style="display:none;" id="canvas"></canvas>
 <script>
 // This stuff is how levels are started and thats it.
