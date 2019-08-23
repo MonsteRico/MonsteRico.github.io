@@ -353,7 +353,6 @@ function Instantiate(object, xPos, yPos, h, w) {
     if (object == "lava") {
         lava.push({
             type: 32,
-			typeHeight: 0,
             opacity: 1,
             x: xPos,
             y: yPos,
@@ -365,7 +364,6 @@ function Instantiate(object, xPos, yPos, h, w) {
     if (object == "lava-stack") {
         lava.push({
             type: 48,
-			typeHeight: 5,
             opacity: 1,
             x: xPos,
             y: yPos,
@@ -653,7 +651,7 @@ function update() {
 
 	// Code to make Lava (Both Types) Work
     for (var i = 0; i < lava.length; i++) {
-        ctx.drawImage(spritesheet, lava[i].type, lava[i].typeHeight, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
+        ctx.drawImage(spritesheet, lava[i].type, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
         var dir = colCheck(player, lava[i]);
 
         if (dir === "l" || dir === "r") {
