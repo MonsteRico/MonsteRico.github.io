@@ -355,9 +355,9 @@ function Instantiate(object, xPos, yPos, h, w) {
             type: 32,
             opacity: 1,
             x: xPos,
-            y: yPos-5,
+            y: yPos+5,
             width: w,
-            height: h,
+            height: h+5,
             color: "red"
         });
     }
