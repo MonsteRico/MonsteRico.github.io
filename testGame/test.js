@@ -355,6 +355,7 @@ function Instantiate(object, xPos, yPos, h, w) {
             type: 32,
             opacity: 1,
             x: xPos,
+			extra: 5,
             y: yPos,
             width: w,
             height: h,
@@ -366,6 +367,7 @@ function Instantiate(object, xPos, yPos, h, w) {
             type: 48,
             opacity: 1,
             x: xPos,
+			extra: 0,
             y: yPos,
             width: w,
             height: h,
@@ -652,7 +654,7 @@ function update() {
 	// Code to make Lava (Both Types) Work
     for (var i = 0; i < lava.length; i++) {
         ctx.drawImage(spritesheet, lava[i].type, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
-        var dir = colCheck(player, lava[i]);
+        var dir = colCheck(player, lava[i], lava[i].extra);
 
         if (dir === "l" || dir === "r") {
             reset();
@@ -1791,11 +1793,14 @@ function ejectPlayer(dir) {
     }
 }
 
-function colCheck(shapeA, shapeB) {
+function colCheck(shapeA, shapeB, extra) {
 	// DONT FULLY UNDERSTAND Collisions yet but here they are.
     // get the vectors to check against
+	if (!extra) {
+		extra = 0;
+	}
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
+        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) + extra),
         // add the half widths and half heights of the objects
         hWidths = (shapeA.width / 2) + (shapeB.width / 2),
         hHeights = (shapeA.height / 2) + (shapeB.height / 2),
