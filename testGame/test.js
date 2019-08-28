@@ -1118,19 +1118,14 @@ function update() {
 	}, 5000);
 	setTimeout(function() {
 	  fire(i);
-	}, 10000);
-	setTimeout(function() {resetFire(i)}, 15000);
+	}, 1000);
+	setTimeout(function() {resetFire(i)}, 5000);
     }
     }
 	
 	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
-        if (isOpen((bullet[i].x/16), (bullet[i].y/16)) == false) {
-            bullet[i].type = 320;
-            bullet[i].typeY = 0;
-        }
-        ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
         var dir = colCheck(player, bullet[i]);
         if (dir === "l" || dir === "r") {
             reset();
@@ -1702,6 +1697,13 @@ function beamFire(direction, x, y) {
 		    xPos += 1;
 	    }
     }
+	    for (var i = 0; i < bullet.length; i++) {
+        if (isOpen((bullet[i].x/16), (bullet[i].y/16)) == false) {
+            bullet[i].type = 320;
+            bullet[i].typeY = 0;
+        }
+        ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+		}
 }
 
 function prepareFire(i) {
