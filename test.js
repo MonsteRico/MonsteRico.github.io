@@ -80,7 +80,7 @@ function GenerateLevel() {
         player.x = JSON.parse(sessionStorage.getItem("playerx"));
         player.y = JSON.parse(sessionStorage.getItem("playery"));
     }
-    update();
+    window.setInterval(update(),1);
 	
     hideThings();
 }
@@ -355,7 +355,8 @@ function Instantiate(object, xPos, yPos, h, w) {
             type: 32,
             opacity: 1,
             x: xPos,
-            y: yPos-5,
+			extra: 5,
+            y: yPos,
             width: w,
             height: h,
             color: "red"
@@ -366,6 +367,7 @@ function Instantiate(object, xPos, yPos, h, w) {
             type: 48,
             opacity: 1,
             x: xPos,
+			extra: 0,
             y: yPos,
             width: w,
             height: h,
@@ -652,7 +654,7 @@ function update() {
 	// Code to make Lava (Both Types) Work
     for (var i = 0; i < lava.length; i++) {
         ctx.drawImage(spritesheet, lava[i].type, 0, 16, 16, lava[i].x, lava[i].y, lava[i].width, lava[i].height);
-        var dir = colCheck(player, lava[i]);
+        var dir = colCheck(player, lava[i], lava[i].extra);
 
         if (dir === "l" || dir === "r") {
             reset();
@@ -1116,19 +1118,14 @@ function update() {
 	}, 5000);
 	setTimeout(function() {
 	  fire(i);
-	}, 10000);
-	setTimeout(function() {resetFire(i)}, 15000);
+	}, 1000);
+	setTimeout(function() {resetFire(i)}, 5000);
     }
     }
 	
 	
 	// Code to make Bullets Work
     for (var i = 0; i < bullet.length; i++) {
-        if (isOpen((bullet[i].x/16), (bullet[i].y/16)) == false) {
-            bullet[i].type = 320;
-            bullet[i].typeY = 0;
-        }
-        ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
         var dir = colCheck(player, bullet[i]);
         if (dir === "l" || dir === "r") {
             reset();
@@ -1642,7 +1639,7 @@ function update() {
 	
 	document.getElementById("deaths").innerHTML = deaths;
 	// dont understand this but updates the animation
-    requestAnimationFrame(update);
+
     
 }
 function fire(i) {
@@ -1700,6 +1697,13 @@ function beamFire(direction, x, y) {
 		    xPos += 1;
 	    }
     }
+	    for (var i = 0; i < bullet.length; i++) {
+        if (isOpen((bullet[i].x/16), (bullet[i].y/16)) == false) {
+            bullet[i].type = 320;
+            bullet[i].typeY = 0;
+        }
+        ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
+		}
 }
 
 function prepareFire(i) {
@@ -1747,7 +1751,7 @@ function setCheckpoint(dir, i) {
     }
 }
 
-function removeStorage() {
+function removeStorage(reload) {
 	// Resets the storage if the level is finishe
     sessionStorage.removeItem("playerx");
     sessionStorage.removeItem("playery");
@@ -1756,7 +1760,9 @@ function removeStorage() {
     sessionStorage.removeItem("coinsNeeded");
     sessionStorage.removeItem("coinsCollected");
     sessionStorage.removeItem("dailyLevel");
+	if (reload) {
 	location.reload();
+	}
 }
 
 function reset() {
@@ -1791,11 +1797,14 @@ function ejectPlayer(dir) {
     }
 }
 
-function colCheck(shapeA, shapeB) {
+function colCheck(shapeA, shapeB, extra) {
 	// DONT FULLY UNDERSTAND Collisions yet but here they are.
     // get the vectors to check against
+	if (!extra) {
+		extra = 0;
+	}
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
+        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) + extra),
         // add the half widths and half heights of the objects
         hWidths = (shapeA.width / 2) + (shapeB.width / 2),
         hHeights = (shapeA.height / 2) + (shapeB.height / 2),
