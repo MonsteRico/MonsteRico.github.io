@@ -1751,7 +1751,7 @@ function setCheckpoint(dir, i) {
     }
 }
 
-function removeStorage() {
+function removeStorage(reload) {
 	// Resets the storage if the level is finishe
     sessionStorage.removeItem("playerx");
     sessionStorage.removeItem("playery");
@@ -1760,7 +1760,9 @@ function removeStorage() {
     sessionStorage.removeItem("coinsNeeded");
     sessionStorage.removeItem("coinsCollected");
     sessionStorage.removeItem("dailyLevel");
+	if (reload) {
 	location.reload();
+	}
 }
 
 function reset() {

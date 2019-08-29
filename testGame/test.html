@@ -1,4 +1,4 @@
-<!DOCTYPE htmL>
+﻿<!DOCTYPE htmL>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -209,20 +209,19 @@
 <script>
 // This stuff is how levels are started and thats it.
 function chooseLevel(level) {
-  removeStorage();
+  removeStorage(true);
   levelMap.src = level;
   sessionStorage.setItem('level', levelMap.src);
   Test1();
   document.getElementById('canvas').classList.add('scale-in-center');
 }
 document.getElementById('inp').onchange = function(e) {
-  removeStorage();
+  removeStorage(false);
   levelMap.src = URL.createObjectURL(this.files[0]);
-  sessionStorage.setItem('level', levelMap.src);
   Test1();
 };
 document.getElementById('daily').onclick = function(e) {
-  removeStorage();
+  removeStorage(true);
   GenerateRandomLevel();
 };
 </script>
