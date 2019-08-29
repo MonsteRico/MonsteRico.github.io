@@ -80,7 +80,7 @@ function GenerateLevel() {
         player.x = JSON.parse(sessionStorage.getItem("playerx"));
         player.y = JSON.parse(sessionStorage.getItem("playery"));
     }
-    window.setInterval(requestAnimationFrame(update),1);
+    window.setInterval(update(),1);
 	
     hideThings();
 }
