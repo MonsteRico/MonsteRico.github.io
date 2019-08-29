@@ -80,7 +80,7 @@ function GenerateLevel() {
         player.x = JSON.parse(sessionStorage.getItem("playerx"));
         player.y = JSON.parse(sessionStorage.getItem("playery"));
     }
-    window.setInterval(update(),1);
+    update();
 	
     hideThings();
 }
@@ -1639,7 +1639,7 @@ function update() {
 	
 	document.getElementById("deaths").innerHTML = deaths;
 	// dont understand this but updates the animation
-
+	requestAnimationFrame(update);
     
 }
 function fire(i) {
