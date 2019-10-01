@@ -1116,7 +1116,7 @@ function update() {
 	    if(shooter[i].cooldown == 60) {
 		    shooter[i].cooldown = 0;
 	shooter[i].frameIndex++;
-	    if (shooter[i].frameIndex == 22) {
+	    if (shooter[i].frameIndex == 21) {
 		    shooter[i].frameIndex = 0;
 	    }
 	    }
