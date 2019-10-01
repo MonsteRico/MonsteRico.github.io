@@ -507,7 +507,8 @@ function Instantiate(object, xPos, yPos, h, w) {
             x: xPos,
             y: yPos,
             width: w,
-            height: h
+            height: h,
+		frameIndex: 0
         });
     }
 }
@@ -1077,8 +1078,7 @@ function update() {
 	
 	// Code to make Shooter Blocks work
     for (var i = 0; i < shooter.length; i++) {
-        ctx.drawImage(spritesheet, shooter[i].type, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
-		var turretNumber = i;
+        ctx.drawImage(spritesheet, shooter[i].frameIndex*16, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
         var dir = colCheck(player, shooter[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
@@ -1111,16 +1111,10 @@ function update() {
                 player.jumping = false;
             }
         }
-	if (onCooldown == false) {
-	onCooldown = true;
-	setTimeout(function() {
-	  prepareFire(i);
-	}, 5000);
-	setTimeout(function() {
-	  fire(i);
-	}, 1000);
-	setTimeout(function() {resetFire(i)}, 5000);
-    }
+	shooter[i].frameIndex++;
+	    if (shooter[i].frameIndex == 22) {
+		    shooter[i].frameIndex = 0;
+	    }
     }
 	
 	
