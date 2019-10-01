@@ -508,7 +508,8 @@ function Instantiate(object, xPos, yPos, h, w) {
             y: yPos,
             width: w,
             height: h,
-		frameIndex: 0
+		frameIndex: 0,
+		cooldwon: 0
         });
     }
 }
@@ -1111,11 +1112,15 @@ function update() {
                 player.jumping = false;
             }
         }
-	    setTimeout(function() {
+	    shooter[i].cooldown++;
+	    if(shooter[i].cooldown == 60) {
+		    shooter[i].cooldown = 0;
 	shooter[i].frameIndex++;
 	    if (shooter[i].frameIndex == 22) {
 		    shooter[i].frameIndex = 0;
-	    }}, 2000, false);
+	    }
+	    }
+
     }
 	
 	
