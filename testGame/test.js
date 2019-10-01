@@ -509,7 +509,7 @@ function Instantiate(object, xPos, yPos, h, w) {
             width: w,
             height: h,
 		frameIndex: 0,
-		cooldwon: 0
+		cooldown: 0
         });
     }
 }
