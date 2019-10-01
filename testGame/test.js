@@ -1111,10 +1111,11 @@ function update() {
                 player.jumping = false;
             }
         }
+	    setTimeout(function() {
 	shooter[i].frameIndex++;
 	    if (shooter[i].frameIndex == 22) {
 		    shooter[i].frameIndex = 0;
-	    }
+	    }}, 2000, false);
     }
 	
 	
