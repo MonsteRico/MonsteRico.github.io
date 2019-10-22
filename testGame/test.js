@@ -1112,6 +1112,7 @@ function update() {
                 player.jumping = false;
             }
         }
+		//ANIMATION
 	    shooter[i].cooldown++;
 	    if(shooter[i].cooldown == 60) {
 		    shooter[i].cooldown = 0;
