@@ -1,51 +1,51 @@
-// add event listeners to specify when functions should be triggered
-window.addEventListener("resize", resize);
-window.addEventListener("resize", onload);
-document.addEventListener("mousemove", draw);
-document.addEventListener("touchmove", draw);
-document.addEventListener("mousedown", setPosition);
-document.addEventListener("touchstart", setPosition);
-document.addEventListener("mouseenter", setPosition);
-// last known position
-var pos = { x: 0, y: 0 };
+context = document.getElementById('canvas').getContext("2d");
+$('#canvas').mousedown(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var mouseY = e.pageY - this.offsetTop;
+		
+  paint = true;
+  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+  redraw();
+});
+$('#canvas').mousemove(function(e){
+  if(paint){
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+    redraw();
+  }
+});
+$('#canvas').mouseup(function(e){
+  paint = false;
+});
+$('#canvas').mouseleave(function(e){
+  paint = false;
+});
+var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
+var paint;
 
-// new position from mouse events
-function setPosition(e) {
-  pos.x = e.clientX;
-  pos.y = e.clientY;
+function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
 }
-// set canvas id to variable
-var canvas = document.getElementById("draw");
-
-// get canvas 2D context and set it to the correct size
-var ctx = canvas.getContext("2d");
-
-  resize();
-
-// resize canvas when window is resized
-function resize() {
-  ctx.canvas.width = window.innerWidth;
-  ctx.canvas.height = window.innerHeight;
-  ctx.drawImage(document.getElementById("id"),0,0);
-  console.log("resized");
-}
-
-function draw(e) {
-	
-  if (e.buttons !== 1) return; // if mouse is pressed.....
-
-  var color = document.getElementById("hex").value;
-
-  ctx.beginPath(); // begin the drawing path
-
-  ctx.lineWidth = 20; // width of line
-  ctx.lineCap = "round"; // rounded end cap
-  ctx.strokeStyle = color; // hex color of line
-
-  ctx.moveTo(pos.x, pos.y); // from position
-  setPosition(e);
-  ctx.lineTo(pos.x, pos.y); // to position
-
-  ctx.stroke(); // draw it!
-  
+function redraw(){
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+  context.drawImage(document.getElementById("img"), 0, 0);
+  context.strokeStyle = "#df4b26";
+  context.lineJoin = "round";
+  context.lineWidth = 5;
+			
+  for(var i=0; i < clickX.length; i++) {		
+    context.beginPath();
+    if(clickDrag[i] && i){
+      context.moveTo(clickX[i-1], clickY[i-1]);
+     }else{
+       context.moveTo(clickX[i]-1, clickY[i]);
+     }
+     context.lineTo(clickX[i], clickY[i]);
+     context.closePath();
+     context.stroke();
+  }
 }
