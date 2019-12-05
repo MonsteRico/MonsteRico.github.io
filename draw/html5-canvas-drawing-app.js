@@ -21,7 +21,7 @@ $('#canvas').mouseleave(function(e){
 });
 
 document.getElementById("canvas").addEventListener("touchmove", function(e){
-  if(paint){
+  if(true){
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
 }});
