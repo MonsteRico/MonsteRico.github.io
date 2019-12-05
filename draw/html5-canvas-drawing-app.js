@@ -21,14 +21,17 @@ $('#canvas').mouseleave(function(e){
 });
 
 document.getElementById("canvas").addEventListener("touchmove", function(e){
+	e.preventDefault();
   if(true){
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
 }});
 document.getElementById("canvas").addEventListener("touchend", function(e){
+	e.preventDefault();
   paint = false;
 });
 document.getElementById("canvas").addEventListener("touchstart", function(e){
+	e.preventDefault();
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 		
