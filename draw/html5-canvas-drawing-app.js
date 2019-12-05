@@ -32,7 +32,7 @@ document.getElementById("canvas").addEventListener("touchstart", function(e){
 });
 document.getElementById("canvas").addEventListener("touchmove", function(e){
 	e.preventDefault();
-  if(true){
+  if(paint){
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
 }});
