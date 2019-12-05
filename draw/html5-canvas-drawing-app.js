@@ -24,7 +24,7 @@ document.getElementById("canvas").addEventListener("touchmove", function(e){
   if(paint){
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
-  });
+}});
 document.getElementById("canvas").addEventListener("touchend", function(e){
   paint = false;
 });
