@@ -1,5 +1,5 @@
 context = document.getElementById('canvas').getContext("2d");
-$('#canvas').touchstart(function(e){
+$('#canvas').mousedown(function(e){
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 		
@@ -7,16 +7,16 @@ $('#canvas').touchstart(function(e){
   addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
   redraw();
 });
-$('#canvas').touchmove(function(e){
+$('#canvas').mousemove(function(e){
   if(paint){
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
   }
 });
-$('#canvas').touchend(function(e){
+$('#canvas').mouseup(function(e){
   paint = false;
 });
-$('#canvas').touchend(function(e){
+$('#canvas').mouseleave(function(e){
   paint = false;
 });
 var clickX = new Array();
