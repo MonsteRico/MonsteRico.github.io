@@ -19,6 +19,29 @@ $('#canvas').mouseup(function(e){
 $('#canvas').mouseleave(function(e){
   paint = false;
 });
+
+document.getElementById("canvas").addEventListener("touchmove", function(e){
+  if(paint){
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+    redraw();
+  });
+document.getElementById("canvas").addEventListener("touchend", function(e){
+  paint = false;
+});
+document.getElementById("canvas").addEventListener("touchstart", function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var mouseY = e.pageY - this.offsetTop;
+		
+  paint = true;
+  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+  redraw();
+});
+
+
+
+
+
+
 var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
