@@ -2,7 +2,9 @@
 window.addEventListener("resize", resize);
 window.addEventListener("resize", onload);
 document.addEventListener("mousemove", draw);
+document.addEventListener("touchmove", draw);
 document.addEventListener("mousedown", setPosition);
+document.addEventListener("touchstart", setPosition);
 document.addEventListener("mouseenter", setPosition);
 // last known position
 var pos = { x: 0, y: 0 };
