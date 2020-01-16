@@ -93,6 +93,7 @@ function showTools() {
 	document.getElementById("blue").style.display = "block";
 	document.getElementById("gold").style.display = "block";
 	document.getElementById("red").style.display = "block";
+	document.getElementById("white").style.display = "block";
 	document.getElementById("button").style.display = "none";
 	document.getElementById("div").style.display = "block";
 }
@@ -104,6 +105,7 @@ function hideTools() {
 	document.getElementById("blue").style.display = "none";
 	document.getElementById("gold").style.display = "none";
 	document.getElementById("red").style.display = "none";
+	document.getElementById("white").style.display = "none";
 }
 
 function setColor(color) {
