@@ -83,7 +83,7 @@ function redraw(){
      }
      context.lineTo(clickX[i], clickY[i]);
      context.closePath();
-	 context.strokeStyle = clickColor[i];
+	 context.setStrokeColor = clickColor[i];
      context.stroke();
   }
 }
@@ -111,19 +111,19 @@ function hideTools() {
 function setColor(color) {
 	switch (color) {
 		case "blue": {
-			globalColor = "#0f64fa"; 
+			globalColor = "(0, 0, 255, 1)"; 
 			break;
 		}
 		case "red": {
-			globalColor = "#df4b26";
+			globalColor = "(255, 0, 0, 1)";
 			break;
 		}
 		case "gold": {
-			globalColor = "#fac805";
+			globalColor = "(0, 255, 0, 1)";
 			break;
 		}
 		case "white": {
-			globalColor = "rgba(0,0,0,0)";
+			globalColor = "(0, 0, 0, 0)";
 			break;
 		}
 	}
