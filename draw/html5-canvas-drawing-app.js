@@ -120,5 +120,9 @@ function setColor(color) {
 			globalColor = "#fac805";
 			break;
 		}
+		case "white": {
+			globalColor = "rgba(0,0,0,0)";
+			break;
+		}
 	}
 }
