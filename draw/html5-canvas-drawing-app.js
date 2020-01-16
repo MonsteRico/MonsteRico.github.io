@@ -59,8 +59,8 @@ function addClick(x, y, dragging)
   clickDrag.push(dragging);
 }
 function redraw(){
- context.width = window.innerWidth;
- context.height = window.innerHeight;
+ context.width = window.innerWidth-15;
+ context.height = window.innerHeight-15;
   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
   context.drawImage(document.getElementById("img"), 0, 0, window.innerWidth-15, window.innerHeight-15);
   context.strokeStyle = "#df4b26";
