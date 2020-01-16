@@ -56,10 +56,19 @@ var paint;
 
 function addClick(x, y, dragging)
 {
+  if (globalColor != "white") {
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
   clickColor.push(globalColor);
+  } else {
+	  for (var i = 0; i < clickX.length; i++) {
+			  if (globalColor == "white" && x == clickX[i] && y == clickY[i]) {
+				  clickX.splice(i);
+				  clickY.splice(i);
+			  }
+	  }
+  }
 }
 function redraw(){
  context.width = window.innerWidth-15;
@@ -83,7 +92,7 @@ function redraw(){
      }
      context.lineTo(clickX[i], clickY[i]);
      context.closePath();
-	 context.setStrokeColor = clickColor[i];
+	 context.strokeStyle = clickColor[i];
      context.stroke();
   }
 }
@@ -111,19 +120,19 @@ function hideTools() {
 function setColor(color) {
 	switch (color) {
 		case "blue": {
-			globalColor = "(0, 0, 255, 1)"; 
+			globalColor = "rgba(0, 0, 255, 1)"; 
 			break;
 		}
 		case "red": {
-			globalColor = "(255, 0, 0, 1)";
+			globalColor = "rgba(255, 0, 0, 1)";
 			break;
 		}
 		case "gold": {
-			globalColor = "(0, 255, 0, 1)";
+			globalColor = "rgba(0, 255, 0, 1)";
 			break;
 		}
 		case "white": {
-			globalColor = "(0, 0, 0, 0)";
+			globalColor = "rgba(0, 0, 0, 0)";
 			break;
 		}
 	}
