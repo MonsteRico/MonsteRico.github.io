@@ -64,8 +64,10 @@ function addClick(x, y, dragging)
   } else {
 	  for (var i = 0; i < clickX.length; i++) {
 			  if (globalColor == "white" && x == clickX[i] && y == clickY[i]) {
-				  clickX.splice(i);
-				  clickY.splice(i);
+				  clickX.splice(i, 1);
+				  clickY.splice(i, 1);
+             clickDrag.splice(i, 1);
+             clickColor.splice(i, 1);
 			  }
 	  }
   }
