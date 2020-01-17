@@ -84,10 +84,10 @@ function redraw(){
        context.moveTo(clickX[i]-1, clickY[i]);
      }
 	  if (clickColor[i] == "white") {
-		  clickColor[i].splice(i, 1);
-		  clickX[i].splice(i, 1);
-		  clickY[i].splice(i, 1);
-		  clickDrag[i].splice(i, 1);
+		  clickColor.splice(i, 1);
+		  clickX.splice(i, 1);
+		  clickY.splice(i, 1);
+		  clickDrag.splice(i, 1);
 	  }
 	  else {
      context.lineTo(clickX[i], clickY[i]);
