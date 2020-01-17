@@ -43,6 +43,8 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 });
 var pattern;
 function imageLoad() {
+	document.getElementById("img").style.height = window.innerHeight-15;
+	document.getElementById("img").style.width = window.innerWidth-15;
 pattern = context.createPattern(document.getElementById("img"), "no-repeat");
 context.drawImage(document.getElementById("img"), 0, 0, window.innerWidth-15, window.innerHeight-15);
 }
