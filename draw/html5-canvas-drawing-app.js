@@ -44,7 +44,7 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 var pattern;
 
 var img = new Image(); 
-img.src = “./imgs/img.png”;
+img.src = “./images/img.png”;
 img.onload = () => {
    context.width = window.innerWidth-15;
  context.height = window.innerHeight-15;
