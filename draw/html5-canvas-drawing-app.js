@@ -41,8 +41,19 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 	e.preventDefault();
   paint = false;
 });
+var pattern;
 
-
+var img = new Image(); 
+img.src = “./imgs/img.png”;
+img.onload = () => {
+   context.width = window.innerWidth-15;
+ context.height = window.innerHeight-15;
+  document.getElementById("canvas").width = window.innerWidth-15;
+ document.getElementById("canvas").height = window.innerHeight-15;
+  context.drawImage(img, 0, 0, window.innerWidth-15, window.innerHeight-15);
+  context.globalCompositeOperation = “source-atop”;
+  pattern = context.createPattern(img, “no-repeat”);
+}
 
 
 
@@ -56,21 +67,10 @@ var paint;
 
 function addClick(x, y, dragging)
 {
-  if (globalColor != "white") {
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
   clickColor.push(globalColor);
-  } else {
-	  for (var i = 0; i < clickX.length; i++) {
-			  if (globalColor == "white" && x == clickX[i] && y == clickY[i]) {
-				  clickX.splice(i, 1);
-				  clickY.splice(i, 1);
-             clickDrag.splice(i, 1);
-             clickColor.splice(i, 1);
-			  }
-	  }
-  }
 }
 function redraw(){
  context.width = window.innerWidth-15;
@@ -134,7 +134,7 @@ function setColor(color) {
 			break;
 		}
 		case "white": {
-			globalColor = "rgba(0, 0, 0, 0)";
+			globalColor = pattern;
 			break;
 		}
 	}
