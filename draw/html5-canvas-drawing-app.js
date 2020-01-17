@@ -65,7 +65,7 @@ if (globalColor != "white") {
   clickColor.push(globalColor);
 } else {
 for (var i = 0; i < clickX.length; i++) {
-if (clickX[i] == x) {
+if (clickX[i] == x && clickY[i] == y) {
 clickX.splice(i,1);
 clickY.splice(i,1);
 clickDrag.splice(i,1);
