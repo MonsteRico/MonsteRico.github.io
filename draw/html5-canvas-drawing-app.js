@@ -45,7 +45,6 @@ var pattern;
 function imageLoad() {
 	document.getElementById("img").style.height = window.innerHeight-15;
 	document.getElementById("img").style.width = window.innerWidth-15;
-pattern = context.createPattern(document.getElementById("img"), "no-repeat");
 context.drawImage(document.getElementById("img"), 0, 0, window.innerWidth-15, window.innerHeight-15);
 }
 
@@ -84,10 +83,15 @@ function redraw(){
      }else{
        context.moveTo(clickX[i]-1, clickY[i]);
      }
+	  if (globalColor == "white") {
+		  context.drawImage(document.getElementById("img"), clickX[i], clickY[i], 5, 5, clickX[i], clickY[i], 5, 5);
+	  }
+	  else {
      context.lineTo(clickX[i], clickY[i]);
      context.closePath();
 	 context.strokeStyle = clickColor[i];
      context.stroke();
+	  }
   }
 }
 
@@ -126,7 +130,7 @@ function setColor(color) {
 			break;
 		}
 		case "white": {
-			globalColor = pattern;
+			globalColor = "";
 			break;
 		}
 	}
