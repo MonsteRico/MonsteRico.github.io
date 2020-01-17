@@ -88,6 +88,7 @@ function redraw(){
 		  clickX.splice(i, 1);
 		  clickY.splice(i, 1);
 		  clickDrag.splice(i, 1);
+		  redraw();
 	  }
 	  else {
      context.lineTo(clickX[i], clickY[i]);
