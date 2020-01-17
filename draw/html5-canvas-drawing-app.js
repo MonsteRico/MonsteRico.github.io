@@ -44,15 +44,15 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 var pattern;
 
 var img = new Image(); 
-img.src = “./images/img.png”;
+img.src = "./images/img.png";
 img.onload = () => {
    context.width = window.innerWidth-15;
  context.height = window.innerHeight-15;
   document.getElementById("canvas").width = window.innerWidth-15;
  document.getElementById("canvas").height = window.innerHeight-15;
   context.drawImage(img, 0, 0, window.innerWidth-15, window.innerHeight-15);
-  context.globalCompositeOperation = “source-atop”;
-  pattern = context.createPattern(img, “no-repeat”);
+  context.globalCompositeOperation = "source-atop";
+  pattern = context.createPattern(img, "no-repeat");
 }
 
 
