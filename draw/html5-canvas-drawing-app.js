@@ -83,19 +83,12 @@ function redraw(){
      }else{
        context.moveTo(clickX[i]-1, clickY[i]);
      }
-	  if (clickColor[i] == "white") {
-		  clickColor.splice(i, 1);
-		  clickX.splice(i, 1);
-		  clickY.splice(i, 1);
-		  clickDrag.splice(i, 1);
-		  redraw();
-	  }
-	  else {
+	  
      context.lineTo(clickX[i], clickY[i]);
      context.closePath();
 	 context.strokeStyle = clickColor[i];
      context.stroke();
-	  }
+	  
   }
 }
 
