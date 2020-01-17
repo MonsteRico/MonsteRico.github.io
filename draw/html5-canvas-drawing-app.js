@@ -58,10 +58,22 @@ var paint;
 
 function addClick(x, y, dragging)
 {
+if (globalColor != "white") {
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
   clickColor.push(globalColor);
+} else {
+for (var i = 0; i < clickX.length; i++) {
+if (clickX[i] == x) {
+clickX.splice(i,1);
+clickY.splice(i,1);
+clickDrag.splice(i,1);
+clickColor.splice(i,1);
+ }
+}
+}
+
 }
 function redraw(){
  context.width = window.innerWidth-15;
