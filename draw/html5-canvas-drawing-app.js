@@ -43,7 +43,7 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 });
 var pattern;
 
-pattern = document.getElementById("img");
+pattern = context.createPattern(document.getElementById("img"), "no-repeat");
 
 
 
