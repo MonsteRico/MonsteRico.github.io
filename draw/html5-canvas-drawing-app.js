@@ -42,10 +42,10 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
   paint = false;
 });
 var pattern;
-
+function imageLoad() {
 pattern = context.createPattern(document.getElementById("img"), "no-repeat");
-
-
+context.drawImage(document.getElementById("img"), 0, 0, window.innerWidth-15, window.innerHeight-15);
+}
 
 
 
