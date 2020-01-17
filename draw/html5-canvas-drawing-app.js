@@ -43,19 +43,7 @@ document.getElementById("canvas").addEventListener("touchend", function(e){
 });
 var pattern;
 
-var img = new Image(); 
-img.src = "./images/img.png";
-img.onload = () => {
-	img.width = window.innerWidth-15;
-	img.height = window.innerHeight-15;
-   context.width = window.innerWidth-15;
- context.height = window.innerHeight-15;
-  document.getElementById("canvas").width = window.innerWidth-15;
- document.getElementById("canvas").height = window.innerHeight-15;
-  context.drawImage(img, 0, 0, window.innerWidth-15, window.innerHeight-15);
-  context.globalCompositeOperation = "source-atop";
-  pattern = context.createPattern(img, "no-repeat");
-}
+pattern = document.getElementById("img");
 
 
 
@@ -82,7 +70,7 @@ function redraw(){
  document.getElementById("div").style.width = window.innerWidth-15;
  document.getElementById("div").style.height = window.innerHeight-15;
   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-  context.drawImage(img, 0, 0, window.innerWidth-15, window.innerHeight-15);
+  context.drawImage(document.getElementById("img"), 0, 0, window.innerWidth-15, window.innerHeight-15);
   
   context.lineJoin = "round";
   context.lineWidth = 5;
