@@ -1,8 +1,9 @@
 var player = {x:0,y:100, width:32, height:32, opacity:1, color:"blue", speed:4};
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth-100;
-canvas.height = window.innerHeight-100;
+var map = {"bedroom", "hallway"};
+canvas.width = 512;
+canvas.height = 512;
 console.log(player.x);
 console.log(player.y);
 (function() {
