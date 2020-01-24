@@ -95,7 +95,17 @@ document.getElementById("test1").addEventListener("load", function() {
 });
 
 function drawMap(map) {
-	console.log(map);	
+	if (debug) {console.log(map); console.log(currentRoom);}
+	ctx.fill();
+	ctx.globalAlpha = 1;
+	ctx.fillStyle = "black";
+	ctx.fillRect(0,0,width/4,height);
+	// ACTUAL MAP STUFF
+	ctx.fillStyle = "green";
+	ctx.fillRect(width/4,0,width/2,height);
+	
+	ctx.fillStyle = "black";
+	ctx.fillRect((width/4)*3,0,width/4,height);
 }
 
 function draw(location) {
