@@ -18,7 +18,9 @@ var debug = false;
 var keys = [];
 var width = canvas.width;
 var height = canvas.height;
+var showMap = false;
 function update() {
+	showMap = false;
 	// Check for key presses
 	if (keys[38]) {
         // up arrow
@@ -36,6 +38,10 @@ function update() {
         // down arrow
         player.y+=player.speed;
     }
+	if (keys[9]) {
+		// tab
+		showMap = true;
+	}
 	ctx.clearRect(0, 0, width, height);
 	
 	//GAME LOGIC
@@ -64,7 +70,9 @@ function update() {
   ctx.fillStyle = player.color;
   ctx.globalAlpha = player.opacity;
   ctx.fillRect(player.x, player.y, player.width, player.height);
-	
+	if (showMap) {
+		drawMap(map);	
+	}
 	//END GAME DRAW
 	
 	
@@ -85,6 +93,10 @@ document.body.addEventListener("keyup", function(e) {
 document.getElementById("test1").addEventListener("load", function() {
     update();
 });
+
+function drawMap(map) {
+	console.log(map);	
+}
 
 function draw(location) {
   ctx.fill();
