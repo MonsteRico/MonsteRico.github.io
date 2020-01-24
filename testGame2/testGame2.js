@@ -22,26 +22,31 @@ var showMap = false;
 function update() {
 	showMap = false;
 	// Check for key presses
-	if (keys[38]) {
+	if ((keys[87] || keys[38]) && !keys[9]) {
         // up arrow
         player.y-=player.speed;
     }
-    if (keys[39]) {
+    if ((keys[68] || keys[39]) && !keys[9]) {
         // right arrow
         player.x+=player.speed;
     }
-    if (keys[37]) {
+    if ((keys[65] || keys[37]) && !keys[9]) {
         // left arrow
         player.x-=player.speed;
     }
-	if (keys[40]) {
-        // down arrow
+	if ((keys[83] || keys[40])	&& !keys[9]) {
+        // down arrow 
         player.y+=player.speed;
     }
 	if (keys[9]) {
 		// tab
 		showMap = true;
 	}
+	// key code for space is 32
+	// key code for tab is 9
+	// key code for lshift is 16
+	// key code for rshift is 16
+	// key code for enter is 13
 	ctx.clearRect(0, 0, width, height);
 	
 	//GAME LOGIC
@@ -65,7 +70,7 @@ function update() {
 	
 	//GAME DRAW
 	
-	draw(currentRoom);
+	draw(currentRoom,0,0,width,height);
 	ctx.fill();
   ctx.fillStyle = player.color;
   ctx.globalAlpha = player.opacity;
@@ -105,12 +110,37 @@ function drawMap(map) {
 	// ACTUAL MAP STUFF
 	ctx.fillStyle = "green";
 	ctx.fillRect(width/4,0,width/2,height);
+	var mapDrawWidth = width/2;
+	var mapDrawHeight = height
+	var mapDrawX = width/4;
+	var mapDrawY = 0;
+	var mapSectionWidth = mapDrawWidth/mapWidth;
+	var mapSectionHeight = mapDrawHeight/mapHeight;
+	for (var i = 0; i<mapWidth;i++) {
+		for (var j = 0; j<mapHeight;j++) {
+			draw(map[j][i], mapDrawX+mapSectionWidth*i, mapDrawY+mapSectionHeight*j, mapSectionWidth, mapSectionHeight);
+			if (map[j][i] == currentRoom) {
+				ctx.fillStyle="blue";
+				ctx.fillRect(mapDrawX+mapSectionWidth*i+mapSectionWidth/2, mapDrawY+mapSectionHeight*j+mapSectionHeight/2, mapSectionWidth/8, mapSectionHeight/8);
+			}
+		}
+	}
+	for (var i = 0; i<mapWidth;i++) {
+		for (var j = 0; j<mapHeight;j++) {
+			ctx.fillStyle = "black";
+			ctx.fillRect(mapDrawX+mapSectionWidth*i, mapDrawY, 10, mapDrawHeight);
+			ctx.fillRect(mapDrawX, mapDrawY+mapSectionHeight*j, mapDrawWidth, 10);
+			
+		}
+	}
+
 	
 	ctx.fillStyle = "black";
 	ctx.fillRect((width/4)*3,0,width/4,height);
 }
 
-function draw(location) {
+
+function draw(location, x, y, width, height) {
   ctx.fill();
   ctx.globalAlpha = 1;
   switch (location) {
@@ -125,7 +155,7 @@ function draw(location) {
     case "testRoom3": ctx.fillStyle="DarkOrchid"; break;
     default: ctx.fillStyle="black"; break;
   }
-  ctx.fillRect(0,0,width,height);
+  ctx.fillRect(x,y,width,height);
 }
 
 function nextRoom(direction) {
