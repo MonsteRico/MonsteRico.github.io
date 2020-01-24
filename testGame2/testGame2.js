@@ -82,10 +82,12 @@ function update() {
 
 // Checks for keys moving down and up
 document.body.addEventListener("keydown", function(e) {
-    keys[e.keyCode] = true;
+    e.preventDefault();
+	keys[e.keyCode] = true;
 });
 
 document.body.addEventListener("keyup", function(e) {
+	e.preventDefault();
     keys[e.keyCode] = false;
 });
 
