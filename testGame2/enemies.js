@@ -1,7 +1,7 @@
 class enemy {
   constructor(x, y, color) {
-    this.x = x;
-    this.y = y;
+    this.x = x - 16;
+    this.y = y - 16;
     this.width = 32;
     this.height = 32;
     this.opacity = 1;

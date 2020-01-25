@@ -12,7 +12,8 @@ class room {
     }
   }
 }
-
+var width = 1024;
+var height = 512;
 var bedroom = new room("bedroom", "AliceBlue", function(x, y, width, height) {
   ctx.fill();
   ctx.globalAlpha = 1;
@@ -47,11 +48,26 @@ var hallway = new room("hallway", "Aquamarine", function(x, y, width, height) {
 
 var hallway2 = new room("hallway2", "Brown", function(x, y, width, height) {
   ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
+  ctx.fillStyle = "black";
+  ctx.fillRect(x, y, width / 3, height / 3);
+  ctx.fillStyle = "white";
+  ctx.fillRect(x + width / 3, y, width / 3, height / 3);
+  ctx.fillStyle = "black";
+  ctx.fillRect(x + width / 3 * 2, y, width / 3, height / 3);
+
+  ctx.fillStyle = "white";
+  ctx.fillRect(x, y + height / 3, width / 3, height / 3);
+  ctx.fillRect(x + width / 3, y + height / 3, width / 3, height / 3);
+  ctx.fillRect(x + width / 3 * 2, y + height / 3, width / 3, height / 3);
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(x, y + height / 3 * 2, width / 3, height / 3);
+  ctx.fillStyle = "white";
+  ctx.fillRect(x + width / 3, y + height / 3 * 2, width / 3, height / 3);
+  ctx.fillStyle = "black";
+  ctx.fillRect(x + width / 3 * 2, y + height / 3 * 2, width / 3, height / 3);
   enemyList = this.enemyList;
-}, []);
+}, [new enemy(width / 2, height / 2, "red")]);
 
 var hallway3 = new room("hallway3", "Chartreuse", function(x, y, width, height) {
   ctx.fill();
