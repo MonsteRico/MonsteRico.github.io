@@ -35,7 +35,7 @@ function update() {
         player.x-=player.speed;
     }
 	if ((keys[83] || keys[40])	&& !keys[9]) {
-        // down arrow 
+        // down arrow
         player.y+=player.speed;
     }
 	if (keys[9]) {
@@ -48,7 +48,7 @@ function update() {
 	// key code for rshift is 16
 	// key code for enter is 13
 	ctx.clearRect(0, 0, width, height);
-	
+
 	//GAME LOGIC
 	if (player.y+player.height > height) {
 		player.y = 9;
@@ -67,20 +67,20 @@ function update() {
 		nextRoom("left");
 	}
 	//END GAME LOGIC
-	
+
 	//GAME DRAW
-	
+
 	draw(currentRoom,0,0,width,height);
 	ctx.fill();
   ctx.fillStyle = player.color;
   ctx.globalAlpha = player.opacity;
   ctx.fillRect(player.x, player.y, player.width, player.height);
 	if (showMap) {
-		drawMap(map);	
+		drawMap(map);
 	}
 	//END GAME DRAW
-	
-	
+
+
 	// Start the loop again
 	requestAnimationFrame(update);
 }
@@ -130,11 +130,11 @@ function drawMap(map) {
 			ctx.fillStyle = "black";
 			ctx.fillRect(mapDrawX+mapSectionWidth*i, mapDrawY, 10, mapDrawHeight);
 			ctx.fillRect(mapDrawX, mapDrawY+mapSectionHeight*j, mapDrawWidth, 10);
-			
+
 		}
 	}
 
-	
+
 	ctx.fillStyle = "black";
 	ctx.fillRect((width/4)*3,0,width/4,height);
 }
@@ -179,7 +179,7 @@ function nextRoom(direction) {
       currentRoom = map[y][x];
     }
   }
-  
+
   else if (direction == "down") {
     for (var i =0; i<mapHeight; i++) {
       for (var j=0; j<mapWidth; j++) {
@@ -198,7 +198,7 @@ function nextRoom(direction) {
       currentRoom = map[y][x];
     }
   }
-  
+
   else if (direction == "right") {
     for (var i =0; i<mapHeight; i++) {
       for (var j=0; j<mapWidth; j++) {
@@ -217,7 +217,7 @@ function nextRoom(direction) {
       currentRoom = map[y][x];
     }
   }
-  
+
   else if (direction == "left") {
     for (var i =0; i<mapHeight; i++) {
       for (var j=0; j<mapWidth; j++) {
@@ -236,7 +236,7 @@ function nextRoom(direction) {
       currentRoom = map[y][x];
     }
   }
-  
+
   if (debug == true) {
     console.log(direction);
     console.log(x);
