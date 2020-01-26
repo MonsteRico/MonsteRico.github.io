@@ -33,6 +33,8 @@ var width = canvas.width;
 var height = canvas.height;
 var showMap = false;
 var direction = "up";
+var arrowExists = false;
+var arrow = {};
 
 function update() {
   showMap = false;
@@ -60,6 +62,62 @@ function update() {
   if (keys[9]) {
     // tab
     showMap = true;
+  }
+  if (keys[32]) {
+    if (!arrowExists) {
+      switch (direction) {
+        case "right":
+          arrow = {
+            x: player.x + player.width,
+            y: player.y + player.height / 2 - 2,
+            width: player.width,
+            height: 4,
+            direction: "right"
+          };
+          arrowExists = true;
+          break;
+        case "left":
+          arrow = {
+            x: player.x,
+            y: player.y + player.height / 2 - 2,
+            width: player.width,
+            height: 4,
+            direction: "left"
+          };
+          arrowExists = true;
+          break;
+        case "up":
+          arrow = {
+            x: player.x + player.width / 2 - 2,
+            y: player.y,
+            width: 4,
+            height: player.height,
+            direction: "up"
+          };
+          arrowExists = true;
+          break;
+        case "down":
+          arrow = {
+            x: player.x + player.width / 2 - 2,
+            y: player.y + player.height,
+            width: 4,
+            height: player.height,
+            direction: "down"
+          };
+          arrowExists = true;
+          break;
+        default:
+          arrow = {
+            x: player.x + player.width,
+            y: player.y + player.y / 2 - 2,
+            width: player.width,
+            height: 4,
+            direction: "right"
+          };
+          arrowExists = true;
+          break;
+      }
+    }
   }
   // key code for space is 32
   // key code for tab is 9
@@ -94,8 +152,31 @@ function update() {
     } else if (dir == "b") {
       player.y += 2;
     }
+    if (arrowExists) {
+      var arrowCheck = colCheck(arrow, walls[i]);
+      if (arrowCheck == "r" || arrowCheck == "l" || arrowCheck == "t" || arrowCheck == "b") {
+        arrowExists = false;
+      }
+    }
   }
   enemyList = currentRoom.enemylist;
+  try {
+    for (var i = 0; i < enemyList.length; i++) {
+      var enemy = enemyList[i];
+      var dir = colCheck(player, enemy);
+      if (dir == "r") {
+        player.x -= 2;
+      } else if (dir == "l") {
+        player.x += 2;
+      } else if (dir == "t") {
+        player.y -= 2;
+      } else if (dir == "b") {
+        player.y += 2;
+      }
+    }
+  } catch (e) {
+
+  }
   //END GAME LOGIC
 
   //GAME DRAW
@@ -111,20 +192,55 @@ function update() {
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
-      var dir = colCheck(player, enemy);
-      if (dir == "r") {
-        player.x -= 2;
-      } else if (dir == "l") {
-        player.x += 2;
-      } else if (dir == "t") {
-        player.y -= 2;
-      } else if (dir == "b") {
-        player.y += 2;
+    }
+  } catch (e) {}
+  if (arrowExists) {
+    ctx.fillStyle = "purple";
+    if (!showMap) {
+      switch (arrow.direction) {
+        case "right":
+          arrow.x += player.speed + 2;
+          break;
+        case "left":
+          arrow.x -= player.speed + 2;
+          break;
+        case "up":
+          arrow.y -= player.speed + 2;
+          break;
+        case "down":
+          arrow.y += player.speed + 2;
+          break;
       }
     }
-  } catch (e) {
-
+    if (arrow.y + arrow.height > height) {
+      arrowExists = false;
+    } else if (arrow.y < 0) {
+      arrowExists = false;
+    }
+    if (arrow.x + arrow.width > width) {
+      arrowExists = false;
+    } else if (arrow.x < 0) {
+      arrowExists = false;
+    }
+    try {
+      for (var i = 0; i < enemyList.length; i++) {
+        if (debug) {
+          console.log("enemy checking collision");
+        }
+        var enemy = enemyList[i];
+        var c = colCheck(arrow, enemy);
+        if (c == "r" || c == "l" || c == "t" || c == "b") {
+          if (debug) {
+            console.log("enemy collision");
+          }
+          arrowExists = false;
+          enemyList.splice(i, 1);
+        }
+      }
+    } catch (e) {}
+    ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
   }
+
   if (showMap) {
     drawMap(map);
   }
