@@ -63,7 +63,7 @@ function update() {
     // tab
     showMap = true;
   }
-  if (keys[32]) {
+  if (keys[16]) {
     if (!arrowExists) {
       switch (direction) {
         case "right":
@@ -194,7 +194,7 @@ function update() {
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
     }
   } catch (e) {}
-  if (arrowExists) {
+  /*if (arrowExists) {
     ctx.fillStyle = "purple";
     if (!showMap) {
       switch (arrow.direction) {
@@ -239,7 +239,7 @@ function update() {
       }
     } catch (e) {}
     ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
-  }
+  }*/
 
   if (showMap) {
     drawMap(map);
