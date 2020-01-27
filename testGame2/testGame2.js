@@ -173,7 +173,7 @@ function update() {
         arrowExists = false;
       }
     }
-  }
+  
   
   //END GAME LOGIC
 
