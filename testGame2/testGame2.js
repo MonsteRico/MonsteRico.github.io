@@ -127,8 +127,6 @@ function update() {
     if (!attack && !attackOnCooldown) {
       attack = true;
       attackOnCooldown = true;
-      console.log("attack");
-      console.log("attackOnCooldown");
       setTimeout(function() {
         attackOnCooldown = false;
       }, attackCooldown);
