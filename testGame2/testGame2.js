@@ -191,6 +191,7 @@ function update() {
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
+      console.log(enemy.health);
       if (enemy.health <= 0) {
         enemyList.splice(i,1);
       }
@@ -250,7 +251,7 @@ function update() {
             console.log("enemy collision");
           }
           arrowExists = false;
-          enemyList.health-=2;
+          enemy.health-=2;
         }
       }
     } catch (e) {}
