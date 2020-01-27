@@ -191,10 +191,6 @@ function update() {
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
-      console.log(enemy.health);
-      if (enemy.health <= 0) {
-        enemyList.splice(i,1);
-      }
       var dir = colCheck(player, enemy);
       if (dir == "r") {
         player.x -= 2;
