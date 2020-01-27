@@ -7,7 +7,6 @@ class enemy {
     this.opacity = 1;
     this.color = color;
     this.speed = 2;
-    this.health = 5;
   }
 }
 var testEnemyList = [new enemy(0, 0, "green"), new enemy(200, 300, "red")];
