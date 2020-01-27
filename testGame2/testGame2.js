@@ -517,3 +517,4 @@ function colCheck(shapeA, shapeB, extra) {
   }
   return colDir;
 }
+}
