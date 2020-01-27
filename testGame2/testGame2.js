@@ -5,9 +5,7 @@ var player = {
   height: 32,
   opacity: 1,
   color: "blue",
-  speed: 4,
-  health: 10,
-  strength:1
+  speed: 4
 };
 
 var canvas = document.getElementById("test1");
@@ -173,8 +171,25 @@ function update() {
         arrowExists = false;
       }
     }
-  
-  
+  }
+  enemyList = currentRoom.enemylist;
+  try {
+    for (var i = 0; i < enemyList.length; i++) {
+      var enemy = enemyList[i];
+      var dir = colCheck(player, enemy);
+      if (dir == "r") {
+        player.x -= 2;
+      } else if (dir == "l") {
+        player.x += 2;
+      } else if (dir == "t") {
+        player.y -= 2;
+      } else if (dir == "b") {
+        player.y += 2;
+      }
+    }
+  } catch (e) {
+
+  }
   //END GAME LOGIC
 
   //GAME DRAW
@@ -184,30 +199,15 @@ function update() {
   ctx.fillStyle = player.color;
   ctx.globalAlpha = player.opacity;
   ctx.fillRect(player.x, player.y, player.width, player.height);
-  enemyList = currentRoom.enemylist;
   try {
     for (var i = 0; i < enemyList.length; i++) {
       var enemy = enemyList[i];
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
-      var dir = colCheck(player, enemy);
-      if (dir == "r") {
-        player.x -= 2;
-        player.health -= 1;
-      } else if (dir == "l") {
-        player.x += 2;
-        player.health -= 1;
-      } else if (dir == "t") {
-        player.y -= 2;
-        player.health -= 1;
-      } else if (dir == "b") {
-        player.y += 2;
-        player.health -= 1;
-      }
     }
   } catch (e) {}
-  if (arrowExists) {
+  /*if (arrowExists) {
     ctx.fillStyle = "purple";
     if (!showMap) {
       switch (arrow.direction) {
@@ -247,12 +247,12 @@ function update() {
             console.log("enemy collision");
           }
           arrowExists = false;
-          enemy.health-=2;
+          enemyList.splice(i, 1);
         }
       }
     } catch (e) {}
     ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
-  }
+  }*/
   if (attack) {
     ctx.fillStyle = "purple";
     switch (direction) {
@@ -302,7 +302,6 @@ function update() {
         };
         break;
     }
-    if (!showMap) {
     try {
       for (var i = 0; i < enemyList.length; i++) {
         if (debug) {
@@ -312,9 +311,9 @@ function update() {
         var c = colCheck(hitbox, enemy);
         if (c == "r" || c == "l" || c == "t" || c == "b") {
           if (debug) {
-            console.log("enemy hit");
+            console.log("enemy collision");
           }
-          enemy.health-=player.strength;
+          enemyList.splice(i, 1);
         }
       }
     } catch (e) {}
@@ -330,13 +329,12 @@ function update() {
       attack = false;
       ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }, 500);
-    }
   }
   if (showMap) {
     drawMap(map);
   }
   //END GAME DRAW
-  document.getElementById("health").innerHTML = player.health;
+
 
   // Start the loop again
   requestAnimationFrame(update);
@@ -516,5 +514,4 @@ function colCheck(shapeA, shapeB, extra) {
     console.log("colDir");
   }
   return colDir;
-}
 }
