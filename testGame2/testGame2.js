@@ -35,6 +35,10 @@ var showMap = false;
 var direction = "up";
 var arrowExists = false;
 var arrow = {};
+var attackCooldown = 1000;
+var attackOnCooldown = false;
+var attack = false;
+var attackHitbox = {};
 
 function update() {
   showMap = false;
@@ -117,6 +121,17 @@ function update() {
           arrowExists = true;
           break;
       }
+    }
+  }
+  if (keys[32]) {
+    if (!attack && !attackOnCooldown) {
+      attack = true;
+      attackOnCooldown = true;
+      console.log("attack");
+      console.log("attackOnCooldown");
+      setTimeout(function() {
+        attackOnCooldown = false;
+      }, attackCooldown);
     }
   }
   // key code for space is 32
@@ -240,7 +255,83 @@ function update() {
     } catch (e) {}
     ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
   }*/
-
+  if (attack) {
+    ctx.fillStyle = "purple";
+    switch (direction) {
+      case "right":
+        hitbox = {
+          x: player.x + player.width,
+          y: player.y,
+          width: player.width,
+          height: player.height,
+          direction: "right"
+        };
+        break;
+      case "left":
+        hitbox = {
+          x: player.x - player.width,
+          y: player.y,
+          width: player.width,
+          height: player.height,
+          direction: "left"
+        };
+        break;
+      case "up":
+        hitbox = {
+          x: player.x,
+          y: player.y - player.height,
+          width: player.width,
+          height: player.height,
+          direction: "up"
+        };
+        break;
+      case "down":
+        hitbox = {
+          x: player.x,
+          y: player.y + player.height,
+          width: player.width,
+          height: player.height,
+          direction: "down"
+        };
+        break;
+      default:
+        hitbox = {
+          x: player.x + player.width,
+          y: player.y,
+          width: player.width,
+          height: player.height,
+          direction: "right"
+        };
+        break;
+    }
+    try {
+      for (var i = 0; i < enemyList.length; i++) {
+        if (debug) {
+          console.log("enemy checking collision");
+        }
+        var enemy = enemyList[i];
+        var c = colCheck(hitbox, enemy);
+        if (c == "r" || c == "l" || c == "t" || c == "b") {
+          if (debug) {
+            console.log("enemy collision");
+          }
+          enemyList.splice(i, 1);
+        }
+      }
+    } catch (e) {}
+    for (var i = 0; i < walls.length; i++) {
+      var hitboxCheck = colCheck(hitbox, walls[i]);
+      if (hitboxCheck == "r" || hitboxCheck == "l" || hitboxCheck == "t" || hitboxCheck == "b") {
+        attack = false;
+        ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+      }
+    }
+    ctx.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+    setTimeout(function() {
+      attack = false;
+      ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+    }, 500);
+  }
   if (showMap) {
     drawMap(map);
   }
