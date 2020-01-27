@@ -302,6 +302,7 @@ function update() {
         };
         break;
     }
+    if (!showMap) {
     try {
       for (var i = 0; i < enemyList.length; i++) {
         if (debug) {
@@ -329,6 +330,7 @@ function update() {
       attack = false;
       ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }, 500);
+    }
   }
   if (showMap) {
     drawMap(map);
