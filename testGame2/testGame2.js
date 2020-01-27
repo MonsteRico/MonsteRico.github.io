@@ -5,7 +5,9 @@ var player = {
   height: 32,
   opacity: 1,
   color: "blue",
-  speed: 4
+  speed: 4,
+  health: 10,
+  strength:1
 };
 
 var canvas = document.getElementById("test1");
@@ -205,6 +207,8 @@ function update() {
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
+      if (enemy.health <= 0) {
+        enemyList.splice(i,1);
     }
   } catch (e) {}
   /*if (arrowExists) {
@@ -247,7 +251,7 @@ function update() {
             console.log("enemy collision");
           }
           arrowExists = false;
-          enemyList.splice(i, 1);
+          enemyList.health-=2;
         }
       }
     } catch (e) {}
@@ -314,7 +318,7 @@ function update() {
           if (debug) {
             console.log("enemy collision");
           }
-          enemyList.splice(i, 1);
+          enemy.health-=player.strength;
         }
       }
     } catch (e) {}
