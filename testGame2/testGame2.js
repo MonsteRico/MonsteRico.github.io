@@ -5,7 +5,9 @@ var player = {
   height: 32,
   opacity: 1,
   color: "blue",
-  speed: 4
+  speed: 4,
+  strength:2,
+  health: 10
 };
 
 var canvas = document.getElementById("test1");
@@ -39,6 +41,8 @@ var attackCooldown = 1000;
 var attackOnCooldown = false;
 var attack = false;
 var attackHitbox = {};
+var enemiesHit = [];
+var playerHit = false;
 
 function update() {
   showMap = false;
@@ -129,6 +133,7 @@ function update() {
       attackOnCooldown = true;
       setTimeout(function() {
         attackOnCooldown = false;
+        enemiesHit = [];
       }, attackCooldown);
     }
   }
@@ -175,17 +180,7 @@ function update() {
   enemyList = currentRoom.enemylist;
   try {
     for (var i = 0; i < enemyList.length; i++) {
-      var enemy = enemyList[i];
-      var dir = colCheck(player, enemy);
-      if (dir == "r") {
-        player.x -= 2;
-      } else if (dir == "l") {
-        player.x += 2;
-      } else if (dir == "t") {
-        player.y -= 2;
-      } else if (dir == "b") {
-        player.y += 2;
-      }
+      
     }
   } catch (e) {
 
@@ -202,6 +197,42 @@ function update() {
   try {
     for (var i = 0; i < enemyList.length; i++) {
       var enemy = enemyList[i];
+      var dir = colCheck(player, enemy);
+      if (dir == "r") {
+        player.x -= 10;
+        if (playerHit == false) {
+           player.health-=enemy.strength;
+           playerHit = true;
+          setTimeout(function() {playerHit = false},1000);
+        }
+      } else if (dir == "l") {
+        player.x += 10;
+        if (playerHit == false) {
+           player.health-=enemy.strength;
+           playerHit = true;
+
+          setTimeout(function() {playerHit = false},1000);
+        }
+      } else if (dir == "t") {
+        player.y += 10;
+        if (playerHit == false) {
+           player.health-=enemy.strength;
+           playerHit = true;
+
+          setTimeout(function() {playerHit = false},1000);
+        }
+      } else if (dir == "b") {
+        player.y -= 10;
+        if (playerHit == false) {
+           player.health-=enemy.strength;
+           playerHit = true;
+
+          setTimeout(function() {playerHit = false},1000);
+        }
+      }
+      if (enemy.health <= 0) {
+        enemyList.splice(i,1);
+      }
       ctx.fillStyle = enemy.color;
       ctx.globalAlpha = enemy.opacity;
       ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
@@ -304,16 +335,26 @@ function update() {
     }
     try {
       for (var i = 0; i < enemyList.length; i++) {
+        var damage = true;
         if (debug) {
           console.log("enemy checking collision");
         }
         var enemy = enemyList[i];
-        var c = colCheck(hitbox, enemy);
+        var c = nocolCheck(hitbox, enemy);
         if (c == "r" || c == "l" || c == "t" || c == "b") {
           if (debug) {
             console.log("enemy collision");
           }
-          enemyList.splice(i, 1);
+          for (var i =0; i<enemiesHit.length; i++) {
+            if (enemy == enemiesHit[i]) {
+              damage = false;
+            }
+          }
+          if (damage == true) {
+            enemy.health-=player.strength;
+            enemiesHit.push(enemy);
+            console.log(enemy.health);
+          }
         }
       }
     } catch (e) {}
@@ -334,7 +375,10 @@ function update() {
     drawMap(map);
   }
   //END GAME DRAW
-
+  document.getElementById("health").innerHTML = player.health;
+  if (player.health <= 0) {
+    window.location.reload(true);
+  }
 
   // Start the loop again
   requestAnimationFrame(update);
@@ -507,6 +551,47 @@ function colCheck(shapeA, shapeB, extra) {
       } else {
         colDir = "r";
         shapeA.x -= oX;
+      }
+    }
+  }
+  if (debug) {
+    console.log("colDir");
+  }
+  return colDir;
+}
+
+function nocolCheck(shapeA, shapeB, extra) {
+  // DONT FULLY UNDERSTAND Collisions yet but here they are.
+  // get the vectors to check against
+  if (!extra) {
+    extra = 0;
+  }
+  var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
+    vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) + extra),
+    // add the half widths and half heights of the objects
+    hWidths = (shapeA.width / 2) + (shapeB.width / 2),
+    hHeights = (shapeA.height / 2) + (shapeB.height / 2),
+    colDir = null;
+  // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+  if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
+    // figures out on which side we are colliding (top, bottom, left, or right)
+    var oX = hWidths - Math.abs(vX),
+      oY = hHeights - Math.abs(vY);
+    if (oX >= oY) {
+      if (vY > 0) {
+        colDir = "t";
+        
+      } else {
+        colDir = "b";
+        
+      }
+    } else {
+      if (vX > 0) {
+        colDir = "l";
+        
+      } else {
+        colDir = "r";
+        
       }
     }
   }
