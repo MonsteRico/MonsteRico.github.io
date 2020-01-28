@@ -22,7 +22,7 @@ var bedroom = new room("bedroom", "AliceBlue", function(x, y, width, height) {
   ctx.fillRect(x, y, width, height);
   enemyList = this.enemyList;
   walls = [];
-}, []);
+}, [new spider(width/2, height/2)]);
 
 var bedroom2 = new room("bedroom2", "AntiqueWhite", function(x, y, width, height) {
   ctx.fill();

@@ -233,11 +233,10 @@ function update() {
       if (enemy.health <= 0) {
         enemyList.splice(i,1);
       }
-      ctx.fillStyle = enemy.color;
-      ctx.globalAlpha = enemy.opacity;
-      ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height); //put this in a draw function
+      enemy.draw();
     }
   } catch (e) {}
+  
   /*if (arrowExists) {
     ctx.fillStyle = "purple";
     if (!showMap) {
@@ -284,6 +283,7 @@ function update() {
     } catch (e) {}
     ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
   }*/
+  
   if (attack) {
     ctx.fillStyle = "purple";
     switch (direction) {
@@ -371,6 +371,7 @@ function update() {
       ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }, 500);
   }
+  
   if (showMap) {
     drawMap(map);
   }
