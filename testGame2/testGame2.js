@@ -233,8 +233,29 @@ function update() {
       if (enemy.health <= 0) {
         enemyList.splice(i,1);
       }
-      enemy.draw();
+	try {
+	  if (enemy.timer == enemy.cooldown) {
+		  enemy.timer = 0;
+		  enemy.frameIndex++;
+	  }
+	  if (enemy.frameIndex == enemy.finalFrame+1) {
+		  enemy.frameIndex = enemy.initialFrame;
+	  }
+	  enemy.timer++;
+	}
+	catch(e) {}
+	try {
+		if (player.y <= enemy.y) {
+			enemy.direction = "up";
+		}
+		else if (player.y > enemy.y) {
+			enemy.direction = "down";
+		}
+	} catch (e) {}
+    enemy.draw();
+	enemy.move(player.x,player.y);
     }
+	
   } catch (e) {}
   
   /*if (arrowExists) {
