@@ -27,7 +27,7 @@ class enemy extends Enemy{
 
 class spider extends Enemy {
 	constructor (x,y) {
-		super(x,y,"black",30,2,1,function() {
+		super(x,y,"black",3,2,1,function() {
 			var spiderSheet = document.getElementById("spiderSheet");
 			var dir = 0;
 			switch (this.direction) {
