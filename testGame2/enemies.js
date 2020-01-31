@@ -40,24 +40,18 @@ class spider extends Enemy {
 			ctx.drawImage(spiderSheet, this.frameIndex*32,dir*32,32,32,this.x,this.y,32,32);
 		}, function(playerX, playerY) {
 			this.attackCooldown++;
-			console.log(this.attackCooldown);
-			if (this.attackCooldown == 20) {
+			if (this.attackCooldown == 5) {
 				this.attackCooldown = 0;
-				console.log("attacking");
 					if (playerX > this.x) {
 						this.x+=this.speed;
-						console.log("movex");
 					}
 					else {
 						this.x-=this.speed;
-						console.log("movex");
 					}
 					if (playerY < this.y) {
-						console.log("movey");
 						this.y-=this.speed;
 					}
 					else {
-						console.log("movey");
 						this.y+=this.speed;
 					}
 			}
