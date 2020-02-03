@@ -398,6 +398,10 @@ function update() {
   try {
 	  //DRAW
 	  for (var i =0; i<exitBarrier.length; i++) {
+		  ctx.fill();
+		  ctx.globalAlpha = 1;
+		  ctx.fillStyle = this.color;
+		  ctx.fillRect(exitBarrier[i].x, exitBarrier[i].y, exitBarrier[i].width, exitBarrier[i].height);
 		  if (!hasKey) {
 			  colCheck(player, exitBarrier[i]);
 		  } else {
