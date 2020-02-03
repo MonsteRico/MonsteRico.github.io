@@ -133,3 +133,14 @@ var testRoom3 = new room("testRoom3", "DarkOrchid", function(x, y, width, height
   enemyList = this.enemyList;
   walls = [];
 }, []);
+
+var exit = new room("exit", "Green", function(x, y, width, height) {
+  ctx.fill();
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = this.color;
+  ctx.fillRect(x, y, width, height);
+  enemyList = this.enemyList;
+  walls = [];
+  exitBarrier = [{x: x+width/2, y:y, width:32, height:height}];
+  exitArea = [{x:width/2+32,y:y, width:width/2, height:height}];
+}, []);

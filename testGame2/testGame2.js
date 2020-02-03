@@ -13,7 +13,7 @@ var player = {
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
 var map = [
-  [bedroom, hallway, testRoom],
+  [bedroom, exit, testRoom],
   [bedroom2, hallway2, testRoom2],
   [bedroom3, hallway3, testRoom3]
 ];
@@ -43,6 +43,8 @@ var attack = false;
 var attackHitbox = {};
 var enemiesHit = [];
 var playerHit = false;
+var hasKey = false;
+
 
 function update() {
   showMap = false;
@@ -391,6 +393,23 @@ function update() {
       attack = false;
       ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }, 500);
+  }
+  
+  try {
+	  //DRAW
+	  for (var i =0; i<exitBarrier.length; i++) {
+		  if (!hasKey) {
+			  colCheck(player, exitBarrier[i]);
+		  } else {
+			  var touchexit = nocolCheck(player,exitArea[i]);
+			  if (touchexit) {
+				  console.log("THATS IT");
+			  }
+		  }
+	  }
+  }
+  catch (e) {
+	  
   }
   
   if (showMap) {
