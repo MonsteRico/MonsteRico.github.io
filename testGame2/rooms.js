@@ -22,7 +22,7 @@ var bedroom = new room("bedroom", "AliceBlue", function(x, y, width, height) {
   ctx.fillRect(x, y, width, height);
   enemyList = this.enemyList;
   walls = [];
-}, [new spider(width/2, height/2)]);
+}, [new spider(width / 2, height / 2)]);
 
 var bedroom2 = new room("bedroom2", "AntiqueWhite", function(x, y, width, height) {
   ctx.fill();
@@ -141,6 +141,16 @@ var exit = new room("exit", "Green", function(x, y, width, height) {
   ctx.fillRect(x, y, width, height);
   enemyList = this.enemyList;
   walls = [];
-  exitBarrier = [{x: x+width/2, y:y, width:32, height:height}];
-  exitArea = [{x:width/2+32,y:y, width:width/2, height:height}];
+  exitBarrier = [{
+    x: x + width / 2,
+    y: y,
+    width: 32,
+    height: height
+  }];
+  exitArea = [{
+    x: width / 2 + 32,
+    y: y,
+    width: width / 2,
+    height: height
+  }];
 }, []);

@@ -6,7 +6,7 @@ var player = {
   opacity: 1,
   color: "blue",
   speed: 4,
-  strength:2,
+  strength: 2,
   health: 10
 };
 
@@ -44,389 +44,402 @@ var attackHitbox = {};
 var enemiesHit = [];
 var playerHit = false;
 var hasKey = false;
-
+var gameState = "play";
 
 function update() {
-  showMap = false;
-  // Check for key presses
-  if ((keys[87] || keys[38]) && !keys[9]) {
-    // up arrow
-    player.y -= player.speed;
-    direction = "up";
-  }
-  if ((keys[68] || keys[39]) && !keys[9]) {
-    // right arrow
-    player.x += player.speed;
-    direction = "right";
-  }
-  if ((keys[65] || keys[37]) && !keys[9]) {
-    // left arrow
-    player.x -= player.speed;
-    direction = "left";
-  }
-  if ((keys[83] || keys[40]) && !keys[9]) {
-    // down arrow
-    player.y += player.speed;
-    direction = "down";
-  }
-  if (keys[9]) {
-    // tab
-    showMap = true;
-  }
-  if (keys[16]) {
-    if (!arrowExists) {
+
+  if (gameState == "play") {
+    showMap = false;
+    // Check for key presses
+    if ((keys[87] || keys[38]) && !keys[9]) {
+      // up arrow
+      player.y -= player.speed;
+      direction = "up";
+    }
+    if ((keys[68] || keys[39]) && !keys[9]) {
+      // right arrow
+      player.x += player.speed;
+      direction = "right";
+    }
+    if ((keys[65] || keys[37]) && !keys[9]) {
+      // left arrow
+      player.x -= player.speed;
+      direction = "left";
+    }
+    if ((keys[83] || keys[40]) && !keys[9]) {
+      // down arrow
+      player.y += player.speed;
+      direction = "down";
+    }
+    if (keys[9]) {
+      // tab
+      showMap = true;
+    }
+    if (keys[16]) {
+      if (!arrowExists) {
+        switch (direction) {
+          case "right":
+            arrow = {
+              x: player.x + player.width,
+              y: player.y + player.height / 2 - 2,
+              width: player.width,
+              height: 4,
+              direction: "right"
+            };
+            arrowExists = true;
+            break;
+          case "left":
+            arrow = {
+              x: player.x,
+              y: player.y + player.height / 2 - 2,
+              width: player.width,
+              height: 4,
+              direction: "left"
+            };
+            arrowExists = true;
+            break;
+          case "up":
+            arrow = {
+              x: player.x + player.width / 2 - 2,
+              y: player.y,
+              width: 4,
+              height: player.height,
+              direction: "up"
+            };
+            arrowExists = true;
+            break;
+          case "down":
+            arrow = {
+              x: player.x + player.width / 2 - 2,
+              y: player.y + player.height,
+              width: 4,
+              height: player.height,
+              direction: "down"
+            };
+            arrowExists = true;
+            break;
+          default:
+            arrow = {
+              x: player.x + player.width,
+              y: player.y + player.y / 2 - 2,
+              width: player.width,
+              height: 4,
+              direction: "right"
+            };
+            arrowExists = true;
+            break;
+        }
+      }
+    }
+    if (keys[32]) {
+      if (!attack && !attackOnCooldown) {
+        attack = true;
+        attackOnCooldown = true;
+        setTimeout(function() {
+          attackOnCooldown = false;
+          enemiesHit = [];
+        }, attackCooldown);
+      }
+    }
+    // key code for space is 32
+    // key code for tab is 9
+    // key code for lshift is 16
+    // key code for rshift is 16
+    // key code for enter is 13
+    ctx.clearRect(0, 0, width, height);
+
+    //GAME LOGIC
+    if (player.y + player.height > height) {
+      player.y = 9;
+      nextRoom("down");
+    } else if (player.y < 0) {
+      player.y = height - player.height;
+      nextRoom("up");
+    }
+    if (player.x + player.width > width) {
+      player.x = 9;
+      nextRoom("right");
+    } else if (player.x < 0) {
+      player.x = width - player.width;
+      nextRoom("left");
+    }
+    for (var i = 0; i < walls.length; i++) {
+      var dir = colCheck(player, walls[i]);
+      if (dir == "r") {
+        player.x -= 2;
+      } else if (dir == "l") {
+        player.x += 2;
+      } else if (dir == "t") {
+        player.y -= 2;
+      } else if (dir == "b") {
+        player.y += 2;
+      }
+      if (arrowExists) {
+        var arrowCheck = colCheck(arrow, walls[i]);
+        if (arrowCheck == "r" || arrowCheck == "l" || arrowCheck == "t" || arrowCheck == "b") {
+          arrowExists = false;
+        }
+      }
+    }
+    enemyList = currentRoom.enemylist;
+    try {
+      for (var i = 0; i < enemyList.length; i++) {
+
+      }
+    } catch (e) {
+
+    }
+    //END GAME LOGIC
+
+    //GAME DRAW
+
+    currentRoom.draw(0, 0, width, height);
+
+    try {
+      for (var i = 0; i < enemyList.length; i++) {
+        var enemy = enemyList[i];
+        var dir = colCheck(player, enemy);
+        if (dir == "r") {
+          player.x -= 10;
+          if (playerHit == false) {
+            player.health -= enemy.strength;
+            playerHit = true;
+            setTimeout(function() {
+              playerHit = false
+            }, 1000);
+          }
+        } else if (dir == "l") {
+          player.x += 10;
+          if (playerHit == false) {
+            player.health -= enemy.strength;
+            playerHit = true;
+
+            setTimeout(function() {
+              playerHit = false
+            }, 1000);
+          }
+        } else if (dir == "t") {
+          player.y += 10;
+          if (playerHit == false) {
+            player.health -= enemy.strength;
+            playerHit = true;
+
+            setTimeout(function() {
+              playerHit = false
+            }, 1000);
+          }
+        } else if (dir == "b") {
+          player.y -= 10;
+          if (playerHit == false) {
+            player.health -= enemy.strength;
+            playerHit = true;
+
+            setTimeout(function() {
+              playerHit = false
+            }, 1000);
+          }
+        }
+        if (enemy.health <= 0) {
+          enemyList.splice(i, 1);
+        }
+        try {
+          if (enemy.timer == enemy.cooldown) {
+            enemy.timer = 0;
+            enemy.frameIndex++;
+          }
+          if (enemy.frameIndex == enemy.finalFrame + 1) {
+            enemy.frameIndex = enemy.initialFrame;
+          }
+          enemy.timer++;
+        } catch (e) {}
+        try {
+          if (player.y <= enemy.y) {
+            enemy.direction = "up";
+          } else if (player.y > enemy.y) {
+            enemy.direction = "down";
+          }
+        } catch (e) {}
+        enemy.draw();
+        if (!showMap) {
+          enemy.move(player.x, player.y);
+        }
+      }
+
+    } catch (e) {}
+
+    /*if (arrowExists) {
+      ctx.fillStyle = "purple";
+      if (!showMap) {
+        switch (arrow.direction) {
+          case "right":
+            arrow.x += player.speed + 2;
+            break;
+          case "left":
+            arrow.x -= player.speed + 2;
+            break;
+          case "up":
+            arrow.y -= player.speed + 2;
+            break;
+          case "down":
+            arrow.y += player.speed + 2;
+            break;
+        }
+      }
+      if (arrow.y + arrow.height > height) {
+        arrowExists = false;
+      } else if (arrow.y < 0) {
+        arrowExists = false;
+      }
+      if (arrow.x + arrow.width > width) {
+        arrowExists = false;
+      } else if (arrow.x < 0) {
+        arrowExists = false;
+      }
+      try {
+        for (var i = 0; i < enemyList.length; i++) {
+          if (debug) {
+            console.log("enemy checking collision");
+          }
+          var enemy = enemyList[i];
+          var c = colCheck(arrow, enemy);
+          if (c == "r" || c == "l" || c == "t" || c == "b") {
+            if (debug) {
+              console.log("enemy collision");
+            }
+            arrowExists = false;
+            enemyList.splice(i, 1);
+          }
+        }
+      } catch (e) {}
+      ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
+    }*/
+
+    if (attack) {
+      ctx.fillStyle = "purple";
       switch (direction) {
         case "right":
-          arrow = {
+          hitbox = {
             x: player.x + player.width,
-            y: player.y + player.height / 2 - 2,
+            y: player.y,
             width: player.width,
-            height: 4,
+            height: player.height,
             direction: "right"
           };
-          arrowExists = true;
           break;
         case "left":
-          arrow = {
-            x: player.x,
-            y: player.y + player.height / 2 - 2,
+          hitbox = {
+            x: player.x - player.width,
+            y: player.y,
             width: player.width,
-            height: 4,
+            height: player.height,
             direction: "left"
           };
-          arrowExists = true;
           break;
         case "up":
-          arrow = {
-            x: player.x + player.width / 2 - 2,
-            y: player.y,
-            width: 4,
+          hitbox = {
+            x: player.x,
+            y: player.y - player.height,
+            width: player.width,
             height: player.height,
             direction: "up"
           };
-          arrowExists = true;
           break;
         case "down":
-          arrow = {
-            x: player.x + player.width / 2 - 2,
+          hitbox = {
+            x: player.x,
             y: player.y + player.height,
-            width: 4,
+            width: player.width,
             height: player.height,
             direction: "down"
           };
-          arrowExists = true;
           break;
         default:
-          arrow = {
+          hitbox = {
             x: player.x + player.width,
-            y: player.y + player.y / 2 - 2,
+            y: player.y,
             width: player.width,
-            height: 4,
+            height: player.height,
             direction: "right"
           };
-          arrowExists = true;
           break;
       }
-    }
-  }
-  if (keys[32]) {
-    if (!attack && !attackOnCooldown) {
-      attack = true;
-      attackOnCooldown = true;
-      setTimeout(function() {
-        attackOnCooldown = false;
-        enemiesHit = [];
-      }, attackCooldown);
-    }
-  }
-  // key code for space is 32
-  // key code for tab is 9
-  // key code for lshift is 16
-  // key code for rshift is 16
-  // key code for enter is 13
-  ctx.clearRect(0, 0, width, height);
-
-  //GAME LOGIC
-  if (player.y + player.height > height) {
-    player.y = 9;
-    nextRoom("down");
-  } else if (player.y < 0) {
-    player.y = height - player.height;
-    nextRoom("up");
-  }
-  if (player.x + player.width > width) {
-    player.x = 9;
-    nextRoom("right");
-  } else if (player.x < 0) {
-    player.x = width - player.width;
-    nextRoom("left");
-  }
-  for (var i = 0; i < walls.length; i++) {
-    var dir = colCheck(player, walls[i]);
-    if (dir == "r") {
-      player.x -= 2;
-    } else if (dir == "l") {
-      player.x += 2;
-    } else if (dir == "t") {
-      player.y -= 2;
-    } else if (dir == "b") {
-      player.y += 2;
-    }
-    if (arrowExists) {
-      var arrowCheck = colCheck(arrow, walls[i]);
-      if (arrowCheck == "r" || arrowCheck == "l" || arrowCheck == "t" || arrowCheck == "b") {
-        arrowExists = false;
-      }
-    }
-  }
-  enemyList = currentRoom.enemylist;
-  try {
-    for (var i = 0; i < enemyList.length; i++) {
-      
-    }
-  } catch (e) {
-
-  }
-  //END GAME LOGIC
-
-  //GAME DRAW
-
-  currentRoom.draw(0, 0, width, height);
-  ctx.fill();
-  ctx.fillStyle = player.color;
-  ctx.globalAlpha = player.opacity;
-  ctx.fillRect(player.x, player.y, player.width, player.height);
-  try {
-    for (var i = 0; i < enemyList.length; i++) {
-      var enemy = enemyList[i];
-      var dir = colCheck(player, enemy);
-      if (dir == "r") {
-        player.x -= 10;
-        if (playerHit == false) {
-           player.health-=enemy.strength;
-           playerHit = true;
-          setTimeout(function() {playerHit = false},1000);
-        }
-      } else if (dir == "l") {
-        player.x += 10;
-        if (playerHit == false) {
-           player.health-=enemy.strength;
-           playerHit = true;
-
-          setTimeout(function() {playerHit = false},1000);
-        }
-      } else if (dir == "t") {
-        player.y += 10;
-        if (playerHit == false) {
-           player.health-=enemy.strength;
-           playerHit = true;
-
-          setTimeout(function() {playerHit = false},1000);
-        }
-      } else if (dir == "b") {
-        player.y -= 10;
-        if (playerHit == false) {
-           player.health-=enemy.strength;
-           playerHit = true;
-
-          setTimeout(function() {playerHit = false},1000);
-        }
-      }
-      if (enemy.health <= 0) {
-        enemyList.splice(i,1);
-      }
-	try {
-	  if (enemy.timer == enemy.cooldown) {
-		  enemy.timer = 0;
-		  enemy.frameIndex++;
-	  }
-	  if (enemy.frameIndex == enemy.finalFrame+1) {
-		  enemy.frameIndex = enemy.initialFrame;
-	  }
-	  enemy.timer++;
-	}
-	catch(e) {}
-	try {
-		if (player.y <= enemy.y) {
-			enemy.direction = "up";
-		}
-		else if (player.y > enemy.y) {
-			enemy.direction = "down";
-		}
-	} catch (e) {}
-    enemy.draw();
-	enemy.move(player.x,player.y);
-    }
-	
-  } catch (e) {}
-  
-  /*if (arrowExists) {
-    ctx.fillStyle = "purple";
-    if (!showMap) {
-      switch (arrow.direction) {
-        case "right":
-          arrow.x += player.speed + 2;
-          break;
-        case "left":
-          arrow.x -= player.speed + 2;
-          break;
-        case "up":
-          arrow.y -= player.speed + 2;
-          break;
-        case "down":
-          arrow.y += player.speed + 2;
-          break;
-      }
-    }
-    if (arrow.y + arrow.height > height) {
-      arrowExists = false;
-    } else if (arrow.y < 0) {
-      arrowExists = false;
-    }
-    if (arrow.x + arrow.width > width) {
-      arrowExists = false;
-    } else if (arrow.x < 0) {
-      arrowExists = false;
-    }
-    try {
-      for (var i = 0; i < enemyList.length; i++) {
-        if (debug) {
-          console.log("enemy checking collision");
-        }
-        var enemy = enemyList[i];
-        var c = colCheck(arrow, enemy);
-        if (c == "r" || c == "l" || c == "t" || c == "b") {
+      try {
+        for (var i = 0; i < enemyList.length; i++) {
+          var damage = true;
           if (debug) {
-            console.log("enemy collision");
+            console.log("enemy checking collision");
           }
-          arrowExists = false;
-          enemyList.splice(i, 1);
-        }
-      }
-    } catch (e) {}
-    ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
-  }*/
-  
-  if (attack) {
-    ctx.fillStyle = "purple";
-    switch (direction) {
-      case "right":
-        hitbox = {
-          x: player.x + player.width,
-          y: player.y,
-          width: player.width,
-          height: player.height,
-          direction: "right"
-        };
-        break;
-      case "left":
-        hitbox = {
-          x: player.x - player.width,
-          y: player.y,
-          width: player.width,
-          height: player.height,
-          direction: "left"
-        };
-        break;
-      case "up":
-        hitbox = {
-          x: player.x,
-          y: player.y - player.height,
-          width: player.width,
-          height: player.height,
-          direction: "up"
-        };
-        break;
-      case "down":
-        hitbox = {
-          x: player.x,
-          y: player.y + player.height,
-          width: player.width,
-          height: player.height,
-          direction: "down"
-        };
-        break;
-      default:
-        hitbox = {
-          x: player.x + player.width,
-          y: player.y,
-          width: player.width,
-          height: player.height,
-          direction: "right"
-        };
-        break;
-    }
-    try {
-      for (var i = 0; i < enemyList.length; i++) {
-        var damage = true;
-        if (debug) {
-          console.log("enemy checking collision");
-        }
-        var enemy = enemyList[i];
-        var c = nocolCheck(hitbox, enemy);
-        if (c == "r" || c == "l" || c == "t" || c == "b") {
-          if (debug) {
-            console.log("enemy collision");
-          }
-          for (var i =0; i<enemiesHit.length; i++) {
-            if (enemy == enemiesHit[i]) {
-              damage = false;
+          var enemy = enemyList[i];
+          var c = nocolCheck(hitbox, enemy);
+          if (c == "r" || c == "l" || c == "t" || c == "b") {
+            if (debug) {
+              console.log("enemy collision");
+            }
+            for (var i = 0; i < enemiesHit.length; i++) {
+              if (enemy == enemiesHit[i]) {
+                damage = false;
+              }
+            }
+            if (damage == true) {
+              enemy.health -= player.strength;
+              enemiesHit.push(enemy);
+              console.log(enemy.health);
             }
           }
-          if (damage == true) {
-            enemy.health-=player.strength;
-            enemiesHit.push(enemy);
-            console.log(enemy.health);
+        }
+      } catch (e) {}
+      for (var i = 0; i < walls.length; i++) {
+        var hitboxCheck = colCheck(hitbox, walls[i]);
+        if (hitboxCheck == "r" || hitboxCheck == "l" || hitboxCheck == "t" || hitboxCheck == "b") {
+          attack = false;
+          ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+        }
+      }
+      ctx.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+      setTimeout(function() {
+        attack = false;
+        ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+      }, 500);
+    }
+
+    try {
+      //DRAW
+      for (var i = 0; i < exitBarrier.length; i++) {
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = "blue";
+        ctx.fillRect(exitBarrier[i].x, exitBarrier[i].y, exitBarrier[i].width, exitBarrier[i].height);
+        ctx.fillStyle = "red";
+        ctx.fillRect(exitArea[i].x, exitArea[i].y, exitArea[i].width, exitArea[i].height);
+        if (!hasKey) {
+          colCheck(player, exitBarrier[i]);
+        } else {
+          var touchexit = nocolCheck(player, exitArea[i]);
+          if (touchexit) {
+            console.log("THATS IT");
+            gameState = "victory";
           }
         }
       }
-    } catch (e) {}
-    for (var i = 0; i < walls.length; i++) {
-      var hitboxCheck = colCheck(hitbox, walls[i]);
-      if (hitboxCheck == "r" || hitboxCheck == "l" || hitboxCheck == "t" || hitboxCheck == "b") {
-        attack = false;
-        ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-      }
-    }
-    ctx.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-    setTimeout(function() {
-      attack = false;
-      ctx.clearRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-    }, 500);
-  }
-  
-  try {
-	  //DRAW
-	  for (var i =0; i<exitBarrier.length; i++) {
-		  ctx.fill();
-		  ctx.globalAlpha = 1;
-		  ctx.fillStyle = this.color;
-		  ctx.fillRect(exitBarrier[i].x, exitBarrier[i].y, exitBarrier[i].width, exitBarrier[i].height);
-		  if (!hasKey) {
-			  colCheck(player, exitBarrier[i]);
-		  } else {
-			  var touchexit = nocolCheck(player,exitArea[i]);
-			  if (touchexit) {
-				  console.log("THATS IT");
-			  }
-		  }
-	  }
-  }
-  catch (e) {
-	  
-  }
-  
-  if (showMap) {
-    drawMap(map);
-  }
-  //END GAME DRAW
-  document.getElementById("health").innerHTML = player.health;
-  if (player.health <= 0) {
-    window.location.reload(true);
-  }
+    } catch (e) {
 
-  // Start the loop again
-  requestAnimationFrame(update);
+    }
+    ctx.fill();
+    ctx.fillStyle = player.color;
+    ctx.globalAlpha = player.opacity;
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+    if (showMap) {
+      drawMap(map);
+    }
+    //END GAME DRAW
+    document.getElementById("health").innerHTML = player.health;
+    if (player.health <= 0) {
+      gameState = "die";
+    }
+
+    // Start the loop again
+    requestAnimationFrame(update);
+  }
 }
 
 // Checks for keys moving down and up
@@ -625,18 +638,18 @@ function nocolCheck(shapeA, shapeB, extra) {
     if (oX >= oY) {
       if (vY > 0) {
         colDir = "t";
-        
+
       } else {
         colDir = "b";
-        
+
       }
     } else {
       if (vX > 0) {
         colDir = "l";
-        
+
       } else {
         colDir = "r";
-        
+
       }
     }
   }
