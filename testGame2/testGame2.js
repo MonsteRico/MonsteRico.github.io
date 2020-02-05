@@ -13,9 +13,10 @@ var player = {
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
 var map = [
-  [bedroom, exit, testRoom],
-  [bedroom2, hallway2, testRoom2],
-  [bedroom3, hallway3, testRoom3]
+  [bedroom, exit, testRoom, bedroom],
+  [bedroom2, hallway2, testRoom2, bedroom],
+  [bedroom3, hallway3, testRoom3, bedroom],
+  [bedroom3, hallway3, testRoom3, bedroom]
 ];
 
 var mapWidth = map[0].length;
