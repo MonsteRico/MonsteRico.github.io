@@ -429,14 +429,14 @@ function update() {
       }
     } catch (e) {}
 
-    if (key.room == currentRoom) {
+    /*if (key.room == currentRoom) {
       key.draw();
       var col = nocolCheck(player, key);
       if (col) {
         key.remove();
         hasKey = true;
       }
-    }
+    }*/
 
     ctx.fill();
     ctx.fillStyle = player.color;
