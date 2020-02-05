@@ -518,9 +518,9 @@ function createKey() {
   var keyRoom = exit;
   while (keyRoom == exit) {
         console.log("keyRoomX");
-    var keyRoomX = randomNumber(0,mapWidth-1);
+    var keyRoomX = randomNumber(0,mapWidth);
     console.log("keyRoomY");
-    var keyRoomY = randomNumber(0,mapHeight-1);
+    var keyRoomY = randomNumber(0,mapHeight);
     keyRoom = map[keyRoomY][keyRoomX];
     console.log("keyRoom");
     console.log(keyRoom);    
