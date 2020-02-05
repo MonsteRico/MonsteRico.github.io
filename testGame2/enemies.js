@@ -28,7 +28,7 @@ class enemy extends Enemy {
 class bat extends Enemy {
   constructor(x, y) {
     super(x, y, "black", 3, 2, 1, function() {
-      var spiderSheet = document.getElementById("spiderSheet");
+      var batSheet = document.getElementById("batSheet");
       var dir = 0;
       switch (this.direction) {
         case "left":
@@ -47,7 +47,7 @@ class bat extends Enemy {
           dir = 3;
           break;
       }
-      ctx.drawImage(spiderSheet, this.frameIndex * 32, dir * 32, 32, 32, this.x, this.y, 32, 32);
+      ctx.drawImage(batSheet, this.frameIndex * 32, dir * 32, 32, 32, this.x, this.y, 32, 32);
     }, function(playerX, playerY) {
       this.attackCooldown++;
       if (this.attackCooldown == 5) {
