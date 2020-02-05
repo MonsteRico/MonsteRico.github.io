@@ -517,11 +517,15 @@ function createKey() {
   // Pick random room for the key to be in. CANT BE EXIT ROOM
   var keyRoom = exit;
   while (keyRoom == exit) {
+        console.log("keyRoomX");
     var keyRoomX = randomNumber(0,mapWidth-1);
+    console.log("keyRoomY");
     var keyRoomY = randomNumber(0,mapHeight-1);
     keyRoom = map[keyRoomY][keyRoomX];
-    console.log(keyRoom);
+    console.log("keyRoom");
+    console.log(keyRoom);    
   }
+  key = 1;
   // Based on that room, set the x and y for the key
   // Set the draw function to draw the key (either a yellow square or from a spritehseet)
   // Set the remove function to virtually or literally make the key no longer exist (set itself to empty)
