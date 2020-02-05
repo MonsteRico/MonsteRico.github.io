@@ -25,7 +25,7 @@ class enemy extends Enemy {
   }
 }
 
-class spider extends Enemy {
+class bat extends Enemy {
   constructor(x, y) {
     super(x, y, "black", 3, 2, 1, function() {
       var spiderSheet = document.getElementById("spiderSheet");

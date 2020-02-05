@@ -163,6 +163,11 @@ function update() {
       player.x = width - player.width;
       nextRoom("left");
     }
+
+    if (key == null) {
+      createKey();
+    }
+
     for (var i = 0; i < walls.length; i++) {
       var dir = colCheck(player, walls[i]);
       if (dir == "r") {
@@ -421,9 +426,17 @@ function update() {
           }
         }
       }
-    } catch (e) {
+    } catch (e) {}
 
+    if (key.room == currentRoom) {
+      key.draw();
+      var col = nocolCheck(player, key);
+      if (col) {
+        key.remove();
+        hasKey = true;
+      }
     }
+
     ctx.fill();
     ctx.fillStyle = player.color;
     ctx.globalAlpha = player.opacity;
@@ -497,6 +510,13 @@ function drawMap(map) {
 
   ctx.fillStyle = "black";
   ctx.fillRect((width / 4) * 3, 0, width / 4, height);
+}
+
+function createKey() {
+  // Pick random room for the key to be in. CANT BE EXIT ROOM
+  // Based on that room, set the x and y for the key
+  // Set the draw function to draw the key (either a yellow square or from a spritehseet)
+  // Set the remove function to virtually or literally make the key no longer exist (set itself to empty)
 }
 
 function nextRoom(direction) {
