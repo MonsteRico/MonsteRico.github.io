@@ -44,6 +44,7 @@ var attackHitbox = {};
 var enemiesHit = [];
 var playerHit = false;
 var hasKey = false;
+var key = null;
 var gameState = "play";
 
 function update() {
