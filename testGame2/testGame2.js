@@ -517,8 +517,8 @@ function createKey() {
   // Pick random room for the key to be in. CANT BE EXIT ROOM
   var keyRoom = exit;
   while (keyRoom == exit) {
-    var keyRoomX = random(0,mapWidth-1);
-    var keyRoomY = random(0,mapHeight-1);
+    var keyRoomX = randomNumber(0,mapWidth-1);
+    var keyRoomY = randomNumber(0,mapHeight-1);
     keyRoom = map[keyRoomY][keyRoomX];
     console.log(keyRoom);
   }
