@@ -429,14 +429,14 @@ function update() {
       }
     } catch (e) {}
 
-    /*if (key.room == currentRoom) {
+    if (key.room == currentRoom) {
       key.draw();
       var col = nocolCheck(player, key);
       if (col) {
         key.remove();
         hasKey = true;
       }
-    }*/
+    }
 
     ctx.fill();
     ctx.fillStyle = player.color;
@@ -453,6 +453,20 @@ function update() {
 
     // Start the loop again
     requestAnimationFrame(update);
+  }
+  // GAME STATE die
+  if (gameState == "die") {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fill();
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, width, height);
+  }
+  // GAME STATE victory
+  if (gameState == "victory") {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fill();
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 0, width, height);
   }
 }
 
@@ -517,18 +531,51 @@ function createKey() {
   // Pick random room for the key to be in. CANT BE EXIT ROOM
   var keyRoom = exit;
   while (keyRoom == exit) {
-        console.log("keyRoomX");
-    var keyRoomX = randomNumber(0,mapWidth);
+    console.log("keyRoomX");
+    var keyRoomX = randomNumber(0, mapWidth);
     console.log("keyRoomY");
-    var keyRoomY = randomNumber(0,mapHeight);
+    var keyRoomY = randomNumber(0, mapHeight);
     keyRoom = map[keyRoomY][keyRoomX];
     console.log("keyRoom");
-    console.log(keyRoom);    
+    console.log(keyRoom);
   }
-  key = 1;
   // Based on that room, set the x and y for the key
+  var keyX = 0;
+  var keyY = 0;
+  switch (keyRoom) {
+    case hallway2:
+      keyX = width / 2;
+      keyY = height / 2;
+      break;
+    default:
+      keyX = width / 4;
+      keyY = height / 4;
+      break;
+  }
   // Set the draw function to draw the key (either a yellow square or from a spritehseet)
+  var draw = function() {
+    ctx.fill();
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(this.x, this.y, 32, 32);
+  };
   // Set the remove function to virtually or literally make the key no longer exist (set itself to empty)
+  var remove = function() {
+    ctx.clearRect(this.x, this.y, 32, 32);
+    this.x = 1000;
+    this.y = 1000;
+    this.width = 0;
+    this.height = 0;
+    this.room = null;
+  };
+  key = {
+    x: keyX,
+    y: keyY,
+    width: 32,
+    height: 32,
+    room: keyRoom,
+    draw: draw,
+    remove: remove
+  };
 }
 
 function nextRoom(direction) {
