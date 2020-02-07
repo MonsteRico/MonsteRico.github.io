@@ -554,9 +554,8 @@ function createKey() {
   }
   // Set the draw function to draw the key (either a yellow square or from a spritehseet)
   var draw = function() {
-    ctx.fill();
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(this.x, this.y, 32, 32);
+	var keySheet = document.getElementById("keySheet");
+    ctx.drawImage(keySheet, 0, 0, 32, 32, this.x, this.y, 32, 32);
   };
   // Set the remove function to virtually or literally make the key no longer exist (set itself to empty)
   var remove = function() {
