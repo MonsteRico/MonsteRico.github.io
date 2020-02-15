@@ -87,7 +87,7 @@ var hallwayLRB = new room("hallwayLRB", "white", function(x, y, width, height) {
   ctx.fillRect(x, y + height / 3 * 2, width, height / 3);
 
   ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y + (height / 3 * 2) - 5, width / 3, height / 3);
+  ctx.fillRect(x + width / 3, y + (height / 3 * 2), width / 3, height / 3);
   enemyList = this.enemyList;
   walls = [{
       x: x,

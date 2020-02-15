@@ -548,8 +548,8 @@ function createKey() {
       keyY = height / 2;
       break;
     default:
-      keyX = width / 4;
-      keyY = height / 4;
+      keyX = width / 2;
+      keyY = height / 2;
       break;
   }
   // Set the draw function to draw the key (either a yellow square or from a spritehseet)
