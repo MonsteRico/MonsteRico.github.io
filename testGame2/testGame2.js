@@ -1,5 +1,5 @@
 var player = {
-  x: 0,
+  x: 100,
   y: 100,
   width: 32,
   height: 32,
@@ -13,14 +13,14 @@ var player = {
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
 var map = [
-  [bedroom, exit, testRoom],
-  [bedroom2, hallway2, testRoom2],
-  [bedroom3, hallway3, testRoom3]
+  [startRoom, hallwayLRB, testRoom],
+  [bedroom2, crossroads, testRoom2],
+  [bedroom3, testRoom3, exit]
 ];
 
 var mapWidth = map[0].length;
 var mapHeight = map.length;
-var currentRoom = bedroom;
+var currentRoom = startRoom;
 var enemyList = currentRoom.enemylist;
 canvas.width = 1024;
 canvas.height = 512;
@@ -543,7 +543,7 @@ function createKey() {
   var keyX = 0;
   var keyY = 0;
   switch (keyRoom) {
-    case hallway2:
+    case crossroads:
       keyX = width / 2;
       keyY = height / 2;
       break;
@@ -554,7 +554,7 @@ function createKey() {
   }
   // Set the draw function to draw the key (either a yellow square or from a spritehseet)
   var draw = function() {
-	var keySheet = document.getElementById("keySheet");
+    var keySheet = document.getElementById("keySheet");
     ctx.drawImage(keySheet, 0, 0, 32, 32, this.x, this.y, 32, 32);
   };
   // Set the remove function to virtually or literally make the key no longer exist (set itself to empty)
