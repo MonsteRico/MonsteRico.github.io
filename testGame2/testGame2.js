@@ -16,7 +16,6 @@ var playerArray = [];
 if (localStorage.getItem('playerArray') != null) {
   playerArray = JSON.parse(localStorage.getItem('playerArray'));
 } else {
-  playerArray.push(playerTest);
   localStorage.setItem('playerArray', JSON.stringify(playerArray));
   location.reload();
 }
@@ -743,6 +742,8 @@ function createKey() {
 }
 
 function nextRoom(direction) {
+  exitArea = [];
+  exitBarrier = [];
   var x = 0;
   var y = 0;
   if (direction == "up") {

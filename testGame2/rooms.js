@@ -22,6 +22,36 @@ var startRoom = new room("startRoom", "AliceBlue", function(x, y, width, height)
   drawWalls(["bottom", "right"], walls);
 }, []);
 
+var hallwayLRB = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["bottom", "right", "left"], walls);
+}, []);
+
+var hallwayLRT = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["top", "right", "left"], walls);
+}, []);
+
+var hallwayLR = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["right", "left"], walls);
+}, []);
+
+var hallwayTB = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["bottom", "top"], walls);
+}, []);
+
+var crossroads = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["bottom", "right", "left", "top"], walls);
+}, []);
+
 var bedroom = new room("bedroom2", "AntiqueWhite", function(x, y, width, height) {
   ctx.fill();
   ctx.globalAlpha = 1;
@@ -74,67 +104,6 @@ var hallwayLR = new room("hallwayLR", "Brown", function(x, y, width, height) {
     }
   ];
 }, []);
-// Hallway doors left right bottom
-var hallwayLRB = new room("hallwayLRB", "white", function(x, y, width, height) {
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, width, height / 3);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x, y + height / 3, width, height / 3);
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y + height / 3 * 2, width, height / 3);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y + (height / 3 * 2), width / 3, height / 3);
-  enemyList = this.enemyList;
-  walls = [{
-      x: x,
-      y: y,
-      width: width,
-      height: height / 3
-    },
-    {
-      x: x,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    },
-    {
-      x: x + width / 3 * 2,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    }
-  ];
-}, []);
-// Hallway doors top bottom
-var hallwayTB = new room("hallwayTB", "Brown", function(x, y, width, height) {
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, width / 3, height);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y, width / 3, height);
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + width / 3 * 2, y, width / 3, height);
-  enemyList = this.enemyList;
-  walls = [{
-      x: x,
-      y: y,
-      width: width / 3,
-      height: height
-    },
-    {
-      x: x + ((width / 3) * 2),
-      y: y,
-      width: width / 3,
-      height: height
-    }
-  ];
-}, []);
 
 var testRoom = new room("testRoom", "DarkGrey", function(x, y, width, height) {
   ctx.fill();
@@ -183,100 +152,6 @@ var exit = new room("exit", "Green", function(x, y, width, height) {
     height: height
   }];
 }, []);
-
-var hallway = new room("crossroads", "Brown", function(x, y, width, height) {
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, width / 3, height / 3);
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y, width / 3, height / 3);
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + width / 3 * 2, y, width / 3, height / 3);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x, y + height / 3, width / 3, height / 3);
-  ctx.fillRect(x + width / 3, y + height / 3, width / 3, height / 3);
-  ctx.fillRect(x + width / 3 * 2, y + height / 3, width / 3, height / 3);
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y + height / 3 * 2, width / 3, height / 3);
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y + height / 3 * 2, width / 3, height / 3);
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + width / 3 * 2, y + height / 3 * 2, width / 3, height / 3);
-  enemyList = this.enemyList;
-  walls = [{
-      x: x,
-      y: y,
-      width: width / 3,
-      height: height / 3
-    }, {
-      x: x + width / 3 * 2,
-      y: y,
-      width: width / 3,
-      height: height / 3
-    },
-    {
-      x: x,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    },
-    {
-      x: x + width / 3 * 2,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    }
-  ];
-}, [new enemy(width / 2, height / 2, "red")]);
-
-var crossroads = new room("crossroads", "Brown", function(x, y, width, height) {
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, width / 3, height / 3);
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y, width / 3, height / 3);
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + width / 3 * 2, y, width / 3, height / 3);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x, y + height / 3, width / 3, height / 3);
-  ctx.fillRect(x + width / 3, y + height / 3, width / 3, height / 3);
-  ctx.fillRect(x + width / 3 * 2, y + height / 3, width / 3, height / 3);
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y + height / 3 * 2, width / 3, height / 3);
-  ctx.fillStyle = "white";
-  ctx.fillRect(x + width / 3, y + height / 3 * 2, width / 3, height / 3);
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + width / 3 * 2, y + height / 3 * 2, width / 3, height / 3);
-  enemyList = this.enemyList;
-  walls = [{
-      x: x,
-      y: y,
-      width: width / 3,
-      height: height / 3
-    }, {
-      x: x + width / 3 * 2,
-      y: y,
-      width: width / 3,
-      height: height / 3
-    },
-    {
-      x: x,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    },
-    {
-      x: x + width / 3 * 2,
-      y: y + height / 3 * 2,
-      width: width / 3,
-      height: height / 3
-    }
-  ];
-}, [new enemy(width / 2, height / 2, "red")]);
 
 function drawWalls(entrances, walls) {
   var left, right, top, bottom;
