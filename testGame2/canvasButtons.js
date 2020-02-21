@@ -65,7 +65,6 @@ function Button(x, y, w, h, text, colors, clickCB) {
     if (mousePosition.x >= this.x && mousePosition.x <= this.x + this.width &&
       mousePosition.y >= this.y && mousePosition.y <= this.y + this.height) {
       this.state = 'hover';
-      console.log("hover");
       // check for click
       if (mousePressed) {
         this.state = 'active';

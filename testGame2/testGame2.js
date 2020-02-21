@@ -65,8 +65,11 @@ var gameState = "select";
 var log = true;
 var buttonArray = [];
 var player;
+var newButton;
+canvas.addEventListener('load', update());
 
 function update() {
+  ctx.clearRect(0, 0, width, height);
   if (gameState == "select") {
     var playerArray = JSON.parse(localStorage.getItem('playerArray'));
 
@@ -97,12 +100,93 @@ function update() {
           gameState = "play";
         });
         buttonArray.push(button);
+        menuY += height / 8 + 32
       }
     }
+    var newButton = new Button(menuX, menuY, width / 5 + 16, height / 8 + 16, "New", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      createNewPlayer();
+    });
+
+    var creditsButton = new Button(menuX + 64 + 16 + (width / 5 * 2), menuY, width / 5, height / 8 + 16, "Credits", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      gameState = "credits";
+    });
+
+    var deleteButton = new Button(menuX + 16 + width / 5 + 32, menuY, width / 5, height / 8 + 16, "Delete", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      deletePlayer();
+    });
+
+    var debugButton = new Button(menuX + 96 + 16 + (width / 5 * 3), menuY, width / 5 + 28, height / 8 + 16, "Debug", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      if (debug) {
+        debug = false;
+      } else {
+        debug = true;
+      }
+    });
+
     for (var i = 0; i < buttonArray.length; i++) {
       buttonArray[i].update();
       buttonArray[i].draw();
     }
+    newButton.update();
+    newButton.draw();
+    deleteButton.update();
+    deleteButton.draw();
+    creditsButton.update();
+    creditsButton.draw();
+    debugButton.update();
+    debugButton.draw();
   }
 
 
@@ -525,6 +609,29 @@ function update() {
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, width, height);
   }
+  // GAME STATE credits
+  if (gameState == "credits") {
+    ctx.clearRect(0, 0, width, height);
+    var back = new Button(0 + 28, height / 2 - (height / 8 + 16), width - 56, height / 8 + 16, "Go Back, Nothing here yet", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      gameState = "select"
+    });
+
+    back.update();
+    back.draw();
+  }
   requestAnimationFrame(update);
 }
 
@@ -793,4 +900,51 @@ function nocolCheck(shapeA, shapeB, extra) {
     console.log("colDir");
   }
   return colDir;
+}
+
+function createNewPlayer() {
+  if (playerArray.length == 4) {
+    alert("Already at max players. Please delete one.");
+    location.reload();
+  } else {
+    var userPlayer = {
+      x: 100,
+      y: 100,
+      width: 32,
+      height: 32,
+      opacity: 1,
+      color: "blue",
+      speed: 4,
+      strength: 2,
+      health: 10,
+      level: 1,
+      name: "Test Player"
+    };
+    var name = prompt("Please enter the name for this player");
+    userPlayer.name = name;
+    playerArray.push(userPlayer);
+    localStorage.setItem('playerArray', JSON.stringify(playerArray));
+    location.reload();
+  }
+}
+
+function deletePlayer() {
+  var name = prompt("Please enter the name of the player to be deleted. NOTE: Names are Case-Sensitive. Be Careful.");
+  var deleted = false
+  console.log(name);
+  for (var i = 0; i < playerArray.length; i++) {
+    if (name == playerArray[i].name) {
+      console.log("work");
+      playerArray.splice(i, 1);
+      deleted = true;
+    }
+  }
+  if (!deleted && name !== null) {
+    alert("Not a valid name. Please try again.");
+    deletePlayer();
+  } else {
+    alert("Player Deleted!");
+    localStorage.setItem("playerArray", JSON.stringify(playerArray));
+    location.reload();
+  }
 }
