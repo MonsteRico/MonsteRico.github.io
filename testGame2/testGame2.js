@@ -1,4 +1,4 @@
-var player = {
+var playerTest = {
   x: 100,
   y: 100,
   width: 32,
@@ -7,8 +7,23 @@ var player = {
   color: "blue",
   speed: 4,
   strength: 2,
-  health: 10
+  health: 10,
+  level: 1,
+  name: "Test Player"
 };
+
+var playerArray = [];
+if (localStorage.getItem('playerArray') != null) {
+  playerArray = JSON.parse(localStorage.getItem('playerArray'));
+} else {
+  playerArray.push(playerTest);
+  localStorage.setItem('playerArray', JSON.stringify(playerArray));
+  location.reload();
+}
+
+function clearStorage() {
+  localStorage.removeItem('playerArray');
+}
 
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
@@ -30,6 +45,7 @@ var debug = false;
   window.requestAnimationFrame = requestAnimationFrame;
   var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
+
 var keys = [];
 var width = canvas.width;
 var height = canvas.height;
@@ -45,9 +61,50 @@ var enemiesHit = [];
 var playerHit = false;
 var hasKey = false;
 var key = null;
-var gameState = "play";
+var gameState = "select";
+var log = true;
+var buttonArray = [];
+var player;
 
 function update() {
+  if (gameState == "select") {
+    var playerArray = JSON.parse(localStorage.getItem('playerArray'));
+
+    if (log) {
+      log = false;
+      menuY = 16;
+      menuX = 32;
+      ctx.font = '32px sans-serif';
+      for (var i = 0; i < playerArray.length; i++) {
+        console.log(playerArray[i].name);
+        var playerStats = "Name:    " + playerArray[i].name + "      Level:     " + playerArray[i].level;
+        var selectedPlayer = playerArray[i];
+        var button = new Button(menuX, menuY, width - 64, height / 8 + 16, playerStats, {
+          'default': {
+            top: '#1810BD',
+            bottom: '#084D79'
+          },
+          'hover': {
+            top: '#678834',
+            bottom: '#093905'
+          },
+          'active': {
+            top: '#EB7723',
+            bottom: '#A80000'
+          }
+        }, function() {
+          player = selectedPlayer;
+          gameState = "play";
+        });
+        buttonArray.push(button);
+      }
+    }
+    for (var i = 0; i < buttonArray.length; i++) {
+      buttonArray[i].update();
+      buttonArray[i].draw();
+    }
+  }
+
 
   if (gameState == "play") {
     showMap = false;
@@ -452,7 +509,7 @@ function update() {
     }
 
     // Start the loop again
-    requestAnimationFrame(update);
+
   }
   // GAME STATE die
   if (gameState == "die") {
@@ -468,6 +525,7 @@ function update() {
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, width, height);
   }
+  requestAnimationFrame(update);
 }
 
 // Checks for keys moving down and up
