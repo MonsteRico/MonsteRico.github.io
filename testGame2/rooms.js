@@ -19,118 +19,68 @@ var walls = [];
 var startRoom = new room("startRoom", "AliceBlue", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
-  drawWalls(["bottom", "right"], walls);
+  drawWalls(["right"], walls);
 }, []);
 
-var hallwayLRB = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+var hallwayLRB = new room("hallway", "white", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
   drawWalls(["bottom", "right", "left"], walls);
 }, []);
 
-var hallwayLRT = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+var hallwayTR = new room("hallway", "white", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["top", "right"], walls);
+}, []);
+
+var hallwayTL = new room("hallway", "white", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["top", "left"], walls);
+}, []);
+
+var hallwayBR = new room("hallway", "white", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["bottom", "right"], walls);
+}, []);
+
+var hallwayBL = new room("hallway", "white", function(x, y, width, height) {
+  enemyList = this.enemyList;
+  walls = [];
+  drawWalls(["bottom", "left"], walls);
+}, []);
+
+var hallwayLRT = new room("hallway", "white", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
   drawWalls(["top", "right", "left"], walls);
 }, []);
 
-var hallwayLR = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+var hallwayLR = new room("hallway", "white", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
   drawWalls(["right", "left"], walls);
 }, []);
 
-var hallwayTB = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+var hallwayTB = new room("hallway", "white", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
   drawWalls(["bottom", "top"], walls);
 }, []);
 
-var crossroads = new room("startRoom", "AliceBlue", function(x, y, width, height) {
+var crossroads = new room("hallway", "white", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
   drawWalls(["bottom", "right", "left", "top"], walls);
 }, []);
 
-var bedroom = new room("bedroom2", "AntiqueWhite", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
+var batnest = new room("batNest", "red", function(x, y, width, height) {
   enemyList = this.enemyList;
   walls = [];
-}, []);
-
-var bedroom2 = new room("bedroom2", "AntiqueWhite", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
-  enemyList = this.enemyList;
-  walls = [];
-}, []);
-
-var bedroom3 = new room("bedroom3", "Aqua", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
-  enemyList = this.enemyList;
-  walls = [];
-}, []);
-// Hallway doors left right
-var hallwayLR = new room("hallwayLR", "Brown", function(x, y, width, height) {
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, width, height / 3);
-
-  ctx.fillStyle = "white";
-  ctx.fillRect(x, y + height / 3, width, height / 3);
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y + height / 3 * 2, width, height / 3);
-  enemyList = this.enemyList;
-  walls = [{
-      x: x,
-      y: y,
-      width: width,
-      height: height / 3
-    },
-    {
-      x: x,
-      y: y + height / 3 * 2,
-      width: width,
-      height: height / 3
-    }
-  ];
-}, []);
-
-var testRoom = new room("testRoom", "DarkGrey", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
-  enemyList = this.enemyList;
-  walls = [];
-}, []);
-
-var testRoom2 = new room("testRoom2", "DarkOrange", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
-  enemyList = this.enemyList;
-  walls = [];
-}, []);
-
-var testRoom3 = new room("testRoom3", "DarkOrchid", function(x, y, width, height) {
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = this.color;
-  ctx.fillRect(x, y, width, height);
-  enemyList = this.enemyList;
-  walls = [];
-}, []);
+  drawWalls(["top"], walls);
+}, [new bat(width / 7, height / 7), new bat(width / 7 * 2, height / 7), new bat(width / 7 * 3, height / 7), new bat(width / 7 * 4, height / 7), new bat(width / 7 * 5, height / 7), new bat(width / 7 * 6, height / 7), new bat(width / 7 * 3, height / 7 * 5), ])
 
 var exit = new room("exit", "Green", function(x, y, width, height) {
   ctx.fill();
@@ -139,6 +89,7 @@ var exit = new room("exit", "Green", function(x, y, width, height) {
   ctx.fillRect(x, y, width, height);
   enemyList = this.enemyList;
   walls = [];
+  drawWalls(["left"], walls);
   exitBarrier = [{
     x: x + width / 2,
     y: y,

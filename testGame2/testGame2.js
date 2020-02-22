@@ -9,6 +9,9 @@ var playerTest = {
   strength: 2,
   health: 10,
   level: 1,
+  maxHealth: 10,
+  skill: "",
+  direction: "up",
   name: "Test Player"
 };
 
@@ -27,9 +30,9 @@ function clearStorage() {
 var canvas = document.getElementById("test1");
 var ctx = canvas.getContext("2d");
 var map = [
-  [startRoom, hallwayLRB, testRoom],
-  [bedroom2, crossroads, testRoom2],
-  [bedroom3, testRoom3, exit]
+  [startRoom, hallwayLRB, hallwayBL],
+  [hallwayBR, crossroads, hallwayTL],
+  [batnest, hallwayTR, exit]
 ];
 
 var mapWidth = map[0].length;
@@ -65,6 +68,11 @@ var log = true;
 var buttonArray = [];
 var player;
 var newButton;
+var skillOne = skillList[randomNumber(0, skillList.length)];
+var skillTwo = skillOne;
+while (skillTwo == skillOne) {
+  skillTwo = skillList[randomNumber(0, skillList.length)];
+}
 canvas.addEventListener('load', update());
 
 function update() {
@@ -216,61 +224,9 @@ function update() {
       // tab
       showMap = true;
     }
+    player.direction = direction;
     if (keys[16]) {
-      if (!arrowExists) {
-        switch (direction) {
-          case "right":
-            arrow = {
-              x: player.x + player.width,
-              y: player.y + player.height / 2 - 2,
-              width: player.width,
-              height: 4,
-              direction: "right"
-            };
-            arrowExists = true;
-            break;
-          case "left":
-            arrow = {
-              x: player.x,
-              y: player.y + player.height / 2 - 2,
-              width: player.width,
-              height: 4,
-              direction: "left"
-            };
-            arrowExists = true;
-            break;
-          case "up":
-            arrow = {
-              x: player.x + player.width / 2 - 2,
-              y: player.y,
-              width: 4,
-              height: player.height,
-              direction: "up"
-            };
-            arrowExists = true;
-            break;
-          case "down":
-            arrow = {
-              x: player.x + player.width / 2 - 2,
-              y: player.y + player.height,
-              width: 4,
-              height: player.height,
-              direction: "down"
-            };
-            arrowExists = true;
-            break;
-          default:
-            arrow = {
-              x: player.x + player.width,
-              y: player.y + player.y / 2 - 2,
-              width: player.width,
-              height: 4,
-              direction: "right"
-            };
-            arrowExists = true;
-            break;
-        }
-      }
+      runSkill(player.skill);
     }
     if (keys[32]) {
       if (!attack && !attackOnCooldown) {
@@ -413,7 +369,7 @@ function update() {
 
     } catch (e) {}
 
-    /*if (arrowExists) {
+    if (arrowExists) {
       ctx.fillStyle = "purple";
       if (!showMap) {
         switch (arrow.direction) {
@@ -458,7 +414,7 @@ function update() {
         }
       } catch (e) {}
       ctx.fillRect(arrow.x, arrow.y, arrow.width, arrow.height);
-    }*/
+    }
 
     if (attack) {
       ctx.fillStyle = "purple";
@@ -521,16 +477,9 @@ function update() {
             if (debug) {
               console.log("enemy collision");
             }
-            for (var i = 0; i < enemiesHit.length; i++) {
-              if (enemy == enemiesHit[i]) {
-                damage = false;
-              }
-            }
-            if (damage == true) {
-              enemy.health -= player.strength;
-              enemiesHit.push(enemy);
-              console.log(enemy.health);
-            }
+            enemy.health -= player.strength;
+            enemiesHit.push(enemy);
+            console.log(enemy.health);
           }
         }
       } catch (e) {}
@@ -553,9 +502,9 @@ function update() {
       for (var i = 0; i < exitBarrier.length; i++) {
         ctx.fill();
         ctx.globalAlpha = 1;
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "grey";
         ctx.fillRect(exitBarrier[i].x, exitBarrier[i].y, exitBarrier[i].width, exitBarrier[i].height);
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "green";
         ctx.fillRect(exitArea[i].x, exitArea[i].y, exitArea[i].width, exitArea[i].height);
         if (!hasKey) {
           colCheck(player, exitBarrier[i]);
@@ -603,10 +552,25 @@ function update() {
   }
   // GAME STATE victory
   if (gameState == "victory") {
-    ctx.clearRect(0, 0, width, height);
-    ctx.fill();
-    ctx.fillStyle = "green";
-    ctx.fillRect(0, 0, width, height);
+    var continueB = new Button(0, 0, width, height, "Good Job! Click to Continue", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      gameState = "levelUp"
+    });
+
+    continueB.update();
+    continueB.draw();
   }
   // GAME STATE credits
   if (gameState == "credits") {
@@ -630,6 +594,166 @@ function update() {
 
     back.update();
     back.draw();
+  }
+
+  //GAME STATE levelUp
+  if (gameState == "levelUp") {
+    var playerArray = JSON.parse(localStorage.getItem('playerArray'));
+    ctx.font = "24px sans-serif";
+    var healthUp = new Button(32, 32, width / 3 - 64, 128, "Increase Max Health", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      var confirm = window.confirm("Are you sure you want to upgrade your max health?");
+      if (confirm) {
+        for (var i = 0; i < playerArray.length; i++) {
+          if (player.name == playerArray[i].name) {
+            playerArray[i].maxHealth++;
+            playerArray[i].health = playerArray[i].maxHealth;
+            playerArray[i].level++;
+          }
+        }
+        localStorage.setItem("playerArray", JSON.stringify(playerArray));
+        location.reload();
+      } else {}
+    });
+
+    var strengthUp = new Button(32 + width / 3, 32, width / 3 - 64, 128, "Increase Strength", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      var confirm = window.confirm("Are you sure you want to upgrade your strength?");
+      if (confirm) {
+        for (var i = 0; i < playerArray.length; i++) {
+          if (player.name == playerArray[i].name) {
+            playerArray[i].strength++;
+            playerArray[i].level++;
+          }
+        }
+        localStorage.setItem("playerArray", JSON.stringify(playerArray));
+        location.reload();
+      } else {}
+    });
+
+    var speedUp = new Button(32 + width / 3 + width / 3, 32, width / 3 - 64, 128, "Increase Speed", {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      var confirm = window.confirm("Are you sure you want to upgrade your speed?");
+      if (confirm) {
+        for (var i = 0; i < playerArray.length; i++) {
+          if (player.name == playerArray[i].name) {
+            playerArray[i].speed++;
+            playerArray[i].level++;
+          }
+        }
+        localStorage.setItem("playerArray", JSON.stringify(playerArray));
+        location.reload();
+      } else {}
+    });
+
+    var skillOneB = new Button(32, 64 + 128, width / 2 - 64, 128, skillOne, {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      var confirm = window.confirm("Are you sure you want to change your skill to " + skillOne + "?");
+      if (confirm) {
+        for (var i = 0; i < playerArray.length; i++) {
+          if (player.name == playerArray[i].name) {
+            playerArray[i].skill = skillOne;
+            playerArray[i].level++;
+          }
+        }
+        localStorage.setItem("playerArray", JSON.stringify(playerArray));
+        location.reload();
+      } else {
+
+      }
+    });
+
+    var skillTwoB = new Button(32 + width / 4 + width / 4, 64 + 128, width / 2 - 64, 128, skillTwo, {
+      'default': {
+        top: '#1810BD',
+        bottom: '#084D79'
+      },
+      'hover': {
+        top: '#678834',
+        bottom: '#093905'
+      },
+      'active': {
+        top: '#EB7723',
+        bottom: '#A80000'
+      }
+    }, function() {
+      var confirm = window.confirm("Are you sure you want to change your skill to " + skillTwo + "?");
+      if (confirm) {
+        for (var i = 0; i < playerArray.length; i++) {
+          if (player.name == playerArray[i].name) {
+            playerArray[i].skill = skillTwo;
+            playerArray[i].level++;
+          }
+        }
+        localStorage.setItem("playerArray", JSON.stringify(playerArray));
+        location.reload();
+      } else {
+
+      }
+    });
+
+    healthUp.update();
+    healthUp.draw();
+    strengthUp.update();
+    strengthUp.draw();
+    if (player.speed != 10) {
+      speedUp.update();
+      speedUp.draw();
+    }
+    if ((player.level + 1) % 5 == (player.level + 1) % 5) {
+      skillOneB.update();
+      skillOneB.draw();
+      skillTwoB.update();
+      skillTwoB.draw();
+    }
   }
   requestAnimationFrame(update);
 }
@@ -918,7 +1042,10 @@ function createNewPlayer() {
       speed: 4,
       strength: 2,
       health: 10,
+      direction: "up",
+      maxHealth: 10,
       level: 1,
+      skill: "",
       name: "Test Player"
     };
     var name = prompt("Please enter the name for this player");
