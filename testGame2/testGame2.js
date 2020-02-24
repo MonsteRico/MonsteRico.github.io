@@ -748,7 +748,7 @@ function update() {
       speedUp.update();
       speedUp.draw();
     }
-    if ((player.level + 1) % 5 == (player.level + 1) % 5) {
+    if ((player.level + 1) % 5 == 0) {
       skillOneB.update();
       skillOneB.draw();
       skillTwoB.update();
