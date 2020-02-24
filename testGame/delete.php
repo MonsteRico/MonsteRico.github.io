@@ -1,9 +1,9 @@
 <?php
 $file = $_POST['fileName'];
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "files";
+$servername = "psfsbdan_files";
+$username = "localhost";
+$password = "Mallory1031";
+$dbname = "psfsbdan_files";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

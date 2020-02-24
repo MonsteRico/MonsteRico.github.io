@@ -35,10 +35,10 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 		echo $target_file;
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "files";
+		$servername = "psfsbdan_files";
+		$username = "localhost";
+		$password = "Mallory1031";
+		$dbname = "psfsbdan_files";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password, $dbname);
