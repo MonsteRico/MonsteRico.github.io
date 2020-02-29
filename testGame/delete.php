@@ -1,7 +1,7 @@
 <?php
 $file = $_POST['fileName'];
-$servername = "psfsbdan_files";
-$username = "localhost";
+$servername = "localhost";
+$username = "psfsbdan_files";
 $password = "Mallory1031";
 $dbname = "psfsbdan_files";
 

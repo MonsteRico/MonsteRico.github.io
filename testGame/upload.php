@@ -35,8 +35,8 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 		echo $target_file;
-		$servername = "psfsbdan_files";
-		$username = "localhost";
+		$servername = "localhost";
+		$username = "psfsbdan_files";
 		$password = "Mallory1031";
 		$dbname = "psfsbdan_files";
 
