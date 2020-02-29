@@ -1,6 +1,6 @@
 <?php
 $levelName = $_POST['name'];
-
+$creator = $_POST['creator'];
 // This is all from W3 Schools and is used to upload levels
 $target_dir = "lvls/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -46,15 +46,15 @@ if ($uploadOk == 0) {
 		// Check connection
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
-		} 
-		$sql = "INSERT INTO files VALUES ('" .$levelName ."','" . $target_file ."')";
+		}
+		$sql = "INSERT INTO files VALUES ('" .$levelName ."','" . $target_file ."','" . $creator ."')";
 		if($conn->query($sql) === TRUE) {
 			echo "File was put into database";
 		}
 		$conn->close();
-		
-		
-		
+
+
+
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

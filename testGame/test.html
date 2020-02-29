@@ -1,248 +1,253 @@
-﻿<!DOCTYPE htmL>
+﻿
+<!DOCTYPE htmL>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>The Test Game</title>.
-<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="test.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>The Test Game</title>.
+	<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="test.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
-<div class="container">
-<div id="hide">
-	<h1 class="title">The Test Game</h1>
-	<div class="row justify-content-center">
-	<input style="margin-left:7em !important;" type="file" id="inp">
-	</div>
-	<div class="row justify-content-center">
-	<p>Or play one of these other levels</p>
-	</div>
-	<div class="row">
-		<div onclick="chooseLevel('./lvls/castle.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/castle.png">
+	<div class="container">
+		<div id="hide">
+			<h1 class="title">The Test Game</h1>
+			<div class="row justify-content-center">
+				<input style="margin-left:7em !important;" type="file" id="inp">
 			</div>
-			<div class="row  justify-content-end">
-			<p>By Velox</p>
+			<div class="row justify-content-center">
+				<p>Or play one of these other levels</p>
 			</div>
-			<div class="row  justify-content-center">
-			<h1>Castle Level</h1>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/castle.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/castle.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By Velox</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Castle Level</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/thislevelhatesyou.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/thislevelhatesyou.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By Velox</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1 style="text-align:center;">This Level Hates You</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/yes.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/yes.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By ZachXD</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Yes</h1>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/thislevelhatesyou.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/thislevelhatesyou.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By Velox</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1 style="text-align:center;">This Level Hates You</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/yes.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/yes.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By ZachXD</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Yes</h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div onclick="chooseLevel('./lvls/blinkLevel.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/blinkLevel.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Blink Level</h1>
-			</div>
-		</div>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/blinkLevel.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/blinkLevel.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Blink Level</h1>
+					</div>
+				</div>
 
-<div onclick="chooseLevel('./lvls/8509BAD7-3364-4354-8057-D258A2434512.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/fun.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By ZachXD</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Fun</h1>
-			</div>
-		</div>
+				<div onclick="chooseLevel('./lvls/8509BAD7-3364-4354-8057-D258A2434512.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/fun.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By ZachXD</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Fun</h1>
+					</div>
+				</div>
 
-	</div>
-	<br><br><br>
-	<h1 class="title">Test Levels</h1>
-	<div class="row justify-content-center">
-	<p>Levels testing different features around the game.</p>
-	</div>
-	<div class="row">
-		<div onclick="chooseLevel('./lvls/iceTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/iceTest.png">
 			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
+			<br><br><br>
+			<h1 class="title">Test Levels</h1>
+			<div class="row justify-content-center">
+				<p>Levels testing different features around the game.</p>
 			</div>
-			<div class="row  justify-content-center">
-			<h1>Ice/Slime Testing</h1>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/iceTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/iceTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Ice/Slime Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/coinTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/coinTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Coin Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/gravity.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/gravity.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Gravity Testing</h1>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/coinTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/coinTest.png">
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/player2.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/player2.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Player 2 Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/colorCodeTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/colorCodeTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Color Code Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/portalTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/portalTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Portal Testing</h1>
+					</div>
+				</div>
 			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/movingBlockTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/movingBlockTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Moving Block Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/shooterTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/shooterTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Beam Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/blinkTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/blinkTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Blink Block Testing</h1>
+					</div>
+				</div>
 			</div>
-			<div class="row  justify-content-center">
-			<h1>Coin Testing</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/gravity.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/gravity.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Gravity Testing</h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div onclick="chooseLevel('./lvls/player2.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/player2.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Player 2 Testing</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/colorCodeTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/colorCodeTest.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Color Code Testing</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/portalTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/portalTest.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Portal Testing</h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div onclick="chooseLevel('./lvls/movingBlockTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/movingBlockTest.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Moving Block Testing</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/shooterTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/shooterTest.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Beam Testing</h1>
-			</div>
-		</div>
-		<div onclick="chooseLevel('./lvls/blinkTest.png')" class="col-3 container card">
-			<div class="row  justify-content-center">
-				<img class="col-12 image" src="./lvls/blinkTest.png">
-			</div>
-			<div class="row  justify-content-end">
-			<p>By MonsteRico</p>
-			</div>
-			<div class="row  justify-content-center">
-			<h1>Blink Block Testing</h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
+			<div class="row">
 
+			</div>
+			<button style="margin-left:0px;'" onclick="chooseLevel('./lvls/castle.png')">Castle Level</button>
+			<button onclick="chooseLevel('./lvls/iceTest.png')">Ice/Slime Test</button>
+			<button onclick="chooseLevel('./lvls/coinTest.png')">Coin Test</button>
+			<button onclick="chooseLevel('./lvls/test.png')">Test Level</button>
+			<button onclick="chooseLevel('./lvls/thislevelhatesyou.png')">This Level Hates You</button>
+			<button onclick="chooseLevel('./lvls/gravity.png')">Gravity Test</button>
+			<button onclick="chooseLevel('./lvls/player2.png')">Player 2 Test</button>
+			<button onclick="chooseLevel('./lvls/yes.png')">Yes by ZachXD</button>
+			<button onclick="chooseLevel('./lvls/colorCodeTest.png')">Color Code Testing</button>
+			<button onclick="chooseLevel('./lvls/portalTest.png')">Portal Testing</button>
+			<button onclick="chooseLevel('./lvls/movingBlockTest.png')">Moving Testing</button>
+			<button onclick="chooseLevel('./lvls/shooterTest.png')">Shooter Testing</button>
+			<button onclick="chooseLevel('./lvls/blinkTest.png')">Blink Block Testing</button>
+			<canvas style="display:none;" id="test1"></canvas>
+			<button id="daily">Daily Level</button>
+			<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
+			<a href="./documents/colorList.txt"><button>Info on Making Levels</button></a>
+		</div>
 	</div>
-	<button style="margin-left:0px;'" onclick="chooseLevel('./lvls/castle.png')">Castle Level</button>
-	<button onclick="chooseLevel('./lvls/iceTest.png')">Ice/Slime Test</button>
-	<button onclick="chooseLevel('./lvls/coinTest.png')">Coin Test</button>
-	<button onclick="chooseLevel('./lvls/test.png')">Test Level</button>
-	<button onclick="chooseLevel('./lvls/thislevelhatesyou.png')">This Level Hates You</button>
-	<button onclick="chooseLevel('./lvls/gravity.png')">Gravity Test</button>
-	<button onclick="chooseLevel('./lvls/player2.png')">Player 2 Test</button>
-	<button onclick="chooseLevel('./lvls/yes.png')">Yes by ZachXD</button>
-	<button onclick="chooseLevel('./lvls/colorCodeTest.png')">Color Code Testing</button>
-	<button onclick="chooseLevel('./lvls/portalTest.png')">Portal Testing</button>
-	<button onclick="chooseLevel('./lvls/movingBlockTest.png')">Moving Testing</button>
-	<button onclick="chooseLevel('./lvls/shooterTest.png')">Shooter Testing</button>
-	<button onclick="chooseLevel('./lvls/blinkTest.png')">Blink Block Testing</button>
-	<canvas style="display:none;" id="test1"></canvas>
-	<button id="daily">Daily Level</button>
-	<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
-	<a  href="./documents/colorList.txt"><button>Info on Making Levels</button></a>
-</div>
-</div>
-<div class="container">
-<div style="display:none;" id="deathCount">
-	<div class="row">
-		<h1 class="">Deaths: </h1><h1 id="deaths">0</h1>
+	<div class="container">
+		<div style="display:none;" id="deathCount">
+			<div class="row">
+				<h1 class="">Deaths: </h1>
+				<h1 id="deaths">0</h1>
+			</div>
+		</div>
+		<canvas style="display:none;" id="canvas"></canvas>
 	</div>
-</div>
-<canvas style="display:none;" id="canvas"></canvas>
-</div>
-<script>
-// This stuff is how levels are started and thats it.
-function chooseLevel(level) {
-  removeStorage(true);
-  levelMap.src = level;
-  sessionStorage.setItem('level', levelMap.src);
-  Test1();
-  document.getElementById('canvas').classList.add('scale-in-center');
-}
-document.getElementById('inp').onchange = function(e) {
-  removeStorage(false);
-  levelMap.src = URL.createObjectURL(this.files[0]);
-  Test1();
-};
-document.getElementById('daily').onclick = function(e) {
-  removeStorage(true);
-  GenerateRandomLevel();
-};
-</script>
-<script src="./test.js"></script>
-<script src="../universalFunctions.js"></script>
-<script src="./random.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script>
+		// This stuff is how levels are started and thats it.
+		function chooseLevel(level) {
+			removeStorage(true);
+			levelMap.src = level;
+			sessionStorage.setItem('level', levelMap.src);
+			Test1();
+			document.getElementById('canvas').classList.add('scale-in-center');
+		}
+		document.getElementById('inp').onchange = function(e) {
+			removeStorage(false);
+			levelMap.src = URL.createObjectURL(this.files[0]);
+			Test1();
+		};
+		document.getElementById('daily').onclick = function(e) {
+			removeStorage(true);
+			GenerateRandomLevel();
+		};
+	</script>
+	<script src="./test.js"></script>
+	<script src="../universalFunctions.js"></script>
+	<script src="./random.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

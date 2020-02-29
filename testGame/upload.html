@@ -1,31 +1,105 @@
-<html>    
-    <head>
-        <script>
-            function validateForm(){
-                var image = document.getElementById("image").value;
-                var name = document.getElementById("name").value;
-                if (image =='')
-                {
-                    return false;
-                }
-                if(name =='')
-                {
-                    return false;
-                } 
-                else 
-                {
-                    return true;
-                } 
-                return false;
-            }
-        </script>
-    </head>
+<html lang="en">
 
-    <body>
-        <form method="post" action="upload.php" enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Name of Level" id="name" size="30" />
-            <input type="file" accept="image/*" name="fileToUpload" id="image" />
-            <input type="submit" value='Save' onclick="return validateForm()"/>
-        </form>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>The Test Game</title>.
+  <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./test.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script>
+    function validateForm() {
+      var image = document.getElementById("image").value;
+      var name = document.getElementById("name").value;
+      var creator = document.getElementById("creator").value;
+      var go = true;
+      if (image == '') {
+        document.getElementById('fileError').style.display = "inline";
+        go = false;
+      }
+      if (name == '') {
+        document.getElementById('nameError').style.display = "inline";
+        go = false;
+      }
+      if (creator == '') {
+        document.getElementById('creatorError').style.display = "inline";
+        go = false;
+      }
+      return go;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container justify-content-center">
+    <h1 class="title">The Test Game - Upload</h1>
+    <form method="post" action="upload.php" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="name">Level Name</label>
+          <input type="text" placeholder='Level Name' name="name" id="name" />
+          <small style="display:none;" id="nameError" class="form-text text-danger">Please give your level a name.</small>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="creator">Creator Name</label>
+          <input type="text" placeholder='Creator Name' name="creator" id="creator" />
+          <small style="display:none;" id="creatorError" class="form-text text-danger">Please enter your display name.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group input-file" name="Fichier1">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-choose" type="button">Choose</button>
+          </span>
+          <input style="width:6em !important;" id="image" type="text" class="form-control" placeholder='Choose an image...' />
+          <span class="input-group-btn">
+            <button class="btn btn-warning btn-reset" type="button">Reset</button>
+          </span>
+        </div>
+        <small style="display:none;" id="fileError" class="form-text text-danger">Please choose a file.</small>
+      </div>
+      <div class="form-group">
+
+      </div>
+      <center>
+        <button type="submit" onclick="return validateForm()" class="btn btn-primary">Submit</button>
+      </center>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    function bs_input_file() {
+      $(".input-file").before(
+        function() {
+          if (!$(this).prev().hasClass('input-ghost')) {
+            var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+            element.attr("name", $(this).attr("name"));
+            element.change(function() {
+              element.next(element).find('input').val((element.val()).split('\\').pop());
+            });
+            $(this).find("button.btn-choose").click(function() {
+              element.click();
+            });
+            $(this).find("button.btn-reset").click(function() {
+              element.val(null);
+              $(this).parents(".input-file").find('input').val('');
+            });
+            $(this).find('input').css("cursor", "pointer");
+            $(this).find('input').mousedown(function() {
+              $(this).parents('.input-file').prev().click();
+              return false;
+            });
+            return element;
+          }
+        }
+      );
+    }
+    $(function() {
+      bs_input_file();
+    });
+  </script>
+</body>
+
 </html>

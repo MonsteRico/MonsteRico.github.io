@@ -39,5 +39,5 @@ document.addEventListener('keydown', function(e) {
 });
 
 function activateCheats() {
-	setDisplay('hidden', 'block');
+  window.location.href = "./test.php?delete=true";
 }
