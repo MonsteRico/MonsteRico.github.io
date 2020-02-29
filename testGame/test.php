@@ -24,11 +24,8 @@
 	</div>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
-
-
 <?php
 $delete = $_GET['delete'];
-echo $delete;
 $servername = "localhost";
 $username = "psfsbdan_files";
 $password = "Mallory1031";
@@ -49,7 +46,7 @@ for ($i = 0; $i<$numRows; $i++) {
 	for ($p = 0; $p<3; $p++) {
 		$row = mysqli_fetch_assoc($result);
 		if ($row) {
-		echo "<div onclick='chooseLevel('" . $row['fileName']. "')' class='col-3 container card'>";
+		echo "<div onclick='chooseLevel(\".\/" .$row['fileName']."\")' class='col-3 container card'>";
 			if ($delete == "true") {
 				echo "<form method='post' action='delete.php' enctype='multipart/form-data'><input style='display:none;' name='fileName' value='". $row['fileName'] . "' /><input type='submit' value='X' /></form>";
 			}
