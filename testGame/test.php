@@ -70,6 +70,115 @@ $conn->close();
 <div class="row">
 
 </div>
+	<h1 class="title">Test Levels</h1>
+			<div class="row justify-content-center">
+				<p>Levels testing different features around the game.</p>
+			</div>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/iceTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/iceTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Ice/Slime Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/coinTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/coinTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Coin Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/gravity.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/gravity.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Gravity Testing</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/player2.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/player2.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Player 2 Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/colorCodeTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/colorCodeTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Color Code Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/portalTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/portalTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Portal Testing</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div onclick="chooseLevel('./lvls/movingBlockTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/movingBlockTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Moving Block Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/shooterTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/shooterTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Beam Testing</h1>
+					</div>
+				</div>
+				<div onclick="chooseLevel('./lvls/blinkTest.png')" class="col-3 container card">
+					<div class="row  justify-content-center">
+						<img class="col-12 image" src="./lvls/blinkTest.png">
+					</div>
+					<div class="row  justify-content-end">
+						<p>By MonsteRico</p>
+					</div>
+					<div class="row  justify-content-center">
+						<h1>Blink Block Testing</h1>
+					</div>
+				</div>
+			</div>
 <canvas style="display:none;" id="test1"></canvas>
 <img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
 </div>
