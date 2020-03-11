@@ -160,9 +160,6 @@ function update() {
 function colCheck(shapeA, shapeB) {
   // DONT FULLY UNDERSTAND Collisions yet but here they are.
   // get the vectors to check against
-  if (!extra) {
-    extra = 0;
-  }
   var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
     vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) ),
     // add the half widths and half heights of the objects
