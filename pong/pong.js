@@ -141,7 +141,7 @@ function update() {
 			}
 			//console.log(ball1);
 			for (var i = 0; i < paddleArray.length; i++) {
-				var check = colCheck(ball1, paddleArray[i]);	
+				var check = colCheck(paddleArray[i], ball1);	
 				console.log("checking and its " + check);
 				if (check === "l" || check === "r") {
 					ball1.velX*=-1;
