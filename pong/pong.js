@@ -1,7 +1,111 @@
 // This is the code for the entire game.
 // NOT ALL CODE IS WRITTEN BY ME. I DO NOT KNOW THE OC'S OF EVERYTHING. W3, QUORA, AND GOOGLE ARE ALL MAJOR CONTRIBUTORS.
+// Sets up the game world canvas
+var canvas = document.getElementById("canvas"),
+  ctx = canvas.getContext("2d"),
+  keys = [];
+  canvas.width = window.innerWidth - 100;
+  canvas.height = window.innerHeight - 100;
+  var screenWidth = canvas.width,
+  screenHeight = canvas.height,
+  maxX = screenWidth,
+  maxY = screenHeight,
+  minX = 0,
+  minY = 0;
 
 
+class paddle {
+	constructor (x,y,vel,width,height,direction,color) {
+		this.x = x;
+		this.y = y;
+		this.vel = vel;
+		this.width = width;
+		this.height = height;
+		this.direction = direction;
+		this.color = color;
+		this.draw = function() {
+		  ctx.fill();
+		  ctx.globalAlpha = 1;
+		  ctx.fillStyle = this.color;
+		  ctx.fillRect(this.x, this.y, this.width, this.height);
+		}
+		this.checkBounds = function() {
+			if (this.x > maxX-this.width || this.x < minX || this.y > maxY-this.height || this.y < minY) {
+				return true;
+			}
+			else {
+				return false
+			}
+		}
+		this.move = function(posOrNeg) {
+		  //console.log(posOrNeg);
+		  var multiplier = 0;
+			if (posOrNeg == "pos") {
+				multiplier = -1;
+			}
+			else {
+				multiplier = 1;
+			}
+			//console.log("multiplier is " + multiplier);
+		  var lastX = this.x;
+		  var lastY = this.y;
+		  if (this.direction == "LR") {
+			  this.x += (vel*multiplier);
+		  }
+		  else {
+			  this.y += (vel*multiplier);
+		  }
+		  if (this.checkBounds()) {
+			  this.x = lastX;
+			  this.y = lastY;
+		  }
+		  this.centerX = this.x+this.width/2;
+		  this.centerY = this.y+this.height/2;
+		  //console.log("centerX is " + this.centerX);
+		  //console.log("centerY is " + this.centerY);
+		}
+	}
+}
+
+class ball {
+	constructor (x,y,radius,velX, velY,color) {
+		this.x = x;
+		this.y = y;
+		this.radius = radius;
+		this.velX = velX;
+		this.velY = velY;
+		this.color = color;
+		this.draw = function() {
+		  ctx.fillStyle = this.color;
+		  ctx.beginPath();
+		  ctx.arc(this.x, this.y, this.radius, 0, 360);
+		  ctx.fill();
+		}
+		this.clear = function() {
+			ctx.fillStyle = "white";
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, this.radius+.4, 0, 360);
+			ctx.fill();
+		}
+		this.colChecks = function() {
+			if (this.x > maxX-this.radius || this.x < minX) {
+				this.velX*=-1;
+			}
+			if (this.y > maxY-this.radius || this.y < minY) {
+				this.velY*= -1;
+			}
+		}
+		this.move = function() {
+			this.x+=this.velX;
+			this.y+=this.velY;
+			this.colChecks();
+		}
+	}
+}
+
+var paddle1 = new paddle(10,screenHeight/2,10,10,100,"UD","blue");
+var paddle2 = new paddle(screenWidth-20,screenHeight/2,10,10,100,"UD","purple");
+var ball1= new ball(screenWidth/2,screenHeight/2,10,2,2,"green");
 // Animation stuff I don't fully understand. I think it just sets up variables to use for request and cancel animation. not sure how
 (function() {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -9,32 +113,33 @@
   var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
 
-// Sets up the game world canvas
-var canvas = document.getElementById("canvas"),
-  ctx = canvas.getContext("2d"),
-  keys = [],
-  screenWidth = canvas.width,
-  screenHeight = canvas.height,
-  maxX = screenWidth,
-  maxY = screenHeight,
-  minX = 0,
-  minY = 0;
 
 function update() {
   // The function that Runs the entire game
 
   // check keys
+  if (keys[87]) {
+    // w
+	paddle1.move("pos");	
+  }
+  if (keys[83]) {
+    // s
+	paddle1.move("neg");
+  }
   if (keys[38]) {
-    // up arrow or space
+    // w
+	paddle2.move("pos");	
   }
-  if (keys[39]) {
-    // right arrow
-
+  if (keys[40]) {
+    // s
+	paddle2.move("neg");
   }
-  if (keys[37]) {
-    // left arrow
-  }
-  ctx.fillRect(0,0,10,10);
+  ctx.clearRect(0,0,screenWidth,screenHeight);
+  paddle1.draw();
+  paddle2.draw();
+  ball1.clear();
+  ball1.move();
+  ball1.draw();
   // dont understand this but updates the animation
   requestAnimationFrame(update);
 }
