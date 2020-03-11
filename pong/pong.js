@@ -94,6 +94,7 @@ class ball {
 			if (this.y > maxY-this.radius || this.y < minY) {
 				this.velY*= -1;
 			}
+			console.log(this);
 			for (var i = 0; i < paddleArray.length; i++) {
 				var check = colCheck(this, paddleArray[i]);	
 				console.log("checking and its " + check);
