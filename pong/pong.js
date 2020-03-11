@@ -139,7 +139,7 @@ function update() {
 			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
 				ball1.velY*= -1;
 			}
-			console.log(ball1);
+			//console.log(ball1);
 			for (var i = 0; i < paddleArray.length; i++) {
 				var check = colCheck(ball1, paddleArray[i]);	
 				console.log("checking and its " + check);
