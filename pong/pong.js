@@ -66,7 +66,7 @@ class paddle {
 		paddleArray.push(this);
 	}
 } 
-
+ 
 class ball {
 	constructor (x,y,radius,velX, velY,color) {
 		this.x = x;
