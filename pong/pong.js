@@ -96,6 +96,7 @@ class ball {
 			}
 			for (var i = 0; i < paddleArray.length; i++) {
 				var check = colCheck(this, paddleArray[i]);	
+				console.log("checking and its " + check);
 				if (check == "l" || check == "r") {
 					this.velX*=-1;
 				}
