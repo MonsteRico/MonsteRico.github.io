@@ -11,9 +11,8 @@ var canvas = document.getElementById("canvas"),
   maxX = screenWidth,
   maxY = screenHeight,
   minX = 0,
-  minY = 0;
-
-
+  minY = 0,
+  paddleArray = [];
 class paddle {
 	constructor (x,y,vel,width,height,direction,color) {
 		this.x = x;
@@ -64,6 +63,7 @@ class paddle {
 		  //console.log("centerX is " + this.centerX);
 		  //console.log("centerY is " + this.centerY);
 		}
+		paddleArray.push(this);
 	}
 }
 
@@ -93,6 +93,17 @@ class ball {
 			}
 			if (this.y > maxY-this.radius || this.y < minY) {
 				this.velY*= -1;
+			}
+			for (var i = 0; i < paddleArray.length; i++) {
+				var check = colCheck(this, paddleArray[i]);	
+				if (check == "l" || check == "r") {
+					this.velX*=-1;
+				}
+				else if (check == "t" || check == "b") {
+					this.velY*=-1;
+				}
+				else {
+				}
 			}
 		}
 		this.move = function() {
