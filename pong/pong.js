@@ -88,30 +88,11 @@ class ball {
 			ctx.fill();
 		}
 		this.colChecks = function() {
-			if (this.x > maxX-this.radius || this.x < minX) {
-				this.velX*=-1;
-			}
-			if (this.y > maxY-this.radius || this.y < minY) {
-				this.velY*= -1;
-			}
-			console.log(this);
-			for (var i = 0; i < paddleArray.length; i++) {
-				var check = colCheck(this, paddleArray[i]);	
-				console.log("checking and its " + check);
-				if (check === "l" || check === "r") {
-					this.velX*=-1;
-				}
-				else if (check === "t" || check === "b") {
-					this.velY*=-1;
-				}
-				else {
-				}
-			}
+			
 		}
 		this.move = function() {
 			this.x+=this.velX;
 			this.y+=this.velY;
-			this.colChecks();
 		}
 	}
 }
@@ -152,6 +133,25 @@ function update() {
   paddle2.draw();
   ball1.clear();
   ball1.move();
+  if (ball1.x > maxX-ball1.radius || ball1.x < minX) {
+				ball1.velX*=-1;
+			}
+			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
+				ball1.velY*= -1;
+			}
+			console.log(ball1);
+			for (var i = 0; i < paddleArray.length; i++) {
+				var check = colCheck(ball1, paddleArray[i]);	
+				console.log("checking and its " + check);
+				if (check === "l" || check === "r") {
+					ball1.velX*=-1;
+				}
+				else if (check === "t" || check === "b") {
+					ball1.velY*=-1;
+				}
+				else {
+				}
+			}
   ball1.draw();
   // dont understand this but updates the animation
   requestAnimationFrame(update);
