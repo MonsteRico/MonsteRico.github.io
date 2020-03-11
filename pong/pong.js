@@ -96,7 +96,7 @@ class ball {
 			}
 			console.log(this);
 			for (var i = 0; i < paddleArray.length; i++) {
-				var check = colCheck(this, paddleArray[i], true);	
+				var check = colCheck(this, paddleArray[i]);	
 				console.log("checking and its " + check);
 				if (check === "l" || check === "r") {
 					this.velX*=-1;
@@ -157,14 +157,14 @@ function update() {
   requestAnimationFrame(update);
 }
 
-function colCheck(shapeA, shapeB, extra) {
+function colCheck(shapeA, shapeB) {
   // DONT FULLY UNDERSTAND Collisions yet but here they are.
   // get the vectors to check against
   if (!extra) {
     extra = 0;
   }
   var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-    vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) + extra),
+    vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2) ),
     // add the half widths and half heights of the objects
     hWidths = (shapeA.width / 2) + (shapeB.width / 2),
     hHeights = (shapeA.height / 2) + (shapeB.height / 2),
