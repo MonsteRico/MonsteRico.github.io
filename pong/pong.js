@@ -142,6 +142,8 @@ function update() {
 			//console.log(ball1);
   if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
 	  console.log("TOUCHING PADDLE 1");
+	  ball1.velX*=-1;
+	  ball1.velY*=-1;
   }
   ball1.draw();
   // dont understand this but updates the animation
