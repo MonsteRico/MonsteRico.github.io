@@ -143,7 +143,7 @@ function update() {
   if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
 	  console.log("TOUCHING PADDLE 1");
 	  ball1.velX*=-1;
-	  ball1.color = paddle2.color;
+	  ball1.color = paddle1.color;
 	  ball1.velY*=-1;
   }
 	if (ball1.x > paddle2.x && ball1.x < paddle2.x+paddle2.width && ball1.y > paddle2.y && ball1.y < paddle2.y+paddle2.height) {
