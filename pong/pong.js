@@ -140,8 +140,9 @@ function update() {
 				ball1.velY*= -1;
 			}
 			//console.log(ball1);
-			var check = colCheck(ball1, paddle1);
-			console.log(check);
+  if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
+	  console.log("TOUCHING PADDLE 1");
+  }
   ball1.draw();
   // dont understand this but updates the animation
   requestAnimationFrame(update);
