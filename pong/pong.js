@@ -148,9 +148,12 @@ function update() {
   }
 	if (ball1.x > paddle2.x && ball1.x < paddle2.x+paddle2.width && ball1.y > paddle2.y && ball1.y < paddle2.y+paddle2.height) {
 	  console.log("TOUCHING PADDLE 2");
-	  ball1.velX*=-1;
 	  ball1.color = paddle2.color;
-	  ball1.velY*=-1;
+	  var relativeIntersectY2 = (paddle2.y+(paddle2.height/2)) - ball1.y;
+	  var normalizedIntersect2 =  (relativeIntersectY2/(paddle2.height/2));
+	  var bounceAngle = normalizedIntersect2 * ((Math.PI*5)/12);
+	  ball1.velX = ball1.velX*Math.cos(bounceAngle);
+	  ball1.velY = ball1.velY*-Math.sin(bounceAngle);
   }
   ball1.draw();
   // dont understand this but updates the animation
