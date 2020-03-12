@@ -140,18 +140,8 @@ function update() {
 				ball1.velY*= -1;
 			}
 			//console.log(ball1);
-			for (var i = 0; i < paddleArray.length; i++) {
-				var check = colCheck(paddleArray[i], ball1);	
-				console.log("checking and its " + check);
-				if (check === "l" || check === "r") {
-					ball1.velX*=-1;
-				}
-				else if (check === "t" || check === "b") {
-					ball1.velY*=-1;
-				}
-				else {
-				}
-			}
+			var check = colCheck(ball1, paddle1);
+			console.log(check);
   ball1.draw();
   // dont understand this but updates the animation
   requestAnimationFrame(update);
