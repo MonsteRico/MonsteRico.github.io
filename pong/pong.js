@@ -154,7 +154,7 @@ function update() {
         // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
         // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
         // Math.PI/4 = 45degrees
-        let angleRad = (Math.PI/4) * collidePoint;
+        let angleRad = (5*Math.PI/12) * collidePoint;
         
         // change the X and Y velocity direction
         let direction = (ball1.x + ball1.radius < canvas.width/2) ? 1 : -1;
@@ -176,7 +176,7 @@ function update() {
         // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
         // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
         // Math.PI/4 = 45degrees
-        let angleRad = (Math.PI/4) * collidePoint;
+        let angleRad = (5*Math.PI/12) * collidePoint;
         
         // change the X and Y velocity direction
         let direction = (ball1.x + ball1.radius < canvas.width/2) ? 1 : -1;
