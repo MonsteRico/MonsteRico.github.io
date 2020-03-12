@@ -143,9 +143,26 @@ function update() {
 			//console.log(ball1);
   if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
 	  console.log("TOUCHING PADDLE 1");
-	  ball1.velX*=-1;
+	  
 	  ball1.color = paddle1.color;
-	  ball1.velY*=-1;
+	  let collidePoint = (ball1.y - (paddle1.y + paddle1.height/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (paddle1.height/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (Math.PI/4) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball1.x + ball1.radius < canvas.width/2) ? 1 : -1;
+        ball1.velX = direction * ball1.speed * Math.cos(angleRad);
+        ball1.velY = ball1.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball1.speed += 0.1;
   }
 	if (ball1.x > paddle2.x && ball1.x < paddle2.x+paddle2.width && ball1.y > paddle2.y && ball1.y < paddle2.y+paddle2.height) {
 	  console.log("TOUCHING PADDLE 2");
