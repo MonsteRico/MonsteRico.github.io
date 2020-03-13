@@ -153,18 +153,7 @@ function update() {
 				ball1.speed = 7;
 			}
 			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
-				for (var i = 0; i <paddleArray.length; i++) {
-				  if (ball1.color == paddleArray[i].color) {
-				    paddleArray[i].score++;
-				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
-				  }
-				}
-				ball1.color = "green";
-				ball1.velX = 5; // RANDOM
-				ball1.velY = 5;
-				ball1.x = screenWidth/2;
-				ball1.y = screenHeight/2;
-				ball1.speed = 7;
+        ball1.velY *= -1;
 			}
 			//console.log(ball1);
   if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
