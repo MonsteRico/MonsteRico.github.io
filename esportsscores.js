@@ -17,4 +17,4 @@ document.getElementById("LOLBlue").innerHTML = "League of Legends Blue ― " + L
 document.getElementById("LOLGold").innerHTML = "League of Legends Gold ― " + LOLGold;
 document.getElementById("RLGold").innerHTML = "Rocket League Gold ― " + RLGold;
 document.getElementById("RLBlue").innerHTML = "Rocket League Blue ― " + RLBlue;
-document.getElementById("Smash").innerHTML = "Hearthstone Gold ― " + Smash;
+document.getElementById("Smash").innerHTML = "Super Smash Bros. ― " + Smash;
