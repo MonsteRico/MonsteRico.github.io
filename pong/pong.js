@@ -21,6 +21,7 @@ class paddle {
 		this.width = width;
 		this.height = height;
 		this.direction = direction;
+		this.score = 0;
 		this.color = color;
 		this.draw = function() {
 		  ctx.fill();
@@ -65,7 +66,7 @@ class paddle {
 		}
 		paddleArray.push(this);
 	}
-} 
+}
  
 class ball {
 	constructor (x,y,radius,velX, velY,color) {
@@ -100,7 +101,10 @@ class ball {
 
 var paddle1 = new paddle(10,screenHeight/2,10,10,100,"UD","blue");
 var paddle2 = new paddle(screenWidth-20,screenHeight/2,10,10,100,"UD","purple");
+var paddle3 = new paddle(screenWidth/2-50,10,10,100,10,"LR","black");
+var paddle4 = new paddle(screenWidth/2-50,screenHeight-20,10,100,10,"LR","red");
 var ball1= new ball(screenWidth/2,screenHeight/2,10,2,2,"green");
+var gameState = "4player";
 // Animation stuff I don't fully understand. I think it just sets up variables to use for request and cancel animation. not sure how
 (function() {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -111,11 +115,11 @@ var ball1= new ball(screenWidth/2,screenHeight/2,10,2,2,"green");
 
 function update() {
   // The function that Runs the entire game
-
+  if (gameState == "2player") {
   // check keys
   if (keys[87]) {
     // w
-	paddle1.move("pos");	
+	paddle1.move("pos");
   }
   if (keys[83]) {
     // s
@@ -123,7 +127,7 @@ function update() {
   }
   if (keys[38]) {
     // w
-	paddle2.move("pos");	
+	paddle2.move("pos");
   }
   if (keys[40]) {
     // s
@@ -135,10 +139,32 @@ function update() {
   ball1.clear();
   ball1.move();
   if (ball1.x > maxX-ball1.radius || ball1.x < minX) {
-				ball1.velX*=-1;
+				for (var i = 0; i <paddleArray.length; i++) {
+				  if (ball1.color == paddleArray[i].color) {
+				    paddleArray[i].score++;
+				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+				  }
+				}
+				ball1.color = "green";
+				ball1.velX = 5; // RANDOM
+				ball1.velY = 5;
+				ball1.x = screenWidth/2;
+				ball1.y = screenHeight/2;
+				ball1.speed = 7;
 			}
 			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
-				ball1.velY*= -1;
+				for (var i = 0; i <paddleArray.length; i++) {
+				  if (ball1.color == paddleArray[i].color) {
+				    paddleArray[i].score++;
+				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+				  }
+				}
+				ball1.color = "green";
+				ball1.velX = 5; // RANDOM
+				ball1.velY = 5;
+				ball1.x = screenWidth/2;
+				ball1.y = screenHeight/2;
+				ball1.speed = 7;
 			}
 			//console.log(ball1);
   if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
@@ -187,6 +213,175 @@ function update() {
         ball1.speed += 0.1;
   }
   ball1.draw();
+  }
+  
+  
+  
+  
+  if (gameState == "4player") {
+    // check keys
+  if (keys[87]) {
+    // w
+	paddle1.move("pos");
+  }
+  if (keys[65]) {
+    // a
+    paddle3.move("pos");
+  }
+  if (keys[68]) {
+    // d
+    paddle3.move("neg");
+  }
+  if (keys[37]) {
+    // left
+    paddle4.move("pos");
+  }
+  if (keys[39]) {
+    // right
+    paddle4.move("neg");
+  }
+  if (keys[83]) {
+    // s
+	paddle1.move("neg");
+  }
+  if (keys[38]) {
+    // up
+	paddle2.move("pos");
+  }
+  if (keys[40]) {
+    // down
+	paddle2.move("neg");
+  }
+  ctx.clearRect(0,0,screenWidth,screenHeight);
+  paddle1.draw();
+  paddle2.draw();
+  paddle3.draw();
+  paddle4.draw();
+  ball1.clear();
+  ball1.move();
+  if (ball1.x > maxX-ball1.radius || ball1.x < minX) {
+				for (var i = 0; i <paddleArray.length; i++) {
+				  if (ball1.color == paddleArray[i].color) {
+				    paddleArray[i].score++;
+				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+				  }
+				}
+				ball1.color = "green";
+				ball1.velX = 5; // RANDOM
+				ball1.velY = 5;
+				ball1.x = screenWidth/2;
+				ball1.y = screenHeight/2;
+				ball1.speed = 7;
+			}
+			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
+				for (var i = 0; i <paddleArray.length; i++) {
+				  if (ball1.color == paddleArray[i].color) {
+				    paddleArray[i].score++;
+				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+				  }
+				}
+				ball1.color = "green";
+				ball1.velX = 5; // RANDOM
+				ball1.velY = 5;
+				ball1.x = screenWidth/2;
+				ball1.y = screenHeight/2;
+				ball1.speed = 7;
+			}
+			//console.log(ball1);
+  if (ball1.x > paddle1.x && ball1.x < paddle1.x+paddle1.width && ball1.y > paddle1.y && ball1.y < paddle1.y+paddle1.height) {
+	  console.log("TOUCHING PADDLE 1");
+	  
+	  ball1.color = paddle1.color;
+	  let collidePoint = (ball1.y - (paddle1.y + paddle1.height/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (paddle1.height/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (5*Math.PI/12) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball1.x + ball1.radius < canvas.width/2) ? 1 : -1;
+        ball1.velX = direction * ball1.speed * Math.cos(angleRad);
+        ball1.velY = ball1.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball1.speed += 0.1;
+  }
+	if (ball1.x > paddle2.x && ball1.x < paddle2.x+paddle2.width && ball1.y > paddle2.y && ball1.y < paddle2.y+paddle2.height) {
+	  console.log("TOUCHING PADDLE 2");
+	  ball1.color = paddle2.color;
+	 let collidePoint = (ball1.y - (paddle2.y + paddle2.height/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (paddle2.height/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (5*Math.PI/12) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball1.x + ball1.radius < canvas.width/2) ? 1 : -1;
+        ball1.velX = direction * ball1.speed * Math.cos(angleRad);
+        ball1.velY = ball1.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball1.speed += 0.1;
+  }
+    if (ball1.x > paddle3.x && ball1.x < paddle3.x+paddle3.width && ball1.y > paddle3.y && ball1.y < paddle3.y+paddle3.height) {
+	  console.log("TOUCHING PADDLE 3");
+	  
+	  ball1.color = paddle3.color;
+	  let collidePoint = (ball1.x - (paddle3.x + paddle3.width/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (paddle3.width/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (5*Math.PI/12) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball1.y + ball1.radius < canvas.height/2) ? 1 : -1;
+        ball1.velY = direction * ball1.speed * Math.cos(angleRad);
+        ball1.velX = ball1.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball1.speed += 0.1;
+  }
+       if (ball1.x > paddle4.x && ball1.x < paddle4.x+paddle4.width && ball1.y > paddle4.y && ball1.y < paddle4.y+paddle4.height) {
+	  console.log("TOUCHING PADDLE 3");
+	  
+	  ball1.color = paddle4.color;
+	  let collidePoint = (ball1.x - (paddle4.x + paddle4.width/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (paddle4.width/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (5*Math.PI/12) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball1.y + ball1.radius < canvas.height/2) ? 1 : -1;
+        ball1.velY = direction * ball1.speed * Math.cos(angleRad);
+        ball1.velX = ball1.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball1.speed += 0.1;
+  }
+  ball1.draw();
+    
+  }
   // dont understand this but updates the animation
   requestAnimationFrame(update);
 }
