@@ -149,9 +149,8 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
-				    paddleArray[i].displayScore = true;
-				    console.log(paddleArray[i].displayScore);
-				    setTimeout(function(){ paddleArray[i].displayScore = false;console.log(paddleArray[i].displayScore); }, 2000);
+				    	  paddleArray[i].displayScore = true;
+				    setTimeout(resetScore(paddleArray[i]), 2000);
 				  }
 				}
 				ball1.color = "green";
@@ -263,7 +262,7 @@ function update() {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 					  paddleArray[i].displayScore = true;
-				    setTimeout(function(){ paddleArray[i].displayScore = false }, 2000);
+				    setTimeout(resetScore(paddleArray[i]), 2000);
 				  }
 				}
 				ball1.color = "green";
@@ -277,6 +276,8 @@ function update() {
 				for (var i = 0; i <paddleArray.length; i++) {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
+					  	  paddleArray[i].displayScore = true;
+				    setTimeout(resetScore(paddleArray[i]), 2000);
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 				  }
 				}
@@ -429,3 +430,8 @@ document.body.addEventListener("keydown", function(e) {
 document.body.addEventListener("keyup", function(e) {
   keys[e.keyCode] = false;
 });
+
+function resetScore(paddle) {
+	paddle.displayScore = false;
+	console.log(paddle.displayScore);
+}
