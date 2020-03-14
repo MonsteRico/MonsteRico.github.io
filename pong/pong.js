@@ -31,7 +31,8 @@ class paddle {
 		  if (this.displayScore) {
 			  ctx.font = "200px Arial";
 			ctx.fillStyle = this.color;
-			ctx.fillText(this.score, screenWidth/2, screenHeight/2);	
+			ctx.fillText(this.score, screenWidth/2, screenHeight/2);
+			  setTimeout(function() {this.displayScore = false;}, 1000);
 		    }
 		}
 		this.checkBounds = function() {
@@ -262,7 +263,7 @@ function update() {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 					  paddleArray[i].displayScore = true;
-				    
+				    	  
 				  }
 				}
 				ball1.color = "green";
