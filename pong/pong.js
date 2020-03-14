@@ -28,6 +28,11 @@ class paddle {
 		  ctx.globalAlpha = 1;
 		  ctx.fillStyle = this.color;
 		  ctx.fillRect(this.x, this.y, this.width, this.height);
+		  if (this.displayScore) {
+			  ctx.font = "30px Arial";
+			ctx.fillStyle = this.color;
+			ctx.fillText(this.score, screenWidth/2, screenHeight/2);	
+		    }
 		}
 		this.checkBounds = function() {
 			if (this.x > maxX-this.width || this.x < minX || this.y > maxY-this.height || this.y < minY) {
@@ -37,11 +42,7 @@ class paddle {
 				return false
 			}
 		}
-		this.displayScore = function() {
-			ctx.font = "30px Arial";
-			ctx.fillColor = this.color;
-			ctx.fillText(this.score, screenWidth/2, screenHeight/2);	
-		}
+		this.displayScore = false;
 		this.move = function(posOrNeg) {
 		  //console.log(posOrNeg);
 		  var multiplier = 0;
@@ -81,7 +82,7 @@ class ball {
 		this.velX = velX;
 		this.velY = velY;
 		this.color = color;
-		this.speed = 7;
+		this.speed = 5;
 		this.draw = function() {
 		  ctx.fillStyle = this.color;
 		  ctx.beginPath();
@@ -148,7 +149,8 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
-				    paddleArray[i].displayScore();
+				    paddleArray[i].displayScore = true;
+				    setTimeout(function(){ paddleArray[i].displayScore = false }, 2000);
 				  }
 				}
 				ball1.color = "green";
@@ -156,7 +158,7 @@ function update() {
 				ball1.velY = 5;
 				ball1.x = screenWidth/2;
 				ball1.y = screenHeight/2;
-				ball1.speed = 7;
+				ball1.speed = 5;
 			}
 			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
         ball1.velY *= -1;
@@ -259,6 +261,8 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+					  paddleArray[i].displayScore = true;
+				    setTimeout(function(){ paddleArray[i].displayScore = false }, 2000);
 				  }
 				}
 				ball1.color = "green";
@@ -266,7 +270,7 @@ function update() {
 				ball1.velY = 5;
 				ball1.x = screenWidth/2;
 				ball1.y = screenHeight/2;
-				ball1.speed = 7;
+				ball1.speed = 5;
 			}
 			if (ball1.y > maxY-ball1.radius || ball1.y < minY) {
 				for (var i = 0; i <paddleArray.length; i++) {
