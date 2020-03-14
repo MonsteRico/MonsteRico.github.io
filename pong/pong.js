@@ -32,7 +32,6 @@ class paddle {
 			  ctx.font = "200px Arial";
 			ctx.fillStyle = this.color;
 			ctx.fillText(this.score, screenWidth/2, screenHeight/2);
-			  setTimeout(function() {this.displayScore = false;}, 1000);
 		    }
 		}
 		this.checkBounds = function() {
@@ -263,7 +262,12 @@ function update() {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 					  paddleArray[i].displayScore = true;
-				    	  
+				    	  setTimeout(function() {for (var i = 0; i< paddleArray.length; i++) {
+					    if (paddleArray[i].displayScore = true) {
+						    paddleArray[i].displayScore = false;
+					    }
+				    }
+							  }, 1000);
 				  }
 				}
 				ball1.color = "green";
@@ -278,7 +282,12 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 					  	  paddleArray[i].displayScore = true;
-				    
+				    setTimeout(function() {for (var i = 0; i< paddleArray.length; i++) {
+					    if (paddleArray[i].displayScore = true) {
+						    paddleArray[i].displayScore = false;
+					    }
+				    }
+							  }, 1000);
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 				  }
 				}
