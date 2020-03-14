@@ -262,7 +262,7 @@ function update() {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 					  paddleArray[i].displayScore = true;
-				    setTimeout(resetScore(paddleArray[i]), 2000);
+				    
 				  }
 				}
 				ball1.color = "green";
@@ -277,7 +277,7 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 					  	  paddleArray[i].displayScore = true;
-				    setTimeout(resetScore(paddleArray[i]), 2000);
+				    
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 				  }
 				}
