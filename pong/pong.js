@@ -37,6 +37,11 @@ class paddle {
 				return false
 			}
 		}
+		this.displayScore = function() {
+			ctx.font = "30px Arial";
+			ctx.fillColor = this.color;
+			ctx.fillText(this.score, screenWidth/2, screenHeight/2);	
+		}
 		this.move = function(posOrNeg) {
 		  //console.log(posOrNeg);
 		  var multiplier = 0;
@@ -143,6 +148,7 @@ function update() {
 				  if (ball1.color == paddleArray[i].color) {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
+				    paddleArray[i].displayScore();
 				  }
 				}
 				ball1.color = "green";
