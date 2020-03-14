@@ -29,7 +29,7 @@ class paddle {
 		  ctx.fillStyle = this.color;
 		  ctx.fillRect(this.x, this.y, this.width, this.height);
 		  if (this.displayScore) {
-			  ctx.font = "30px Arial";
+			  ctx.font = "200px Arial";
 			ctx.fillStyle = this.color;
 			ctx.fillText(this.score, screenWidth/2, screenHeight/2);	
 		    }
@@ -150,7 +150,8 @@ function update() {
 				    paddleArray[i].score++;
 				    console.log(paddleArray[i].color + " paddle score is " + paddleArray[i].score);
 				    paddleArray[i].displayScore = true;
-				    setTimeout(function(){ paddleArray[i].displayScore = false }, 2000);
+				    console.log(paddleArray[i].displayScore);
+				    setTimeout(function(){ paddleArray[i].displayScore = false;console.log(paddleArray[i].displayScore); }, 2000);
 				  }
 				}
 				ball1.color = "green";
