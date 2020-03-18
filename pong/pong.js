@@ -104,12 +104,19 @@ class ball {
 		}
 	}
 }
-
+var velX = 0;
+var velY = 0;
+while (!(velX <= 1 && velX >= -1)) {
+	velX = randomNumber(-5, 5);
+}
+while (!(velY <= 1 && velY >= -1)) {
+	velY = randomNumber(-5, 5);
+}
 var paddle1 = new paddle(10,screenHeight/2,10,10,100,"UD","blue");
 var paddle2 = new paddle(screenWidth-20,screenHeight/2,10,10,100,"UD","purple");
 var paddle3 = new paddle(screenWidth/2-50,10,10,100,10,"LR","black");
 var paddle4 = new paddle(screenWidth/2-50,screenHeight-20,10,100,10,"LR","red");
-var ball1= new ball(screenWidth/2,screenHeight/2,10,2,2,"green");
+var ball1= new ball(screenWidth/2,screenHeight/2,10,velX,velY,"green");
 var gameState = "4player";
 // Animation stuff I don't fully understand. I think it just sets up variables to use for request and cancel animation. not sure how
 (function() {
@@ -154,8 +161,14 @@ function update() {
 				  }
 				}
 				ball1.color = "green";
-				ball1.velX = 5; // RANDOM
-				ball1.velY = 5;
+	  ball1.velX = 0;
+	  ball1.velY = 0;
+				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+	ball1.velX = randomNumber(-5, 5);
+}
+while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+	ball1.velY = randomNumber(-5, 5);
+}
 				ball1.x = screenWidth/2;
 				ball1.y = screenHeight/2;
 				ball1.speed = 5;
@@ -271,8 +284,14 @@ function update() {
 				  }
 				}
 				ball1.color = "green";
-				ball1.velX = 5; // RANDOM
-				ball1.velY = 5;
+					  ball1.velX = 0;
+	  ball1.velY = 0;
+				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+	ball1.velX = randomNumber(-5, 5);
+}
+while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+	ball1.velY = randomNumber(-5, 5);
+}
 				ball1.x = screenWidth/2;
 				ball1.y = screenHeight/2;
 				ball1.speed = 5;
@@ -292,8 +311,14 @@ function update() {
 				  }
 				}
 				ball1.color = "green";
-				ball1.velX = 5; // RANDOM
-				ball1.velY = 5;
+					  ball1.velX = 0;
+	  ball1.velY = 0;
+				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+	ball1.velX = randomNumber(-5, 5);
+}
+while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+	ball1.velY = randomNumber(-5, 5);
+}
 				ball1.x = screenWidth/2;
 				ball1.y = screenHeight/2;
 				ball1.speed = 7;
