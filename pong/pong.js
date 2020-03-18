@@ -106,10 +106,10 @@ class ball {
 }
 var velX = 0;
 var velY = 0;
-while (!(velX <= 1 && velX >= -1)) {
+while (velX <= 1 && velX >= -1) {
 	velX = randomNumber(-5, 5);
 }
-while (!(velY <= 1 && velY >= -1)) {
+while (velY <= 1 && velY >= -1) {
 	velY = randomNumber(-5, 5);
 }
 var paddle1 = new paddle(10,screenHeight/2,10,10,100,"UD","blue");
@@ -163,10 +163,10 @@ function update() {
 				ball1.color = "green";
 	  ball1.velX = 0;
 	  ball1.velY = 0;
-				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+				while (ball1.velX <= 1 && ball1.velX >= -1) {
 	ball1.velX = randomNumber(-5, 5);
 }
-while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+while (ball1.velY <= 1 && ball1.velY >= -1) {
 	ball1.velY = randomNumber(-5, 5);
 }
 				ball1.x = screenWidth/2;
@@ -286,10 +286,10 @@ while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
 				ball1.color = "green";
 					  ball1.velX = 0;
 	  ball1.velY = 0;
-				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+				while (ball1.velX <= 1 && ball1.velX >= -1) {
 	ball1.velX = randomNumber(-5, 5);
 }
-while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+while (ball1.velY <= 1 && ball1.velY >= -1) {
 	ball1.velY = randomNumber(-5, 5);
 }
 				ball1.x = screenWidth/2;
@@ -313,10 +313,10 @@ while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
 				ball1.color = "green";
 					  ball1.velX = 0;
 	  ball1.velY = 0;
-				while (!(ball1.velX <= 1 && ball1.velX >= -1)) {
+				while (ball1.velX <= 1 && ball1.velX >= -1) {
 	ball1.velX = randomNumber(-5, 5);
 }
-while (!(ball1.velY <= 1 && ball1.velY >= -1)) {
+while (ball1.velY <= 1 && ball1.velY >= -1) {
 	ball1.velY = randomNumber(-5, 5);
 }
 				ball1.x = screenWidth/2;
