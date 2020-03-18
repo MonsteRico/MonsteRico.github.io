@@ -9,7 +9,6 @@ function wait(ms) {
 
 function randomNumber(min, max) {
   var random = Math.floor(Math.random() * (+max - +min)) + +min;
-  console.log(random);
   return random;
 }
 
