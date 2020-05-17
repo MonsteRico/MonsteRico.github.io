@@ -19,6 +19,29 @@ html {
   background-color: var(--hover);
 }
 
+.colorBox {
+  position: relative;
+  width: 28px;
+  top: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+#colorInfo {
+  width: 560px;
+  height: automatic;
+  background: #E7CFCF;
+  border-radius: 25px;
+}
+
+.colorBox2 {
+  position: relative;
+  width: 28px;
+  top: 35px;
+  height: 28px;
+  cursor: pointer;
+}
+
 body {
   background-color: var(--mainBG) !important;
   color: var(--mainText) !important;
