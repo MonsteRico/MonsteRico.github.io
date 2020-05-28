@@ -21,9 +21,9 @@ function switchColor(color) {
       break;
     case "darkGrey":
       box.style.background = "#7F7F7F";
-      colorName.innerHTML = "Dark Grey - Platform";
+      colorName.innerHTML = "Dark Grey - Color Code Starter";
       image.src = "../gamePics/color.PNG";
-      description.innerHTML = "A platform is the same as a normal wall block except you can jump through it from the bottom. They are about half the height of normal blocks.";
+      description.innerHTML = "This is to be finished. I need to write it.";
       hex.innerHTML = "#7F7F7F";
       rgb.innerHTML = "RGB(127, 127, 127)";
       colorName.style.color = "#000";
@@ -122,6 +122,114 @@ function switchColor(color) {
       description.innerHTML = "This color indicates the place that the player will spawn at every time until they get a checkpoint or finish the level. Nothing too special about this color other then that you should only put ONE per level, it just creates the player.";
       hex.innerHTML = "#A349A4";
       rgb.innerHTML = "RGB(163, 73, 164)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "white":
+      box.style.background = "#fff";
+      colorName.innerHTML = "White - Empty Space";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "This color doesn't do anything. It's literally just empty space. Doesn't do anything else. Use it as eraser of sorts.";
+      hex.innerHTML = "#ffffff";
+      rgb.innerHTML = "RGB(255, 255, 255)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "lightGrey":
+      box.style.background = "#B97A57";
+      colorName.innerHTML = "Light Grey - Platform";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "A platform is the same as a normal wall block except you can jump through it from the bottom. They are about half the height of normal blocks.";
+      hex.innerHTML = "#B97A57";
+      rgb.innerHTML = "RGB(185, 122, 87)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "pink":
+      box.style.background = "#FFAEC9";
+      colorName.innerHTML = "Pink - Checkpoint";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "A checkpoint will set a new spawn point for the player. However, the player cannot go back to a previous checkpoint once they set one. Make sure they will have seen all the coins they can get up to that point!";
+      hex.innerHTML = "#FFAEC9";
+      rgb.innerHTML = "RGB(255, 174, 201)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "lightOrange":
+      box.style.background = "#FFC90E";
+      colorName.innerHTML = "Light Orange - Moving Blocks";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "These blocks will move right until they hit a solid block. Once they hit a solid block they will bounce backwards and start going left. They will repeat when going left and come back right. So they bounce back and forth until the end of time.";
+      hex.innerHTML = "#FFC90E";
+      rgb.innerHTML = "RGB(255, 201, 14)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "lightYellow":
+      box.style.background = "#EFE4B0";
+      colorName.innerHTML = "Light Yellow - Literally nothing yet";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "This color is useless as of now. DM me any ideas?";
+      hex.innerHTML = "#EFE4B0";
+      rgb.innerHTML = "RGB(239, 228, 176)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "brightGreen":
+      box.style.background = "#B5E61D";
+      colorName.innerHTML = "Light Green - Goal";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "The goal is, well, the goal. Getting here, <i>with all the coins</i> will let the player finally leave the level. This should obviously go at the end of your level.";
+      hex.innerHTML = "#B5E61D";
+      rgb.innerHTML = "RGB(181, 230, 29)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "brightBlue":
+      box.style.background = "#99D9EA";
+      colorName.innerHTML = "Light Blue - Ice Block";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "The ice block increases the players friction. Which oddly lets the player slide even better. So obviously ice blocks will let the player slide. Momentum does carry through ice blocks, so if you jump from one to another then you will continue sliding.";
+      hex.innerHTML = "#99D9EA";
+      rgb.innerHTML = "RGB(153, 217, 234)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "blueGrey":
+      box.style.background = "#7092BE";
+      colorName.innerHTML = "Blue Grey - Blink Block (Blue)";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "This block alternates between existing and not existing. You can fall right through it when it is invisible. When the red one is solid, the blue ones are not and vice versa.";
+      hex.innerHTML = "#7092BE";
+      rgb.innerHTML = "RGB(112, 146, 190)";
+      colorName.style.color = "#000";
+      description.style.color = "#000";
+      hex.style.color = "#000";
+      rgb.style.color = "#000";
+      break;
+    case "lightPurple":
+      box.style.background = "#C8BFE7";
+      colorName.innerHTML = "Light Purple - Player 2";
+      image.src = "../gamePics/color.PNG";
+      description.innerHTML = "This color indicates the starting spawn point of Player 2. Player 2 is controlled using WASD instead of the arrow keys. Both players are on the same keyboard. Making a 2 Player level is not an easy task but is definitely not impossible.";
+      hex.innerHTML = "#C8BFE7";
+      rgb.innerHTML = "RGB(200, 191, 231)";
       colorName.style.color = "#000";
       description.style.color = "#000";
       hex.style.color = "#000";

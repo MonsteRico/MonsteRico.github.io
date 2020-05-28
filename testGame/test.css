@@ -31,6 +31,7 @@ html {
   width: 560px;
   height: automatic;
   background: #E7CFCF;
+  border: solid 2px black;
   border-radius: 25px;
 }
 
