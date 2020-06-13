@@ -13,6 +13,10 @@
 <div id="hide">
 	<h1 class="title">The Test Game</h1>
 	<div class="row justify-content-center">
+		<a href="./help.html">Info on Making Levels</a>
+		<a href="./changelog.html">Changelog</a>
+	</div>
+	<div class="row justify-content-center">
 		<a href="./upload.html">Upload a Level</a>
 	</div>
 	<div class="row justify-content-center">
