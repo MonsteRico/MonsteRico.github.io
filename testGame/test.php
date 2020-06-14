@@ -20,8 +20,8 @@
 	</div>
 	<div class="row justify-content-center">
 				<button class="btn btn-light mr-3" id="daily">Daily Level</button>
-		<button href="./help.html" class="btn btn-light mr-3">Info on Making Levels</button>
-		<button href="./changelog.html" class="btn btn-light mr-3">Changelog</button>
+		<a href="./help.html"><button href="./help.html" class="btn btn-light mr-3">Info on Making Levels</button></a>
+		<a href="./changelog.html"><button href="./changelog.html" class="btn btn-light mr-3">Changelog</button></a>
 	</div>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
