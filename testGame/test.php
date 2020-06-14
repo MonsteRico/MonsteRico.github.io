@@ -13,18 +13,15 @@
 <div id="hide">
 	<h1 class="title">The Test Game</h1>
 	<div class="row justify-content-center">
-		<a href="./help.html">Info on Making Levels</a>
-		<a href="./changelog.html">Changelog</a>
-	</div>
-	<div class="row justify-content-center">
 		<a href="./upload.html">Upload a Level</a>
 	</div>
 	<div class="row justify-content-center">
 		<p>Or play one of these other levels</p>
 	</div>
 	<div class="row justify-content-center">
-		<button href="./documents/colorList.txt" class="btn btn-light mr-3">Info on Making Levels</button>
+		<button href="./help.html" class="btn btn-light mr-3">Info on Making Levels</button>
 		<button class="btn btn-light ml-3" id="daily">Daily Level</button>
+		<button href="./changelog.html" class="btn btn-light mr-3">Changelog</button>
 	</div>
 	<canvas style="display:none;" id="test1"></canvas>
 	<img src="./spritesheets/spritesheet1.png" id="sprite" style="display:none">
