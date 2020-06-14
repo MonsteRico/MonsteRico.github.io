@@ -20,7 +20,7 @@
 	</div>
 	<div class="row justify-content-center">
 		<button href="./help.html" class="btn btn-light mr-3">Info on Making Levels</button>
-		<button class="btn btn-light ml-3" id="daily">Daily Level</button>
+		<button class="btn btn-light ml-3 mr-3" id="daily">Daily Level</button>
 		<button href="./changelog.html" class="btn btn-light mr-3">Changelog</button>
 	</div>
 	<canvas style="display:none;" id="test1"></canvas>
