@@ -21,9 +21,9 @@ function switchColor(color) {
       break;
     case "darkGrey":
       box.style.background = "#7F7F7F";
-      colorName.innerHTML = "Dark Grey - Color Code Starter";
+      colorName.innerHTML = "Dark Grey - Unknown/WIP";
       image.src = "./documents/showcaseGifs/wip.png";
-      description.innerHTML = "This is to be finished. I need to write it.";
+      description.innerHTML = "I am still deciding what exactly to do with this color. Ideas are welcome!";
       hex.innerHTML = "#7F7F7F";
       rgb.innerHTML = "RGB(127, 127, 127)";
       colorName.style.color = "#000";
@@ -189,9 +189,9 @@ function switchColor(color) {
       break;
     case "lightYellow":
       box.style.background = "#EFE4B0";
-      colorName.innerHTML = "Light Yellow - Literally nothing yet";
+      colorName.innerHTML = "Light Yellow - Unkown/WIP";
       image.src = "./documents/showcaseGifs/wip.png";
-      description.innerHTML = "This color is useless as of now. DM me any ideas?";
+      description.innerHTML = "I am still deciding what exactly to do with this color. Ideas are welcome!";
       hex.innerHTML = "#EFE4B0";
       rgb.innerHTML = "RGB(239, 228, 176)";
       colorName.style.color = "#000";
@@ -238,8 +238,8 @@ function switchColor(color) {
     case "lightPurple":
       box.style.background = "#C8BFE7";
       colorName.innerHTML = "Light Purple - Player 2";
-      image.src = "./documents/showcaseGifs/wip.png";
-      description.innerHTML = "This color indicates the starting spawn point of Player 2. Player 2 is controlled using WASD instead of the arrow keys. Both players are on the same keyboard. Making a 2 Player level is not an easy task but is definitely not impossible.";
+      image.src = "./documents/showcaseGifs/player2.gif";
+      description.innerHTML = "This color indicates the starting spawn point of Player 2. Player 2 is controlled using WASD instead of the arrow keys. Both players are on the same keyboard. Making a 2 Player level is not an easy task but is definitely not impossible. NOTE: Do not use checkpoints unless you want both players to spawn at the checkpoint. They don't check which player actually got the checkpoint.";
       hex.innerHTML = "#C8BFE7";
       rgb.innerHTML = "RGB(200, 191, 231)";
       colorName.style.color = "#000";

@@ -16,10 +16,16 @@
 		<a href="./upload.html">Upload a Level</a>
 	</div>
 	<div class="row justify-content-center">
+		<div class="mb-3 custom-file">
+		  <input type="file" class="custom-file-input" id="inp">
+		  <label class="custom-file-label" for="customFile">Test a Local Level</label>
+		</div>
+</div>
+	<div class="row justify-content-center">
 		<p>Or play one of these other levels</p>
 	</div>
 	<div class="row justify-content-center">
-				<button class="btn btn-light mr-3" id="daily">Daily Level</button>
+		<button class="btn btn-light mr-3" id="daily">Daily Level</button>
 		<a href="./help.html"><button href="./help.html" class="btn btn-light mr-3">Info on Making Levels</button></a>
 		<a href="./changelog.html"><button href="./changelog.html" class="btn btn-light mr-3">Changelog</button></a>
 	</div>
@@ -200,7 +206,11 @@ function chooseLevel(level) {
   sessionStorage.setItem('level', levelMap.src);
   Test1();
 }
-
+document.getElementById('inp').onchange = function(e) {
+	removeStorage(false);
+	levelMap.src = URL.createObjectURL(this.files[0]);
+	Test1();
+};
 document.getElementById('daily').onclick = function(e) {
   removeStorage(true);
   GenerateRandomLevel();

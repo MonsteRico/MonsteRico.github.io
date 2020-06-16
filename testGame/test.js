@@ -331,6 +331,8 @@ function Instantiate(object, xPos, yPos, h, w) {
       friction: friction,
       x: xPos,
       y: yPos,
+      startX: xPos,
+      startY: yPos,
       width: w - 2,
       height: h - 2,
       speed: speed,
@@ -575,11 +577,6 @@ function update() {
 
   player.velX *= player.friction;
   player.velY += gravity;
-
-  // Collisions with player 2
-  if (player2Exists == true) {
-    colCheck(player, player2);
-  }
 
   ctx.clearRect(0, 0, width, height);
 
@@ -1075,63 +1072,497 @@ function update() {
 
   }
 
-  // Code to make Shooter Blocks work
-  for (var i = 0; i < shooter.length; i++) {
-    ctx.drawImage(spritesheet, shooter[i].frameIndex * 16, 0, 16, 16, shooter[i].x, shooter[i].y, shooter[i].width, shooter[i].height);
-    var dir = colCheck(player, shooter[i]);
-    if (dir === "l" || dir === "r") {
-      player.velX = 0;
-      player.jumping = false;
-      player.grounded = false;
-    } else if (dir === "b") {
-      while (player.friction != friction) {
-        player.friction -= 0.1;
-      }
-      while (player.speed != speed) {
-        player.speed -= 1;
-      }
-      if (gravity > 0) {
-        player.grounded = true;
-        player.jumping = false;
-      } else {
-        player.velY *= -1;
-      }
-    } else if (dir === "t") {
-      while (player.friction != friction) {
-        player.friction -= 0.1;
-      }
-      while (player.speed != speed) {
-        player.speed -= 1;
-      }
-      if (gravity > 0) {
-        player.velY *= -1;
-      } else {
-        player.grounded = true;
-        player.jumping = false;
+  // if Player 2 exists, do all player 1 stuff but minus the drawing and extra movements
+  if (player2Exists == true) {
+    if (keys[87]) {
+      // w
+      if (!player2.jumping && player2.grounded) {
+        player2.jumping = true;
+        player2.grounded = false;
+        if (gravity > 0) {
+          player2.velY = -player2.speed * 2;
+        } else {
+          player2.velY = player2.speed * 2;
+        }
       }
     }
-    //ANIMATION
-    shooter[i].cooldown++;
-    if (shooter[i].cooldown == 60) {
-      shooter[i].cooldown = 0;
-      shooter[i].frameIndex++;
-      if (shooter[i].frameIndex == 21) {
-        shooter[i].frameIndex = 0;
+    if (keys[68]) {
+      // d
+      if (player2.velX < player2.speed) {
+        player2.velX++;
+      }
+    }
+    if (keys[65]) {
+      // a
+      if (player2.velX > -player2.speed) {
+        player2.velX--;
       }
     }
 
-  }
+    player2.velX *= player2.friction;
+    player2.velY += gravity;
+
+    player2.grounded = false;
+
+    // Code to make Wall Blocks work
+    for (var i = 0; i < boxes.length; i++) {
+      var dir = colCheck(player2, boxes[i]);
+
+      if (dir === "l" || dir === "r") {
+        player2.velX = 0;
+        player2.jumping = false;
+        player2.grounded = false;
+      } else if (dir === "b") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+        if (gravity > 0) {
+          player2.grounded = true;
+          player2.jumping = false;
+        } else {
+          player2.velY *= -1;
+        }
+      } else if (dir === "t") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+        if (gravity > 0) {
+          player2.velY *= -1;
+        } else {
+          player2.grounded = true;
+          player2.jumping = false;
+        }
+      }
+
+    }
+
+    // Code to make Platforms work
+    for (var i = 0; i < platform.length; i++) {
+      var dir = noColCheck(player2, platform[i]);
+
+      if (dir === "b") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+        if (gravity > 0) {
+          player2.grounded = true;
+          player2.jumping = false;
+        } else {
+          player2.velY *= -1;
+        }
+      } else if (dir === "t") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+      }
+
+    }
+
+    // Code to make Lava (Both Types) Work
+    for (var i = 0; i < lava.length; i++) {
+      var dir = colCheck(player2, lava[i], lava[i].extra);
+
+      if (dir === "l" || dir === "r") {
+        reset();
+      } else if (dir === "b") {
+        reset();
+      } else if (dir === "t") {
+        reset();
+      }
+    }
+
+    // Code to make Portals Work
+    for (var i = 0; i < portal.length; i++) {
+      var dir = colCheck(player2, portal[i]);
+
+      if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
+        var teleportTo = randomNumber(0, portal.length);
+        var x = portal[teleportTo].x / 16;
+        var y = portal[teleportTo].y / 16;
+        y += 1;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        y -= 1;
+        x += 1;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        y -= 1;
+        x -= 1;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        x -= 1;
+        y += 1;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        x += 2;
+        y += 1;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        y -= 2;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        x -= 2;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        y += 2;
+        if (isOpen(x, y)) {
+          player2.x = x * 16;
+          player2.y = y * 16;
+        }
+        console.log(x);
+        console.log(y);
+        console.log(teleportTo);
+      }
+    }
+
+    // Code to make the Antigravity stuff work.
+    for (var i = 0; i < antigrav.length; i++) {
+      var dir = colCheck(player2, antigrav[i]);
+
+      if (dir === "l" || dir === "r") {
+
+      } else if (dir === "b") {
+        gravity = gravity * -1;
+        player2.velY = -player2.speed;
+        player2.grounded = false;
+      } else if (dir === "t") {
+        gravity = gravity * -1;
+        player2.velY = player2.speed;
+        player2.grounded = false;
+      }
+    }
+
+    // Code to make Checkpoints work
+    for (var i = 0; i < checkpoint.length; i++) {
+      var dir = colCheck(player2, checkpoint[i]);
+
+      if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
+        setCheckpoint(dir, i);
+      }
+    }
+
+    // Code to make Goals work
+    for (var i = 0; i < goal.length; i++) {
+
+      var dir = colCheck(player2, goal[i]);
+
+      if (dir === "l") {
+        if (checkAllCoins() == 1) {
+          alert("Level Complete!");
+          goal.splice(i, 1);
+          sessionStorage.clear();
+          location.reload();
+          player2.velX = 0;
+        } else {
+          player2.velX += 0.1;
+        }
+      } else if (dir === "r") {
+        if (checkAllCoins() == 1) {
+          alert("Level Complete!");
+          goal.splice(i, 1);
+          sessionStorage.clear();
+          location.reload();
+          player2.velX = 0;
+        } else {
+          player2.velX -= 0.1;
+        }
+      } else if (dir === "b") {
+        if (checkAllCoins() == 1) {
+          alert("Level Complete!");
+          goal.splice(i, 1);
+          sessionStorage.clear();
+          location.reload();
+          player2.velY = 0;
+        } else {
+          player2.velY -= 0.1;
+        }
+      } else if (dir === "t") {
+        if (checkAllCoins() == 1) {
+          alert("Level Complete!");
+          goal.splice(i, 1);
+          sessionStorage.clear();
+          location.reload();
+          player2.velY = 0;
+        } else {
+          player2.velY += 0.1;
+        }
+      }
+
+    }
+
+    // Code to make Coins work
+    for (var i = 0; i < coin.length; i++) {
+      var dir = colCheck(player2, coin[i]);
+
+      if (dir === "l" || dir === "r") {
+        coinsCollected++;
+        coin.splice(i, 1);
+      } else if (dir === "b") {
+        coinsCollected++;
+        coin.splice(i, 1);
+      } else if (dir === "t") {
+        coinsCollected++;
+        coin.splice(i, 1);
+      }
+
+    }
+
+    // Code to make Ice work
+    for (var i = 0; i < ice.length; i++) {
+      var dir = colCheck(player2, ice[i]);
+      if (dir === "l" || dir === "r") {
+        player2.velX = 0;
+        player2.jumping = false;
+      } else if (dir === "b") {
+        if (gravity > 0) {
+          player2.friction = 1;
+          player2.grounded = true;
+          player2.jumping = false;
+        } else {
+          player2.velY *= -1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+      } else if (dir === "t") {
+        if (gravity > 0) {
+          player2.velY *= -1;
+        } else {
+          player2.friction = 1;
+          player2.grounded = true;
+          player2.jumping = false;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+      }
+
+    }
+
+    // Code to make Slime Work
+    for (var i = 0; i < slime.length; i++) {
+      var dir = colCheck(player2, slime[i]);
+      if (dir === "l" || dir === "r") {
+        player2.velX = 0;
+        player2.jumping = false;
+      } else if (dir === "b") {
+        if (gravity > 0) {
+          player2.speed = 4;
+          player2.grounded = true;
+          player2.jumping = false;
+        } else {
+          player2.velY *= -1;
+        }
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+      } else if (dir === "t") {
+        if (gravity > 0) {
+          player2.velY *= -1;
+        } else {
+          player2.speed = 4;
+          player2.grounded = true;
+          player2.jumping = false;
+        }
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+      }
+
+    }
+
+    // Code to make Moving Blocks work
+    for (var i = 0; i < moving.length; i++) {
+      for (var j = 0; j < boxes.length; j++) {
+        var dir = colCheck(moving[i], boxes[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+      for (var j = 0; j < ice.length; j++) {
+        var dir = colCheck(moving[i], ice[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+      for (var j = 0; j < slime.length; j++) {
+        var dir = colCheck(moving[i], slime[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+      for (var j = 0; j < antigrav.length; j++) {
+        var dir = colCheck(moving[i], antigrav[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+      for (var j = 0; j < portal.length; j++) {
+        var dir = colCheck(moving[i], portal[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+      for (var j = 0; j < platform.length; j++) {
+        var dir = colCheck(moving[i], platform[j]);
+        if (dir === "l" || dir === "r") {
+          moving[i].velX *= -1;
+        }
+      }
+
+      var dir = colCheck(player2, moving[i]);
+      if (dir === "l" || dir === "r") {
+        player2.velX = 0;
+        player2.jumping = false;
+        player2.grounded = false;
+      } else if (dir === "b") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+        if (gravity > 0) {
+          if (moving[i].velX == 0.5) {
+            player2.velX = moving[i].velX + 0.055555555;
+          } else if (moving[i].velX == -0.5) {
+            player2.velX = moving[i].velX - 0.055555555;
+          }
+          player2.grounded = true;
+          player2.jumping = false;
+        } else {
+          player2.velY *= -1;
+        }
+      } else if (dir === "t") {
+        while (player2.friction != friction) {
+          player2.friction -= 0.1;
+        }
+        while (player2.speed != speed) {
+          player2.speed -= 1;
+        }
+        if (gravity > 0) {
+          player2.velY *= -1;
+        } else {
+          if (moving[i].velX == 0.5) {
+            player2.velX = moving[i].velX + 0.055555555;
+          } else if (moving[i].velX == -0.5) {
+            player2.velX = moving[i].velX - 0.055555555;
+          }
+          player2.grounded = true;
+          player2.jumping = false;
+        }
+      }
+      moving[i].x += moving[i].velX;
+    }
 
 
-  // Code to make Bullets Work
-  for (var i = 0; i < bullet.length; i++) {
-    var dir = colCheck(player, bullet[i]);
-    if (dir === "l" || dir === "r") {
-      reset();
-    } else if (dir === "b") {
-      reset();
-    } else if (dir === "t") {
-      reset();
+    // Code to make Blink (Red) Blocks work
+    for (var i = 0; i < blinkRed.length; i++) {
+      if (redActive == true) {
+        var dir = colCheck(player2, blinkRed[i]);
+        if (dir === "l" || dir === "r") {
+          player2.velX = 0;
+          player2.jumping = false;
+          player2.grounded = false;
+        } else if (dir === "b") {
+          while (player2.friction != friction) {
+            player2.friction -= 0.1;
+          }
+          while (player2.speed != speed) {
+            player2.speed -= 1;
+          }
+          if (gravity > 0) {
+            player2.grounded = true;
+            player2.jumping = false;
+          } else {
+            player2.velY *= -1;
+          }
+        } else if (dir === "t") {
+          while (player2.friction != friction) {
+            player2.friction -= 0.1;
+          }
+          while (player2.speed != speed) {
+            player2.speed -= 1;
+          }
+          if (gravity > 0) {
+            player2.velY *= -1;
+          } else {
+            player2.grounded = true;
+            player2.jumping = false;
+          }
+        }
+      }
+
+
+    }
+
+    // Code to make Blink (Blue) Blocks work
+    for (var i = 0; i < blinkBlue.length; i++) {
+
+
+      if (blueActive == true) {
+        var dir = colCheck(player2, blinkBlue[i]);
+        if (dir === "l" || dir === "r") {
+          player2.velX = 0;
+          player2.jumping = false;
+          player2.grounded = false;
+        } else if (dir === "b") {
+          while (player2.friction != friction) {
+            player2.friction -= 0.1;
+          }
+          while (player2.speed != speed) {
+            player2.speed -= 1;
+          }
+          if (gravity > 0) {
+            player2.grounded = true;
+            player2.jumping = false;
+          } else {
+            player2.velY *= -1;
+          }
+        } else if (dir === "t") {
+          while (player2.friction != friction) {
+            player2.friction -= 0.1;
+          }
+          while (player2.speed != speed) {
+            player2.speed -= 1;
+          }
+          if (gravity > 0) {
+            player2.velY *= -1;
+          } else {
+            player2.grounded = true;
+            player2.jumping = false;
+          }
+        }
+      }
+
+
+
     }
 
   }
@@ -1149,574 +1580,35 @@ function update() {
   ctx.globalAlpha = player.opacity;
   ctx.fillRect(player.x, player.y, player.width, player.height);
 
-  // if Player 2 exists, do all player 1 stuff but minus the drawing and extra movements
-  /* if (player2Exists == true) {
-        if (keys[87]) {
-            // w
-            if (!player2.jumping && player2.grounded) {
-                player2.jumping = true;
-                player2.grounded = false;
-                if (gravity > 0) {
-                    player2.velY = -player2.speed * 2;
-                } else {
-                    player2.velY = player2.speed * 2;
-                }
-            }
-        }
-        if (keys[68]) {
-            // d
-            if (player2.velX < player2.speed) {
-                player2.velX++;
-            }
-        }
-        if (keys[65]) {
-            // a
-            if (player2.velX > -player2.speed) {
-                player2.velX--;
-            }
-        }
-
-        player2.velX *= player2.friction;
-        player2.velY += gravity;
-
-        colCheck(player2, player);
-
-        player2.grounded = false;
-        for (var i = 0; i < boxes.length; i++) {
-            var dir = colCheck(player2, boxes[i]);
-
-            if (dir === "l" || dir === "r") {
-                player2.velX = 0;
-                player2.jumping = false;
-                player2.grounded = false;
-            } else if (dir === "b") {
-                while (player2.friction != friction) {
-                    player2.friction -= 0.1;
-                }
-                while (player2.speed != speed) {
-                    player2.speed -= 1;
-                }
-                if (gravity > 0) {
-                    player2.grounded = true;
-                    player2.jumping = false;
-                } else {
-                    player2.velY *= -1;
-                }
-            } else if (dir === "t") {
-                while (player2.friction != friction) {
-                    player2.friction -= 0.1;
-                }
-                while (player2.speed != speed) {
-                    player2.speed -= 1;
-                }
-                if (gravity > 0) {
-                    player2.velY *= -1;
-                } else {
-                    player2.grounded = true;
-                    player2.jumping = false;
-                }
-            }
-
-        }
-
-        for (var i = 0; i < lava.length; i++) {
-            var dir = colCheck(player2, lava[i]);
-
-            if (dir === "l" || dir === "r") {
-                cancelAnimationFrame(update);
-                reset();
-                return;
-            } else if (dir === "b") {
-                cancelAnimationFrame(update);
-                reset();
-                return;
-            } else if (dir === "t") {
-                cancelAnimationFrame(update);
-                reset();
-                return;
-            }
-        }
-
-        for (var i = 0; i < portal.length; i++) {
-            ctx.drawImage(spritesheet, 176, 0, 16, 16, portal[i].x, portal[i].y, portal[i].width, portal[i].height);
-            var dir = colCheck(player2, portal[i]);
-
-            if (dir === "l" || dir === "r" || dir === "t" || dir === "b") {
-                var teleportTo = randomNumber(0, portal.length);
-                var x = portal[teleportTo].x / 16;
-                var y = portal[teleportTo].y / 16;
-                y += 1;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                y -= 1;
-                x += 1;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                y -= 1;
-                x -= 1;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                x -= 1;
-                y += 1;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                x += 2;
-                y += 1;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                y -= 2;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                x -= 2;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                y += 2;
-                if (isOpen(x, y)) {
-                    player2.x = x * 16;
-                    player2.y = y * 16;
-                }
-                console.log(x);
-                console.log(y);
-                console.log(teleportTo);
-            }
-        }
-
-        for (var i = 0; i < antigrav.length; i++) {
-            var dir = colCheck(player2, antigrav[i]);
-
-            if (dir === "l" || dir === "r") {
-
-            } else if (dir === "b") {
-                gravity = gravity * -1;
-                player2.velY = -player2.speed;
-                player2.grounded = false;
-            } else if (dir === "t") {
-                gravity = gravity * -1;
-                player2.velY = player2.speed;
-                player2.grounded = false;
-            }
-        }
-
-        for (var i = 0; i < checkpoint.length; i++) {
-            var dir = colCheck(player2, checkpoint[i]);
-
-            if (dir === "l" || dir === "r" || dir === "b" || dir === "t") {
-                setCheckpoint(dir, i);
-            }
-        }
-
-        for (var i = 0; i < goal.length; i++) {
-
-            var dir = colCheck(player2, goal[i]);
-
-            if (dir === "l") {
-                if (checkAllCoins() == 1) {
-                    alert("Level Complete!");
-                    goal.splice(i, 1);
-                    sessionStorage.clear();
-                    player2.velX = 0;
-                } else {
-                    player2.velX += 0.1;
-                }
-            } else if (dir === "r") {
-                if (checkAllCoins() == 1) {
-                    alert("Level Complete!");
-                    goal.splice(i, 1);
-                    sessionStorage.clear();
-                    player2.velX = 0;
-                } else {
-                    player2.velX -= 0.1;
-                }
-            } else if (dir === "b") {
-                if (checkAllCoins() == 1) {
-                    alert("Level Complete!");
-                    goal.splice(i, 1);
-                    sessionStorage.clear();
-                    player2.velY = 0;
-                } else {
-                    player2.velY -= 0.1;
-                }
-            } else if (dir === "t") {
-                if (checkAllCoins() == 1) {
-                    alert("Level Complete!");
-                    goal.splice(i, 1);
-                    sessionStorage.clear();
-                    player2.velY = 0;
-                } else {
-                    player2.velY += 0.1;
-                }
-            }
-
-        }
-
-        for (var i = 0; i < coin.length; i++) {
-            var dir = colCheck(player2, coin[i]);
-
-            if (dir === "l" || dir === "r") {
-                coinsCollected++;
-                coin.splice(i, 1);
-            } else if (dir === "b") {
-                coinsCollected++;
-                coin.splice(i, 1);
-            } else if (dir === "t") {
-                coinsCollected++;
-                coin.splice(i, 1);
-            }
-
-        }
-
-        for (var i = 0; i < ice.length; i++) {
-            var dir = colCheck(player2, ice[i]);
-            if (dir === "l" || dir === "r") {
-                player2.velX = 0;
-                player2.jumping = false;
-            } else if (dir === "b") {
-                if (gravity > 0) {
-                    player2.friction = 1;
-                    player2.grounded = true;
-                    player2.jumping = false;
-                } else {
-                    player2.velY *= -1;
-                }
-                while (player2.speed != speed) {
-                    player2.speed -= 1;
-                }
-            } else if (dir === "t") {
-                if (gravity > 0) {
-                    player2.velY *= -1;
-                } else {
-                    player2.friction = 1;
-                    player2.grounded = true;
-                    player2.jumping = false;
-                }
-                while (player2.speed != speed) {
-                    player2.speed -= 1;
-                }
-            }
-
-        }
-
-        for (var i = 0; i < slime.length; i++) {
-            var dir = colCheck(player2, slime[i]);
-            if (dir === "l" || dir === "r") {
-                player2.velX = 0;
-                player2.jumping = false;
-            } else if (dir === "b") {
-                if (gravity > 0) {
-                    player2.speed = 4;
-                    player2.grounded = true;
-                    player2.jumping = false;
-                } else {
-                    player2.velY *= -1;
-                }
-                while (player2.friction != friction) {
-                    player2.friction -= 0.1;
-                }
-            } else if (dir === "t") {
-                if (gravity > 0) {
-                    player2.velY *= -1;
-                } else {
-                    player2.speed = 4;
-                    player2.grounded = true;
-                    player2.jumping = false;
-                }
-                while (player2.friction != friction) {
-                    player2.friction -= 0.1;
-                }
-            }
-
-        }
-
-    for (var i = 0; i < moving.length; i++) {
-		var dir = colCheck(player2, moving[i]);
-		if (dir === "l" || dir === "r") {
-            player2.velX = 0;
-            player2.jumping = false;
-            player2.grounded = false;
-        } else if (dir === "b") {
-            while (player2.friction != friction) {
-                player2.friction -= 0.1;
-            }
-            while (player2.speed != speed) {
-                player2.speed -= 1;
-            }
-            if (gravity > 0) {
-				if (moving[i].velX == 0.5) {
-					player2.velX = moving[i].velX + 0.055555555;
-				}
-				else if (moving[i].velX == -0.5) {
-					player2.velX = moving[i].velX - 0.055555555;
-				}
-                player2.grounded = true;
-                player2.jumping = false;
-            } else {
-                player2.velY *= -1;
-            }
-        } else if (dir === "t") {
-            while (player2.friction != friction) {
-                player2.friction -= 0.1;
-            }
-            while (player2.speed != speed) {
-                player2.speed -= 1;
-            }
-            if (gravity > 0) {
-                player2.velY *= -1;
-            } else {
-				if (moving[i].velX == 0.5) {
-					player2.velX = moving[i].velX + 0.055555555;
-				}
-				else if (moving[i].velX == -0.5) {
-					player2.velX = moving[i].velX - 0.055555555;
-				}
-                player2.grounded = true;
-                player2.jumping = false;
-            }
-        }
-    }
-
-	// Code to make Blink (Red) Blocks work
-    for (var i = 0; i < blinkRed.length; i++) {
-		if (redActive == true) {
-			var dir = colCheck(player2, blinkRed[i]);
-			if (dir === "l" || dir === "r") {
-				player2.velX = 0;
-				player2.jumping = false;
-				player2.grounded = false;
-			} else if (dir === "b") {
-				while (player2.friction != friction) {
-					player2.friction -= 0.1;
-				}
-				while (player2.speed != speed) {
-					player2.speed -= 1;
-				}
-				if (gravity > 0) {
-					player2.grounded = true;
-					player2.jumping = false;
-				} else {
-					player2.velY *= -1;
-				}
-			} else if (dir === "t") {
-				while (player2.friction != friction) {
-					player2.friction -= 0.1;
-				}
-				while (player2.speed != speed) {
-					player2.speed -= 1;
-				}
-				if (gravity > 0) {
-					player2.velY *= -1;
-				} else {
-					player2.grounded = true;
-					player2.jumping = false;
-				}
-			}
-
-
-    }
-
-	// Code to make Blink (Blue) Blocks work
-    for (var i = 0; i < blinkBlue.length; i++) {
-		if (blueActive == true) {
-			var dir = colCheck(player2, blinkBlue[i]);
-			if (dir === "l" || dir === "r") {
-				player2.velX = 0;
-				player2.jumping = false;
-				player2.grounded = false;
-			} else if (dir === "b") {
-				while (player2.friction != friction) {
-					player2.friction -= 0.1;
-				}
-				while (player2.speed != speed) {
-					player2.speed -= 1;
-				}
-				if (gravity > 0) {
-					player2.grounded = true;
-					player2.jumping = false;
-				} else {
-					player2.velY *= -1;
-				}
-			} else if (dir === "t") {
-				while (player2.friction != friction) {
-					player2.friction -= 0.1;
-				}
-				while (player2.speed != speed) {
-					player2.speed -= 1;
-				}
-				if (gravity > 0) {
-					player2.velY *= -1;
-				} else {
-					player2.grounded = true;
-					player2.jumping = false;
-				}
-			}
-    }
-
-	// Code to make Shooter Blocks work
-    for (var i = 0; i < shooter.length; i++) {
-        var dir = colCheck(player2, shooter[i]);
-        if (dir === "l" || dir === "r") {
-            player2.velX = 0;
-            player2.jumping = false;
-            player2.grounded = false;
-        } else if (dir === "b") {
-            while (player2.friction != friction) {
-                player2.friction -= 0.1;
-            }
-            while (player2.speed != speed) {
-                player2.speed -= 1;
-            }
-            if (gravity > 0) {
-                player2.grounded = true;
-                player2.jumping = false;
-            } else {
-                player2.velY *= -1;
-            }
-        } else if (dir === "t") {
-            while (player2.friction != friction) {
-                player2.friction -= 0.1;
-            }
-            while (player2.speed != speed) {
-                player2.speed -= 1;
-            }
-            if (gravity > 0) {
-                player2.velY *= -1;
-            } else {
-                player2.grounded = true;
-                player2.jumping = false;
-            }
-        }
-    }
-
-
-	// Code to make Bullets Work
-    for (var i = 0; i < bullet.length; i++) {
-        ctx.drawImage(spritesheet, 272, 0, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
-        var dir = colCheck(player2, bullet[i]);
-
-        if (dir === "l" || dir === "r") {
-            reset();
-        } else if (dir === "b") {
-            reset();
-        } else if (dir === "t") {
-            reset();
-        }
-
-    }
-    }
-
-
-        if (player2.grounded) {
-            player2.velY = 0;
-        }
-
-        player2.x += player2.velX;
-        player2.y += player2.velY;
-
-        ctx.fill();
-        ctx.fillStyle = "green";
-        ctx.globalAlpha = player2.opacity;
-        ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
-    }
-    }*/
-
   if (player.x > 1024 || player.x < 0 || player.y > 512 || player.y < -128) {
     reset();
   }
+
+  if (player2Exists) {
+
+    if (player2.grounded) {
+      player2.velY = 0;
+    }
+
+    player2.x += player2.velX;
+    player2.y += player2.velY;
+
+    // Draw player2s new position
+    ctx.fill();
+    ctx.fillStyle = "purple";
+    ctx.globalAlpha = player2.opacity;
+    ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
+
+    if (player2.x > 1024 || player2.x < 0 || player2.y > 512 || player2.y < -128) {
+      reset();
+    }
+  }
+
 
   document.getElementById("deaths").innerHTML = deaths;
   // dont understand this but updates the animation
   requestAnimationFrame(update);
 
-}
-
-function fire(i) {
-  for (var i = 0; i < shooter.length; i++) {
-    //console.log("fire");
-    if (player.x < shooter[i].x) {
-      beamFire("left", shooter[i].x, shooter[i].y);
-    } else if (player.x > shooter[i].x) {
-      beamFire("right", shooter[i].x, shooter[i].y);
-    } else {}
-  }
-}
-
-function beamFire(direction, x, y) {
-  var canvas = document.getElementById("test1"),
-    ctx = canvas.getContext("2d");
-  //console.log("function works");
-  var xPos = x / tileSize;
-  var yPos = y / tileSize;
-  if (direction == "left") {
-    //console.log("direction works");
-    xPos -= 1;
-    while (isOpen(xPos, yPos)) {
-      //console.log("it should be working now");
-      var position = TileToPoint(xPos, yPos);
-      bullet.push({
-        opacity: 1,
-        x: position[0],
-        y: position[1] + 6,
-        width: 16,
-        height: 8,
-        type: 320,
-        typeY: 9
-      });
-      xPos -= 1;
-    }
-  } else if (direction == "right") {
-    xPos += 1;
-    while (isOpen(xPos, yPos)) {
-      //  console.log("it should be working now");
-      var position = TileToPoint(xPos, yPos);
-      bullet.push({
-        opacity: 1,
-        x: position[0],
-        y: position[1] + 6,
-        width: 16,
-        height: 6,
-        type: 320,
-        typeY: 9
-      });
-      xPos += 1;
-    }
-  }
-  for (var i = 0; i < bullet.length; i++) {
-    if (isOpen((bullet[i].x / 16), (bullet[i].y / 16)) == false) {
-      bullet[i].type = 320;
-      bullet[i].typeY = 0;
-    }
-    ctx.drawImage(spritesheet, bullet[i].type, bullet[i].typeY, 16, 6, bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height);
-  }
-}
-
-function prepareFire(i) {
-  for (var i = 0; i < shooter.length; i++) {
-    //console.log("preparing to fire");
-    shooter[i].type = 272;
-  }
-}
-
-function resetFire(i) {
-  for (var i = 0; i < shooter.length; i++) {
-    /*console.log("reset")*/
-    ;
-    onCooldown = false;
-    bullet = [];
-    shooter[i].type = 256;
-  }
 }
 
 function isOpen(x, y) {
@@ -1770,6 +1662,12 @@ function reset() {
   player.y = player.startY;
   player.velY = 0;
   player.velX = 0;
+  if (player2Exists) {
+    player2.x = player2.startX;
+    player2.y = player2.startY;
+    player2.velY = 0;
+    player2.velX = 0;
+  }
   sessionStorage.setItem("checkpointArray", JSON.stringify(checkpoint));
   sessionStorage.setItem("coinArray", JSON.stringify(coin));
   sessionStorage.setItem("coinsCollected", coinsCollected);
@@ -1778,21 +1676,6 @@ function reset() {
   sessionStorage.setItem("deaths", deaths);
 }
 
-function ejectPlayer(dir) {
-  // Pushes player off of goal if they dont have all coins
-  if (dir === "t") {
-    player.y -= 2;
-  }
-  if (dir === "b") {
-    player.y += 2;
-  }
-  if (dir === "l") {
-    player.x += 2;
-  }
-  if (dir === "r") {
-    player.x -= 2;
-  }
-}
 
 function colCheck(shapeA, shapeB, extra) {
   // DONT FULLY UNDERSTAND Collisions yet but here they are.
