@@ -2,6 +2,10 @@
   font-family: 'Mrs. Strange';
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .characterName {
   text-align: center;
 }
@@ -59,7 +63,7 @@ flip card
   /* Text color */
   cursor: pointer;
   /* Add a mouse pointer on hover */
-  border-radius: 50px;
+  border-radius: 25px;
   /* Rounded corners */
   font-size: 2em;
   /* Increase font size */
